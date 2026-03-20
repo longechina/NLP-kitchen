@@ -1,0 +1,2050 @@
+{
+  "LEVEL_II": {
+    "name": "Intermediate Level of Language Competence",
+    "PRAGMATIC_COMPETENCE": {
+      "name": "Pragmatic Competence - Functional Competence",
+      "1_interact_socially_and_professionally": {
+        "name": "Interact socially and professionally",
+        "1.1": {
+          "name": "Ask and give news and update of someone",
+          "examples": [
+            "你最近有没有跟她联系过？她工作的事情怎么样了？",
+            "听说她又换工作了。",
+            "你有他的消息吗？"
+          ],
+          "vocabulary": [
+            "最近 zuìjìn",
+            "情况 qíngkuàng",
+            "变化 biànhuà",
+            "变成 biànwéi",
+            "成长 chéngzhǎng",
+            "发展 fāzhǎn",
+            "进步 jìnbù",
+            "工作 gōngzuò",
+            "生活 shēnghuó",
+            "学习 xuéxí",
+            "顺利 shùnlì",
+            "怎么样 zěnmeyàng",
+            "好久不见 hǎojiǔ bújiàn"
+          ]
+        },
+        "1.2": {
+          "name": "Interact on the phone, or using chat, messaging, and email",
+          "examples": [
+            "您找哪位？……请稍等。",
+            "您好，我是…… 麻烦您让小王接一下儿电话。",
+            "不好意思，我听不清楚，您能不能大声一点儿？",
+            "如果有需要的话，可以随时跟我联系。打电话、发邮件都行。",
+            "我们改天再聊！代我向你的家人问好。"
+          ],
+          "vocabulary": [
+            "打电话 dǎ diànhuà",
+            "接电话 jiē diànhuà",
+            "回电话 huí diànhuà",
+            "手机 shǒujī",
+            "短信 duǎnxìn",
+            "微信 Wēixìn",
+            "邮件 yóujiàn",
+            "电子邮件 diànzǐ yóujiàn",
+            "发 fā",
+            "收到 shōudào",
+            "回复 huífù",
+            "上网 shàngwǎng",
+            "网络 wǎngluò",
+            "信号 xìnhào",
+            "占线 zhànxiàn",
+            "留言 liúyán",
+            "在线 zàixiàn",
+            "登录 dēnglù",
+            "下载 xiàzài",
+            "上传 shàngchuán",
+            "视频 shìpín",
+            "语音 yǔyīn"
+          ]
+        },
+        "1.3": {
+          "name": "Express gratitude, compliments, and congratulations",
+          "examples": [
+            "真是太感谢您了！",
+            "你帮了我这么大的忙，我真不知道怎么谢你！",
+            "你终于拿到这份工作了。恭喜恭喜！",
+            "为我们的友谊干杯！",
+            "这次的活动办得很成功，祝贺你们！"
+          ],
+          "vocabulary": [
+            "谢谢 xièxie",
+            "感谢 gǎnxiè",
+            "太感谢了 tài gǎnxiè le",
+            "不客气 bú kèqi",
+            "没什么 méi shénme",
+            "应该的 yīnggāi de",
+            "真棒 zhēn bàng",
+            "太好了 tài hǎo le",
+            "厉害 lìhai",
+            "漂亮 piàoliang",
+            "精彩 jīngcǎi",
+            "完美 wánměi",
+            "祝贺 zhùhè",
+            "恭喜 gōngxǐ",
+            "祝 zhù",
+            "好运 hǎoyùn",
+            "成功 chénggōng",
+            "干杯 gānbēi"
+          ]
+        },
+        "1.4": {
+          "name": "Express good wishes",
+          "examples": [
+            "祝你们幸福！祝你好运！祝你成功！",
+            "一路平安！旅途愉快！"
+          ],
+          "vocabulary": [
+            "祝 zhù",
+            "希望 xīwàng",
+            "祝愿 zhùyuàn",
+            "快乐 kuàilè",
+            "幸福 xìngfú",
+            "健康 jiànkāng",
+            "平安 píng'ān",
+            "顺利 shùnlì",
+            "成功 chénggōng",
+            "好运 hǎoyùn",
+            "万事如意 wànshì rúyì",
+            "生日快乐 shēngrì kuàilè",
+            "新年快乐 xīnnián kuàilè",
+            "节日快乐 jiérì kuàilè",
+            "一路平安 yílù píng'ān",
+            "一路顺风 yílù shùnfēng"
+          ]
+        },
+        "1.5": {
+          "name": "Express care and give encouragement",
+          "examples": [
+            "考试你没通过吗？没关系，下次一定可以通过！",
+            "我觉得你最近工作压力太大了。身体最重要，你休息一下吧。",
+            "你一定会成功的。加油！"
+          ],
+          "vocabulary": [
+            "小心 xiǎoxīn",
+            "注意 zhùyì",
+            "保重 bǎozhòng",
+            "照顾好自己 zhàogù hǎo zìjǐ",
+            "加油 jiāyóu",
+            "别担心 bié dānxīn",
+            "没事儿 méi shìr",
+            "没关系 méi guānxi",
+            "慢慢来 mànmàn lái",
+            "坚持 jiānchí",
+            "努力 nǔlì",
+            "相信 xiāngxìn",
+            "你可以的 nǐ kěyǐ de",
+            "放松 fàngsōng",
+            "休息 xiūxi",
+            "累了 lèi le"
+          ]
+        },
+        "1.6": {
+          "name": "Offer or receive a gift",
+          "examples": [
+            "这是我的一点心意，请你们收下。",
+            "这个礼物太贵重了，您太客气了！"
+          ],
+          "vocabulary": [
+            "礼物 lǐwù",
+            "送 sòng",
+            "给 gěi",
+            "收 shōu",
+            "接受 jiēshòu",
+            "谢谢 xièxie",
+            "喜欢 xǐhuan",
+            "太客气了 tài kèqi le",
+            "不用不用 búyòng búyòng",
+            "打开 dǎkāi",
+            "看看 kànkan",
+            "漂亮 piàoliang",
+            "实用 shíyòng"
+          ]
+        }
+      },
+      "2_exchange_information_describe_and_narrate": {
+        "name": "Exchange information, describe, and narrate",
+        "2.1": {
+          "name": "Ask and give specific everyday and work-related information",
+          "examples": [
+            "你在清华大学哪个部门工作？你具体负责什么业务？",
+            "我现在这份工作假期很少，而且经常需要出差，没时间陪孩子。",
+            "咱们下周出差具体的行程安排好了吗？",
+            "我们周一先坐飞机去北京，周二倒一倒时差，周三早上跟王主任见面……"
+          ],
+          "vocabulary": [
+            "工作 gōngzuò",
+            "学习 xuéxí",
+            "生活 shēnghuó",
+            "家庭 jiātíng",
+            "爱好 àihào",
+            "时间 shíjiān",
+            "地点 dìdiǎn",
+            "人物 rénwù",
+            "事情 shìqing",
+            "原因 yuányīn",
+            "结果 jiéguǒ",
+            "方式 fāngshì",
+            "方法 fāngfǎ",
+            "过程 guòchéng",
+            "内容 nèiróng",
+            "情况 qíngkuàng",
+            "信息 xìnxī",
+            "资料 zīliào",
+            "数据 shùjù",
+            "价格 jiàgé",
+            "数量 shùliàng",
+            "质量 zhìliàng",
+            "种类 zhǒnglèi",
+            "特点 tèdiǎn",
+            "要求 yāoqiú",
+            "条件 tiáojiàn",
+            "计划 jìhuà",
+            "安排 ānpái",
+            "会议 huìyì",
+            "报告 bàogào",
+            "文件 wénjiàn",
+            "任务 rènwu",
+            "项目 xiàngmù",
+            "经验 jīngyàn",
+            "经历 jīnglì"
+          ]
+        },
+        "2.2": {
+          "name": "Ask and give directions and instructions",
+          "examples": [
+            "你要换两次地铁。出了地铁站以后，你按路边的指示牌一直走，就能看到来接你的人了。",
+            "这个文件，你先检查一遍，确定没问题了，让王主任签字，然后再发给这两个部门。",
+            "这个药每天吃两次，每次吃三片，不要空腹服用。"
+          ],
+          "vocabulary": [
+            "怎么走 zěnme zǒu",
+            "在哪儿 zài nǎr",
+            "往 wǎng",
+            "方向 fāngxiàng",
+            "前面 qiánmiàn",
+            "后面 hòumiàn",
+            "左边 zuǒbian",
+            "右边 yòubian",
+            "旁边 pángbiān",
+            "对面 duìmiàn",
+            "路口 lùkǒu",
+            "红绿灯 hónglǜdēng",
+            "拐弯 guǎiwān",
+            "一直 yìzhí",
+            "到 dào",
+            "先 xiān",
+            "然后 ránhòu",
+            "再 zài",
+            "最后 zuìhòu",
+            "步骤 bùzhòu",
+            "方法 fāngfǎ",
+            "方式 fāngshì",
+            "说明 shuōmíng",
+            "注意 zhùyì",
+            "小心 xiǎoxīn",
+            "千万别 qiānwàn bié",
+            "一定要 yídìng yào"
+          ]
+        },
+        "2.3": {
+          "name": "Ask and give a description of a person, object, or place",
+          "examples": [
+            "除了长相以外，你能不能再说得具体一点儿，比如，她的性格怎么样？她对工作的态度如何？",
+            "我的手机是防水的，而且屏幕上还贴着一张保护膜，所以用了五年都没有坏。",
+            "这个会议室是联网的，有音响设备，也有可以升降的投影屏幕。租金每月一千五。"
+          ],
+          "vocabulary": [
+            "什么样 shénme yàng",
+            "怎么样 zěnmeyàng",
+            "长 cháng",
+            "短 duǎn",
+            "高 gāo",
+            "矮 ǎi",
+            "胖 pàng",
+            "瘦 shòu",
+            "大 dà",
+            "小 xiǎo",
+            "颜色 yánsè",
+            "红 hóng",
+            "黄 huáng",
+            "蓝 lán",
+            "绿 lǜ",
+            "白 bái",
+            "黑 hēi",
+            "新 xīn",
+            "旧 jiù",
+            "漂亮 piàoliang",
+            "难看 nánkàn",
+            "贵 guì",
+            "便宜 piányi",
+            "干净 gānjìng",
+            "脏 zāng",
+            "热闹 rènao",
+            "安静 ānjìng",
+            "方便 fāngbiàn",
+            "环境 huánjìng",
+            "地方 dìfang",
+            "城市 chéngshì",
+            "农村 nóngcūn",
+            "特点 tèdiǎn",
+            "性格 xìnggé",
+            "头发 tóufa",
+            "眼睛 yǎnjing",
+            "衣服 yīfu"
+          ]
+        },
+        "2.4": {
+          "name": "Ask and give information about an experience, situation, or event",
+          "examples": [
+            "这个培训我两年前参加过一次，是我们的领导让我参加的，不过当时没有这么多人，活动也没有这么丰富。",
+            "这个活动首先是领导讲话，然后是主要嘉宾发言，接下来有一些表演节目，最后是闭幕式和晚宴。一切进行得都很顺利。"
+          ],
+          "vocabulary": [
+            "发生 fāshēng",
+            "经历 jīnglì",
+            "事情 shìqing",
+            "情况 qíngkuàng",
+            "事件 shìjiàn",
+            "事故 shìgù",
+            "新闻 xīnwén",
+            "消息 xiāoxi",
+            "听说 tīngshuō",
+            "记得 jìde",
+            "忘了 wàng le",
+            "什么时候 shénme shíhou",
+            "在哪儿 zài nǎr",
+            "和谁 hé shéi",
+            "怎么 zěnme",
+            "为什么 wèi shénme",
+            "先 xiān",
+            "然后 ránhòu",
+            "后来 hòulái",
+            "最后 zuìhòu",
+            "了 le",
+            "过 guo",
+            "以前 yǐqián",
+            "以后 yǐhòu",
+            "的时候 de shíhou",
+            "觉得 juéde",
+            "感觉 gǎnjué",
+            "怎么样 zěnmeyàng"
+          ]
+        },
+        "2.5": {
+          "name": "Ask and give clarification and explanation",
+          "examples": [
+            "我想知道您为什么没批准我的请假要求。",
+            "情况到底怎么样了？你能说得明白一点儿吗？",
+            "好的，谢谢您的问题，我解释一下儿。",
+            "你为什么觉得你适合这份工作？"
+          ],
+          "vocabulary": [
+            "什么意思 shénme yìsi",
+            "没听懂 méi tīngdǒng",
+            "再说一遍 zài shuō yí biàn",
+            "慢一点 màn yìdiǎn",
+            "解释 jiěshì",
+            "意思是 yìsi shì",
+            "就是说 jiùshì shuō",
+            "比如 bǐrú",
+            "例如 lìrú",
+            "因为 yīnwèi",
+            "所以 suǒyǐ",
+            "为了 wèile",
+            "目的 mùdì",
+            "原因 yuányīn",
+            "理由 lǐyóu",
+            "说明 shuōmíng",
+            "具体 jùtǐ",
+            "详细 xiángxì",
+            "简单 jiǎndān",
+            "清楚 qīngchu",
+            "明白 míngbai"
+          ]
+        },
+        "2.6": {
+          "name": "Understand and make an announcement",
+          "examples": [
+            "前往……的旅客请注意：您乘坐的……次航班现在开始登机。请带好您的随身物品，出示登机牌，由……号登机口登机。祝您旅途愉快。",
+            "请各位注意，今天的办证时间从早上八点开始，到中午十二点结束，十二点以后停止办理所有证件手续。",
+            "我宣布一个消息：……"
+          ],
+          "vocabulary": [
+            "通知 tōngzhī",
+            "广播 guǎngbō",
+            "注意 zhùyì",
+            "各位 gèwèi",
+            "大家 dàjiā",
+            "先生 xiānsheng",
+            "女士 nǚshì",
+            "欢迎 huānyíng",
+            "请注意 qǐng zhùyì",
+            "开始 kāishǐ",
+            "结束 jiéshù",
+            "时间 shíjiān",
+            "地点 dìdiǎn",
+            "变化 biànhuà",
+            "取消 qǔxiāo",
+            "延迟 yánchí",
+            "抱歉 bàoqiàn",
+            "谢谢 xièxie",
+            "合作 hézuò"
+          ]
+        },
+        "2.7": {
+          "name": "Summarize short narratives, biographies, presentations, and interviews",
+          "examples": [
+            "这个故事主要讲的是一个年轻的伊朗人坎坷的移民经历。",
+            "他出生于中国广州，祖籍苏州，是著名的美籍华人建筑师。",
+            "在采访中，当记者问到他为什么选择这个职业的时候，他回答说……"
+          ],
+          "vocabulary": [
+            "介绍 jièshào",
+            "总结 zǒngjié",
+            "概括 gàikuò",
+            "主要内容 zhǔyào nèiróng",
+            "特点 tèdiǎn",
+            "重点 zhòngdiǎn",
+            "经历 jīnglì",
+            "背景 bèijǐng",
+            "成就 chéngjiù",
+            "贡献 gòngxiàn",
+            "影响 yǐngxiǎng",
+            "意义 yìyì",
+            "看法 kànfǎ",
+            "观点 guāndiǎn",
+            "认为 rènwéi",
+            "最后 zuìhòu",
+            "总之 zǒngzhī"
+          ]
+        }
+      },
+      "3_express_feelings_attitudes_and_opinions": {
+        "name": "Express feelings, attitudes, and opinions",
+        "3.1": {
+          "name": "Express basic feelings and emotions",
+          "examples": [
+            "真的吗？他们怎么可以这么做！",
+            "很抱歉，我实在帮不了你的忙。",
+            "遗憾的是……",
+            "第一次接受电视采访，他当然十分紧张。",
+            "她激动得说不出话来了。"
+          ],
+          "vocabulary": [
+            "高兴 gāoxìng",
+            "难过 nánguò",
+            "生气 shēngqì",
+            "害怕 hàipà",
+            "担心 dānxīn",
+            "紧张 jǐnzhāng",
+            "放松 fàngsōng",
+            "激动 jīdòng",
+            "失望 shīwàng",
+            "满意 mǎnyì",
+            "不满意 bù mǎnyì",
+            "累 lèi",
+            "困 kùn",
+            "疼 téng",
+            "舒服 shūfu",
+            "不舒服 bù shūfu",
+            "奇怪 qíguài",
+            "惊讶 jīngyà",
+            "后悔 hòuhuǐ",
+            "无聊 wúliáo",
+            "幸福 xìngfú",
+            "痛苦 tòngkǔ"
+          ]
+        },
+        "3.2": {
+          "name": "Express agreement and disagreement",
+          "examples": [
+            "我完全同意。我支持你的观点。",
+            "我觉得这是个好主意。",
+            "我不赞同这样的的观点/看法。我反对。",
+            "我不这么认为，我觉得……"
+          ],
+          "vocabulary": [
+            "同意 tóngyì",
+            "不同意 bù tóngyì",
+            "赞成 zànchéng",
+            "反对 fǎnduì",
+            "对 duì",
+            "不对 bú duì",
+            "是 shì",
+            "不是 bú shì",
+            "没错 méi cuò",
+            "当然 dāngrán",
+            "不一定 bù yídìng",
+            "我同意 wǒ tóngyì",
+            "我不同意 wǒ bù tóngyì",
+            "我反对 wǒ fǎnduì",
+            "我觉得 wǒ juéde",
+            "我认为 wǒ rènwéi"
+          ]
+        },
+        "3.3": {
+          "name": "Express interest and indifference",
+          "examples": [
+            "你说的很有意思，继续说。",
+            "好啊，你下次再去，记得叫上我。",
+            "别跟我谈这个。这种事情，我一向不太关心。",
+            "我没什么意见。"
+          ],
+          "vocabulary": [
+            "感兴趣 gǎn xìngqù",
+            "有兴趣 yǒu xìngqù",
+            "没兴趣 méi xìngqù",
+            "喜欢 xǐhuan",
+            "不喜欢 bù xǐhuan",
+            "爱 ài",
+            "不爱 bú ài",
+            "关心 guānxīn",
+            "不在乎 bú zàihu",
+            "无所谓 wúsuǒwèi",
+            "随便 suíbiàn",
+            "都行 dōu xíng",
+            "还好 hái hǎo",
+            "一般 yìbān"
+          ]
+        },
+        "3.4": {
+          "name": "Express intention and willingness",
+          "examples": [
+            "谁愿意负责通知各部门？我来吧。",
+            "我特别想去你们那儿工作一段时间。"
+          ],
+          "vocabulary": [
+            "想 xiǎng",
+            "要 yào",
+            "打算 dǎsuàn",
+            "计划 jìhuà",
+            "准备 zhǔnbèi",
+            "愿意 yuànyì",
+            "不愿意 bú yuànyì",
+            "肯 kěn",
+            "不肯 bù kěn",
+            "敢 gǎn",
+            "不敢 bù gǎn",
+            "决定 juédìng",
+            "决心 juéxīn",
+            "希望 xīwàng"
+          ]
+        },
+        "3.5": {
+          "name": "Express hopes, expectations, and ambitions",
+          "examples": [
+            "希望我也能去清华大学工作！现在申请不会太晚吧？",
+            "希望这次活动能够圆满结束。",
+            "我的目标是两年之后能够……"
+          ],
+          "vocabulary": [
+            "希望 xīwàng",
+            "期望 qīwàng",
+            "期待 qīdài",
+            "梦想 mèngxiǎng",
+            "理想 lǐxiǎng",
+            "目标 mùbiāo",
+            "愿望 yuànwàng",
+            "祝 zhù",
+            "想 xiǎng",
+            "要 yào",
+            "成为 chéngwéi",
+            "将来 jiānglái",
+            "以后 yǐhòu",
+            "一定 yídìng",
+            "会 huì",
+            "能 néng"
+          ]
+        },
+        "3.6": {
+          "name": "Express satisfaction or concerns",
+          "examples": [
+            "各代表团对此次会议的日程安排表示相当满意。",
+            "问题是……",
+            "令人担忧的是……",
+            "我担心如果今年的预算不够用，这项计划就没法按时完成。"
+          ],
+          "vocabulary": [
+            "满意 mǎnyì",
+            "不满意 bù mǎnyì",
+            "不错 búcuò",
+            "很好 hěn hǎo",
+            "没问题 méi wèntí",
+            "担心 dānxīn",
+            "害怕 hàipà",
+            "紧张 jǐnzhāng",
+            "着急 zháojí",
+            "麻烦 máfan",
+            "有问题 yǒu wèntí",
+            "需要帮助 xūyào bāngzhù",
+            "怎么办 zěnme bàn"
+          ]
+        },
+        "3.7": {
+          "name": "Express certainty, probability, and doubt",
+          "examples": [
+            "有各位同事的共同努力，这项任务必定能完成。",
+            "这次恐怕没有时间了。",
+            "我在想他会不会弄错时间了。",
+            "我不太肯定他愿不愿意参加。"
+          ],
+          "vocabulary": [
+            "一定 yídìng",
+            "肯定 kěndìng",
+            "当然 dāngrán",
+            "绝对 juéduì",
+            "可能 kěnéng",
+            "也许 yěxǔ",
+            "大概 dàgài",
+            "大约 dàyuē",
+            "恐怕 kǒngpà",
+            "说不定 shuōbudìng",
+            "怀疑 huáiyí",
+            "觉得 juéde",
+            "认为 rènwéi",
+            "是不是 shì bu shì",
+            "真的吗 zhēn de ma"
+          ]
+        },
+        "3.8": {
+          "name": "Express obligation and necessity",
+          "examples": [
+            "你提出的这个建议我得再考虑一下。",
+            "申请必须在指定的日期内递交。",
+            "我想下午开会的时候这个问题有必要再提出来讨论一下。"
+          ],
+          "vocabulary": [
+            "应该 yīnggāi",
+            "应当 yīngdāng",
+            "该 gāi",
+            "必须 bìxū",
+            "得 děi",
+            "需要 xūyào",
+            "不用 búyòng",
+            "不必 búbì",
+            "一定要 yídìng yào",
+            "千万不要 qiānwàn búyào",
+            "最好 zuìhǎo"
+          ]
+        },
+        "3.9": {
+          "name": "Give views and opinions",
+          "examples": [
+            "这个问题该怎么解决？我的意见/看法是这样的……",
+            "我认为保护环境不仅是政府和国际组织的责任，也是我们每个人都应该做的事情。"
+          ],
+          "vocabulary": [
+            "觉得 juéde",
+            "认为 rènwéi",
+            "看 kàn",
+            "以为 yǐwéi",
+            "建议 jiànyì",
+            "看法 kànfǎ",
+            "观点 guāndiǎn",
+            "意见 yìjiàn",
+            "想法 xiǎngfǎ",
+            "在我看来 zài wǒ kànlái",
+            "我觉得 wǒ juéde",
+            "我认为 wǒ rènwéi",
+            "对不对 duì bu duì",
+            "是不是 shì bu shì"
+          ]
+        },
+        "3.10": {
+          "name": "Identify problems/issues and suggest solutions",
+          "examples": [
+            "要是这个提议没有通过的话，我们该怎么办？",
+            "现在的主要问题是……",
+            "在我们居住的这座城市里，道路交通是一个很大的问题，因为人口密度大，城市道路狭窄，所以经常堵车。",
+            "解决这个问题的方案只有一个，那就是大力发展绿色公交，鼓励低碳交通。"
+          ],
+          "vocabulary": [
+            "问题 wèntí",
+            "麻烦 máfan",
+            "困难 kùnnan",
+            "怎么办 zěnme bàn",
+            "解决 jiějué",
+            "办法 bànfǎ",
+            "方式 fāngshì",
+            "建议 jiànyì",
+            "意见 yìjiàn",
+            "可以 kěyǐ",
+            "能 néng",
+            "试试 shìshi",
+            "一下 yíxià",
+            "应该 yīnggāi",
+            "最好 zuìhǎo",
+            "也许 yěxǔ",
+            "可能 kěnéng",
+            "需要 xūyào",
+            "帮助 bāngzhù"
+          ]
+        }
+      },
+      "4_regulate_actions_with_others": {
+        "name": "Regulate actions with others",
+        "4.1": {
+          "name": "Make arrangement for an appointment, order, or reservation",
+          "examples": [
+            "我们星期三上午十点开个会，你有时间吗？我想跟你谈一下你这一年的工作表现。不会超过一个小时。",
+            "我不吃肉，有素菜吗？",
+            "我要订十份套餐，每份另加一瓶饮料，中午十一点半之前能送到吗？"
+          ],
+          "vocabulary": [
+            "安排 ānpái",
+            "约 yuē",
+            "见面 jiànmiàn",
+            "时间 shíjiān",
+            "地点 dìdiǎn",
+            "什么时候 shénme shíhou",
+            "在哪儿 zài nǎr",
+            "几点 jǐ diǎn",
+            "可以 kěyǐ",
+            "吗 ma",
+            "没问题 méi wèntí",
+            "好 hǎo",
+            "行 xíng",
+            "订 dìng",
+            "预订 yùdìng",
+            "房间 fángjiān",
+            "位子 wèizi",
+            "票 piào",
+            "点菜 diǎn cài",
+            "点餐 diǎn cān",
+            "就要 jiù yào",
+            "这个 zhège",
+            "那个 nàge",
+            "多少钱 duōshao qián"
+          ]
+        },
+        "4.2": {
+          "name": "Ask and offer help or services",
+          "examples": [
+            "这儿可以代订飞机票吗？",
+            "从这里去飞机场有直达的公交车吗？",
+            "您需要帮助吗？",
+            "培训处提供联合国六种语言的学习课程。"
+          ],
+          "vocabulary": [
+            "帮 bāng",
+            "帮忙 bāngmáng",
+            "能 néng",
+            "可以 kěyǐ",
+            "需要 xūyào",
+            "吗 ma",
+            "谢谢 xièxie",
+            "麻烦 máfan",
+            "一下 yíxià",
+            "请问 qǐngwèn",
+            "服务 fúwù",
+            "服务员 fúwùyuán",
+            "我来 wǒ lái",
+            "我来帮你 wǒ lái bāng nǐ",
+            "需要帮忙吗 xūyào bāngmáng ma"
+          ]
+        },
+        "4.3": {
+          "name": "Authorize or forbid an act",
+          "examples": [
+            "清华大学有关部门允许并支持员工在家办公。",
+            "室内请不要吸烟。",
+            "这儿禁止拍照。"
+          ],
+          "vocabulary": [
+            "可以 kěyǐ",
+            "能 néng",
+            "行 xíng",
+            "不行 bùxíng",
+            "不能 bùnéng",
+            "不可以 bù kěyǐ",
+            "不准 bùzhǔn",
+            "禁止 jìnzhǐ",
+            "允许 yǔnxǔ",
+            "同意 tóngyì",
+            "不同意 bù tóngyì",
+            "让 ràng",
+            "不让 bú ràng",
+            "必须 bìxū",
+            "一定要 yídìng yào",
+            "千万不要 qiānwàn búyào",
+            "别 bié"
+          ]
+        },
+        "4.4": {
+          "name": "Make and respond to a suggestion or advice",
+          "examples": [
+            "你还有什么更好的办法/主意吗？",
+            "尽量少喝含糖饮料，多吃蔬菜和水果。",
+            "要不这样吧，你跟数学系的同事联系一下，看他们能不能帮忙。",
+            "我提议/我建议……"
+          ],
+          "vocabulary": [
+            "建议 jiànyì",
+            "意见 yìjiàn",
+            "可以 kěyǐ",
+            "应该 yīnggāi",
+            "最好 zuìhǎo",
+            "试试 shìshi",
+            "一下 yíxià",
+            "吧 ba",
+            "怎么样 zěnmeyàng",
+            "好吗 hǎo ma",
+            "行吗 xíng ma",
+            "好 hǎo",
+            "行 xíng",
+            "可以 kěyǐ",
+            "没问题 méi wèntí",
+            "不行 bùxíng",
+            "不太好 bù tài hǎo",
+            "我觉得 wǒ juéde",
+            "也许 yěxǔ",
+            "可能 kěnéng"
+          ]
+        },
+        "4.5": {
+          "name": "Make and respond to a request",
+          "examples": [
+            "周五前你能不能把那个报告发过来？",
+            "请你尽快告诉我你的决定。",
+            "这个文件，你先检查一遍，确定没问题了，让王主任签字，然后再发给这两个部门。十点前能完成吗？"
+          ],
+          "vocabulary": [
+            "请 qǐng",
+            "能 néng",
+            "可以 kěyǐ",
+            "帮 bāng",
+            "一下 yíxià",
+            "吗 ma",
+            "麻烦 máfan",
+            "请问 qǐngwèn",
+            "好 hǎo",
+            "行 xíng",
+            "可以 kěyǐ",
+            "没问题 méi wèntí",
+            "对不起 duìbuqǐ",
+            "不行 bùxíng",
+            "现在不行 xiànzài bùxíng",
+            "等一下 děng yíxià"
+          ]
+        }
+      },
+      "5_organize_the_speech": {
+        "name": "Organize the speech",
+        "5.1": {
+          "name": "Initiate, maintain, and close conversations",
+          "examples": [
+            "我们可以开始了吗？",
+            "我们今天要谈的话题是……",
+            "我们刚才说到哪儿了？",
+            "对不起，打断一下，我们先谈主要的议题。",
+            "时间不多了，我们就先讨论到这儿吧！"
+          ],
+          "vocabulary": [
+            "你好 nǐ hǎo",
+            "您好 nín hǎo",
+            "喂 wèi",
+            "好久不见 hǎojiǔ bújiàn",
+            "最近怎么样 zuìjìn zěnmeyàng",
+            "忙吗 máng ma",
+            "是吗 shì ma",
+            "真的吗 zhēn de ma",
+            "然后呢 ránhòu ne",
+            "后来呢 hòulái ne",
+            "对 duì",
+            "是 shì",
+            "嗯 èn",
+            "啊 a",
+            "好 hǎo",
+            "行 xíng",
+            "没问题 méi wèntí",
+            "再见 zàijiàn",
+            "明天见 míngtiān jiàn",
+            "下次聊 xià cì liáo",
+            "拜拜 báibái"
+          ]
+        },
+        "5.2": {
+          "name": "Request to speak and ask somebody to speak",
+          "examples": [
+            "我能说两句吗？",
+            "小高对这个情况比较熟悉，我们让他给我们介绍一下儿吧！"
+          ],
+          "vocabulary": [
+            "我想说 wǒ xiǎng shuō",
+            "我说一下 wǒ shuō yíxià",
+            "请问 qǐngwèn",
+            "你说 nǐ shuō",
+            "请说 qǐng shuō",
+            "大声点 dàshēng diǎn",
+            "慢一点 màn yìdiǎn",
+            "再说一遍 zài shuō yí biàn",
+            "什么意思 shénme yìsi",
+            "没听清 méi tīngqīng"
+          ]
+        },
+        "5.3": {
+          "name": "Check understanding",
+          "examples": [
+            "你明白我的意思吗？",
+            "要是我的理解没有错误的话，您的意思是……",
+            "如果你们有什么问题，请随时提出来。"
+          ],
+          "vocabulary": [
+            "明白吗 míngbai ma",
+            "懂了吗 dǒng le ma",
+            "清楚吗 qīngchu ma",
+            "知道吗 zhīdào ma",
+            "听懂了吗 tīngdǒng le ma",
+            "明白 míngbai",
+            "懂了 dǒng le",
+            "清楚 qīngchu",
+            "知道 zhīdào",
+            "没明白 méi míngbai",
+            "不懂 bù dǒng",
+            "不清楚 bù qīngchu",
+            "什么意思 shénme yìsi",
+            "你是说 nǐ shì shuō",
+            "我的意思是 wǒ de yìsi shì"
+          ]
+        },
+        "5.4": {
+          "name": "Use connecting words expressing cause and effect, contrast, etc.",
+          "examples": [
+            "我同意，时间紧张是一个问题，不过，换一个角度看……",
+            "因此，出现这样的情况也是必然的。"
+          ],
+          "vocabulary": [
+            "因为 yīnwèi",
+            "所以 suǒyǐ",
+            "由于 yóuyú",
+            "因此 yīncǐ",
+            "但是 dànshì",
+            "可是 kěshì",
+            "不过 búguò",
+            "然而 rán'ér",
+            "虽然 suīrán",
+            "尽管 jǐnguǎn",
+            "而且 érqiě",
+            "并且 bìngqiě",
+            "不仅 bùjǐn",
+            "还 hái",
+            "除了 chúle",
+            "也 yě",
+            "如果 rúguǒ",
+            "要是 yàoshi",
+            "那么 nàme",
+            "就 jiù",
+            "否则 fǒuzé",
+            "不然 bùrán",
+            "只要 zhǐyào",
+            "只有 zhǐyǒu",
+            "无论 wúlùn",
+            "不管 bùguǎn",
+            "即使 jíshǐ",
+            "哪怕 nǎpà",
+            "既然 jìrán",
+            "然后 ránhòu",
+            "接着 jiēzhe",
+            "于是 yúshì",
+            "最后 zuìhòu",
+            "总之 zǒngzhī"
+          ]
+        }
+      }
+    },
+    "LINGUISTIC_COMPETENCE_MORPHOLOGY_SYNTAX": {
+      "name": "Linguistic Competence - Morphology and Syntax",
+      "1": {
+        "name": "Pronouns",
+        "notes": "它、咱们、其他",
+        "vocabulary": [
+          "此 cǐ",
+          "各 gè",
+          "各自 gèzì",
+          "某 mǒu",
+          "其余 qíyú",
+          "其他 qítā",
+          "人家 rénjia",
+          "自身 zìshēn",
+          "对方 duìfāng",
+          "双方 shuāngfāng"
+        ]
+      },
+      "2": {
+        "name": "Measure words",
+        "notes": "套、幅、台、包、盒、种、部、盘、碗、瓶、层、封、双、对、米、公里、公斤、斤、篇、回、趟、场、行、排、棵、箱",
+        "vocabulary": [
+          "把 bǎ",
+          "倍 bèi",
+          "打 dá",
+          "份 fèn",
+          "根 gēn",
+          "行 háng",
+          "级 jí",
+          "棵 kē",
+          "类 lèi",
+          "列 liè",
+          "盘 pán",
+          "首 shǒu",
+          "双 shuāng",
+          "套 tào",
+          "项 xiàng",
+          "支 zhī",
+          "种 zhǒng"
+        ]
+      },
+      "3": {
+        "name": "Conjunctions and connectors",
+        "3.1": {
+          "name": "Coordination",
+          "notes": "一方面……一方面……",
+          "vocabulary": [
+            "以及 yǐjí",
+            "并且 bìngqiě",
+            "而且 érqiě",
+            "既 jì",
+            "又 yòu",
+            "也 yě",
+            "同时 tóngshí",
+            "另外 lìngwài"
+          ]
+        },
+        "3.2": {
+          "name": "Progression",
+          "notes": "越……越……",
+          "vocabulary": [
+            "接着 jiēzhe",
+            "于是 yúshì",
+            "后来 hòulái",
+            "然后 ránhòu"
+          ]
+        },
+        "3.3": {
+          "name": "Choice",
+          "notes": "不是……就是……",
+          "vocabulary": [
+            "或者 huòzhě",
+            "还是 háishi"
+          ]
+        },
+        "3.4": {
+          "name": "Condition",
+          "notes": "既然……就……；即使……也……；只……就……；只有……才……；不管……都……",
+          "vocabulary": [
+            "要是 yàoshi",
+            "假如 jiǎrú",
+            "只要 zhǐyào",
+            "只有 zhǐyǒu",
+            "如果 rúguǒ"
+          ]
+        },
+        "3.5": {
+          "name": "Addition",
+          "notes": "另外，除了……以外；特别是，尤其是；并，并且",
+          "vocabulary": [
+            "另外 lìngwài",
+            "此外 cǐwài",
+            "还有 hái yǒu"
+          ]
+        },
+        "3.6": {
+          "name": "Contrast",
+          "notes": "尽管……但是……",
+          "vocabulary": [
+            "然而 rán'ér",
+            "却 què",
+            "而 ér",
+            "反而 fǎn'ér",
+            "但是 dànshì",
+            "可是 kěshì",
+            "不过 búguò",
+            "尽管 jǐnguǎn",
+            "虽然 suīrán"
+          ]
+        },
+        "3.7": {
+          "name": "Reference",
+          "notes": "在……看来；一般来说",
+          "vocabulary": [
+            "关于 guānyú",
+            "对于 duìyú",
+            "至于 zhìyú"
+          ]
+        },
+        "3.8": {
+          "name": "Illustration",
+          "notes": "例如",
+          "vocabulary": [
+            "比如 bǐrú",
+            "例如 lìrú"
+          ]
+        },
+        "3.9": {
+          "name": "Cause and effect",
+          "notes": "因此",
+          "vocabulary": [
+            "因此 yīncǐ",
+            "由于 yóuyú",
+            "因为 yīnwèi",
+            "所以 suǒyǐ"
+          ]
+        },
+        "3.10": {
+          "name": "Highlight",
+          "notes": "连……也/都……",
+          "vocabulary": [
+            "至少 zhìshǎo",
+            "甚至 shènzhì",
+            "尤其 yóuqí"
+          ]
+        }
+      },
+      "4": {
+        "name": "Using 地 to describe the manner of an action",
+        "examples": [
+          "他在纸上认真地写了几个字。"
+        ],
+        "vocabulary": [
+          "认真 rènzhēn",
+          "仔细 zǐxì",
+          "慢慢 mànmàn",
+          "渐渐 jiànjiàn",
+          "突然 tūrán",
+          "明显 míngxiǎn",
+          "充分 chōngfèn",
+          "彻底 chèdǐ",
+          "直接 zhíjiē",
+          "主动 zhǔdòng",
+          "迅速 xùnsù",
+          "热烈 rèliè"
+        ]
+      },
+      "5": {
+        "name": "Reduplication of adjectives, adverbs, and measure words",
+        "notes": "漂漂亮亮的、舒舒服服地、一座座楼",
+        "vocabulary": [
+          "慢慢 mànmàn",
+          "渐渐 jiànjiàn",
+          "好好 hǎohǎo",
+          "往往 wǎngwǎng",
+          "纷纷 fēnfēn"
+        ]
+      },
+      "6": {
+        "name": "Comparing actions",
+        "examples": [
+          "我来得比他早得多。",
+          "我法语没有他说得那么好。",
+          "他开车开得比我好。",
+          "我挣钱挣得跟你一样多。"
+        ],
+        "vocabulary": [
+          "比较 bǐjiào",
+          "对比 duìbǐ",
+          "相同 xiāngtóng",
+          "类似 lèisì",
+          "相反 xiāngfǎn"
+        ]
+      },
+      "7": {
+        "name": "Indicating quantitative limits with 至多、至少",
+        "examples": [
+          "这次会议至少有十个人参加。"
+        ],
+        "vocabulary": []
+      },
+      "8": {
+        "name": "Indicating time sequence with 之前、之后",
+        "examples": [
+          "开会之前/之后我们需要讨论一下。"
+        ],
+        "vocabulary": []
+      },
+      "9": {
+        "name": "Modal verb 得、必须、不得不",
+        "examples": [
+          "不好意思，我今天得早点儿回家，不能跟大家一起去吃饭了。",
+          "以后这种事情你必须先问我。",
+          "虽然我知道他可能会很失望，但是这个结果我不得不告诉他。"
+        ],
+        "vocabulary": []
+      },
+      "10": {
+        "name": "Using 着 to indicate continuation",
+        "examples": [
+          "他喜欢开着灯睡觉。",
+          "外面下着雨，你别出去了。"
+        ],
+        "vocabulary": []
+      },
+      "11": {
+        "name": "Double 了 structure",
+        "examples": [
+          "这个问题你都问了他两次了。",
+          "他们已经聊了两个三个小时了。"
+        ],
+        "vocabulary": []
+      },
+      "12": {
+        "name": "Verb complements",
+        "12.1": {
+          "name": "Resultative complement",
+          "examples": [
+            "这份论文她还没有写完。",
+            "这件衣服你洗干净了吗？"
+          ],
+          "vocabulary": [
+            "掉 diào",
+            "光 guāng",
+            "死 sǐ",
+            "倒 dǎo",
+            "破 pò",
+            "断 duàn",
+            "透 tòu",
+            "成 chéng"
+          ]
+        },
+        "12.2": {
+          "name": "Potential complement",
+          "examples": [
+            "这份论文你写得完写不完？",
+            "这套房子我买不起。"
+          ],
+          "vocabulary": [
+            "得 de",
+            "不 bù",
+            "掉 diào",
+            "光 guāng",
+            "死 sǐ",
+            "倒 dǎo",
+            "破 pò",
+            "断 duàn",
+            "透 tòu",
+            "成 chéng"
+          ]
+        },
+        "12.3": {
+          "name": "Complex directional complement",
+          "examples": [
+            "他从楼上走下来。",
+            "我想起来了，我们见过面。",
+            "前面开过来一辆车。",
+            "说下去，你说得很有意思。",
+            "他看起来有点儿累。"
+          ],
+          "vocabulary": [
+            "上来 shànglái",
+            "上去 shàngqù",
+            "下来 xiàlái",
+            "下去 xiàqù",
+            "进来 jìnlái",
+            "进去 jìngqù",
+            "出来 chūlái",
+            "出去 chūqù",
+            "回来 huílái",
+            "回去 huíqù",
+            "过来 guòlái",
+            "过去 guòqù",
+            "起来 qǐlái"
+          ]
+        }
+      },
+      "13": {
+        "name": "把 structure",
+        "13.1": {
+          "name": "To indicate a movement",
+          "examples": [
+            "请你把电脑拿过来。"
+          ],
+          "vocabulary": []
+        },
+        "13.2": {
+          "name": "To indicate the effect applied",
+          "examples": [
+            "我已经把碗洗干净了。",
+            "你把这篇文章翻译成中文吧。"
+          ],
+          "vocabulary": []
+        }
+      },
+      "14": {
+        "name": "Use the 被 structure to indicate adversity",
+        "examples": [
+          "他的钱包被偷了。",
+          "她被领导批评了。"
+        ],
+        "vocabulary": []
+      },
+      "15": {
+        "name": "Using 又 to express the duplication of a fact",
+        "examples": [
+          "他昨天又来找你了，还给你带了一本书。",
+          "明天又是周末了。"
+        ],
+        "vocabulary": []
+      },
+      "16": {
+        "name": "怎么 expressing surprise or incomprehension",
+        "examples": [
+          "你怎么在这儿？",
+          "他怎么可能说这样的话？"
+        ],
+        "vocabulary": []
+      },
+      "17": {
+        "name": "Expressing 'any' or 'none' with question words and 都 or 也",
+        "examples": [
+          "这件事我跟谁都没说过。",
+          "你什么时候来都可以。",
+          "他什么也没说。"
+        ],
+        "vocabulary": []
+      },
+      "18": {
+        "name": "一点儿也/都不 and 一……也/都不……",
+        "examples": [
+          "我一点儿也不喜欢这个地方。",
+          "这份论文我还一页都没有看。"
+        ],
+        "vocabulary": []
+      },
+      "19": {
+        "name": "还是 indicating an alternative as a personal preference or advice",
+        "examples": [
+          "开车可能比较慢，因为你那个地方经常堵车，所以你还是坐地铁比较好。",
+          "早上八点有点儿太早了，我们还是九点开会吧。"
+        ],
+        "vocabulary": []
+      },
+      "20": {
+        "name": "来 used to attract attention or engage in a conversation",
+        "examples": [
+          "我们来讨论一下这个问题。",
+          "你来看一下这份文件。"
+        ],
+        "vocabulary": []
+      },
+      "21": {
+        "name": "Particles 呢、啊 to soften the tone",
+        "examples": [
+          "这到底是怎么回事呢？",
+          "你不要着急啊！"
+        ],
+        "vocabulary": []
+      },
+      "22": {
+        "name": "Emphatic adverb 可",
+        "examples": [
+          "你可别喝太多酒！",
+          "这件事对他的影响可大了！"
+        ],
+        "vocabulary": []
+      },
+      "23": {
+        "name": "Preposition",
+        "23.1": {
+          "name": "Use 由 to indicate by whom an action is to be carried out",
+          "examples": [
+            "这次的活动由你们来组织吧。"
+          ],
+          "vocabulary": []
+        },
+        "23.2": {
+          "name": "Use 为(了) to indicate purpose",
+          "examples": [
+            "他昨天为准备这次会议很晚才睡。"
+          ],
+          "vocabulary": []
+        }
+      }
+    },
+    "LINGUISTIC_COMPETENCE_LEXIS": {
+      "name": "Linguistic Competence - Lexis",
+      "1": {
+        "name": "Big numbers",
+        "notes": "万、百万、亿、十亿",
+        "vocabulary": [
+          "千万 qiānwàn",
+          "亿 yì",
+          "倍 bèi"
+        ]
+      },
+      "2": {
+        "name": "Approximate numbers",
+        "notes": "十几个、三四页、大约、左右",
+        "vocabulary": [
+          "大约 dàyuē",
+          "大概 dàgài",
+          "左右 zuǒyòu",
+          "差不多 chàbuduō",
+          "将近 jiāngjìn",
+          "至少 zhìshǎo"
+        ]
+      },
+      "3": {
+        "name": "Signs, services in public spaces",
+        "vocabulary": [
+          "入口 rùkǒu",
+          "出口 chūkǒu",
+          "安全 ānquán",
+          "危险 wēixiǎn",
+          "禁止 jìnzhǐ",
+          "停 tíng",
+          "站 zhàn",
+          "售票处 shòupiàochù",
+          "服务台 fúwùtái",
+          "卫生间 wèishēngjiān",
+          "洗手间 xǐshǒujiān",
+          "电梯 diàntī",
+          "楼梯 lóutī",
+          "停车场 tíngchēchǎng",
+          "超市 chāoshì",
+          "银行 yínháng",
+          "邮局 yóujú",
+          "医院 yīyuàn",
+          "学校 xuéxiào",
+          "图书馆 túshūguǎn",
+          "公园 gōngyuán",
+          "博物馆 bówùguǎn",
+          "体育馆 tǐyùguǎn",
+          "机场 jīchǎng",
+          "火车站 huǒchēzhàn",
+          "地铁 dìtiě",
+          "公交 gōngjiāo"
+        ]
+      },
+      "4": {
+        "name": "Food and drink",
+        "vocabulary": [
+          "美食 měishí",
+          "菜 cài",
+          "汤 tāng",
+          "主食 zhǔshí",
+          "米饭 mǐfàn",
+          "面条 miàntiáo",
+          "包子 bāozi",
+          "饺子 jiǎozi",
+          "面包 miànbāo",
+          "蛋糕 dàngāo",
+          "肉 ròu",
+          "鱼 yú",
+          "虾 xiā",
+          "鸡蛋 jīdàn",
+          "牛奶 niúnǎi",
+          "酸奶 suānnǎi",
+          "咖啡 kāfēi",
+          "茶 chá",
+          "果汁 guǒzhī",
+          "啤酒 píjiǔ",
+          "红酒 hóngjiǔ",
+          "糖 táng",
+          "盐 yán",
+          "油 yóu",
+          "酱油 jiàngyóu",
+          "醋 cù",
+          "辣椒 làjiāo",
+          "水果 shuǐguǒ",
+          "蔬菜 shūcài",
+          "苹果 píngguǒ",
+          "香蕉 xiāngjiāo",
+          "西瓜 xīguā",
+          "黄瓜 huángguā",
+          "土豆 tǔdòu",
+          "豆腐 dòufu"
+        ]
+      },
+      "5": {
+        "name": "Housing",
+        "vocabulary": [
+          "房子 fángzi",
+          "房间 fángjiān",
+          "屋子 wūzi",
+          "公寓 gōngyù",
+          "小区 xiǎoqū",
+          "社区 shèqū",
+          "邻居 línjū",
+          "房东 fángdōng",
+          "租 zū",
+          "房租 fángzū",
+          "买 mǎi",
+          "卖 mài",
+          "装修 zhuāngxiū",
+          "家具 jiājù",
+          "床 chuáng",
+          "桌子 zhuōzi",
+          "椅子 yǐzi",
+          "沙发 shāfā",
+          "柜子 guìzi",
+          "书架 shūjià",
+          "厨房 chúfáng",
+          "厕所 cèsuǒ",
+          "阳台 yángtái",
+          "院子 yuànzi",
+          "钥匙 yàoshi",
+          "锁 suǒ",
+          "灯 dēng",
+          "空调 kōngtiáo",
+          "暖气 nuǎnqì",
+          "热水 rèshuǐ",
+          "水电 shuǐdiàn"
+        ]
+      },
+      "6": {
+        "name": "Routine activities, personal care, and chores",
+        "vocabulary": [
+          "起床 qǐchuáng",
+          "刷牙 shuāyá",
+          "洗脸 xǐliǎn",
+          "洗澡 xǐzǎo",
+          "洗头 xǐtóu",
+          "吹头发 chuī tóufa",
+          "穿衣服 chuān yīfu",
+          "脱衣服 tuō yīfu",
+          "吃饭 chīfàn",
+          "喝水 hēshuǐ",
+          "上班 shàngbān",
+          "下班 xiàbān",
+          "上课 shàngkè",
+          "下课 xiàkè",
+          "回家 huíjiā",
+          "睡觉 shuìjiào",
+          "休息 xiūxi",
+          "打扫 dǎsǎo",
+          "洗衣服 xǐ yīfu",
+          "做饭 zuòfàn",
+          "洗碗 xǐwǎn",
+          "倒垃圾 dào lājī",
+          "购物 gòuwù",
+          "排队 páiduì",
+          "等 děng"
+        ]
+      },
+      "7": {
+        "name": "Travel and tourism",
+        "vocabulary": [
+          "旅行 lǚxíng",
+          "旅游 lǚyóu",
+          "游客 yóukè",
+          "导游 dǎoyóu",
+          "景点 jǐngdiǎn",
+          "风景 fēngjǐng",
+          "门票 ménpiào",
+          "票 piào",
+          "飞机 fēijī",
+          "火车 huǒchē",
+          "高铁 gāotiě",
+          "地铁 dìtiě",
+          "公交 gōngjiāo",
+          "出租车 chūzūchē",
+          "开车 kāichē",
+          "停车 tíngchē",
+          "走路 zǒulù",
+          "地图 dìtú",
+          "导航 dǎoháng",
+          "酒店 jiǔdiàn",
+          "旅馆 lǚguǎn",
+          "房间 fángjiān",
+          "预订 yùdìng",
+          "退房 tuìfáng",
+          "行李 xíngli",
+          "护照 hùzhào",
+          "签证 qiānzhèng",
+          "假期 jiàqī",
+          "周末 zhōumò",
+          "海边 hǎibiān",
+          "山 shān",
+          "河 hé",
+          "湖 hú"
+        ]
+      },
+      "8": {
+        "name": "Learning and working",
+        "vocabulary": [
+          "学习 xuéxí",
+          "工作 gōngzuò",
+          "上课 shàngkè",
+          "下课 xiàkè",
+          "考试 kǎoshì",
+          "成绩 chéngjì",
+          "作业 zuòyè",
+          "练习 liànxí",
+          "复习 fùxí",
+          "预习 yùxí",
+          "研究 yánjiū",
+          "实验 shíyàn",
+          "项目 xiàngmù",
+          "报告 bàogào",
+          "论文 lùnwén",
+          "会议 huìyì",
+          "培训 péixùn",
+          "实习 shíxí",
+          "经验 jīngyàn",
+          "能力 nénglì",
+          "知识 zhīshi",
+          "专业 zhuānyè",
+          "课程 kèchéng",
+          "教材 jiàocái",
+          "教室 jiàoshì",
+          "实验室 shíyànshì",
+          "图书馆 túshūguǎn",
+          "办公室 bàngōngshì",
+          "公司 gōngsī",
+          "单位 dānwèi"
+        ]
+      },
+      "9": {
+        "name": "Professions",
+        "vocabulary": [
+          "职业 zhíyè",
+          "专业 zhuānyè",
+          "工程师 gōngchéngshī",
+          "律师 lǜshī",
+          "医生 yīshēng",
+          "护士 hùshì",
+          "教师 jiàoshī",
+          "教授 jiàoshòu",
+          "记者 jìzhě",
+          "编辑 biānjí",
+          "作家 zuòjiā",
+          "画家 huàjiā",
+          "演员 yǎnyuán",
+          "导演 dǎoyǎn",
+          "歌手 gēshǒu",
+          "运动员 yùndòngyuán",
+          "教练 jiàoliàn",
+          "警察 jǐngchá",
+          "厨师 chúshī",
+          "服务员 fúwùyuán",
+          "售货员 shòuhuòyuán",
+          "司机 sījī",
+          "工人 gōngrén",
+          "农民 nóngmín",
+          "商人 shāngrén",
+          "经理 jīnglǐ",
+          "老板 lǎobǎn",
+          "领导 lǐngdǎo",
+          "公务员 gōngwùyuán"
+        ]
+      },
+      "10": {
+        "name": "Hobbies and specialities",
+        "vocabulary": [
+          "爱好 àihào",
+          "喜欢 xǐhuan",
+          "感兴趣 gǎn xìngqù",
+          "特长 tècháng",
+          "擅长 shàncháng",
+          "唱歌 chànggē",
+          "跳舞 tiàowǔ",
+          "画画 huàhuà",
+          "摄影 shèyǐng",
+          "旅行 lǚxíng",
+          "运动 yùndòng",
+          "打球 dǎqiú",
+          "游泳 yóuyǒng",
+          "跑步 pǎobù",
+          "健身 jiànshēn",
+          "看书 kànshū",
+          "看电影 kàndiànyǐng",
+          "听音乐 tīng yīnyuè",
+          "玩游戏 wán yóuxì",
+          "上网 shàngwǎng",
+          "收藏 shōucáng",
+          "做手工 zuò shǒugōng"
+        ]
+      },
+      "11": {
+        "name": "Health and fitness",
+        "vocabulary": [
+          "健康 jiànkāng",
+          "身体 shēntǐ",
+          "锻炼 duànliàn",
+          "运动 yùndòng",
+          "健身 jiànshēn",
+          "跑步 pǎobù",
+          "游泳 yóuyǒng",
+          "减肥 jiǎnféi",
+          "体重 tǐzhòng",
+          "饮食 yǐnshí",
+          "休息 xiūxi",
+          "睡觉 shuìjiào",
+          "生病 shēngbìng",
+          "感冒 gǎnmào",
+          "发烧 fāshāo",
+          "咳嗽 késòu",
+          "头疼 tóuténg",
+          "牙疼 yáténg",
+          "肚子疼 dùzi téng",
+          "医院 yīyuàn",
+          "医生 yīshēng",
+          "护士 hùshì",
+          "看病 kànbìng",
+          "吃药 chīyào",
+          "打针 dǎzhēn",
+          "手术 shǒushù",
+          "体检 tǐjiǎn",
+          "挂号 guàhào",
+          "预约 yùyuē"
+        ]
+      },
+      "12": {
+        "name": "Physical appearance and character",
+        "vocabulary": [
+          "长相 zhǎngxiàng",
+          "外貌 wàimào",
+          "个子 gèzi",
+          "身高 shēngāo",
+          "体重 tǐzhòng",
+          "胖 pàng",
+          "瘦 shòu",
+          "高 gāo",
+          "矮 ǎi",
+          "头发 tóufa",
+          "眼睛 yǎnjing",
+          "鼻子 bízi",
+          "嘴 zuǐ",
+          "脸 liǎn",
+          "皮肤 pífū",
+          "性格 xìnggé",
+          "个性 gèxìng",
+          "脾气 píqi",
+          "开朗 kāilǎng",
+          "内向 nèixiàng",
+          "外向 wàixiàng",
+          "善良 shànliáng",
+          "热情 rèqíng",
+          "认真 rènzhēn",
+          "仔细 zǐxì",
+          "聪明 cōngming",
+          "笨 bèn",
+          "努力 nǔlì",
+          "懒 lǎn"
+        ]
+      },
+      "13": {
+        "name": "Common human feelings and emotions",
+        "vocabulary": [
+          "高兴 gāoxìng",
+          "开心 kāixīn",
+          "快乐 kuàilè",
+          "幸福 xìngfú",
+          "激动 jīdòng",
+          "兴奋 xīngfèn",
+          "满意 mǎnyì",
+          "失望 shīwàng",
+          "难过 nánguò",
+          "伤心 shāngxīn",
+          "痛苦 tòngkǔ",
+          "生气 shēngqì",
+          "愤怒 fènnù",
+          "害怕 hàipà",
+          "紧张 jǐnzhāng",
+          "担心 dānxīn",
+          "着急 zháojí",
+          "尴尬 gāngà",
+          "害羞 hàixiū",
+          "后悔 hòuhuǐ",
+          "无聊 wúliáo",
+          "羡慕 xiànmù",
+          "嫉妒 jídù"
+        ]
+      },
+      "14": {
+        "name": "Shopping and payment",
+        "vocabulary": [
+          "购物 gòuwù",
+          "买东西 mǎi dōngxi",
+          "超市 chāoshì",
+          "商场 shāngchǎng",
+          "商店 shāngdiàn",
+          "市场 shìchǎng",
+          "网购 wǎnggòu",
+          "价格 jiàgé",
+          "价钱 jiàqián",
+          "便宜 piányi",
+          "贵 guì",
+          "打折 dǎzhé",
+          "优惠 yōuhuì",
+          "免费 miǎnfèi",
+          "付钱 fùqián",
+          "付款 fùkuǎn",
+          "现金 xiànjīn",
+          "刷卡 shuākǎ",
+          "微信 Wēixìn",
+          "支付宝 Zhīfùbǎo",
+          "发票 fāpiào",
+          "退货 tuìhuò",
+          "换货 huànhuò"
+        ]
+      },
+      "15": {
+        "name": "Clothing and accessories",
+        "vocabulary": [
+          "衣服 yīfu",
+          "服装 fúzhuāng",
+          "上衣 shàngyī",
+          "衬衫 chènshān",
+          "裤子 kùzi",
+          "裙子 qúnzi",
+          "外套 wàitào",
+          "毛衣 máoyī",
+          "大衣 dàyī",
+          "鞋 xié",
+          "袜子 wàzi",
+          "帽子 màozi",
+          "围巾 wéijīn",
+          "手套 shǒutào",
+          "包 bāo",
+          "书包 shūbāo",
+          "钱包 qiánbāo",
+          "皮带 pídài",
+          "眼镜 yǎnjìng",
+          "手表 shǒubiǎo",
+          "首饰 shǒushì"
+        ]
+      },
+      "16": {
+        "name": "Colours, shades and nuances",
+        "vocabulary": [
+          "颜色 yánsè",
+          "红色 hóngsè",
+          "黄色 huángsè",
+          "蓝色 lánsè",
+          "绿色 lǜsè",
+          "白色 báisè",
+          "黑色 hēisè",
+          "粉色 fěnsè",
+          "紫色 zǐsè",
+          "棕色 zōngsè",
+          "灰色 huīsè",
+          "深 shēn",
+          "浅 qiǎn",
+          "亮 liàng",
+          "暗 àn",
+          "鲜艳 xiānyàn"
+        ]
+      },
+      "17": {
+        "name": "Phone calls and online communication",
+        "vocabulary": [
+          "电话 diànhuà",
+          "手机 shǒujī",
+          "打电话 dǎ diànhuà",
+          "接电话 jiē diànhuà",
+          "回电话 huí diànhuà",
+          "短信 duǎnxìn",
+          "微信 Wēixìn",
+          "邮件 yóujiàn",
+          "发 fā",
+          "收 shōu",
+          "回复 huífù",
+          "转发 zhuǎnfā",
+          "删除 shānchú",
+          "好友 hǎoyǒu",
+          "群 qún",
+          "朋友圈 péngyouquān",
+          "点赞 diǎnzàn",
+          "评论 pínglùn",
+          "分享 fēnxiǎng",
+          "上网 shàngwǎng",
+          "网络 wǎngluò",
+          "信号 xìnhào",
+          "流量 liúliàng",
+          "无线 wúxiàn",
+          "下载 xiàzài",
+          "上传 shàngchuán",
+          "视频 shìpín",
+          "语音 yǔyīn"
+        ]
+      },
+      "18": {
+        "name": "Geography, arts, history, and technology",
+        "vocabulary": [
+          "地理 dìlǐ",
+          "自然 zìrán",
+          "环境 huánjìng",
+          "气候 qìhòu",
+          "天气 tiānqì",
+          "季节 jìjié",
+          "地球 dìqiú",
+          "世界 shìjiè",
+          "国家 guójiā",
+          "城市 chéngshì",
+          "农村 nóngcūn",
+          "山 shān",
+          "河 hé",
+          "湖 hú",
+          "海 hǎi",
+          "森林 sēnlín",
+          "艺术 yìshù",
+          "美术 měishù",
+          "音乐 yīnyuè",
+          "文学 wénxué",
+          "历史 lìshǐ",
+          "传统 chuántǒng",
+          "文化 wénhuà",
+          "科技 kējì",
+          "技术 jìshù",
+          "发明 fāmíng",
+          "创造 chuàngzào",
+          "创新 chuàngxīn",
+          "网络 wǎngluò",
+          "互联网 hùliánwǎng",
+          "电脑 diànnǎo",
+          "手机 shǒujī",
+          "软件 ruǎnjiàn",
+          "硬件 yìngjiàn"
+        ]
+      },
+      "19": {
+        "name": "Changes",
+        "vocabulary": [
+          "变化 biànhuà",
+          "改变 gǎibiàn",
+          "变成 biànchéng",
+          "成为 chéngwéi",
+          "发展 fāzhǎn",
+          "进步 jìnbù",
+          "提高 tígāo",
+          "降低 jiàngdī",
+          "增加 zēngjiā",
+          "减少 jiǎnshǎo",
+          "扩大 kuòdà",
+          "缩小 suōxiǎo",
+          "上升 shàngshēng",
+          "下降 xiàjiàng",
+          "转 zhuǎn"
+        ]
+      },
+      "20": {
+        "name": "Plans, intentions, suggestions, recommendations, hopes, and wishes",
+        "vocabulary": [
+          "计划 jìhuà",
+          "打算 dǎsuàn",
+          "准备 zhǔnbèi",
+          "想 xiǎng",
+          "要 yào",
+          "希望 xīwàng",
+          "愿望 yuànwàng",
+          "期待 qīdài",
+          "建议 jiànyì",
+          "意见 yìjiàn",
+          "推荐 tuījiàn",
+          "祝 zhù",
+          "愿意 yuànyì",
+          "肯 kěn",
+          "决定 juédìng"
+        ]
+      },
+      "21": {
+        "name": "Relatives and relationships",
+        "vocabulary": [
+          "家人 jiārén",
+          "家庭 jiātíng",
+          "父母 fùmǔ",
+          "父亲 fùqīn",
+          "母亲 mǔqīn",
+          "爸爸 bàba",
+          "妈妈 māma",
+          "爷爷 yéye",
+          "奶奶 nǎinai",
+          "外公 wàigōng",
+          "外婆 wàipó",
+          "哥哥 gēge",
+          "姐姐 jiějie",
+          "弟弟 dìdi",
+          "妹妹 mèimei",
+          "丈夫 zhàngfu",
+          "妻子 qīzi",
+          "儿子 érzi",
+          "女儿 nǚ'ér",
+          "孙子 sūnzi",
+          "孙女 sūnnǚ",
+          "亲戚 qīnqi",
+          "关系 guānxi",
+          "感情 gǎnqíng",
+          "爱 ài",
+          "喜欢 xǐhuan",
+          "结婚 jiéhūn",
+          "离婚 líhūn",
+          "朋友 péngyou",
+          "男朋友 nánpéngyou",
+          "女朋友 nǚpéngyou",
+          "同事 tóngshì",
+          "同学 tóngxué",
+          "邻居 línjū"
+        ]
+      },
+      "22": {
+        "name": "Living beings, landscape, and climate",
+        "vocabulary": [
+          "动物 dòngwù",
+          "植物 zhíwù",
+          "猫 māo",
+          "狗 gǒu",
+          "鸟 niǎo",
+          "鱼 yú",
+          "树 shù",
+          "花 huā",
+          "草 cǎo",
+          "山 shān",
+          "河 hé",
+          "湖 hú",
+          "海 hǎi",
+          "森林 sēnlín",
+          "草原 cǎoyuán",
+          "沙漠 shāmò",
+          "风景 fēngjǐng",
+          "景色 jǐngsè",
+          "自然 zìrán",
+          "环境 huánjìng",
+          "气候 qìhòu",
+          "天气 tiānqì",
+          "季节 jìjié",
+          "春天 chūntiān",
+          "夏天 xiàtiān",
+          "秋天 qiūtiān",
+          "冬天 dōngtiān",
+          "热 rè",
+          "冷 lěng",
+          "暖和 nuǎnhuo",
+          "凉快 liángkuai",
+          "下雨 xiàyǔ",
+          "下雪 xiàxuě",
+          "刮风 guāfēng",
+          "晴 qíng",
+          "阴 yīn",
+          "多云 duōyú"
+        ]
+      },
+      "23": {
+        "name": "Customs and culture",
+        "vocabulary": [
+          "风俗 fēngsú",
+          "习惯 xíguàn",
+          "传统 chuántǒng",
+          "文化 wénhuà",
+          "节日 jiérì",
+          "春节 Chūnjié",
+          "中秋节 Zhōngqiūjié",
+          "端午节 Duānwǔjié",
+          "新年 xīnnián",
+          "生日 shēngrì",
+          "礼物 lǐwù",
+          "红包 hóngbāo",
+          "庆祝 qìngzhù",
+          "婚礼 hūnlǐ",
+          "聚会 jùhuì",
+          "礼貌 lǐmào",
+          "规矩 guīju",
+          "禁忌 jìnjì"
+        ]
+      }
+    }
+  }
+}

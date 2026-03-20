@@ -1,0 +1,1980 @@
+{
+  "LEVEL_I": {
+    "name": "Basic Level of Language Competence",
+    "PRAGMATIC_COMPETENCE": {
+      "name": "Pragmatic Competence - Functional Competence",
+      "1_interact_socially_and_professionally": {
+        "name": "Interact socially and professionally",
+        "1.1": {
+          "name": "Greet and introduce oneself or other people",
+          "examples": [
+            "你好！我叫……我是……的朋友。",
+            "很高兴认识你！",
+            "这是我的同事。"
+          ],
+          "vocabulary": [
+            "你好 nǐ hǎo",
+            "您好 nín hǎo",
+            "大家好 dàjiā hǎo",
+            "再见 zàijiàn",
+            "明天见 míngtiān jiàn",
+            "介绍 jièshào",
+            "叫 jiào",
+            "是 shì",
+            "姓 xìng",
+            "认识 rènshi",
+            "这位 zhè wèi",
+            "那位 nà wèi",
+            "老师 lǎoshī",
+            "同学 tóngxué",
+            "朋友 péngyou",
+            "先生 xiānsheng",
+            "小姐 xiǎojie"
+          ]
+        },
+        "1.2": {
+          "name": "Make small talk",
+          "examples": [
+            "最近怎么样？忙不忙？",
+            "今天天气不错，不过明天可能会下雨。",
+            "周末过得怎么样？",
+            "吃饭了没有？"
+          ],
+          "vocabulary": [
+            "今天 jīntiān",
+            "明天 míngtiān",
+            "昨天 zuótiān",
+            "天气 tiānqì",
+            "好 hǎo",
+            "不错 búcuò",
+            "冷 lěng",
+            "热 rè",
+            "忙 máng",
+            "累 lèi",
+            "怎么样 zěnmeyàng",
+            "最近 zuìjìn",
+            "工作 gōngzuò",
+            "学习 xuéxí",
+            "周末 zhōumò",
+            "放假 fàngjià",
+            "哪儿 nǎr",
+            "去 qù",
+            "来 lái",
+            "吃 chī",
+            "喝 hē"
+          ]
+        },
+        "1.3": {
+          "name": "Extend, accept, or decline a simple invitation",
+          "examples": [
+            "我们中午一起吃个饭，怎么样？",
+            "好的，我们去哪儿吃？",
+            "不好意思，我中午有事儿，下次吧！"
+          ],
+          "vocabulary": [
+            "请 qǐng",
+            "邀请 yāoqǐng",
+            "来 lái",
+            "去 qù",
+            "好吗 hǎo ma",
+            "可以吗 kěyǐ ma",
+            "行吗 xíng ma",
+            "对不起 duìbuqǐ",
+            "不行 bùxíng",
+            "没问题 méi wèntí",
+            "好啊 hǎo a",
+            "谢谢 xièxie",
+            "再见 zàijiàn",
+            "明天 míngtiān",
+            "晚上 wǎnshang",
+            "一起 yìqǐ",
+            "吃饭 chīfàn",
+            "喝茶 hē chá",
+            "有空儿 yǒu kòngr",
+            "时间 shíjiān"
+          ]
+        }
+      },
+      "2_exchange_information_describe_and_narrate": {
+        "name": "Exchange information, describe, and narrate",
+        "2.1": {
+          "name": "Ask and give basic personal information",
+          "examples": [
+            "你姓什么？你叫什么名字？",
+            "我在清华大学工作。我是博士后。",
+            "我还没有孩子。"
+          ],
+          "vocabulary": [
+            "名字 míngzi",
+            "叫 jiào",
+            "姓 xìng",
+            "今年 jīnnián",
+            "几岁 jǐ suì",
+            "多少岁 duōshao suì",
+            "哪里人 nǎlǐ rén",
+            "家 jiā",
+            "住 zhù",
+            "电话 diànhuà",
+            "手机 shǒujī",
+            "号码 hàomǎ",
+            "工作 gōngzuò",
+            "学习 xuéxí",
+            "学生 xuésheng",
+            "老师 lǎoshī"
+          ]
+        },
+        "2.2": {
+          "name": "Ask and tell one's habits and hobbies",
+          "examples": [
+            "你有什么兴趣爱好？",
+            "我喜欢弹钢琴、打网球和看书。",
+            "休假的时候他喜欢去国外旅行。"
+          ],
+          "vocabulary": [
+            "喜欢 xǐhuan",
+            "爱 ài",
+            "爱好 àihào",
+            "常常 chángcháng",
+            "平时 píngshí",
+            "周末 zhōumò",
+            "唱歌 chànggē",
+            "打球 dǎ qiú",
+            "看书 kàn shū",
+            "看电影 kàn diànyǐng",
+            "听音乐 tīng yīnyuè",
+            "运动 yùndòng",
+            "上网 shàngwǎng",
+            "玩儿 wánr",
+            "什么 shénme"
+          ]
+        },
+        "2.3": {
+          "name": "Ask and give information about routine activities",
+          "examples": [
+            "你星期几在家办公？",
+            "他每天早上九点上班，下午五点下班。",
+            "他有时候去楼下餐厅吃饭，有时候跟同事一起去外边吃。"
+          ],
+          "vocabulary": [
+            "每天 měitiān",
+            "早上 zǎoshang",
+            "上午 shàngwǔ",
+            "中午 zhōngwǔ",
+            "下午 xiàwǔ",
+            "晚上 wǎnshang",
+            "起床 qǐchuáng",
+            "上班 shàngbān",
+            "上课 shàngkè",
+            "下课 xiàkè",
+            "下班 xiàbān",
+            "回家 huí jiā",
+            "睡觉 shuìjiào",
+            "吃饭 chīfàn",
+            "洗澡 xǐzǎo",
+            "然后 ránhòu",
+            "就 jiù",
+            "才 cái",
+            "先 xiān",
+            "再 zài"
+          ]
+        },
+        "2.4": {
+          "name": "Ask and give simple directions",
+          "examples": [
+            "请问，最近的咖啡馆在哪儿？",
+            "银行离这儿不远，一直走，在第二个路口左转。"
+          ],
+          "vocabulary": [
+            "在 zài",
+            "哪儿 nǎr",
+            "怎么走 zěnme zǒu",
+            "往 wǎng",
+            "走 zǒu",
+            "左 zuǒ",
+            "右 yòu",
+            "前 qián",
+            "后 hòu",
+            "东 dōng",
+            "南 nán",
+            "西 xī",
+            "北 běi",
+            "旁边 pángbiān",
+            "对面 duìmiàn",
+            "路口 lùkǒu",
+            "红绿灯 hónglǜdēng",
+            "坐 zuò",
+            "车 chē",
+            "路 lù",
+            "站 zhàn",
+            "远 yuǎn",
+            "近 jìn"
+          ]
+        },
+        "2.5": {
+          "name": "Make a simple plan",
+          "examples": [
+            "这个周末我想跟朋友去看电影。",
+            "下个月我要去纽约出差。",
+            "今年夏天，我打算跟家人一起坐飞机去中国旅行。我们想先去北京，再去上海。"
+          ],
+          "vocabulary": [
+            "打算 dǎsuàn",
+            "想 xiǎng",
+            "要 yào",
+            "明天 míngtiān",
+            "下午 xiàwǔ",
+            "周末 zhōumò",
+            "一起 yìqǐ",
+            "去 qù",
+            "吗 ma",
+            "怎么样 zěnmeyàng",
+            "我们 wǒmen",
+            "先 xiān",
+            "然后 ránhòu",
+            "再 zài",
+            "吧 ba",
+            "好 hǎo",
+            "行 xíng"
+          ]
+        },
+        "2.6": {
+          "name": "Ask and give a simple description",
+          "examples": [
+            "他长什么样？",
+            "我的手机是黑色的。",
+            "这间会议室不大，但是来这儿开会的人很多。"
+          ],
+          "vocabulary": [
+            "怎么样 zěnmeyàng",
+            "什么样 shénme yàng",
+            "大 dà",
+            "小 xiǎo",
+            "多 duō",
+            "少 shǎo",
+            "长 cháng",
+            "短 duǎn",
+            "高 gāo",
+            "矮 ǎi",
+            "胖 pàng",
+            "瘦 shòu",
+            "颜色 yánsè",
+            "红 hóng",
+            "黄 huáng",
+            "蓝 lán",
+            "绿 lǜ",
+            "白 bái",
+            "黑 hēi",
+            "漂亮 piàoliang",
+            "好看 hǎokàn",
+            "新 xīn",
+            "旧 jiù",
+            "贵 guì",
+            "便宜 piányi",
+            "热 rè",
+            "冷 lěng",
+            "好吃 hǎochī",
+            "好喝 hǎohē"
+          ]
+        },
+        "2.7": {
+          "name": "Give a simple narration of an experience",
+          "examples": [
+            "我去过中国，是两年以前去的。",
+            "上个星期，我去西班牙开会了。"
+          ],
+          "vocabulary": [
+            "昨天 zuótiān",
+            "去 qù",
+            "了 le",
+            "过 guo",
+            "先 xiān",
+            "然后 ránhòu",
+            "后来 hòulái",
+            "就 jiù",
+            "觉得 juéde",
+            "非常 fēicháng",
+            "太 tài",
+            "了 le",
+            "真 zhēn",
+            "有意思 yǒu yìsi",
+            "高兴 gāoxìng",
+            "累 lèi"
+          ]
+        }
+      },
+      "3_express_feelings_attitudes_and_opinions": {
+        "name": "Express feelings, attitudes, and opinions",
+        "3.1": {
+          "name": "Ask and express likes and dislikes",
+          "examples": [
+            "你喜欢吃什么？",
+            "她很喜欢这份新工作。",
+            "他不太喜欢住在这个地方，因为坐车、买东西都不方便。"
+          ],
+          "vocabulary": [
+            "喜欢 xǐhuan",
+            "爱 ài",
+            "不喜欢 bù xǐhuan",
+            "最 zuì",
+            "特别 tèbié",
+            "非常 fēicháng",
+            "很 hěn",
+            "还 hái",
+            "有点儿 yǒudiǎnr",
+            "什么 shénme",
+            "吗 ma"
+          ]
+        },
+        "3.2": {
+          "name": "Ask and respond to preferences",
+          "examples": [
+            "跟以前的生活比，他更喜欢现在的生活。",
+            "这两台电脑不一样。",
+            "这个房间更亮。我们在这里开会吧。"
+          ],
+          "vocabulary": [
+            "喜欢 xǐhuan",
+            "更 gèng",
+            "还是 háishi",
+            "比较 bǐjiào",
+            "哪个 nǎge",
+            "哪 nǎ",
+            "最 zuì",
+            "比 bǐ",
+            "和 hé",
+            "一样 yíyàng",
+            "不喜欢 bù xǐhuan"
+          ]
+        },
+        "3.3": {
+          "name": "Ask and express basic opinions",
+          "examples": [
+            "她很热情，也很有礼貌。",
+            "我觉得这封信太长了，你觉得呢？",
+            "对我来说，写汉字是最难的。"
+          ],
+          "vocabulary": [
+            "觉得 juéde",
+            "认为 rènwéi",
+            "怎么样 zěnmeyàng",
+            "好 hǎo",
+            "对 duì",
+            "不对 bú duì",
+            "是 shì",
+            "不是 bú shì",
+            "可以 kěyǐ",
+            "不行 bùxíng",
+            "应该 yīnggāi",
+            "可能 kěnéng",
+            "真 zhēn",
+            "太 tài",
+            "了 le",
+            "吗 ma",
+            "吧 ba"
+          ]
+        }
+      },
+      "4_regulate_actions_with_others": {
+        "name": "Regulate actions with others",
+        "4.1": {
+          "name": "Make and cancel a simple appointment or reservation",
+          "examples": [
+            "我们星期三上午十点开会，可以吗？",
+            "那个大会议室我不需要了。"
+          ],
+          "vocabulary": [
+            "预订 yùdìng",
+            "订 dìng",
+            "位子 wèizi",
+            "房间 fángjiān",
+            "时间 shíjiān",
+            "几点 jǐ diǎn",
+            "明天 míngtiān",
+            "可以 kěyǐ",
+            "吗 ma",
+            "对不起 duìbuqǐ",
+            "取消 qǔxiāo",
+            "不能 bùnéng",
+            "了 le",
+            "改 gǎi",
+            "吧 ba"
+          ]
+        },
+        "4.2": {
+          "name": "Make and respond to a simple request",
+          "examples": [
+            "我可以用一下这台复印机吗？",
+            "可以，用吧。",
+            "这个问题你问张先生吧。这是他的电话。"
+          ],
+          "vocabulary": [
+            "请 qǐng",
+            "能 néng",
+            "可以 kěyǐ",
+            "帮 bāng",
+            "一下 yíxià",
+            "吗 ma",
+            "好 hǎo",
+            "可以 kěyǐ",
+            "没问题 méi wèntí",
+            "对不起 duìbuqǐ",
+            "不行 bùxíng",
+            "现在 xiànzài",
+            "等一下 děng yíxià",
+            "麻烦 máfa"
+          ]
+        },
+        "4.3": {
+          "name": "Make a simple order",
+          "examples": [
+            "我要一杯咖啡。",
+            "这件衣服多少钱？",
+            "太贵了，便宜一点儿吧。"
+          ],
+          "vocabulary": [
+            "点 diǎn",
+            "要 yào",
+            "这个 zhège",
+            "那个 nàge",
+            "来 lái",
+            "一份 yífèn",
+            "一碗 yì wǎn",
+            "一杯 yì bēi",
+            "一个 yíge",
+            "谢谢 xièxie",
+            "买单 mǎidān",
+            "多少钱 duōshao qián"
+          ]
+        },
+        "4.4": {
+          "name": "Ask and give simple suggestions/advices",
+          "examples": [
+            "你觉得我们应该怎么办？",
+            "今天太晚了，你们明天再来吧。",
+            "明天九点开会，你们最好早一点儿来。"
+          ],
+          "vocabulary": [
+            "应该 yīnggāi",
+            "可以 kěyǐ",
+            "最好 zuì hǎo",
+            "别 bié",
+            "不要 búyào",
+            "试试 shìshi",
+            "一下 yíxià",
+            "吧 ba",
+            "怎么样 zěnmeyàng",
+            "好吗 hǎo ma",
+            "行吗 xíng ma",
+            "觉得 juéde",
+            "可能 kěnéng"
+          ]
+        }
+      },
+      "5_organize_the_speech": {
+        "name": "Organize the speech",
+        "5.1": {
+          "name": "Use linkers to structure discourse and speech",
+          "examples": [
+            "今天我们先给大家介绍两位新同事，然后讨论一下下个月的工作，最后说一下新年晚会的事情。",
+            "我很喜欢住在这个地方。为什么呢？第一，附近有商店，有超市，买东西很方便。第二，这里离我工作的地方不远，可以走路上班。第三，旁边有一个公园，周末可以去那儿跑步。"
+          ],
+          "vocabulary": [
+            "然后 ránhòu",
+            "接着 jiēzhe",
+            "所以 suǒyǐ",
+            "但是 dànshì",
+            "可是 kěshì",
+            "因为 yīnwèi",
+            "而且 érqiě",
+            "虽然 suīrán",
+            "如果 rúguǒ",
+            "比如 bǐrú",
+            "例如 lìrú",
+            "第一 dì-yī",
+            "第二 dì-èr",
+            "最后 zuìhòu",
+            "首先 shǒuxiān",
+            "那么 nàme",
+            "那 nà",
+            "还有 hái yǒu",
+            "另外 lìngwài"
+          ]
+        }
+      }
+    },
+    "LINGUISTIC_COMPETENCE_MORPHOLOGY_SYNTAX": {
+      "name": "Linguistic Competence - Morphology and Syntax",
+      "1": {
+        "name": "Basic word order",
+        "examples": [
+          "我姓Holden。",
+          "他每天早上7点起床。",
+          "你在哪儿工作？",
+          "你给谁打电话？",
+          "他们现在在办公室喝茶。",
+          "你坐车上班吗？",
+          "我去书店买两本书。",
+          "他用电脑打汉字。",
+          "我晚上跟一个朋友一起吃饭。"
+        ],
+        "vocabulary": []
+      },
+      "2": {
+        "name": "Word order – topicalization",
+        "examples": [
+          "那个文件我已经看了。",
+          "昨天我跟你说的那件事你觉得怎么样？"
+        ],
+        "vocabulary": []
+      },
+      "3": {
+        "name": "Pronouns",
+        "notes": "Personal: 你、我、他、她、您、你们、我们、他们、她们、大家、自己; Demonstrative: 这、那、别的、每、各",
+        "vocabulary": [
+          "我 wǒ",
+          "我们 wǒmen",
+          "你 nǐ",
+          "你们 nǐmen",
+          "他 tā",
+          "他们 tāmen",
+          "她 tā",
+          "她们 tāmen",
+          "它 tā",
+          "它们 tāmen",
+          "您 nín",
+          "咱 zán",
+          "咱们 zánmen",
+          "自己 zìjǐ",
+          "别人 biérén",
+          "大家 dàjiā",
+          "这 zhè",
+          "这儿 zhèr",
+          "这里 zhèlǐ",
+          "这些 zhèxiē",
+          "那 nà",
+          "那儿 nàr",
+          "那里 nàlǐ",
+          "那些 nàxiē",
+          "谁 shéi",
+          "什么 shénme",
+          "哪 nǎ",
+          "哪儿 nǎr",
+          "哪里 nǎlǐ",
+          "哪些 nǎxiē",
+          "怎么 zěnme",
+          "怎么样 zěnmeyàng",
+          "怎样 zěnyàng"
+        ]
+      },
+      "4": {
+        "name": "Using 是 to identify a person or an object",
+        "examples": [
+          "他是我的同事。",
+          "这是我的手机。"
+        ],
+        "vocabulary": []
+      },
+      "5": {
+        "name": "Adverb",
+        "notes": "都, 也, 还",
+        "examples": [
+          "我们都是老师。",
+          "我也在这里上班。",
+          "这是你要的苹果。你还想买点儿别的吗？"
+        ],
+        "vocabulary": [
+          "不 bù",
+          "都 dōu",
+          "很 hěn",
+          "非常 fēicháng",
+          "太 tài",
+          "最 zuì",
+          "更 gèng",
+          "还 hái",
+          "也 yě",
+          "又 yòu",
+          "就 jiù",
+          "才 cái",
+          "再 zài",
+          "先 xiān",
+          "刚 gāng",
+          "刚刚 gānggāng",
+          "已经 yǐjīng",
+          "正在 zhèngzài",
+          "正 zhèng",
+          "一直 yìzhí",
+          "忽然 hūrán",
+          "突然 tūrán",
+          "马上 mǎshàng",
+          "立刻 lìkè",
+          "赶紧 gǎnjǐn",
+          "赶快 gǎnkuài",
+          "互相 hùxiāng",
+          "一起 yìqǐ",
+          "一块儿 yíkuàir",
+          "一共 yígòng",
+          "完全 wánquán",
+          "特别 tèbié",
+          "十分 shífēn",
+          "非常 fēicháng",
+          "多么 duōme",
+          "挺 tǐng",
+          "有点儿 yǒudiǎnr",
+          "差不多 chàbuduō",
+          "大概 dàgài",
+          "大约 dàyuē",
+          "其实 qíshí",
+          "终于 zhōngyú"
+        ]
+      },
+      "6": {
+        "name": "Using 有 to indicate possession",
+        "examples": [
+          "你有电脑吗?",
+          "我有这本书。"
+        ],
+        "vocabulary": []
+      },
+      "7": {
+        "name": "Yes-no question with 吗",
+        "examples": [
+          "她是你的同事吗？"
+        ],
+        "vocabulary": []
+      },
+      "8": {
+        "name": "Negative sentences with 不 and 没有",
+        "examples": [
+          "我不是张老师。",
+          "我没有手机。"
+        ],
+        "vocabulary": [
+          "不 bù",
+          "没 méi",
+          "没有 méiyǒu",
+          "别 bié",
+          "不用 búyòng",
+          "不要 búyào"
+        ]
+      },
+      "9": {
+        "name": "Elliptical use of 呢 in a question",
+        "examples": [
+          "他不是学生，你呢？",
+          "他没有兄弟姐妹，你呢？"
+        ],
+        "vocabulary": []
+      },
+      "10": {
+        "name": "Open-ended questions with interrogative pronouns",
+        "notes": "什么、谁、哪儿、哪、几、多少、什么时候、怎么、怎么样、多",
+        "vocabulary": [
+          "谁 shéi",
+          "什么 shénme",
+          "哪 nǎ",
+          "哪儿 nǎr",
+          "哪里 nǎlǐ",
+          "哪些 nǎxiē",
+          "怎么 zěnme",
+          "怎么样 zěnmeyàng",
+          "怎样 zěnyàng",
+          "几 jǐ",
+          "多少 duōshao",
+          "为什么 wèi shénme"
+        ]
+      },
+      "11": {
+        "name": "Common measure words",
+        "notes": "个、本、支、条、张、家、口、件、把、辆、台、位、次、遍、页、些",
+        "vocabulary": [
+          "个 gè",
+          "位 wèi",
+          "本 běn",
+          "杯 bēi",
+          "张 zhāng",
+          "块 kuài",
+          "件 jiàn",
+          "条 tiáo",
+          "辆 liàng",
+          "次 cì",
+          "下 xià",
+          "点 diǎn",
+          "点儿 diǎnr",
+          "些 xiē",
+          "页 yè",
+          "层 céng",
+          "遍 biàn",
+          "封 fēng",
+          "份 fèn",
+          "公里 gōnglǐ",
+          "公斤 gōngjīn",
+          "斤 jīn",
+          "克 kè",
+          "刻 kè",
+          "毛 máo",
+          "米 mǐ",
+          "岁 suì",
+          "年 nián",
+          "月 yuè",
+          "天 tiān",
+          "号 hào",
+          "分 fēn",
+          "段 duàn",
+          "节 jié",
+          "口 kǒu",
+          "句 jù",
+          "篇 piān",
+          "片 piàn",
+          "瓶 píng",
+          "首 shǒu",
+          "趟 tàng",
+          "套 tào",
+          "种 zhǒng",
+          "座 zuò"
+        ]
+      },
+      "12": {
+        "name": "Using particle 的 to indicate possession",
+        "examples": [
+          "这是我的手机。"
+        ],
+        "vocabulary": []
+      },
+      "13": {
+        "name": "Affirmative-negative structure for yes-no questions",
+        "examples": [
+          "你的办公室有没有电脑？",
+          "他是不是张先生？",
+          "这个字对不对？"
+        ],
+        "vocabulary": [
+          "是不是 shì bu shì",
+          "好不好 hǎo bu hǎo",
+          "行不行 xíng bu xíng",
+          "能不能 néng bu néng"
+        ]
+      },
+      "14": {
+        "name": "Expressing date and time",
+        "examples": [
+          "今天(是)2026年03月19日/号。",
+          "明天(是)星期天。",
+          "现在差十分九点。"
+        ],
+        "vocabulary": [
+          "年 nián",
+          "月 yuè",
+          "日 rì",
+          "号 hào",
+          "天 tiān",
+          "星期 xīngqī",
+          "星期一 xīngqī yī",
+          "星期二 xīngqī èr",
+          "星期三 xīngqī sān",
+          "星期四 xīngqī sì",
+          "星期五 xīngqī wǔ",
+          "星期六 xīngqī liù",
+          "星期日 xīngqī rì",
+          "星期天 xīngqī tiān",
+          "点 diǎn",
+          "分 fēn",
+          "刻 kè",
+          "半 bàn",
+          "现在 xiànzài",
+          "今天 jīntiān",
+          "明天 míngtiān",
+          "昨天 zuótiān",
+          "前天 qiántiān",
+          "后天 hòutiān",
+          "上午 shàngwǔ",
+          "中午 zhōngwǔ",
+          "下午 xiàwǔ",
+          "早上 zǎoshang",
+          "晚上 wǎnshang",
+          "半夜 bànyè",
+          "夜里 yè li",
+          "白天 báitiān",
+          "小时 xiǎoshí",
+          "分钟 fēnzhōng",
+          "时候 shíhou",
+          "时间 shíjiān",
+          "日子 rìzi"
+        ]
+      },
+      "15": {
+        "name": "Indicating time sequence with 以前, 以后",
+        "examples": [
+          "我来这儿工作以前在公司工作。",
+          "我下班以后去学校接孩子。"
+        ],
+        "vocabulary": [
+          "以前 yǐqián",
+          "以后 yǐhòu"
+        ]
+      },
+      "16": {
+        "name": "Conjunction",
+        "notes": "Addition: 和、或者、还是; Contrast: 可是、但是、不过、虽然……但是……; Hypothesis: 要是/如果……就……; Cause and effect: 因为、所以; Sequence: 先……再……然后……最后……; Coordination: 又……又……、一边……一边……; Progression: 不但……而且……; Reference: 对……来说; Illustration: 比如说、比方说",
+        "vocabulary": [
+          "和 hé",
+          "跟 gēn",
+          "与 yǔ",
+          "或 huò",
+          "或者 huòzhě",
+          "还是 háishi",
+          "因为 yīnwèi",
+          "所以 suǒyǐ",
+          "但是 dànshì",
+          "可是 kěshì",
+          "不过 búguò",
+          "但 dàn",
+          "然而 rán'ér",
+          "如果 rúguǒ",
+          "要是 yàoshi",
+          "虽然 suīrán",
+          "尽管 jǐnguǎn",
+          "而且 érqiě",
+          "并且 bìngqiě",
+          "不仅 bùjǐn",
+          "而 ér",
+          "然后 ránhòu",
+          "接着 jiēzhe",
+          "于是 yúshì",
+          "那么 nàme",
+          "由于 yóuyú",
+          "因此 yīncǐ",
+          "只要 zhǐyào",
+          "只有 zhǐyǒu",
+          "无论 wúlùn",
+          "不管 bùguǎn",
+          "即使 jíshǐ",
+          "既然 jìrán",
+          "另外 lìngwài",
+          "例如 lìrú",
+          "比如 bǐrú"
+        ]
+      },
+      "17": {
+        "name": "Indicating age and price",
+        "examples": [
+          "我父亲六十岁。",
+          "这本书十块钱。"
+        ],
+        "vocabulary": [
+          "岁 suì",
+          "块 kuài",
+          "元 yuán",
+          "毛 máo",
+          "角 jiǎo",
+          "分 fēn",
+          "多少 duōshao",
+          "几 jǐ"
+        ]
+      },
+      "18": {
+        "name": "Use of adjectives and degree adverbs",
+        "examples": [
+          "她很漂亮。",
+          "这本书非常有意思。"
+        ],
+        "vocabulary": [
+          "好 hǎo",
+          "大 dà",
+          "小 xiǎo",
+          "多 duō",
+          "少 shǎo",
+          "高 gāo",
+          "低 dī",
+          "长 cháng",
+          "短 duǎn",
+          "远 yuǎn",
+          "近 jìn",
+          "快 kuài",
+          "慢 màn",
+          "早 zǎo",
+          "晚 wǎn",
+          "对 duì",
+          "错 cuò",
+          "真 zhēn",
+          "假 jiǎ",
+          "贵 guì",
+          "便宜 piányi",
+          "热 rè",
+          "冷 lěng",
+          "暖和 nuǎnhuo",
+          "凉快 liángkuai",
+          "舒服 shūfu",
+          "难受 nánshòu",
+          "漂亮 piàoliang",
+          "难看 nánkàn",
+          "好吃 hǎochī",
+          "好听 hǎotīng",
+          "干净 gānjìng",
+          "脏 zāng",
+          "忙 máng",
+          "累 lèi",
+          "饱 bǎo",
+          "饿 è",
+          "渴 kě",
+          "高兴 gāoxìng",
+          "难过 nánguò",
+          "认真 rènzhēn",
+          "清楚 qīngchu",
+          "安全 ānquán",
+          "危险 wēixiǎn",
+          "简单 jiǎndān",
+          "复杂 fùzá",
+          "方便 fāngbiàn",
+          "可爱 kě ài",
+          "可怕 kěpà",
+          "重要 zhòngyào",
+          "主要 zhǔyào",
+          "一样 yíyàng",
+          "所有 suǒyǒu",
+          "一切 yíqiè",
+          "许多 xǔduō",
+          "全部 quánbù"
+        ]
+      },
+      "19": {
+        "name": "Exclamatory sentences",
+        "examples": [
+          "这本书真好看！",
+          "她太漂亮了！"
+        ],
+        "vocabulary": [
+          "啊 a",
+          "真 zhēn",
+          "太 tài",
+          "多么 duōme",
+          "好 hǎo",
+          "这么 zhème",
+          "那么 nàme"
+        ]
+      },
+      "20": {
+        "name": "Comparative structures",
+        "examples": [
+          "他现在还跟以前一样。",
+          "中文跟英语不一样。",
+          "我学汉语的时间比他长，可是水平没有他高。",
+          "我喜欢喝咖啡，更喜欢喝茶。",
+          "在我们办公室，他工作的时间最长。"
+        ],
+        "vocabulary": [
+          "比 bǐ",
+          "最 zuì",
+          "更 gèng",
+          "一样 yíyàng",
+          "不如 bùrú",
+          "像 xiàng"
+        ]
+      },
+      "21": {
+        "name": "Indicating quantitative and temporal limits with 最",
+        "examples": [
+          "做这个工作，最少要一个星期。",
+          "请大家最晚下个星期一告诉我。"
+        ],
+        "vocabulary": [
+          "最 zuì",
+          "最后 zuìhòu",
+          "最近 zuìjìn",
+          "最好 zuì hǎo"
+        ]
+      },
+      "22": {
+        "name": "Using 就 to identify a person or object",
+        "examples": [
+          "他就是王老师。",
+          "那就是我家。"
+        ],
+        "vocabulary": []
+      },
+      "23": {
+        "name": "Use 就 and 才 to indicate earliness and lateness",
+        "examples": [
+          "我早上八点就到办公室了。",
+          "我一到办公室就给你打电话。",
+          "她晚上十二点才睡。"
+        ],
+        "vocabulary": [
+          "就 jiù",
+          "才 cái"
+        ]
+      },
+      "24": {
+        "name": "Using 在 and location particles",
+        "examples": [
+          "上海在中国的南方。",
+          "红十字会在联合国对面。",
+          "他家就在联合国附近。",
+          "咖啡馆就在书店和超市中间。"
+        ],
+        "vocabulary": [
+          "在 zài",
+          "上 shàng",
+          "下 xià",
+          "里 lǐ",
+          "外 wài",
+          "前 qián",
+          "后 hòu",
+          "左 zuǒ",
+          "右 yòu",
+          "东 dōng",
+          "南 nán",
+          "西 xī",
+          "北 běi",
+          "旁边 pángbiān",
+          "对面 duìmiàn",
+          "中间 zhōngjiān",
+          "里面 lǐmiàn",
+          "外面 wàimiàn",
+          "上面 shàngmiàn",
+          "下面 xiàmiàn",
+          "前面 qiánmiàn",
+          "后面 hòumiàn",
+          "左边 zuǒbian",
+          "右边 yòubian",
+          "东边 dōngbian",
+          "南边 nánbian",
+          "西边 xībian",
+          "北边 běibian"
+        ]
+      },
+      "25": {
+        "name": "Using particle 的 to indicate attributives",
+        "examples": [
+          "他送给我一件漂亮的大衣。",
+          "这是我给你买的茶。",
+          "前边的那个人是我妹妹。"
+        ],
+        "vocabulary": []
+      },
+      "26": {
+        "name": "Using 是 or 有 to indicate the presence/existence",
+        "examples": [
+          "银行对面是超市。",
+          "那儿有很多人。",
+          "那条街上有两家饭馆。"
+        ],
+        "vocabulary": [
+          "是 shì",
+          "有 yǒu",
+          "在 zài"
+        ]
+      },
+      "27": {
+        "name": "Preposition",
+        "notes": "给、对、到、用、离、从……到……、向、往",
+        "vocabulary": [
+          "在 zài",
+          "从 cóng",
+          "对 duì",
+          "对于 duìyú",
+          "关于 guānyú",
+          "跟 gēn",
+          "和 hé",
+          "与 yǔ",
+          "为 wèi",
+          "为了 wèile",
+          "因为 yīnwèi",
+          "由于 yóuyú",
+          "由 yóu",
+          "被 bèi",
+          "叫 jiào",
+          "让 ràng",
+          "给 gěi",
+          "向 xiàng",
+          "往 wǎng",
+          "朝 cháo",
+          "到 dào",
+          "于 yú",
+          "自从 zìcóng",
+          "按照 ànzhào",
+          "根据 gēnjù",
+          "通过 tōngguò",
+          "经过 jīngguò",
+          "除了 chúle",
+          "作为 zuòwéi",
+          "用 yòng",
+          "拿 ná",
+          "靠 kào"
+        ]
+      },
+      "28": {
+        "name": "Make a suggestion with particle 吧",
+        "examples": [
+          "我们去看电影吧！"
+        ],
+        "vocabulary": []
+      },
+      "29": {
+        "name": "Make a speculation/assumption with the particle 吧",
+        "examples": [
+          "您是王先生吧？",
+          "这件衣服是你的吧？"
+        ],
+        "vocabulary": []
+      },
+      "30": {
+        "name": "Tag questions with 怎么样, 好吗, 可以吗, 行吗, 是吗/是不是",
+        "examples": [
+          "我们下班以后去喝咖啡，怎么样？",
+          "我三点给你打电话，好吗/可以吗/行吗？",
+          "你喜欢穿白色的衣服，是吗/是不是？"
+        ],
+        "vocabulary": [
+          "怎么样 zěnmeyàng",
+          "好吗 hǎo ma",
+          "可以吗 kěyǐ ma",
+          "行吗 xíng ma",
+          "是吗 shì ma",
+          "是不是 shì bu shì"
+        ]
+      },
+      "31": {
+        "name": "Verb reduplication and verb with 一下(儿)",
+        "examples": [
+          "我想想。",
+          "我给你们介绍一下儿。"
+        ],
+        "vocabulary": [
+          "一下 yíxià",
+          "一下儿 yíxiàr"
+        ]
+      },
+      "32": {
+        "name": "Imperative sentences",
+        "examples": [
+          "请进！请坐！",
+          "别坐那儿！不要说话！"
+        ],
+        "vocabulary": [
+          "请 qǐng",
+          "别 bié",
+          "不要 búyào"
+        ]
+      },
+      "33": {
+        "name": "Modal verbs",
+        "examples": [
+          "我想买一杯咖啡。",
+          "我今天下午要开一个会。",
+          "今年夏天我打算去中国旅游。",
+          "你现在能给我打个电话吗？",
+          "你不可以在这里吃东西。",
+          "他不会说中文。",
+          "这件事你应该问一下小王。",
+          "我让他一起来，可是他不愿意。",
+          "需要我帮你吗？不用，谢谢！"
+        ],
+        "vocabulary": [
+          "能 néng",
+          "能够 nénggòu",
+          "会 huì",
+          "可以 kěyǐ",
+          "可能 kěnéng",
+          "应该 yīnggāi",
+          "应当 yīngdāng",
+          "该 gāi",
+          "得 děi",
+          "要 yào",
+          "想 xiǎng",
+          "愿意 yuànyì",
+          "肯 kěn",
+          "敢 gǎn"
+        ]
+      },
+      "34": {
+        "name": "Pivotal sentences",
+        "notes": "请/让/要……+ Verb Phrase",
+        "examples": [
+          "我请他帮我一下。",
+          "我让她给我打个电话",
+          "我太太要我今天四点下班。"
+        ],
+        "vocabulary": []
+      },
+      "35": {
+        "name": "Indirect speech",
+        "examples": [
+          "他说他也在清华大学工作。",
+          "我问他在哪儿工作。",
+          "他问我有没有笔。"
+        ],
+        "vocabulary": [
+          "说 shuō",
+          "问 wèn",
+          "告诉 gàosu",
+          "回答 huídá"
+        ]
+      },
+      "36": {
+        "name": "Using 是……的 to specify a feature or to emphasize details",
+        "examples": [
+          "我的车是黑的。",
+          "那张桌子是圆的。",
+          "我们是去年在北京认识的。",
+          "你是哪年来清华大学工作的？"
+        ],
+        "vocabulary": []
+      },
+      "37": {
+        "name": "Durative/Progressive aspect",
+        "examples": [
+          "孩子们正在睡觉呢。",
+          "王先生(正)在开会，请您等一下儿。"
+        ],
+        "vocabulary": [
+          "在 zài",
+          "正在 zhèngzài",
+          "着 zhe"
+        ]
+      },
+      "38": {
+        "name": "Using sentence-final particle 了 to inform a new situation or change",
+        "examples": [
+          "天黑了。",
+          "他病了。",
+          "他不在这儿工作了。",
+          "七点了，该回家了。",
+          "看，要下雨了。",
+          "你可以走了。"
+        ],
+        "vocabulary": []
+      },
+      "39": {
+        "name": "Using 了 to quantify an action or event in the past",
+        "examples": [
+          "周末我看了一个电影。",
+          "他休息了两个小时。",
+          "我去找了他三次。"
+        ],
+        "vocabulary": []
+      },
+      "40": {
+        "name": "Using 过 to indicate an experience",
+        "examples": [
+          "我去过中国。"
+        ],
+        "vocabulary": []
+      },
+      "41": {
+        "name": "Using 会 to indicate possibility or likelihood",
+        "examples": [
+          "你觉得领导会同意吗？",
+          "他今天应该会来。"
+        ],
+        "vocabulary": []
+      },
+      "42": {
+        "name": "Using 着 to describe a place or someone's clothing",
+        "examples": [
+          "门外边站着一个人。",
+          "墙上挂着一幅画。",
+          "他穿着一件黑色的大衣。"
+        ],
+        "vocabulary": []
+      },
+      "43": {
+        "name": "Using 得 to describe/evaluate an action",
+        "examples": [
+          "他说汉语说得很快。",
+          "你的汉字写得很漂亮。"
+        ],
+        "vocabulary": []
+      },
+      "44": {
+        "name": "Simple directional verb complement",
+        "examples": [
+          "他什么时候回来？",
+          "他出去买东西了。"
+        ],
+        "vocabulary": [
+          "来 lái",
+          "去 qù",
+          "上 shàng",
+          "下 xià",
+          "进 jìn",
+          "出 chū",
+          "回 huí",
+          "过 guò",
+          "起 qǐ",
+          "开 kāi",
+          "上来 shànglái",
+          "上去 shàngqù",
+          "下来 xiàlái",
+          "下去 xiàqù",
+          "进来 jìnlái",
+          "进去 jìnqù",
+          "出来 chūlái",
+          "出去 chūqù",
+          "回来 huílái",
+          "回去 huíqù",
+          "过来 guòlái",
+          "过去 guòqù",
+          "起来 qǐlái"
+        ]
+      },
+      "45": {
+        "name": "Using the adverb 再 to express the duplication of an action in the future",
+        "examples": [
+          "如果他再来找我，你就告诉他我出去吃午饭了。"
+        ],
+        "vocabulary": []
+      },
+      "46": {
+        "name": "Using the adverb 一直 to express continuity or indicate straight direction",
+        "examples": [
+          "他从早上到现在一直在开会。",
+          "一直往前走，走五分钟就到。"
+        ],
+        "vocabulary": []
+      }
+    },
+    "LINGUISTIC_COMPETENCE_LEXIS": {
+      "name": "Linguistic Competence - Lexis",
+      "1": {
+        "name": "Relationship",
+        "notes": "Family: 爸爸、妈妈、哥哥、姐姐、弟弟、妹妹、兄弟姐妹、先生/太太、家人; Colleagues and friends: 同学、同事、朋友、男朋友、女朋友",
+        "vocabulary": [
+          "爸爸 bàba",
+          "妈妈 māma",
+          "哥哥 gēge",
+          "姐姐 jiějie",
+          "弟弟 dìdi",
+          "妹妹 mèimei",
+          "爷爷 yéye",
+          "奶奶 nǎinai",
+          "儿子 érzi",
+          "女儿 nǚ ér",
+          "孩子 háizi",
+          "朋友 péngyou",
+          "男朋友 nánpéngyou",
+          "女朋友 nǚpéngyou",
+          "同学 tóngxué",
+          "同事 tóngshì",
+          "老师 lǎoshī",
+          "学生 xuésheng",
+          "先生 xiānsheng",
+          "小姐 xiǎojie",
+          "家人 jiārén",
+          "爱人 àirén",
+          "亲戚 qīnqi",
+          "邻居 línjū"
+        ]
+      },
+      "2": {
+        "name": "Professions and workplace",
+        "notes": "Profession: 老师、学生、职员、大夫/医生、秘书; Workplace: 联合国、部门、办公室、电脑、打印、复印、介绍、自我介绍、纸、开会、出差、准备、加班、请假",
+        "vocabulary": [
+          "工作 gōngzuò",
+          "老师 lǎoshī",
+          "学生 xuésheng",
+          "医生 yīshēng",
+          "护士 hàoshi",
+          "工人 gōngrén",
+          "司机 sījī",
+          "商人 shāngrén",
+          "经理 jīnglǐ",
+          "作家 zuòjiā",
+          "画家 huàjiā",
+          "演员 yǎnyuán",
+          "厨师 chúshī",
+          "服务员 fúwùyuán",
+          "警察 jǐngchá",
+          "律师 lǜshī",
+          "办公室 bàngōngshì",
+          "公司 gōngsī",
+          "医院 yīyuàn",
+          "学校 xuéxiào",
+          "工厂 gōngchǎng",
+          "饭店 fàndiàn",
+          "银行 yínháng"
+        ]
+      },
+      "3": {
+        "name": "Cardinal number 0 to 100 and ordinal numeral",
+        "notes": "零、一、十、二十五、四十、八十六、一百; 第一、第二、第三……",
+        "vocabulary": [
+          "零 líng",
+          "一 yī",
+          "二 èr",
+          "三 sān",
+          "四 sì",
+          "五 wǔ",
+          "六 liù",
+          "七 qī",
+          "八 bā",
+          "九 jiǔ",
+          "十 shí",
+          "十一 shíyī",
+          "十二 shí èr",
+          "二十 èrshí",
+          "二十一 èrshí yī",
+          "三十 sānshí",
+          "四十 sìshí",
+          "五十 wǔshí",
+          "六十 liùshí",
+          "七十 qīshí",
+          "八十 bāshí",
+          "九十 jiǔshí",
+          "一百 yìbǎi",
+          "第一 dì-yī",
+          "第二 dì-èr",
+          "第三 dì-sān"
+        ]
+      },
+      "4": {
+        "name": "Countries, cities, and nationalities",
+        "notes": "E.g. 中国、北京、上海、中国人",
+        "vocabulary": [
+          "中国 Zhōngguó",
+          "北京 Běijīng",
+          "上海 Shànghǎi",
+          "美国 Měiguó",
+          "英国 Yīngguó",
+          "法国 Fǎguó",
+          "德国 Déguó",
+          "日本 Rìběn",
+          "韩国 Hánguó",
+          "中国人 Zhōngguó rén",
+          "美国人 Měiguó rén",
+          "外国人 wàiguó rén"
+        ]
+      },
+      "5": {
+        "name": "Languages",
+        "notes": "中文/汉语、英语、法语、西班牙语、俄语、阿拉伯语",
+        "vocabulary": [
+          "汉语 Hànyǔ",
+          "中文 Zhōngwén",
+          "英语 Yīngyǔ",
+          "英文 Yīngwén",
+          "外语 wàiyǔ",
+          "语言 yǔyán"
+        ]
+      },
+      "6": {
+        "name": "Learning",
+        "notes": "学习、上课、下课、语法、口语、汉字、生词、复习、难、容易、作业/功课、考试、练习、例子",
+        "vocabulary": [
+          "学习 xuéxí",
+          "学 xué",
+          "读 dú",
+          "写 xiě",
+          "听 tīng",
+          "说 shuō",
+          "读书 dúshū",
+          "看书 kàn shū",
+          "上课 shàngkè",
+          "下课 xiàkè",
+          "考试 kǎoshì",
+          "复习 fùxí",
+          "练习 liànxí",
+          "作业 zuòyè",
+          "单词 dāncí",
+          "句子 jùzi",
+          "课文 kèwén",
+          "老师 lǎoshī",
+          "学生 xuésheng",
+          "学校 xuéxiào",
+          "教室 jiàoshì",
+          "图书馆 túshūguǎn",
+          "汉语 Hànyǔ",
+          "中文 Zhōngwén"
+        ]
+      },
+      "7": {
+        "name": "Expression of time",
+        "notes": "年、月、日、天、星期、现在、点、分、半、刻、差、早上、上午、中午、下午、晚上、昨天、今天、明天、时候、小时、分钟",
+        "vocabulary": [
+          "年 nián",
+          "月 yuè",
+          "日 rì",
+          "号 hào",
+          "天 tiān",
+          "星期 xīngqī",
+          "星期一 xīngqī yī",
+          "星期二 xīngqī èr",
+          "星期三 xīngqī sān",
+          "星期四 xīngqī sì",
+          "星期五 xīngqī wǔ",
+          "星期六 xīngqī liù",
+          "星期日 xīngqī rì",
+          "星期天 xīngqī tiān",
+          "点 diǎn",
+          "分 fēn",
+          "刻 kè",
+          "半 bàn",
+          "现在 xiànzài",
+          "今天 jīntiān",
+          "明天 míngtiān",
+          "昨天 zuótiān",
+          "前天 qiántiān",
+          "后天 hòutiān",
+          "早上 zǎoshang",
+          "上午 shàngwǔ",
+          "中午 zhōngwǔ",
+          "下午 xiàwǔ",
+          "晚上 wǎnshang",
+          "半夜 bànyè",
+          "白天 báitiān",
+          "小时 xiǎoshí",
+          "分钟 fēnzhōng",
+          "时候 shíhou",
+          "时间 shíjiān"
+        ]
+      },
+      "8": {
+        "name": "Food and drink",
+        "notes": "吃、喝、水、茶、咖啡、牛奶、酒、中国饭、菜、米饭、面条、好吃、好喝、香、饿、渴、水果、苹果、香蕉、橙子",
+        "vocabulary": [
+          "吃 chī",
+          "喝 hē",
+          "饭 fàn",
+          "菜 cài",
+          "早饭 zǎofàn",
+          "午饭 wǔfàn",
+          "晚饭 wǎnfàn",
+          "米饭 mǐfàn",
+          "面条 miàntiáo",
+          "面包 miànbāo",
+          "包子 bāozi",
+          "饺子 jiǎozi",
+          "鸡蛋 jīdàn",
+          "肉 ròu",
+          "鱼 yú",
+          "牛奶 niúnǎi",
+          "水 shuǐ",
+          "茶 chá",
+          "咖啡 kāfēi",
+          "水果 shuǐguǒ",
+          "苹果 píngguǒ",
+          "好吃 hǎochī",
+          "好喝 hǎohē",
+          "饿 è",
+          "渴 kě",
+          "饱 bǎo"
+        ]
+      },
+      "9": {
+        "name": "Purchasing and money",
+        "notes": "买、东西、钱、块、元（块）、找、零钱、贵、便宜",
+        "vocabulary": [
+          "买 mǎi",
+          "卖 mài",
+          "钱 qián",
+          "多少钱 duōshao qián",
+          "块 kuài",
+          "元 yuán",
+          "毛 máo",
+          "角 jiǎo",
+          "分 fēn",
+          "贵 guì",
+          "便宜 piányi",
+          "票 piào",
+          "车票 chēpiào",
+          "机票 jīpiào",
+          "门票 ménpiào",
+          "卡 kǎ",
+          "信用卡 xìnyòngkǎ",
+          "书包 shūbāo",
+          "衣服 yīfu",
+          "商店 shāngdiàn",
+          "超市 chāoshì",
+          "市场 shìchǎng"
+        ]
+      },
+      "10": {
+        "name": "Public places and buildings",
+        "notes": "饭馆、教室、食堂、书店、图书馆、学校、小学、中学、大学、公园、超市、银行、医院、车站、火车站、飞机场、公司、商店、酒吧、地铁站、餐厅",
+        "vocabulary": [
+          "学校 xuéxiào",
+          "图书馆 túshūguǎn",
+          "教室 jiàoshì",
+          "办公室 bàngōngshì",
+          "医院 yīyuàn",
+          "商店 shāngdiàn",
+          "超市 chāoshì",
+          "市场 shìchǎng",
+          "饭馆 fànguǎn",
+          "饭店 fàndiàn",
+          "酒店 jiǔdiàn",
+          "宾馆 bīnguǎn",
+          "公园 gōngyuán",
+          "动物园 dòngwùyuán",
+          "电影院 diànyǐngyuàn",
+          "体育馆 tǐyùguǎn",
+          "银行 yínháng",
+          "机场 jīchǎng",
+          "车站 chēzhàn",
+          "火车站 huǒchēzhàn",
+          "地铁站 dìtiě zhàn",
+          "广场 guǎngchǎng"
+        ]
+      },
+      "11": {
+        "name": "Home / House",
+        "notes": "地方、家、房子、楼、房间、厕所、门、窗子、墙、柜子、床、桌子、椅子、灯、电视、电话、手机、花园",
+        "vocabulary": [
+          "家 jiā",
+          "房子 fángzi",
+          "房间 fángjiān",
+          "屋子 wūzi",
+          "门 mén",
+          "窗户 chuānghu",
+          "床 chuáng",
+          "桌子 zhuōzi",
+          "椅子 yǐzi",
+          "沙发 shāfā",
+          "柜子 guìzi",
+          "灯 dēng",
+          "电话 diànhuà",
+          "电视 diànshì",
+          "电脑 diànnǎo",
+          "厨房 chúfáng",
+          "厕所 cèsuǒ",
+          "洗手间 xǐshǒujiān",
+          "洗澡 xǐzǎo",
+          "睡觉 shuìjiào"
+        ]
+      },
+      "12": {
+        "name": "Common adjective to describe a person or an object",
+        "vocabulary": [
+          "好 hǎo",
+          "大 dà",
+          "小 xiǎo",
+          "多 duō",
+          "少 shǎo",
+          "高 gāo",
+          "低 dī",
+          "长 cháng",
+          "短 duǎn",
+          "远 yuǎn",
+          "近 jìn",
+          "快 kuài",
+          "慢 màn",
+          "早 zǎo",
+          "晚 wǎn",
+          "对 duì",
+          "错 cuò",
+          "真 zhēn",
+          "假 jiǎ",
+          "贵 guì",
+          "便宜 piányi",
+          "热 rè",
+          "冷 lěng",
+          "暖和 nuǎnhuo",
+          "凉快 liángkuai",
+          "舒服 shūfu",
+          "难受 nánshòu",
+          "漂亮 piàoliang",
+          "好看 hǎokàn",
+          "难看 nánkàn",
+          "好吃 hǎochī",
+          "好听 hǎotīng",
+          "干净 gānjìng",
+          "脏 zāng",
+          "忙 máng",
+          "累 lèi",
+          "高兴 gāoxìng",
+          "认真 rènzhēn",
+          "清楚 qīngchu",
+          "安全 ānquán",
+          "危险 wēixiǎn",
+          "简单 jiǎndān",
+          "复杂 fùzá",
+          "方便 fāngbiàn",
+          "重要 zhòngyào",
+          "一样 yíyàng",
+          "新 xīn",
+          "旧 jiù"
+        ]
+      },
+      "13": {
+        "name": "Common adverbs of degree",
+        "notes": "很、非常、极了、不太、太、真、有一点儿、比较",
+        "vocabulary": [
+          "很 hěn",
+          "非常 fēicháng",
+          "太 tài",
+          "最 zuì",
+          "更 gèng",
+          "特别 tèbié",
+          "十分 shífēn",
+          "多么 duōme",
+          "挺 tǐng",
+          "有点儿 yǒudiǎnr",
+          "差不多 chàbuduō"
+        ]
+      },
+      "14": {
+        "name": "Hobbies",
+        "vocabulary": [
+          "喜欢 xǐhuan",
+          "爱好 àihào",
+          "唱歌 chànggē",
+          "打球 dǎ qiú",
+          "看书 kàn shū",
+          "看电影 kàn diànyǐng",
+          "听音乐 tīng yīnyuè",
+          "运动 yùndòng",
+          "上网 shàngwǎng",
+          "玩儿 wánr",
+          "旅游 lǚyóu",
+          "照片 zhàopiàn",
+          "照相 zhàoxiàng"
+        ]
+      },
+      "15": {
+        "name": "Daily routine",
+        "vocabulary": [
+          "起床 qǐchuáng",
+          "上班 shàngbān",
+          "上课 shàngkè",
+          "下课 xiàkè",
+          "下班 xiàbān",
+          "回家 huí jiā",
+          "睡觉 shuìjiào",
+          "吃饭 chīfàn",
+          "洗澡 xǐzǎo",
+          "每天 měitiān",
+          "早上 zǎoshang",
+          "上午 shàngwǔ",
+          "中午 zhōngwǔ",
+          "下午 xiàwǔ",
+          "晚上 wǎnshang",
+          "然后 ránhòu",
+          "先 xiān",
+          "再 zài",
+          "就 jiù",
+          "才 cái"
+        ]
+      },
+      "16": {
+        "name": "Clothes",
+        "notes": "衣服、上衣、大衣、衬衣、裤子、裙子、鞋",
+        "vocabulary": [
+          "衣服 yīfu",
+          "穿 chuān",
+          "裤子 kùzi",
+          "裙子 qúnzi",
+          "鞋 xié",
+          "帽子 màozi",
+          "袜子 wàzi",
+          "手套 shǒutào",
+          "包 bāo",
+          "书包 shūbāo",
+          "钱包 qiánbāo",
+          "颜色 yánsè",
+          "红 hóng",
+          "黄 huáng",
+          "蓝 lán",
+          "绿 lǜ",
+          "白 bái",
+          "黑 hēi"
+        ]
+      },
+      "17": {
+        "name": "Primary colours",
+        "vocabulary": [
+          "红 hóng",
+          "黄 huáng",
+          "蓝 lán",
+          "绿 lǜ",
+          "白 bái",
+          "黑 hēi",
+          "颜色 yánsè"
+        ]
+      },
+      "18": {
+        "name": "Common adverbs of frequency",
+        "notes": "总是、常、常常、不常、很少、有时候、从来不",
+        "vocabulary": [
+          "常常 chángcháng",
+          "经常 jīngcháng",
+          "平时 píngshí",
+          "总是 zǒngshì",
+          "有时 yǒushí",
+          "从来不 cónglái bù",
+          "每天 měitiān",
+          "次 cì",
+          "遍 biàn"
+        ]
+      },
+      "19": {
+        "name": "Appointments",
+        "notes": "约会、地方、时间、见面、告诉、说好、问题、事情",
+        "vocabulary": [
+          "时间 shíjiān",
+          "点 diǎn",
+          "分 fēn",
+          "见面 jiànmiàn",
+          "一起 yìqǐ",
+          "去 qù",
+          "来 lái",
+          "在 zài",
+          "哪儿 nǎr",
+          "几点 jǐ diǎn",
+          "明天 míngtiān",
+          "周末 zhōumò",
+          "可以 kěyǐ",
+          "吗 ma",
+          "好 hǎo",
+          "行 xíng",
+          "没问题 méi wèntí",
+          "对不起 duìbuqǐ",
+          "有事 yǒu shì",
+          "改天 gǎitiān"
+        ]
+      },
+      "20": {
+        "name": "Simple online communication",
+        "notes": "您好、祝好、一会儿见、非常感谢、再见",
+        "vocabulary": [
+          "上网 shàngwǎng",
+          "网友 wǎngyǒu",
+          "网上 wǎngshang",
+          "电脑 diànnǎo",
+          "手机 shǒujī",
+          "电话 diànhuà",
+          "打电话 dǎ diànhuà",
+          "发 fā",
+          "信息 xìnxī",
+          "邮件 yóujiàn",
+          "微信 Wēixìn",
+          "看 kàn",
+          "听 tīng",
+          "视频 shìpín"
+        ]
+      },
+      "21": {
+        "name": "Likes, dislikes, emotions, basic opinions",
+        "vocabulary": [
+          "喜欢 xǐhuan",
+          "爱 ài",
+          "不喜欢 bù xǐhuan",
+          "讨厌 tǎoyàn",
+          "高兴 gāoxìng",
+          "难过 nánguò",
+          "生气 shēngqì",
+          "累 lèi",
+          "怕 pà",
+          "觉得 juéde",
+          "认为 rènwéi",
+          "怎么样 zěnmeyàng",
+          "好 hǎo",
+          "对 duì",
+          "可以 kěyǐ",
+          "不行 bùxíng",
+          "可能 kěnéng",
+          "应该 yīnggāi",
+          "真 zhēn",
+          "太 tài",
+          "了 le",
+          "啊 a"
+        ]
+      },
+      "22": {
+        "name": "Travel and transportation",
+        "vocabulary": [
+          "去 qù",
+          "来 lái",
+          "走 zǒu",
+          "坐 zuò",
+          "车 chē",
+          "火车 huǒchē",
+          "飞机 fēijī",
+          "地铁 dìtiě",
+          "公交车 gōngjiāochē",
+          "出租车 chūzūchē",
+          "自行车 zìxíngchē",
+          "走路 zǒulù",
+          "票 piào",
+          "买票 mǎi piào",
+          "车站 chēzhàn",
+          "机场 jīchǎng",
+          "火车站 huǒchēzhàn",
+          "地铁站 dìtiě zhàn",
+          "路 lù",
+          "路口 lùkǒu",
+          "方向 fāngxiàng",
+          "左边 zuǒbian",
+          "右边 yòubian",
+          "前面 qiánmiàn",
+          "后面 hòumiàn",
+          "远 yuǎn",
+          "近 jìn",
+          "旅行 lǚxíng",
+          "旅游 lǚyóu",
+          "酒店 jiǔdiàn",
+          "房间 fángjiān"
+        ]
+      },
+      "23": {
+        "name": "Seasons and weather",
+        "notes": "夏天、秋天、冬天、天气、热、冷、度、晴、阴、多云、下雨、下雪",
+        "vocabulary": [
+          "春天 chūntiān",
+          "夏天 xiàtiān",
+          "秋天 qiūtiān",
+          "冬天 dōngtiān",
+          "天气 tiānqì",
+          "热 rè",
+          "冷 lěng",
+          "暖和 nuǎnhuo",
+          "凉快 liángkuai",
+          "下雨 xià yǔ",
+          "下雪 xià xuě",
+          "刮风 guā fēng",
+          "晴 qíng",
+          "阴 yīn",
+          "多云 duōyún",
+          "温度 wēndù"
+        ]
+      },
+      "24": {
+        "name": "Health",
+        "notes": "舒服、不舒服、病、感冒、身体、生病",
+        "vocabulary": [
+          "身体 shēntǐ",
+          "健康 jiànkāng",
+          "生病 shēngbìng",
+          "病 bìng",
+          "医院 yīyuàn",
+          "医生 yīshēng",
+          "看病 kànbìng",
+          "吃药 chī yào",
+          "休息 xiūxi",
+          "运动 yùndòng",
+          "累 lèi",
+          "疼 téng",
+          "感冒 gǎnmào"
+        ]
+      },
+      "25": {
+        "name": "Animals and nature",
+        "notes": "动物、狗、猫、马、山、海、河",
+        "vocabulary": [
+          "动物 dòngwù",
+          "猫 māo",
+          "狗 gǒu",
+          "鸟 niǎo",
+          "鱼 yú",
+          "树 shù",
+          "花 huā",
+          "草 cǎo",
+          "山 shān",
+          "水 shuǐ",
+          "河 hé",
+          "海 hǎi",
+          "公园 gōngyuán",
+          "大自然 dàzìrán"
+        ]
+      }
+    }
+  }
+}
