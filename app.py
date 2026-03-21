@@ -138,13 +138,43 @@ if "last_audio_id" not in st.session_state:
 if "pending_tts" not in st.session_state:
     st.session_state.pending_tts = None  # (bytes, fmt)
 
+# ---------- 获取当前页面内容 ----------
+def get_current_page_context():
+    if not st.session_state.level or not st.session_state.path:
+        return None
+    data = levels_data[f"Level {st.session_state.level}"]
+    node = data
+    for key in st.session_state.path:
+        node = node.get(key, {})
+        if not node:
+            return None
+    parts = []
+    location = " > ".join(st.session_state.path)
+    parts.append(f"The user is currently viewing: {location}")
+    if "name" in node:
+        parts.append(f"Section: {node['name']}")
+    if "notes" in node and node["notes"]:
+        parts.append(f"Notes: {node['notes']}")
+    if "examples" in node and node["examples"]:
+        parts.append("Example sentences:\n" + "\n".join(f"  - {e}" for e in node["examples"]))
+    if "vocabulary" in node and node["vocabulary"]:
+        parts.append("Vocabulary on this page:\n" + "\n".join(f"  - {v}" for v in node["vocabulary"]))
+    return "\n".join(parts) if len(parts) > 1 else None
+
 # ---------- AI 回复 ----------
 def get_ai_reply(user_text):
     st.session_state.messages.append({"role": "user", "content": user_text})
+    messages_to_send = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
+    page_context = get_current_page_context()
+    if page_context:
+        messages_to_send.insert(-1, {
+            "role": "system",
+            "content": f"[Current page context]\n{page_context}\nUse this to give precise, relevant answers about what the user is currently studying."
+        })
     try:
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
-            messages=[{"role": m["role"], "content": m["content"]} for m in st.session_state.messages],
+            messages=messages_to_send,
             temperature=0.7,
             max_tokens=500
         )
