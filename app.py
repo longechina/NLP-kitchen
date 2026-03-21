@@ -164,10 +164,10 @@ def cached_chat_completion(system_prompt, page_context, summary_text, user_text)
     messages.append({"role": "user", "content": user_text})
     try:
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="groq/compound",
             messages=messages,
             temperature=0.7,
-            max_tokens=1000
+            max_tokens=8192
         )
         return response.choices[0].message.content
     except Exception as e:
@@ -189,10 +189,10 @@ def generate_summary(history, old_summary=""):
     prompt += "新对话：\n" + "\n".join([f"{msg['role']}: {msg['content']}" for msg in history])
     try:
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="groq/compound",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.5,
-            max_tokens=300
+            max_tokens=8192
         )
         new_summary = response.choices[0].message.content
         # 保存到文件（便于调试和持久化）
