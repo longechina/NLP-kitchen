@@ -372,46 +372,72 @@ st.markdown(f"""
         border-top: 1px solid #e0e0e0;
     }}
 
-    /* 语音输入样式 - 深色风格 */
+    /* 输入区域列布局优化 */
+    .chat-input-area div[data-testid="column"] {{
+        padding: 0 4px !important;
+        display: flex !important;
+        align-items: center !important;
+    }}
+
+    /* 语音输入样式 - 紧凑的小黑框 */
     .chat-input-area div[data-testid="stAudioInput"] {{
-        margin: 0 0 8px 0 !important;
+        margin: 0 !important;
     }}
     
     .chat-input-area div[data-testid="stAudioInput"] > div {{
         background-color: #2d3748 !important;
         border: none !important;
-        border-radius: 40px !important;
+        border-radius: 12px !important;
         margin: 0 !important;
-        padding: 8px 16px !important;
+        padding: 8px !important;
+        width: 56px !important;
+        height: 56px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }}
     
     .chat-input-area div[data-testid="stAudioInput"] button {{
         color: #ffffff !important;
         background-color: transparent !important;
+        padding: 0 !important;
+        min-height: auto !important;
     }}
 
-    /* 文字输入框样式 - 深色风格 */
+    /* 文字输入框样式 - 椭圆形，大字体，矮框 */
     .chat-input-area .stChatInput {{
         margin: 0 !important;
     }}
     .chat-input-area .stChatInput > div {{
         background-color: #2d3748 !important;
         border: none !important;
-        border-radius: 40px !important;
+        border-radius: 28px !important;
         margin: 0 !important;
         padding: 0 !important;
+        height: 56px !important;
     }}
     .chat-input-area .stChatInput input {{
-        font-size: 26px !important;
-        padding: 12px 20px !important;
+        font-size: 22px !important;
+        padding: 0 20px !important;
         background-color: transparent !important;
         color: #ffffff !important;
-        min-height: 48px !important;
+        height: 56px !important;
+        min-height: 56px !important;
+        max-height: 56px !important;
         border: none !important;
+        line-height: 56px !important;
     }}
     .chat-input-area .stChatInput input::placeholder {{
-        font-size: 26px !important;
+        font-size: 22px !important;
         color: #a0aec0 !important;
+    }}
+    
+    /* 移除可能的红色边框 */
+    .chat-input-area .stChatInput > div:focus-within,
+    .chat-input-area .stChatInput input:focus {{
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
     }}
 
     .chat-message {{
@@ -590,25 +616,30 @@ with st.container():
 
         # 输入区域
         st.markdown('<div class="chat-input-area">', unsafe_allow_html=True)
-
-        # 语音输入
-        audio_input = st.audio_input("🎤", key="voice_input", label_visibility="collapsed")
-        if audio_input is not None:
-            audio_id = f"{audio_input.name}_{audio_input.size}"
-            if audio_id != st.session_state.last_audio_id:
-                st.session_state.last_audio_id = audio_id
-                with st.spinner("Transcribing..."):
-                    transcript = transcribe_audio(audio_input.read())
-                if transcript and not transcript.startswith("[转录失败"):
-                    with st.spinner("Thinking..."):
-                        get_ai_reply(transcript)
-                    st.rerun()
-
-        # 文字输入
-        if prompt := st.chat_input("Type a message...", key="text_input"):
-            with st.spinner("Thinking..."):
-                get_ai_reply(prompt)
-            st.rerun()
+        
+        # 创建两列布局：语音按钮在左，文字输入在右
+        col_voice, col_text = st.columns([1, 6])
+        
+        with col_voice:
+            # 语音输入 - 小黑框
+            audio_input = st.audio_input("🎤", key="voice_input", label_visibility="collapsed")
+            if audio_input is not None:
+                audio_id = f"{audio_input.name}_{audio_input.size}"
+                if audio_id != st.session_state.last_audio_id:
+                    st.session_state.last_audio_id = audio_id
+                    with st.spinner("Transcribing..."):
+                        transcript = transcribe_audio(audio_input.read())
+                    if transcript and not transcript.startswith("[转录失败"):
+                        with st.spinner("Thinking..."):
+                            get_ai_reply(transcript)
+                        st.rerun()
+        
+        with col_text:
+            # 文字输入 - 椭圆形大字体
+            if prompt := st.chat_input("Type a message...", key="text_input"):
+                with st.spinner("Thinking..."):
+                    get_ai_reply(prompt)
+                st.rerun()
 
         st.markdown('</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
