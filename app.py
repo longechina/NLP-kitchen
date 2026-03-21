@@ -102,24 +102,9 @@ def text_to_speech(text):
 
 # ---------- 构建系统提示 ----------
 def build_system_prompt(levels):
-    prompt = "You are a Chinese learning assistant. Below is the outline of the learning content (Levels 1-3). The user may ask about specific items, but detailed vocabulary and examples are not listed here to save tokens. Please answer based on your knowledge, but if needed, you can ask the user to provide more details and make your answer structured, do not give messy information.\n\n"
-
-    def extract_outline(node, indent=0):
-        outline = ""
-        if isinstance(node, dict):
-            if "name" in node and node["name"]:
-                outline += "  " * indent + "- " + node["name"] + "\n"
-            for key, val in node.items():
-                if key not in ["name", "notes", "examples", "vocabulary"]:
-                    outline += extract_outline(val, indent + 1)
-        return outline
-
-    for level_name, data in levels.items():
-        prompt += f"=== {level_name} ===\n"
-        prompt += extract_outline(data)
-        prompt += "\n"
-
-    prompt += "Answer the user's questions based on this outline. If you need specific vocabulary or example sentences, ask the user to provide them."
+    prompt = """You are a Chinese learning assistant helping students learn Chinese. 
+You have access to learning materials across 3 levels covering grammar, vocabulary, and conversation.
+Keep your answers concise, clear, and helpful. Focus on what the user is currently studying."""
     return prompt
 
 system_prompt = build_system_prompt(levels_data)
@@ -164,27 +149,35 @@ def get_current_page_context():
 # ---------- AI 回复 ----------
 def get_ai_reply(user_text):
     st.session_state.messages.append({"role": "user", "content": user_text})
-    messages_to_send = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
+    
+    # 只保留系统提示 + 最近6轮对话（12条消息）以节省tokens
+    system_msg = [m for m in st.session_state.messages if m["role"] == "system"]
+    recent_msgs = [m for m in st.session_state.messages if m["role"] != "system"][-12:]
+    messages_to_send = system_msg + recent_msgs
+    
+    # 添加当前页面上下文
     page_context = get_current_page_context()
     if page_context:
         messages_to_send.insert(-1, {
             "role": "system",
             "content": f"[Current page context]\n{page_context}\nUse this to give precise, relevant answers about what the user is currently studying."
         })
+    
     try:
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=messages_to_send,
             temperature=0.7,
-            max_tokens=500
+            max_tokens=1000
         )
         reply = response.choices[0].message.content
     except Exception as e:
         err = str(e)
-        if "rate_limit_exceeded" in err:
-            reply = "Token limit reached. Please try again later."
+        if "rate_limit_exceeded" in err or "quota" in err.lower():
+            reply = "I've reached my usage limit. Please try again in a few moments, or click Clear to start fresh."
         else:
-            reply = f"Error: {err}"
+            reply = f"Sorry, I encountered an error: {err}"
+    
     st.session_state.messages.append({"role": "assistant", "content": reply})
     audio_bytes, fmt = text_to_speech(reply)
     if audio_bytes:
@@ -441,14 +434,16 @@ st.markdown(f"""
     }}
 
     .chat-message {{
-        margin-bottom: 12px;
-        font-size: 28px;
-        line-height: 1.4;
+        margin-bottom: 16px;
+        font-size: 16px;
+        line-height: 1.5;
+        padding: 8px 0;
     }}
 
     .chat-message strong {{
         font-weight: 600;
-        margin-right: 8px;
+        margin-right: 6px;
+        color: #2d3748;
     }}
 
     .clear-button-container .stButton > button {{
@@ -456,16 +451,18 @@ st.markdown(f"""
         border: none !important;
         box-shadow: none !important;
         color: #666666 !important;
-        font-size: 24px !important;
-        padding: 0 !important;
+        font-size: 14px !important;
+        padding: 4px 12px !important;
         margin: 0 !important;
         width: auto !important;
-        text-decoration: underline !important;
+        text-decoration: none !important;
         cursor: pointer;
-        font-weight: 400 !important;
+        font-weight: 500 !important;
+        border-radius: 16px !important;
     }}
     .clear-button-container .stButton > button:hover {{
         color: #000000 !important;
+        background-color: rgba(0,0,0,0.05) !important;
     }}
 
     /* AI按钮样式 - 简洁的圆角按钮外观 */
@@ -596,13 +593,25 @@ with st.container():
         st.markdown('</div>', unsafe_allow_html=True)
 
         # 消息区域
-        st.markdown('<div class="chat-messages-area">', unsafe_allow_html=True)
+        st.markdown('<div class="chat-messages-area" id="chat-messages">', unsafe_allow_html=True)
         for msg in st.session_state.messages:
             if msg["role"] == "user":
                 st.markdown(f'<div class="chat-message"><strong>You:</strong> {msg["content"]}</div>', unsafe_allow_html=True)
             elif msg["role"] == "assistant":
                 st.markdown(f'<div class="chat-message"><strong>AI:</strong> {msg["content"]}</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
+        
+        # 自动滚动到底部
+        st.markdown('''
+        <script>
+            setTimeout(function() {
+                var chatArea = document.getElementById('chat-messages');
+                if (chatArea) {
+                    chatArea.scrollTop = chatArea.scrollHeight;
+                }
+            }, 100);
+        </script>
+        ''', unsafe_allow_html=True)
 
         # 自动播放（隐藏，无播放器）
         if st.session_state.pending_tts:
