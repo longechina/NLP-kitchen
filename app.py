@@ -123,6 +123,14 @@ if "last_audio_id" not in st.session_state:
 if "pending_tts" not in st.session_state:
     st.session_state.pending_tts = None  # (bytes, fmt)
 
+# ========== 新增：对话总结相关状态 ==========
+if "conversation_summary" not in st.session_state:
+    st.session_state.conversation_summary = ""          # 存储总结文本
+if "conv_history" not in st.session_state:
+    st.session_state.conv_history = []                  # 存储未总结的对话（用于生成总结）
+if "user_msg_count" not in st.session_state:
+    st.session_state.user_msg_count = 0                 # 用户消息计数器（用于触发总结）
+
 # ---------- 获取当前页面内容 ----------
 def get_current_page_context():
     if not st.session_state.level or not st.session_state.path:
@@ -146,39 +154,88 @@ def get_current_page_context():
         parts.append("Vocabulary on this page:\n" + "\n".join(f"  - {v}" for v in node["vocabulary"]))
     return "\n".join(parts) if len(parts) > 1 else None
 
-# ---------- AI 回复 ----------
-def get_ai_reply(user_text):
-    st.session_state.messages.append({"role": "user", "content": user_text})
-    
-    # 只保留系统提示 + 最近6轮对话（12条消息）以节省tokens
-    system_msg = [m for m in st.session_state.messages if m["role"] == "system"]
-    recent_msgs = [m for m in st.session_state.messages if m["role"] != "system"][-12:]
-    messages_to_send = system_msg + recent_msgs
-    
-    # 添加当前页面上下文
-    page_context = get_current_page_context()
+# ========== 新增：缓存的 AI 回复函数 ==========
+@st.cache_data(ttl=3600, max_entries=100)
+def cached_chat_completion(system_prompt, page_context, summary_text, user_text):
+    """缓存 AI 回复，参数必须可哈希"""
+    messages = [{"role": "system", "content": system_prompt}]
     if page_context:
-        messages_to_send.insert(-1, {
-            "role": "system",
-            "content": f"[Current page context]\n{page_context}\nUse this to give precise, relevant answers about what the user is currently studying."
-        })
-    
+        messages.append({"role": "system", "content": f"[Current page context]\n{page_context}"})
+    if summary_text:
+        messages.append({"role": "system", "content": f"[Previous conversation summary]\n{summary_text}"})
+    messages.append({"role": "user", "content": user_text})
     try:
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
-            messages=messages_to_send,
+            messages=messages,
             temperature=0.7,
             max_tokens=1000
         )
-        reply = response.choices[0].message.content
+        return response.choices[0].message.content
     except Exception as e:
         err = str(e)
         if "rate_limit_exceeded" in err or "quota" in err.lower():
-            reply = "I've reached my usage limit. Please try again in a few moments, or click Clear to start fresh."
+            return "I've reached my usage limit. Please try again in a few moments, or click Clear to start fresh."
         else:
-            reply = f"Sorry, I encountered an error: {err}"
-    
+            return f"Sorry, I encountered an error: {err}"
+
+# ========== 新增：生成总结的函数 ==========
+def generate_summary(history, old_summary=""):
+    """基于历史对话和旧总结生成新总结（使用 AI 自身）"""
+    if not history:
+        return old_summary
+    # 构建总结提示
+    prompt = "请用中文总结以下对话的核心内容，保持简洁。"
+    if old_summary:
+        prompt += f"已有的总结：{old_summary}\n"
+    prompt += "新对话：\n" + "\n".join([f"{msg['role']}: {msg['content']}" for msg in history])
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.5,
+            max_tokens=300
+        )
+        new_summary = response.choices[0].message.content
+        # 保存到文件（便于调试和持久化）
+        with open("conversation_summary.txt", "w", encoding="utf-8") as f:
+            f.write(new_summary)
+        return new_summary
+    except Exception:
+        # 如果调用失败，返回旧总结
+        return old_summary
+
+# ========== 修改后的 get_ai_reply ==========
+def get_ai_reply(user_text):
+    # 1. 将用户消息加入历史（用于显示和总结）
+    st.session_state.messages.append({"role": "user", "content": user_text})
+    st.session_state.conv_history.append({"role": "user", "content": user_text})
+    st.session_state.user_msg_count += 1
+
+    # 2. 检查是否需要生成总结（每5条用户消息触发一次）
+    if st.session_state.user_msg_count % 5 == 0 and st.session_state.conv_history:
+        # 生成总结，基于当前对话历史（包括本次用户消息）和旧总结
+        new_summary = generate_summary(st.session_state.conv_history, st.session_state.conversation_summary)
+        st.session_state.conversation_summary = new_summary
+        # 清空历史，为下一轮总结做准备
+        st.session_state.conv_history.clear()
+
+    # 3. 获取当前页面上下文
+    page_context = get_current_page_context()
+
+    # 4. 调用缓存的 AI 回复（只传递总结，不传递全部历史）
+    reply = cached_chat_completion(
+        system_prompt,
+        page_context if page_context else "",
+        st.session_state.conversation_summary,
+        user_text
+    )
+
+    # 5. 将 AI 回复存入显示用的 messages，并加入对话历史（用于下次总结）
     st.session_state.messages.append({"role": "assistant", "content": reply})
+    st.session_state.conv_history.append({"role": "assistant", "content": reply})
+
+    # 6. 生成语音
     audio_bytes, fmt = text_to_speech(reply)
     if audio_bytes:
         st.session_state.pending_tts = (audio_bytes, fmt)
@@ -602,6 +659,13 @@ with st.container():
             st.session_state.messages = [m for m in st.session_state.messages if m["role"] == "system"]
             st.session_state.pending_tts = None
             st.session_state.last_audio_id = None
+            # 清理总结相关状态
+            st.session_state.conversation_summary = ""
+            st.session_state.conv_history = []
+            st.session_state.user_msg_count = 0
+            # 可选：删除总结文件
+            if os.path.exists("conversation_summary.txt"):
+                os.remove("conversation_summary.txt")
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
 
@@ -626,39 +690,10 @@ with st.container():
         </script>
         ''', unsafe_allow_html=True)
 
-        # 自动播放（完全隐藏，智能播放）
+        # ========== 修改：自动播放使用 st.audio 并隐藏 ==========
         if st.session_state.pending_tts:
             audio_bytes, fmt = st.session_state.pending_tts
-            b64 = base64.b64encode(audio_bytes).decode()
-            st.markdown(f'''
-            <audio id="ai-voice-player" preload="auto" style="display:none;">
-                <source src="data:{fmt};base64,{b64}" type="{fmt}">
-            </audio>
-            <script>
-                (function() {{
-                    setTimeout(function() {{
-                        var player = document.getElementById('ai-voice-player');
-                        if (player) {{
-                            player.volume = 1.0;
-                            // 等待音频加载
-                            player.addEventListener('canplay', function() {{
-                                var playPromise = player.play();
-                                if (playPromise !== undefined) {{
-                                    playPromise.catch(function(error) {{
-                                        console.log("Autoplay prevented. User interaction may be required.");
-                                    }});
-                                }}
-                            }}, {{ once: true }});
-                            
-                            // 如果已经可以播放，直接播放
-                            if (player.readyState >= 2) {{
-                                player.play().catch(function(e) {{ console.log(e); }});
-                            }}
-                        }}
-                    }}, 200);
-                }})();
-            </script>
-            ''', unsafe_allow_html=True)
+            st.audio(audio_bytes, format=fmt, autoplay=True)
             st.session_state.pending_tts = None
 
         # 输入区域
