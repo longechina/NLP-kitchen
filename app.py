@@ -183,15 +183,15 @@ The complete content of the current page is provided below. Use it to understand
 {full_page_content}
 
 Your task:
-- Search information on web to find specific, authoritative online resources (BBC, YouTube, university courses, etc.) that directly cover the same or very similar content at a current level.
+- Search information on web to find specific, authoritative online resources that about current topic, content and level.
 - Based on the search results, provide a structured recommendation in clear structure.
-- Include a brief heading (## Recommended Resources), then list each resource with a short description and a clickable hyperlink (e.g., [BBC](URL)).
+- Include a brief heading (Recommended Resources), then list each resource with a short description and a clickable web links.
 - Keep the answer concise but informative.
 
 Example output:
 Recommended Resources
 
-- BBC Bitesize: A lesson on greetings with audio and quizzes. [View](https://www.bbc.co.uk/bitesize/topics/zwd88hv/articles/z8g7jxs)
+- BBC: A lesson on greetings with audio and quizzes. [View](https://www.bbc.co.uk/example)
 - YouTube: A beginner video on introducing yourself. [Watch](https://www.youtube.com/watch?v=xxxxx)
 
 Now generate for the topic: {topic}
