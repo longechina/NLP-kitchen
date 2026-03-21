@@ -1,2 +1,7 @@
 streamlit
 groq
+kokoro-onnx
+soundfile
+requests
+beautifulsoup4
+
