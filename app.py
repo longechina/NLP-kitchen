@@ -163,10 +163,10 @@ def get_current_page_context():
         parts.append("Vocabulary on this page:\n" + "\n".join(f"  - {v}" for v in node["vocabulary"]))
     return "\n".join(parts) if len(parts) > 1 else None
 
-# ========== 新增：自动生成参考消息的函数 ==========
-def auto_generate_reference(level, topic_description):
+# ========== 新增：自动生成参考消息的函数（增强版） ==========
+def auto_generate_reference(level, topic_name, path_string):
     """
-    根据当前水平、目录主题以及配置的链接源，让 AI 生成一条参考消息。
+    根据当前水平、主题名称、路径字符串以及配置的链接源，让 AI 生成一条参考消息。
     只传递主题描述，避免上下文过大。
     返回纯文本（无 Markdown），英文回复。
     """
@@ -176,32 +176,47 @@ def auto_generate_reference(level, topic_description):
 
     links_text = "\n".join([f"- {link}" for link in links])
     
-    prompt = f"""You are a Chinese learning assistant. The user is at Level {level} and currently studying the topic: "{topic_description}".
+    # 构建更精确的主题描述
+    if topic_name:
+        main_topic = topic_name
+    else:
+        # 从路径中提取最后一个部分作为主题
+        parts = path_string.split(" > ")
+        main_topic = parts[-1] if parts else "general"
+    
+    prompt = f"""You are a Chinese learning assistant. The user is at **Level {level}** (beginner level) and currently studying the topic: **"{main_topic}"**.  
+Full path: {path_string}
 
 The user has provided these reference websites:
 {links_text}
 
-If the content directly related to the topic is not available from these websites, please recommend relevant materials from authoritative sources such as BBC, China Daily, universities, mainstream newspapers, Stack Exchange Chinese, Wikipedia, etc.
+**Your task:**
+- Find the most relevant resources that directly match the topic "{main_topic}" and are suitable for a Level {level} beginner.
+- If the provided websites contain specific pages/subpages directly related to this topic, please include those exact links.  
+- If the provided websites do not have direct content, search your knowledge for other authoritative sources (BBC, China Daily, universities, mainstream news, Stack Exchange Chinese, Wikipedia, etc.) and provide **specific links** to pages that cover the topic at a beginner level.
+- Do NOT just give homepage links. Give the most specific URL possible.
 
-Please generate a concise and helpful recommendation in English. Use a structured format with plain text (no Markdown). Include specific links when possible. Keep it brief but informative.
+**Output format:**
+- Use plain text only (no Markdown).
+- Write in English.
+- Structure: start with a brief statement, then list each resource with a short description and the specific link.
+- End with a short suggestion on how to use these resources.
 
-Output structure:
-- Briefly state what you are recommending.
-- List each resource with a short description and link.
-- End with a suggestion on how to use these resources."""
+**Important:** The recommended resources must be directly about "{main_topic}" and at a beginner (Level {level}) difficulty. If you cannot find any such resources, say so and recommend general beginner resources as a fallback, but still try to be specific.
+"""
     
     try:
         response = client.chat.completions.create(
             model="groq/compound",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            max_tokens=800  # 控制长度，避免输出过长
+            max_tokens=800
         )
         return response.choices[0].message.content
     except Exception as e:
         return f"Auto-generation error: {e}"
 
-def auto_push_reference(level):
+def auto_push_reference(level, current_node, path_string):
     """
     自动推送参考消息到聊天记录，并生成语音（可选）。
     只在未推送时执行一次。
@@ -209,14 +224,10 @@ def auto_push_reference(level):
     if st.session_state.auto_ref_pushed:
         return
 
-    # 构建简短的目录主题描述
-    if st.session_state.path:
-        # 获取当前目录路径的最后一部分作为主题
-        topic = " > ".join(st.session_state.path)
-    else:
-        topic = f"Level {level} general content"
+    # 获取当前节点的名称（如果有）
+    topic_name = current_node.get("name", "") if isinstance(current_node, dict) else ""
 
-    ref_content = auto_generate_reference(level, topic)
+    ref_content = auto_generate_reference(level, topic_name, path_string)
     if ref_content:
         final_msg = f"📚 **Recommended Learning Resources**\n\n{ref_content}"
         st.session_state.messages.append({"role": "assistant", "content": final_msg})
@@ -709,7 +720,7 @@ if st.session_state.level:
     # ========== 新增：自动推送参考消息（在页面显示后触发） ==========
     # 如果还没有为当前水平推送过，则生成并推送
     if not st.session_state.auto_ref_pushed and st.session_state.level in st.session_state.reference_links:
-        auto_push_reference(st.session_state.level)
+        auto_push_reference(st.session_state.level, current_node, bread)
 
 # ---------- 悬浮聊天窗 ----------
 with st.container():
