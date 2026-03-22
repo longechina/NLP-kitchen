@@ -927,7 +927,7 @@ if st.session_state.chat_open:
     
     with col_voice:
         # 语音输入 - 小黑框
-        audio_input = st.audio_input("🎤", key="voice_input")
+        audio_input = st.audio_input("◉", key="voice_input")
         if audio_input is not None:
             audio_id = f"{audio_input.name}_{audio_input.size}"
             if audio_id != st.session_state.last_audio_id:
