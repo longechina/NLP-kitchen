@@ -518,8 +518,8 @@ st.markdown(f"""
         font-family: 'Manrope', sans-serif !important;
         font-size: 92px !important;
         font-weight: 800 !important;
-        border: 1px solid rgba(100,100,100,0.3) !important;
-        border-radius: 12px !important;
+        border: 5px solid rgba(100,100,100,0.3) !important;
+        border-radius: 8px !important;
         padding: 30px !important;
         transition: all 0.3s ease !important;
         box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
