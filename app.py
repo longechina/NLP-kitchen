@@ -6,7 +6,6 @@ import os
 import time
 import streamlit as st
 import groq
-from streamlit_mic_recorder import mic_recorder  # 自定义录音组件
 
 # ---------- 将背景图片转换为 Base64 嵌入 CSS ----------
 def get_base64_of_image(image_path):
@@ -77,6 +76,7 @@ def transcribe_audio(audio_bytes):
         )
         return transcription.text
     except Exception as e:
+        # 显示具体错误，帮助定位问题
         st.error(f"语音识别失败: {e}")
         return None
 
@@ -130,10 +130,10 @@ if "path" not in st.session_state:
     st.session_state.path = []
 if "chat_open" not in st.session_state:
     st.session_state.chat_open = False
+if "last_audio_id" not in st.session_state:
+    st.session_state.last_audio_id = None
 if "pending_tts" not in st.session_state:
     st.session_state.pending_tts = None  # (bytes, fmt)
-if "last_recording" not in st.session_state:
-    st.session_state.last_recording = None  # 用于去重
 
 # ========== 对话总结相关状态 ==========
 if "conversation_summary" not in st.session_state:
@@ -537,7 +537,7 @@ st.markdown(f"""
         padding: 10px 24px !important;
     }}
 
-    /* 容器样式（主内容区） */
+    /* 容器样式 */
     div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlock"] {{
         background-color: rgba(255,255,255,0.5);
         border-radius: 12px;
@@ -545,14 +545,6 @@ st.markdown(f"""
         margin-bottom: 15px;
         border: none;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }}
-
-    /* 卡片容器（st.container border=True）背景完全不透明（白色） */
-    div[data-testid="stContainer"] {{
-        background-color: rgba(255, 255, 255, 1) !important;   /* 完全不透明 */
-        border-radius: 12px !important;
-        border: 1px solid rgba(200, 200, 200, 0.3) !important;
-        padding: 16px !important;
     }}
 
     /* 标题 */
@@ -623,36 +615,63 @@ st.markdown(f"""
         font-weight: 700;
     }}
 
-    /* 输入区域整体容器样式（深色圆角背景） */
-    .chat-input-area {{
-        padding: 10px 15px;
+    /* 输入区域 */
+    .stChatInput {{
         border-radius: 15px !important;
         border: 1px solid rgba(0,0,0,0.3) !important;
         background-color: rgba(18,19,28,0.9) !important;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        font-family: 'Manrope', sans-serif !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        color: #ffffff !important;
+    }}
+    .stChatInput > div {{
+        background: transparent !important;
+    }}
+    .stChatInput button {{
+        background: transparent !important;
+        border: none !important;
     }}
 
-    /* Clear 按钮和录音按钮样式：透明背景，白色文字 */
-    button[key="clear_chat"],
-    button[key="mic_recorder"] {{
-        background-color: rgba(255,255,255,0.2) !important;
-        border: 1px solid rgba(255,255,255,0.3) !important;
-        color: #ffffff !important;
+    .stChatInput textarea::placeholder {{
+        color: #bbb !important;
+        font-family: 'Manrope', sans-serif !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        background: transparent !important;
+        border: none !important;
+    }}
+
+    /* Clear按钮 */
+    button[key="clear_chat"] {{
+        background-color: rgba(255,255,255,0.4) !important;
+        border: 1px solid rgba(100,100,100,0.3) !important;
         border-radius: 8px !important;
-        padding: 8px 12px !important;
+        padding: 6px 8px !important;
+        font-family: 'Manrope', sans-serif !important;
         font-size: 14px !important;
         font-weight: 600 !important;
-        transition: all 0.2s ease;
-    }}
-    button[key="clear_chat"]:hover,
-    button[key="mic_recorder"]:hover {{
-        background-color: rgba(255,255,255,0.4) !important;
+        color: #000000 !important;
+        box-shadow: none !important;
     }}
 
     /* 完全隐藏所有音频播放器 */
     .stAudio {{
         display: none !important;
+    }}
+
+    div[data-testid="stAudioInput"] {{
+        margin: 4px 0 !important;
+        background: transparent !important;
+    }}
+    div[data-testid="stAudioInput"] > div {{
+        background: transparent !important;
+        border: none !important;
+    }}
+    div[data-testid="stAudioInput"] button {{
+        background-color: rgba(255,255,255,0.3) !important;
+        border: 1px solid rgba(100,100,100,0.3) !important;
+        border-radius: 8px !important;
     }}
 
     /* 隐藏所有tooltip和弹窗元素（除了语言选择器） */
@@ -793,7 +812,8 @@ if st.session_state.level:
     if not st.session_state.auto_ref_pushed:
         auto_push_reference(st.session_state.level, bread)
 
-# ---------- 悬浮聊天窗 ----------
+# ---------- 悬浮聊天窗（固定在右下角） ----------
+# 强制打开聊天面板（用户要求）
 st.session_state.chat_open = True
 
 if st.session_state.chat_open:
@@ -838,14 +858,15 @@ if st.session_state.chat_open:
         st.audio(audio_bytes, format=fmt, autoplay=True)
         st.session_state.pending_tts = None
 
-    # 输入区域：统一容器，三列布局（Clear / 录音 / 文本）
-    st.markdown('<div class="chat-input-area">', unsafe_allow_html=True)
-    col_clear, col_mic, col_text = st.columns([1, 1, 6])
+    # 输入区域：三列布局（Clear按钮 + 语音按钮 + 文本输入）
+    col_clear, col_voice, col_text = st.columns([1, 1, 6])
 
     with col_clear:
+        # Clear 按钮
         if st.button("Clear", key="clear_chat", use_container_width=True):
             st.session_state.messages = [m for m in st.session_state.messages if m["role"] == "system"]
             st.session_state.pending_tts = None
+            st.session_state.last_audio_id = None
             st.session_state.conversation_summary = ""
             st.session_state.conv_history = []
             st.session_state.user_msg_count = 0
@@ -854,32 +875,27 @@ if st.session_state.chat_open:
                 os.remove("conversation_summary.txt")
             st.rerun()
 
-    with col_mic:
-        # 使用 streamlit-mic-recorder 组件
-        audio = mic_recorder(
-            start_prompt="🎤 录音",
-            stop_prompt="⏹️ 停止",
-            key="mic_recorder",
-            use_container_width=True,
-            format="wav",
-            sample_rate=16000,
-        )
-        if audio and audio.get("bytes"):
-            audio_bytes = audio["bytes"]
-            if audio_bytes != st.session_state.last_recording:
-                st.session_state.last_recording = audio_bytes
-                with st.spinner("正在转录..."):
-                    transcript = transcribe_audio(audio_bytes)
-                if transcript and not transcript.startswith("[转录失败"):
-                    with st.spinner("思考中..."):
-                        get_ai_reply(transcript)
-                    st.rerun()
+    with col_voice:
+        # 语音输入按钮
+        audio_input = st.audio_input("🎤", key="voice_input", label_visibility="collapsed")
+        if audio_input is not None:
+            audio_id = f"{audio_input.name}_{audio_input.size}"
+            if audio_id != st.session_state.last_audio_id:
+                st.session_state.last_audio_id = audio_id
+                audio_bytes = audio_input.read()
+                if audio_bytes:
+                    with st.spinner("Transcribing..."):
+                        transcript = transcribe_audio(audio_bytes)
+                    if transcript and not transcript.startswith("[转录失败"):
+                        with st.spinner("Thinking..."):
+                            get_ai_reply(transcript)
+                        st.rerun()
 
     with col_text:
+        # 文本输入框
         if prompt := st.chat_input("Type a message...", key="text_input"):
-            with st.spinner("思考中..."):
+            with st.spinner("Thinking..."):
                 get_ai_reply(prompt)
             st.rerun()
 
-    st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
