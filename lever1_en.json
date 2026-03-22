@@ -1,0 +1,1981 @@
+{
+  "LEVEL_I": {
+    "name": "Basic Level of Language Competence",
+    "PRAGMATIC_COMPETENCE": {
+      "name": "Pragmatic Competence - Functional Competence",
+      "1_interact_socially_and_professionally": {
+        "name": "Interact socially and professionally",
+        "1.1": {
+          "name": "Greet and introduce oneself or other people",
+          "examples": [
+            "Hello! My name is… I am a friend of…",
+            "Nice to meet you!",
+            "This is my colleague."
+          ],
+          "vocabulary": [
+            "Hello /həˈləʊ/",
+            "Hello (polite) /həˈləʊ ˈpɒl.aɪt/",
+            "Hello everyone /həˈləʊ ˈev.ri.wʌn/",
+            "Goodbye /ˌɡʊdˈbaɪ/",
+            "See you tomorrow /siː juː təˈmɒr.əʊ/",
+            "Introduce /ˌɪn.trəˈdjuːs/",
+            "Be called /biː kɔːld/",
+            "Be /biː/",
+            "Surname /ˈsɜː.neɪm/",
+            "Know, meet /nəʊ miːt/",
+            "This (polite) /ðɪs pəˈlaɪt/",
+            "That (polite) /ðæt pəˈlaɪt/",
+            "Teacher /ˈtiː.tʃər/",
+            "Classmate /ˈklɑːs.meɪt/",
+            "Friend /frend/",
+            "Mr. /ˈmɪs.tər/",
+            "Miss /mɪs/"
+          ]
+        },
+        "1.2": {
+          "name": "Make small talk",
+          "examples": [
+            "How have you been lately? Busy or not?",
+            "The weather is nice today, but it might rain tomorrow.",
+            "How was your weekend?",
+            "Have you eaten?"
+          ],
+          "vocabulary": [
+            "Today /təˈdeɪ/",
+            "Tomorrow /təˈmɒr.əʊ/",
+            "Yesterday /ˈjes.tər.deɪ/",
+            "Weather /ˈweð.ər/",
+            "Good /ɡʊd/",
+            "Not bad /nɒt bæd/",
+            "Cold /kəʊld/",
+            "Hot /hɒt/",
+            "Busy /ˈbɪz.i/",
+            "Tired /taɪəd/",
+            "How? /haʊ/",
+            "Recently /ˈriː.sənt.li/",
+            "Work /wɜːk/",
+            "Study /ˈstʌd.i/",
+            "Weekend /ˌwiːkˈend/",
+            "Have a holiday /hæv ə ˈhɒl.ə.deɪ/",
+            "Where /weər/",
+            "Go /ɡəʊ/",
+            "Come /kʌm/",
+            "Eat /iːt/",
+            "Drink /drɪŋk/"
+          ]
+        },
+        "1.3": {
+          "name": "Extend, accept, or decline a simple invitation",
+          "examples": [
+            "How about having a meal together at noon?",
+            "OK, where shall we go?",
+            "Sorry, I have something to do at noon. Next time!"
+          ],
+          "vocabulary": [
+            "Please /pliːz/",
+            "Invite /ɪnˈvaɪt/",
+            "Come /kʌm/",
+            "Go /ɡəʊ/",
+            "OK? /əʊˈkeɪ/",
+            "OK? /əʊˈkeɪ/",
+            "OK? /əʊˈkeɪ/",
+            "Sorry /ˈsɒr.i/",
+            "Not OK /nɒt əʊˈkeɪ/",
+            "No problem /nəʊ ˈprɒb.ləm/",
+            "OK! /əʊˈkeɪ/",
+            "Thank you /ˈθæŋk juː/",
+            "Goodbye /ˌɡʊdˈbaɪ/",
+            "Tomorrow /təˈmɒr.əʊ/",
+            "Evening /ˈiːv.nɪŋ/",
+            "Together /təˈɡeð.ər/",
+            "Eat meal /iːt miːl/",
+            "Drink tea /drɪŋk tiː/",
+            "Have free time /hæv friː taɪm/",
+            "Time /taɪm/"
+          ]
+        }
+      },
+      "2_exchange_information_describe_and_narrate": {
+        "name": "Exchange information, describe, and narrate",
+        "2.1": {
+          "name": "Ask and give basic personal information",
+          "examples": [
+            "What is your surname? What is your name?",
+            "I work at Tsinghua University. I am a postdoc.",
+            "I don't have children yet."
+          ],
+          "vocabulary": [
+            "Name /neɪm/",
+            "Be called /biː kɔːld/",
+            "Surname /ˈsɜː.neɪm/",
+            "This year /ðɪs jɪər/",
+            "How old (for children) /haʊ əʊld fɔː ˈtʃɪl.drən/",
+            "How old (general) /haʊ əʊld ˈdʒen.ər.əl/",
+            "Where from /weər frɒm/",
+            "Home /həʊm/",
+            "Live /lɪv/",
+            "Phone /fəʊn/",
+            "Mobile phone /ˈməʊ.baɪl fəʊn/",
+            "Number /ˈnʌm.bər/",
+            "Work /wɜːk/",
+            "Study /ˈstʌd.i/",
+            "Student /ˈstjuː.dənt/",
+            "Teacher /ˈtiː.tʃər/"
+          ]
+        },
+        "2.2": {
+          "name": "Ask and tell one's habits and hobbies",
+          "examples": [
+            "What are your hobbies?",
+            "I like playing the piano, playing tennis and reading.",
+            "On vacation he likes to travel abroad."
+          ],
+          "vocabulary": [
+            "Like /laɪk/",
+            "Love /lʌv/",
+            "Hobby /ˈhɒb.i/",
+            "Often /ˈɒf.ən/",
+            "Usually /ˈjuː.ʒu.ə.li/",
+            "Weekend /ˌwiːkˈend/",
+            "Sing /sɪŋ/",
+            "Play ball /pleɪ bɔːl/",
+            "Read books /riːd bʊks/",
+            "Watch movies /wɒtʃ ˈmuː.viz/",
+            "Listen to music /ˈlɪs.ən tuː ˈmjuː.zɪk/",
+            "Exercise /ˈek.sə.saɪz/",
+            "Go online /ɡəʊ ˈɒn.laɪn/",
+            "Have fun /hæv fʌn/",
+            "What /wɒt/"
+          ]
+        },
+        "2.3": {
+          "name": "Ask and give information about routine activities",
+          "examples": [
+            "Which day of the week do you work from home?",
+            "He goes to work at nine in the morning and gets off at five in the afternoon.",
+            "Sometimes he eats at the restaurant downstairs, sometimes he goes out with colleagues."
+          ],
+          "vocabulary": [
+            "Every day /ˈev.ri deɪ/",
+            "Morning /ˈmɔː.nɪŋ/",
+            "Morning (late) /ˈmɔː.nɪŋ leɪt/",
+            "Noon /nuːn/",
+            "Afternoon /ˌɑːf.təˈnuːn/",
+            "Evening /ˈiːv.nɪŋ/",
+            "Get up /ɡet ʌp/",
+            "Go to work /ɡəʊ tuː wɜːk/",
+            "Go to class /ɡəʊ tuː klɑːs/",
+            "Finish class /ˈfɪn.ɪʃ klɑːs/",
+            "Get off work /ɡet ɒf wɜːk/",
+            "Go home /ɡəʊ həʊm/",
+            "Sleep /sliːp/",
+            "Eat /iːt/",
+            "Shower /ˈʃaʊ.ər/",
+            "Then /ðen/",
+            "Then (immediate) /ðen ɪˈmiː.di.ət/",
+            "Then (later) /ðen ˈleɪ.tər/",
+            "First /fɜːst/",
+            "Then (again) /ðen əˈɡen/"
+          ]
+        },
+        "2.4": {
+          "name": "Ask and give simple directions",
+          "examples": [
+            "Excuse me, where is the nearest cafe?",
+            "The bank is not far from here. Go straight, turn left at the second intersection."
+          ],
+          "vocabulary": [
+            "At, in /æt ɪn/",
+            "Where /weər/",
+            "How to go /haʊ tuː ɡəʊ/",
+            "Towards /təˈwɔːdz/",
+            "Walk /wɔːk/",
+            "Left /left/",
+            "Right /raɪt/",
+            "Front /frʌnt/",
+            "Back /bæk/",
+            "East /iːst/",
+            "South /saʊθ/",
+            "West /west/",
+            "North /nɔːθ/",
+            "Next to /nekst tuː/",
+            "Opposite /ˈɒp.ə.zɪt/",
+            "Intersection /ˌɪn.təˈsek.ʃən/",
+            "Traffic light /ˈtræf.ɪk laɪt/",
+            "Ride /raɪd/",
+            "Vehicle /ˈviː.ɪ.kəl/",
+            "Road /rəʊd/",
+            "Stop /stɒp/",
+            "Far /fɑːr/",
+            "Near /nɪər/"
+          ]
+        },
+        "2.5": {
+          "name": "Make a simple plan",
+          "examples": [
+            "I want to go to the movies with a friend this weekend.",
+            "Next month I will go to New York on a business trip.",
+            "This summer I plan to travel to China with my family by plane. We want to go to Beijing first, then Shanghai."
+          ],
+          "vocabulary": [
+            "Plan /plæn/",
+            "Think /θɪŋk/",
+            "Will /wɪl/",
+            "Tomorrow /təˈmɒr.əʊ/",
+            "Afternoon /ˌɑːf.təˈnuːn/",
+            "Weekend /ˌwiːkˈend/",
+            "Together /təˈɡeð.ər/",
+            "Go /ɡəʊ/",
+            "Question particle /ˈkwes.tʃən ˈpɑː.tɪ.kəl/",
+            "How about /haʊ əˈbaʊt/",
+            "We /wiː/",
+            "First /fɜːst/",
+            "Then /ðen/",
+            "Then (again) /ðen əˈɡen/",
+            "Suggestion particle /səˈdʒes.tʃən ˈpɑː.tɪ.kəl/",
+            "Good /ɡʊd/",
+            "OK /əʊˈkeɪ/"
+          ]
+        },
+        "2.6": {
+          "name": "Ask and give a simple description",
+          "examples": [
+            "What does he look like?",
+            "My phone is black.",
+            "This meeting room is not big, but many people come here for meetings."
+          ],
+          "vocabulary": [
+            "How? /haʊ/",
+            "What kind? /wɒt kaɪnd/",
+            "Big /bɪɡ/",
+            "Small /smɔːl/",
+            "Many /ˈmen.i/",
+            "Few /fjuː/",
+            "Long /lɒŋ/",
+            "Short /ʃɔːt/",
+            "Tall /tɔːl/",
+            "Short /ʃɔːt/",
+            "Fat /fæt/",
+            "Thin /θɪn/",
+            "Color /ˈkʌl.ər/",
+            "Red /red/",
+            "Yellow /ˈjel.əʊ/",
+            "Blue /bluː/",
+            "Green /ɡriːn/",
+            "White /waɪt/",
+            "Black /blæk/",
+            "Beautiful /ˈbjuː.tɪ.fəl/",
+            "Good-looking /ˌɡʊdˈlʊk.ɪŋ/",
+            "New /njuː/",
+            "Old /əʊld/",
+            "Expensive /ɪkˈspen.sɪv/",
+            "Cheap /tʃiːp/",
+            "Hot /hɒt/",
+            "Cold /kəʊld/",
+            "Delicious /dɪˈlɪʃ.əs/",
+            "Good to drink /ɡʊd tuː drɪŋk/"
+          ]
+        },
+        "2.7": {
+          "name": "Give a simple narration of an experience",
+          "examples": [
+            "I have been to China, it was two years ago.",
+            "Last week I went to Spain for a meeting."
+          ],
+          "vocabulary": [
+            "Yesterday /ˈjes.tər.deɪ/",
+            "Go /ɡəʊ/",
+            "Particle (completed action) /ˈpɑː.tɪ.kəl/",
+            "Particle (experience) /ˈpɑː.tɪ.kəl/",
+            "First /fɜːst/",
+            "Then /ðen/",
+            "Later /ˈleɪ.tər/",
+            "Then (immediate) /ðen ɪˈmiː.di.ət/",
+            "Feel /fiːl/",
+            "Very /ˈver.i/",
+            "Too /tuː/",
+            "Particle (exclamation) /ˈpɑː.tɪ.kəl/",
+            "Really /ˈrɪə.li/",
+            "Interesting /ˈɪn.trə.stɪŋ/",
+            "Happy /ˈhæp.i/",
+            "Tired /taɪəd/"
+          ]
+        }
+      },
+      "3_express_feelings_attitudes_and_opinions": {
+        "name": "Express feelings, attitudes, and opinions",
+        "3.1": {
+          "name": "Ask and express likes and dislikes",
+          "examples": [
+            "What do you like to eat?",
+            "She really likes this new job.",
+            "He doesn't really like living in this place because shopping and transportation are inconvenient."
+          ],
+          "vocabulary": [
+            "Like /laɪk/",
+            "Love /lʌv/",
+            "Dislike /dɪsˈlaɪk/",
+            "Most /məʊst/",
+            "Especially /ɪˈspeʃ.əl.i/",
+            "Very /ˈver.i/",
+            "Very /ˈver.i/",
+            "Still /stɪl/",
+            "A little /ə ˈlɪt.əl/",
+            "What /wɒt/",
+            "Question particle /ˈkwes.tʃən ˈpɑː.tɪ.kəl/"
+          ]
+        },
+        "3.2": {
+          "name": "Ask and respond to preferences",
+          "examples": [
+            "Compared to his previous life, he prefers his current life.",
+            "These two computers are different.",
+            "This room is brighter. Let's have our meeting here."
+          ],
+          "vocabulary": [
+            "Like /laɪk/",
+            "More /mɔːr/",
+            "Or /ɔːr/",
+            "Compare /kəmˈpeər/",
+            "Which /wɪtʃ/",
+            "Which /wɪtʃ/",
+            "Most /məʊst/",
+            "Than /ðæn/",
+            "And /ænd/",
+            "Same /seɪm/",
+            "Dislike /dɪsˈlaɪk/"
+          ]
+        },
+        "3.3": {
+          "name": "Ask and express basic opinions",
+          "examples": [
+            "She is warm and very polite.",
+            "I think this letter is too long, what do you think?",
+            "For me, writing Chinese characters is the hardest."
+          ],
+          "vocabulary": [
+            "Think /θɪŋk/",
+            "Consider /kənˈsɪd.ər/",
+            "How? /haʊ/",
+            "Good /ɡʊd/",
+            "Correct /kəˈrekt/",
+            "Incorrect /ˌɪn.kəˈrekt/",
+            "Be /biː/",
+            "Not be /nɒt biː/",
+            "OK /əʊˈkeɪ/",
+            "Not OK /nɒt əʊˈkeɪ/",
+            "Should /ʃʊd/",
+            "Maybe /ˈmeɪ.bi/",
+            "Really /ˈrɪə.li/",
+            "Too /tuː/",
+            "Particle (exclamation) /ˈpɑː.tɪ.kəl/",
+            "Question particle /ˈkwes.tʃən ˈpɑː.tɪ.kəl/",
+            "Suggestion particle /səˈdʒes.tʃən ˈpɑː.tɪ.kəl/"
+          ]
+        }
+      },
+      "4_regulate_actions_with_others": {
+        "name": "Regulate actions with others",
+        "4.1": {
+          "name": "Make and cancel a simple appointment or reservation",
+          "examples": [
+            "Shall we meet at ten on Wednesday morning?",
+            "I no longer need that large meeting room."
+          ],
+          "vocabulary": [
+            "Reserve /rɪˈzɜːv/",
+            "Book /bʊk/",
+            "Seat /siːt/",
+            "Room /ruːm/",
+            "Time /taɪm/",
+            "What time /wɒt taɪm/",
+            "Tomorrow /təˈmɒr.əʊ/",
+            "OK /əʊˈkeɪ/",
+            "Question particle /ˈkwes.tʃən ˈpɑː.tɪ.kəl/",
+            "Sorry /ˈsɒr.i/",
+            "Cancel /ˈkæn.səl/",
+            "Cannot /ˈkæn.ɒt/",
+            "Particle (change) /ˈpɑː.tɪ.kəl/",
+            "Change /tʃeɪndʒ/",
+            "Suggestion particle /səˈdʒes.tʃən ˈpɑː.tɪ.kəl/"
+          ]
+        },
+        "4.2": {
+          "name": "Make and respond to a simple request",
+          "examples": [
+            "May I use this photocopier?",
+            "Sure, go ahead.",
+            "Ask Mr. Zhang about this question. Here is his phone number."
+          ],
+          "vocabulary": [
+            "Please /pliːz/",
+            "Can /kæn/",
+            "May /meɪ/",
+            "Help /help/",
+            "A moment /ə ˈməʊ.mənt/",
+            "Question particle /ˈkwes.tʃən ˈpɑː.tɪ.kəl/",
+            "OK /əʊˈkeɪ/",
+            "OK /əʊˈkeɪ/",
+            "No problem /nəʊ ˈprɒb.ləm/",
+            "Sorry /ˈsɒr.i/",
+            "Not OK /nɒt əʊˈkeɪ/",
+            "Now /naʊ/",
+            "Wait a moment /weɪt ə ˈməʊ.mənt/",
+            "Trouble /ˈtrʌb.əl/"
+          ]
+        },
+        "4.3": {
+          "name": "Make a simple order",
+          "examples": [
+            "I would like a cup of coffee.",
+            "How much is this piece of clothing?",
+            "It's too expensive, can you make it a little cheaper?"
+          ],
+          "vocabulary": [
+            "Order /ˈɔː.dər/",
+            "Want /wɒnt/",
+            "This /ðɪs/",
+            "That /ðæt/",
+            "Come (order) /kʌm/",
+            "One portion /wʌn ˈpɔː.ʃən/",
+            "One bowl /wʌn bəʊl/",
+            "One cup /wʌn kʌp/",
+            "One (general) /wʌn/",
+            "Thank you /ˈθæŋk juː/",
+            "Pay the bill /peɪ ðə bɪl/",
+            "How much /haʊ mʌtʃ/"
+          ]
+        },
+        "4.4": {
+          "name": "Ask and give simple suggestions/advices",
+          "examples": [
+            "What do you think we should do?",
+            "It's too late today. Come back tomorrow.",
+            "The meeting is at nine tomorrow. You'd better come a little earlier."
+          ],
+          "vocabulary": [
+            "Should /ʃʊd/",
+            "Can /kæn/",
+            "Had better /hæd ˈbet.ər/",
+            "Don't /dəʊnt/",
+            "Do not /duː nɒt/",
+            "Try /traɪ/",
+            "A moment /ə ˈməʊ.mənt/",
+            "Suggestion particle /səˈdʒes.tʃən ˈpɑː.tɪ.kəl/",
+            "How about /haʊ əˈbaʊt/",
+            "OK? /əʊˈkeɪ/",
+            "OK? /əʊˈkeɪ/",
+            "Think /θɪŋk/",
+            "Maybe /ˈmeɪ.bi/"
+          ]
+        }
+      },
+      "5_organize_the_speech": {
+        "name": "Organize the speech",
+        "5.1": {
+          "name": "Use linkers to structure discourse and speech",
+          "examples": [
+            "Today let me first introduce two new colleagues, then discuss next month's work, and finally talk about the New Year's party.",
+            "I really like living in this place. Why? First, there are shops and supermarkets nearby, so shopping is very convenient. Second, it's not far from my workplace, I can walk to work. Third, there is a park next to it, and I can go jogging there on weekends."
+          ],
+          "vocabulary": [
+            "Then /ðen/",
+            "Next /nekst/",
+            "So /səʊ/",
+            "But /bʌt/",
+            "But /bʌt/",
+            "Because /bɪˈkɒz/",
+            "Moreover /mɔːˈrəʊ.vər/",
+            "Although /ɔːlˈðəʊ/",
+            "If /ɪf/",
+            "For example /fɔːr ɪɡˈzɑːm.pəl/",
+            "For example /fɔːr ɪɡˈzɑːm.pəl/",
+            "First /fɜːst/",
+            "Second /ˈsek.ənd/",
+            "Finally /ˈfaɪ.nəl.i/",
+            "First /fɜːst/",
+            "Then /ðen/",
+            "That /ðæt/",
+            "Also /ˈɔːl.səʊ/",
+            "Besides /bɪˈsaɪdz/"
+          ]
+        }
+      }
+    },
+    "LINGUISTIC_COMPETENCE_MORPHOLOGY_SYNTAX": {
+      "name": "Linguistic Competence - Morphology and Syntax",
+      "1": {
+        "name": "Basic word order",
+        "examples": [
+          "My surname is Holden.",
+          "He gets up at 7 every morning.",
+          "Where do you work?",
+          "Who are you calling?",
+          "They are drinking tea in the office now.",
+          "Do you go to work by bus?",
+          "I go to the bookstore to buy two books.",
+          "He uses a computer to type Chinese characters.",
+          "I have dinner with a friend in the evening."
+        ],
+        "vocabulary": []
+      },
+      "2": {
+        "name": "Word order – topicalization",
+        "examples": [
+          "I have already read that document.",
+          "What do you think about the thing I told you yesterday?"
+        ],
+        "vocabulary": []
+      },
+      "3": {
+        "name": "Pronouns",
+        "notes": "Personal: I, you, he, she, you (polite), you (plural), we, they, they (feminine), everyone, oneself; Demonstrative: this, that, other, every, each",
+        "vocabulary": [
+          "I /aɪ/",
+          "We /wiː/",
+          "You /juː/",
+          "You (plural) /juː ˈplʊə.rəl/",
+          "He /hiː/",
+          "They /ðeɪ/",
+          "She /ʃiː/",
+          "They (feminine) /ðeɪ ˈfem.ə.nɪn/",
+          "It /ɪt/",
+          "They /ðeɪ/",
+          "You (polite) /juː pəˈlaɪt/",
+          "We (inclusive) /wiː ɪnˈkluː.sɪv/",
+          "We (inclusive) /wiː ɪnˈkluː.sɪv/",
+          "Oneself /wʌnˈself/",
+          "Others /ˈʌð.əz/",
+          "Everyone /ˈev.ri.wʌn/",
+          "This /ðɪs/",
+          "Here /hɪər/",
+          "Here /hɪər/",
+          "These /ðiːz/",
+          "That /ðæt/",
+          "There /ðeər/",
+          "There /ðeər/",
+          "Those /ðəʊz/",
+          "Who /huː/",
+          "What /wɒt/",
+          "Which /wɪtʃ/",
+          "Where /weər/",
+          "Where /weər/",
+          "Which ones /wɪtʃ wʌnz/",
+          "How /haʊ/",
+          "How? /haʊ/",
+          "How /haʊ/"
+        ]
+      },
+      "4": {
+        "name": "Using 是 to identify a person or an object",
+        "examples": [
+          "He is my colleague.",
+          "This is my phone."
+        ],
+        "vocabulary": []
+      },
+      "5": {
+        "name": "Adverb",
+        "notes": "all, also, still",
+        "examples": [
+          "We are all teachers.",
+          "I also work here.",
+          "These are the apples you wanted. Do you want to buy anything else?"
+        ],
+        "vocabulary": [
+          "Not /nɒt/",
+          "All /ɔːl/",
+          "Very /ˈver.i/",
+          "Extremely /ɪkˈstriːm.li/",
+          "Too /tuː/",
+          "Most /məʊst/",
+          "More /mɔːr/",
+          "Still /stɪl/",
+          "Also /ˈɔːl.səʊ/",
+          "Again /əˈɡen/",
+          "Then /ðen/",
+          "Only then /ˈəʊn.li ðen/",
+          "Again (future) /əˈɡen/",
+          "First /fɜːst/",
+          "Just /dʒʌst/",
+          "Just /dʒʌst/",
+          "Already /ɔːlˈred.i/",
+          "In progress /ɪn ˈprəʊ.ɡres/",
+          "Exactly /ɪɡˈzækt.li/",
+          "Always /ˈɔːl.weɪz/",
+          "Suddenly /ˈsʌd.ən.li/",
+          "Suddenly /ˈsʌd.ən.li/",
+          "Immediately /ɪˈmiː.di.ət.li/",
+          "Immediately /ɪˈmiː.di.ət.li/",
+          "Hurry /ˈhʌr.i/",
+          "Hurry /ˈhʌr.i/",
+          "Each other /iːtʃ ˈʌð.ər/",
+          "Together /təˈɡeð.ər/",
+          "Together /təˈɡeð.ər/",
+          "Total /ˈtəʊ.təl/",
+          "Completely /kəmˈpliːt.li/",
+          "Especially /ɪˈspeʃ.əl.i/",
+          "Very /ˈver.i/",
+          "Very /ˈver.i/",
+          "How /haʊ/",
+          "Quite /kwaɪt/",
+          "A bit /ə bɪt/",
+          "Almost /ˈɔːl.məʊst/",
+          "Probably /ˈprɒb.ə.bli/",
+          "Approximately /əˈprɒk.sɪ.mət.li/",
+          "Actually /ˈæk.tʃu.ə.li/",
+          "Finally /ˈfaɪ.nəl.i/"
+        ]
+      },
+      "6": {
+        "name": "Using 有 to indicate possession",
+        "examples": [
+          "Do you have a computer?",
+          "I have this book."
+        ],
+        "vocabulary": []
+      },
+      "7": {
+        "name": "Yes-no question with 吗",
+        "examples": [
+          "Is she your colleague?"
+        ],
+        "vocabulary": []
+      },
+      "8": {
+        "name": "Negative sentences with 不 and 没有",
+        "examples": [
+          "I am not Teacher Zhang.",
+          "I don't have a mobile phone."
+        ],
+        "vocabulary": [
+          "Not /nɒt/",
+          "Not /nɒt/",
+          "Not have /nɒt hæv/",
+          "Don't /dəʊnt/",
+          "No need /nəʊ niːd/",
+          "Don't /dəʊnt/"
+        ]
+      },
+      "9": {
+        "name": "Elliptical use of 呢 in a question",
+        "examples": [
+          "He is not a student, what about you?",
+          "He has no siblings, what about you?"
+        ],
+        "vocabulary": []
+      },
+      "10": {
+        "name": "Open-ended questions with interrogative pronouns",
+        "notes": "who, what, which, where, how many, how much, when, how, how about, how",
+        "vocabulary": [
+          "Who /huː/",
+          "What /wɒt/",
+          "Which /wɪtʃ/",
+          "Where /weər/",
+          "Where /weər/",
+          "Which ones /wɪtʃ wʌnz/",
+          "How /haʊ/",
+          "How? /haʊ/",
+          "How /haʊ/",
+          "How many /haʊ ˈmen.i/",
+          "How much /haʊ mʌtʃ/",
+          "Why /waɪ/"
+        ]
+      },
+      "11": {
+        "name": "Common measure words",
+        "notes": "general, volume, stick, strip, sheet, family, mouth, piece, handle, vehicle, unit, person, time, time, page, some",
+        "vocabulary": [
+          "General measure /ˈdʒen.ər.əl ˈmeʒ.ər/",
+          "Polite measure /pəˈlaɪt ˈmeʒ.ər/",
+          "Volume /ˈvɒl.juːm/",
+          "Cup /kʌp/",
+          "Sheet /ʃiːt/",
+          "Piece /piːs/",
+          "Piece /piːs/",
+          "Strip /strɪp/",
+          "Vehicle /ˈviː.ɪ.kəl/",
+          "Time /taɪm/",
+          "Moment /ˈməʊ.mənt/",
+          "Point /pɔɪnt/",
+          "A little /ə ˈlɪt.əl/",
+          "Some /sʌm/",
+          "Page /peɪdʒ/",
+          "Layer /ˈleɪ.ər/",
+          "Time (frequency) /taɪm/",
+          "Envelope /ˈen.və.ləʊp/",
+          "Portion /ˈpɔː.ʃən/",
+          "Kilometer /kɪˈlɒm.ɪ.tər/",
+          "Kilogram /ˈkɪl.ə.ɡræm/",
+          "Jin (half kilogram) /dʒɪn/",
+          "Gram /ɡræm/",
+          "Quarter (hour) /ˈkwɔː.tər/",
+          "Mao (currency) /maʊ/",
+          "Meter /ˈmiː.tər/",
+          "Year (age) /jɪər/",
+          "Year /jɪər/",
+          "Month /mʌnθ/",
+          "Day /deɪ/",
+          "Date /deɪt/",
+          "Minute /ˈmɪn.ɪt/",
+          "Segment /ˈseɡ.mənt/",
+          "Section /ˈsek.ʃən/",
+          "Mouth (measure) /maʊθ/",
+          "Sentence /ˈsen.təns/",
+          "Chapter /ˈtʃæp.tər/",
+          "Slice /slaɪs/",
+          "Bottle /ˈbɒt.əl/",
+          "Poem /ˈpəʊ.ɪm/",
+          "Trip /trɪp/",
+          "Set /set/",
+          "Kind /kaɪnd/",
+          "Seat (large) /siːt/"
+        ]
+      },
+      "12": {
+        "name": "Using particle 的 to indicate possession",
+        "examples": [
+          "This is my phone."
+        ],
+        "vocabulary": []
+      },
+      "13": {
+        "name": "Affirmative-negative structure for yes-no questions",
+        "examples": [
+          "Does your office have a computer?",
+          "Is he Mr. Zhang?",
+          "Is this character correct?"
+        ],
+        "vocabulary": [
+          "Is it? /ɪz ɪt/",
+          "Is it good? /ɪz ɪt ɡʊd/",
+          "Is it OK? /ɪz ɪt əʊˈkeɪ/",
+          "Is it possible? /ɪz ɪt ˈpɒs.ə.bəl/"
+        ]
+      },
+      "14": {
+        "name": "Expressing date and time",
+        "examples": [
+          "Today is March 19, 2026.",
+          "Tomorrow is Sunday.",
+          "It's ten to nine now."
+        ],
+        "vocabulary": [
+          "Year /jɪər/",
+          "Month /mʌnθ/",
+          "Day /deɪ/",
+          "Date /deɪt/",
+          "Day /deɪ/",
+          "Week /wiːk/",
+          "Monday /ˈmʌn.deɪ/",
+          "Tuesday /ˈtjuːz.deɪ/",
+          "Wednesday /ˈwenz.deɪ/",
+          "Thursday /ˈθɜːz.deɪ/",
+          "Friday /ˈfraɪ.deɪ/",
+          "Saturday /ˈsæt.ə.deɪ/",
+          "Sunday /ˈsʌn.deɪ/",
+          "Sunday /ˈsʌn.deɪ/",
+          "Hour /aʊər/",
+          "Minute /ˈmɪn.ɪt/",
+          "Quarter /ˈkwɔː.tər/",
+          "Half /hɑːf/",
+          "Now /naʊ/",
+          "Today /təˈdeɪ/",
+          "Tomorrow /təˈmɒr.əʊ/",
+          "Yesterday /ˈjes.tər.deɪ/",
+          "Day before yesterday /deɪ bɪˈfɔːr ˈjes.tər.deɪ/",
+          "Day after tomorrow /deɪ ˈɑːf.tər təˈmɒr.əʊ/",
+          "Morning (late) /ˈmɔː.nɪŋ/",
+          "Noon /nuːn/",
+          "Afternoon /ˌɑːf.təˈnuːn/",
+          "Morning /ˈmɔː.nɪŋ/",
+          "Evening /ˈiːv.nɪŋ/",
+          "Midnight /ˈmɪd.naɪt/",
+          "Night /naɪt/",
+          "Daytime /ˈdeɪ.taɪm/",
+          "Hour /aʊər/",
+          "Minute /ˈmɪn.ɪt/",
+          "Time /taɪm/",
+          "Time /taɪm/",
+          "Day /deɪ/"
+        ]
+      },
+      "15": {
+        "name": "Indicating time sequence with 以前, 以后",
+        "examples": [
+          "Before coming to work here, I worked at a company.",
+          "After work, I go to school to pick up the child."
+        ],
+        "vocabulary": [
+          "Before /bɪˈfɔːr/",
+          "After /ˈɑːf.tər/"
+        ]
+      },
+      "16": {
+        "name": "Conjunction",
+        "notes": "Addition: and, or, or; Contrast: but, but, but, although… but…; Hypothesis: if… then…; Cause and effect: because, so; Sequence: first… then… then… finally…; Coordination: both… and…, …while…; Progression: not only… but also…; Reference: for…; Illustration: for example, for instance",
+        "vocabulary": [
+          "And /ænd/",
+          "With /wɪð/",
+          "And /ænd/",
+          "Or /ɔːr/",
+          "Or /ɔːr/",
+          "Or /ɔːr/",
+          "Because /bɪˈkɒz/",
+          "So /səʊ/",
+          "But /bʌt/",
+          "But /bʌt/",
+          "But /bʌt/",
+          "But /bʌt/",
+          "However /haʊˈev.ər/",
+          "If /ɪf/",
+          "If /ɪf/",
+          "Although /ɔːlˈðəʊ/",
+          "Although /ɔːlˈðəʊ/",
+          "Moreover /mɔːˈrəʊ.vər/",
+          "Furthermore /ˌfɜː.ðəˈmɔːr/",
+          "Not only /nɒt ˈəʊn.li/",
+          "And /ænd/",
+          "Then /ðen/",
+          "Next /nekst/",
+          "Thus /ðʌs/",
+          "Then /ðen/",
+          "Because /bɪˈkɒz/",
+          "Therefore /ˈðeə.fɔːr/",
+          "As long as /æz lɒŋ æz/",
+          "Only if /ˈəʊn.li ɪf/",
+          "No matter /nəʊ ˈmæt.ər/",
+          "Regardless of /rɪˈɡɑːd.ləs ɒv/",
+          "Even if /ˈiː.vən ɪf/",
+          "Since /sɪns/",
+          "Besides /bɪˈsaɪdz/",
+          "For example /fɔːr ɪɡˈzɑːm.pəl/",
+          "For example /fɔːr ɪɡˈzɑːm.pəl/"
+        ]
+      },
+      "17": {
+        "name": "Indicating age and price",
+        "examples": [
+          "My father is sixty years old.",
+          "This book costs ten yuan."
+        ],
+        "vocabulary": [
+          "Year (age) /jɪər/",
+          "Piece (money) /piːs/",
+          "Yuan /juˈɑːn/",
+          "Mao (currency) /maʊ/",
+          "Jiao (currency) /dʒjaʊ/",
+          "Fen (currency) /fen/",
+          "How much /haʊ mʌtʃ/",
+          "How many /haʊ ˈmen.i/"
+        ]
+      },
+      "18": {
+        "name": "Use of adjectives and degree adverbs",
+        "examples": [
+          "She is very beautiful.",
+          "This book is very interesting."
+        ],
+        "vocabulary": [
+          "Good /ɡʊd/",
+          "Big /bɪɡ/",
+          "Small /smɔːl/",
+          "Many /ˈmen.i/",
+          "Few /fjuː/",
+          "Tall /tɔːl/",
+          "Low /ləʊ/",
+          "Long /lɒŋ/",
+          "Short /ʃɔːt/",
+          "Far /fɑːr/",
+          "Near /nɪər/",
+          "Fast /fɑːst/",
+          "Slow /sləʊ/",
+          "Early /ˈɜː.li/",
+          "Late /leɪt/",
+          "Correct /kəˈrekt/",
+          "Wrong /rɒŋ/",
+          "True /truː/",
+          "False /fɒls/",
+          "Expensive /ɪkˈspen.sɪv/",
+          "Cheap /tʃiːp/",
+          "Hot /hɒt/",
+          "Cold /kəʊld/",
+          "Warm /wɔːm/",
+          "Cool /kuːl/",
+          "Comfortable /ˈkʌm.fə.tə.bəl/",
+          "Uncomfortable /ʌnˈkʌm.fə.tə.bəl/",
+          "Beautiful /ˈbjuː.tɪ.fəl/",
+          "Ugly /ˈʌɡ.li/",
+          "Delicious /dɪˈlɪʃ.əs/",
+          "Nice to hear /naɪs tuː hɪər/",
+          "Clean /kliːn/",
+          "Dirty /ˈdɜː.ti/",
+          "Busy /ˈbɪz.i/",
+          "Tired /taɪəd/",
+          "Full /fʊl/",
+          "Hungry /ˈhʌŋ.ɡri/",
+          "Thirsty /ˈθɜː.sti/",
+          "Happy /ˈhæp.i/",
+          "Sad /sæd/",
+          "Serious /ˈsɪə.ri.əs/",
+          "Clear /klɪər/",
+          "Safe /seɪf/",
+          "Dangerous /ˈdeɪn.dʒər.əs/",
+          "Simple /ˈsɪm.pəl/",
+          "Complex /ˈkɒm.pleks/",
+          "Convenient /kənˈviː.ni.ənt/",
+          "Lovely /ˈlʌv.li/",
+          "Scary /ˈskeə.ri/",
+          "Important /ɪmˈpɔː.tənt/",
+          "Main /meɪn/",
+          "Same /seɪm/",
+          "All /ɔːl/",
+          "All /ɔːl/",
+          "Many /ˈmen.i/",
+          "All /ɔːl/"
+        ]
+      },
+      "19": {
+        "name": "Exclamatory sentences",
+        "examples": [
+          "This book is really good!",
+          "She is so beautiful!"
+        ],
+        "vocabulary": [
+          "Ah /ɑː/",
+          "Really /ˈrɪə.li/",
+          "Too /tuː/",
+          "How /haʊ/",
+          "Good /ɡʊd/",
+          "So /səʊ/",
+          "So /səʊ/"
+        ]
+      },
+      "20": {
+        "name": "Comparative structures",
+        "examples": [
+          "He is still the same as before.",
+          "Chinese is different from English.",
+          "I have studied Chinese longer than him, but my level is not as high as his.",
+          "I like drinking coffee, but I like drinking tea even more.",
+          "In our office, he works the longest."
+        ],
+        "vocabulary": [
+          "Than /ðæn/",
+          "Most /məʊst/",
+          "More /mɔːr/",
+          "Same /seɪm/",
+          "Not as good as /nɒt æz ɡʊd æz/",
+          "Like /laɪk/"
+        ]
+      },
+      "21": {
+        "name": "Indicating quantitative and temporal limits with 最",
+        "examples": [
+          "To do this job, it takes at least a week.",
+          "Please let me know by next Monday at the latest."
+        ],
+        "vocabulary": [
+          "Most /məʊst/",
+          "Finally /ˈfaɪ.nəl.i/",
+          "Recently /ˈriː.sənt.li/",
+          "Best /best/"
+        ]
+      },
+      "22": {
+        "name": "Using 就 to identify a person or object",
+        "examples": [
+          "He is Professor Wang.",
+          "That is my home."
+        ],
+        "vocabulary": []
+      },
+      "23": {
+        "name": "Use 就 and 才 to indicate earliness and lateness",
+        "examples": [
+          "I arrived at the office at eight in the morning.",
+          "I will call you as soon as I get to the office.",
+          "She doesn't go to sleep until twelve at night."
+        ],
+        "vocabulary": [
+          "Then (early) /ðen/",
+          "Only then /ˈəʊn.li ðen/"
+        ]
+      },
+      "24": {
+        "name": "Using 在 and location particles",
+        "examples": [
+          "Shanghai is in the south of China.",
+          "The Red Cross is opposite the United Nations.",
+          "His home is near the United Nations.",
+          "The cafe is between the bookstore and the supermarket."
+        ],
+        "vocabulary": [
+          "At /æt/",
+          "On /ɒn/",
+          "Below /bɪˈləʊ/",
+          "Inside /ˌɪnˈsaɪd/",
+          "Outside /ˌaʊtˈsaɪd/",
+          "Front /frʌnt/",
+          "Back /bæk/",
+          "Left /left/",
+          "Right /raɪt/",
+          "East /iːst/",
+          "South /saʊθ/",
+          "West /west/",
+          "North /nɔːθ/",
+          "Next to /nekst tuː/",
+          "Opposite /ˈɒp.ə.zɪt/",
+          "Middle /ˈmɪd.əl/",
+          "Inside /ˌɪnˈsaɪd/",
+          "Outside /ˌaʊtˈsaɪd/",
+          "Above /əˈbʌv/",
+          "Below /bɪˈləʊ/",
+          "Front /frʌnt/",
+          "Back /bæk/",
+          "Left side /left saɪd/",
+          "Right side /raɪt saɪd/",
+          "East side /iːst saɪd/",
+          "South side /saʊθ saɪd/",
+          "West side /west saɪd/",
+          "North side /nɔːθ saɪd/"
+        ]
+      },
+      "25": {
+        "name": "Using particle 的 to indicate attributives",
+        "examples": [
+          "He gave me a beautiful coat.",
+          "This is the tea I bought for you.",
+          "The person in front is my sister."
+        ],
+        "vocabulary": []
+      },
+      "26": {
+        "name": "Using 是 or 有 to indicate the presence/existence",
+        "examples": [
+          "Opposite the bank is a supermarket.",
+          "There are many people there.",
+          "There are two restaurants on that street."
+        ],
+        "vocabulary": [
+          "Is /ɪz/",
+          "There is /ðeər ɪz/",
+          "At /æt/"
+        ]
+      },
+      "27": {
+        "name": "Preposition",
+        "notes": "to, for, to, with, from… to…, towards, toward",
+        "vocabulary": [
+          "At /æt/",
+          "From /frɒm/",
+          "To /tuː/",
+          "For /fɔːr/",
+          "About /əˈbaʊt/",
+          "With /wɪð/",
+          "And /ænd/",
+          "With /wɪð/",
+          "For /fɔːr/",
+          "In order to /ɪn ˈɔː.dər tuː/",
+          "Because /bɪˈkɒz/",
+          "Due to /djuː tuː/",
+          "By /baɪ/",
+          "By (passive) /baɪ/",
+          "Called /kɔːld/",
+          "Let /let/",
+          "To /tuː/",
+          "Towards /təˈwɔːdz/",
+          "Towards /təˈwɔːdz/",
+          "Towards /təˈwɔːdz/",
+          "To /tuː/",
+          "At /æt/",
+          "Since /sɪns/",
+          "According to /əˈkɔː.dɪŋ tuː/",
+          "Based on /beɪst ɒn/",
+          "Through /θruː/",
+          "Via /ˈvaɪ.ə/",
+          "Except /ɪkˈsept/",
+          "As /æz/",
+          "With /wɪð/",
+          "Take /teɪk/",
+          "By /baɪ/"
+        ]
+      },
+      "28": {
+        "name": "Make a suggestion with particle 吧",
+        "examples": [
+          "Let's go watch a movie!"
+        ],
+        "vocabulary": []
+      },
+      "29": {
+        "name": "Make a speculation/assumption with the particle 吧",
+        "examples": [
+          "You are Mr. Wang, aren't you?",
+          "This piece of clothing is yours, isn't it?"
+        ],
+        "vocabulary": []
+      },
+      "30": {
+        "name": "Tag questions with 怎么样, 好吗, 可以吗, 行吗, 是吗/是不是",
+        "examples": [
+          "How about going for coffee after work?",
+          "I'll call you at three, OK?",
+          "You like to wear white clothes, don't you?"
+        ],
+        "vocabulary": [
+          "How about /haʊ əˈbaʊt/",
+          "OK? /əʊˈkeɪ/",
+          "OK? /əʊˈkeɪ/",
+          "OK? /əʊˈkeɪ/",
+          "Right? /raɪt/",
+          "Is it? /ɪz ɪt/"
+        ]
+      },
+      "31": {
+        "name": "Verb reduplication and verb with 一下(儿)",
+        "examples": [
+          "Let me think.",
+          "Let me introduce you."
+        ],
+        "vocabulary": [
+          "A moment /ə ˈməʊ.mənt/",
+          "A moment /ə ˈməʊ.mənt/"
+        ]
+      },
+      "32": {
+        "name": "Imperative sentences",
+        "examples": [
+          "Please come in! Please sit!",
+          "Don't sit there! Don't speak!"
+        ],
+        "vocabulary": [
+          "Please /pliːz/",
+          "Don't /dəʊnt/",
+          "Don't /dəʊnt/"
+        ]
+      },
+      "33": {
+        "name": "Modal verbs",
+        "examples": [
+          "I want to buy a cup of coffee.",
+          "I have a meeting this afternoon.",
+          "I plan to travel to China this summer.",
+          "Can you call me now?",
+          "You are not allowed to eat here.",
+          "He can't speak Chinese.",
+          "You should ask Xiao Wang about this.",
+          "I asked him to come, but he doesn't want to.",
+          "Do you need my help? No, thanks!"
+        ],
+        "vocabulary": [
+          "Can /kæn/",
+          "Be able to /bi ˈeɪ.bəl tuː/",
+          "Can /kæn/",
+          "May /meɪ/",
+          "Maybe /ˈmeɪ.bi/",
+          "Should /ʃʊd/",
+          "Should /ʃʊd/",
+          "Should /ʃʊd/",
+          "Must /mʌst/",
+          "Will /wɪl/",
+          "Want /wɒnt/",
+          "Be willing /bi ˈwɪl.ɪŋ/",
+          "Be willing /bi ˈwɪl.ɪŋ/",
+          "Dare /deər/"
+        ]
+      },
+      "34": {
+        "name": "Pivotal sentences",
+        "notes": "ask/let/want + Verb Phrase",
+        "examples": [
+          "I asked him to help me.",
+          "I asked her to call me.",
+          "My wife wants me to get off work at four today."
+        ],
+        "vocabulary": []
+      },
+      "35": {
+        "name": "Indirect speech",
+        "examples": [
+          "He said he also works at Tsinghua University.",
+          "I asked him where he works.",
+          "He asked me if I had a pen."
+        ],
+        "vocabulary": [
+          "Say /seɪ/",
+          "Ask /ɑːsk/",
+          "Tell /tel/",
+          "Answer /ˈɑːn.sər/"
+        ]
+      },
+      "36": {
+        "name": "Using 是……的 to specify a feature or to emphasize details",
+        "examples": [
+          "My car is black.",
+          "That table is round.",
+          "We met in Beijing last year.",
+          "Which year did you come to work at Tsinghua University?"
+        ],
+        "vocabulary": []
+      },
+      "37": {
+        "name": "Durative/Progressive aspect",
+        "examples": [
+          "The children are sleeping.",
+          "Mr. Wang is in a meeting, please wait a moment."
+        ],
+        "vocabulary": [
+          "In progress /ɪn ˈprəʊ.ɡres/",
+          "In progress /ɪn ˈprəʊ.ɡres/",
+          "Particle (durative) /ˈpɑː.tɪ.kəl/"
+        ]
+      },
+      "38": {
+        "name": "Using sentence-final particle 了 to inform a new situation or change",
+        "examples": [
+          "It's getting dark.",
+          "He is sick.",
+          "He no longer works here.",
+          "It's seven o'clock, time to go home.",
+          "Look, it's going to rain.",
+          "You may leave now."
+        ],
+        "vocabulary": []
+      },
+      "39": {
+        "name": "Using 了 to quantify an action or event in the past",
+        "examples": [
+          "I watched a movie on the weekend.",
+          "He rested for two hours.",
+          "I went to see him three times."
+        ],
+        "vocabulary": []
+      },
+      "40": {
+        "name": "Using 过 to indicate an experience",
+        "examples": [
+          "I have been to China."
+        ],
+        "vocabulary": []
+      },
+      "41": {
+        "name": "Using 会 to indicate possibility or likelihood",
+        "examples": [
+          "Do you think the boss will agree?",
+          "He should come today."
+        ],
+        "vocabulary": []
+      },
+      "42": {
+        "name": "Using 着 to describe a place or someone's clothing",
+        "examples": [
+          "There is a person standing outside the door.",
+          "A painting is hanging on the wall.",
+          "He is wearing a black coat."
+        ],
+        "vocabulary": []
+      },
+      "43": {
+        "name": "Using 得 to describe/evaluate an action",
+        "examples": [
+          "He speaks Chinese very quickly.",
+          "Your Chinese characters are written very beautifully."
+        ],
+        "vocabulary": []
+      },
+      "44": {
+        "name": "Simple directional verb complement",
+        "examples": [
+          "When will he come back?",
+          "He went out to buy something."
+        ],
+        "vocabulary": [
+          "Come /kʌm/",
+          "Go /ɡəʊ/",
+          "Up /ʌp/",
+          "Down /daʊn/",
+          "In /ɪn/",
+          "Out /aʊt/",
+          "Back /bæk/",
+          "Over /ˈəʊ.vər/",
+          "Up /ʌp/",
+          "Open /ˈəʊ.pən/",
+          "Come up /kʌm ʌp/",
+          "Go up /ɡəʊ ʌp/",
+          "Come down /kʌm daʊn/",
+          "Go down /ɡəʊ daʊn/",
+          "Come in /kʌm ɪn/",
+          "Go in /ɡəʊ ɪn/",
+          "Come out /kʌm aʊt/",
+          "Go out /ɡəʊ aʊt/",
+          "Come back /kʌm bæk/",
+          "Go back /ɡəʊ bæk/",
+          "Come over /kʌm ˈəʊ.vər/",
+          "Go over /ɡəʊ ˈəʊ.vər/",
+          "Get up /ɡet ʌp/"
+        ]
+      },
+      "45": {
+        "name": "Using the adverb 再 to express the duplication of an action in the future",
+        "examples": [
+          "If he comes to see me again, tell him I went out for lunch."
+        ],
+        "vocabulary": []
+      },
+      "46": {
+        "name": "Using the adverb 一直 to express continuity or indicate straight direction",
+        "examples": [
+          "He has been in meetings from morning until now.",
+          "Go straight for five minutes and you'll arrive."
+        ],
+        "vocabulary": []
+      }
+    },
+    "LINGUISTIC_COMPETENCE_LEXIS": {
+      "name": "Linguistic Competence - Lexis",
+      "1": {
+        "name": "Relationship",
+        "notes": "Family: dad, mom, older brother, older sister, younger brother, younger sister, siblings, husband/wife, family; Colleagues and friends: classmate, colleague, friend, boyfriend, girlfriend",
+        "vocabulary": [
+          "Dad /dæd/",
+          "Mom /mɒm/",
+          "Older brother /ˈəʊl.dər ˈbrʌð.ər/",
+          "Older sister /ˈəʊl.dər ˈsɪs.tər/",
+          "Younger brother /ˈjʌŋ.ɡər ˈbrʌð.ər/",
+          "Younger sister /ˈjʌŋ.ɡər ˈsɪs.tər/",
+          "Grandpa /ˈɡræn.pɑː/",
+          "Grandma /ˈɡræn.mɑː/",
+          "Son /sʌn/",
+          "Daughter /ˈdɔː.tər/",
+          "Child /tʃaɪld/",
+          "Friend /frend/",
+          "Boyfriend /ˈbɔɪ.frend/",
+          "Girlfriend /ˈɡɜːl.frend/",
+          "Classmate /ˈklɑːs.meɪt/",
+          "Colleague /ˈkɒl.iːɡ/",
+          "Teacher /ˈtiː.tʃər/",
+          "Student /ˈstjuː.dənt/",
+          "Mr. /ˈmɪs.tər/",
+          "Miss /mɪs/",
+          "Family /ˈfæm.əl.i/",
+          "Spouse /spaʊs/",
+          "Relative /ˈrel.ə.tɪv/",
+          "Neighbor /ˈneɪ.bər/"
+        ]
+      },
+      "2": {
+        "name": "Professions and workplace",
+        "notes": "Profession: teacher, student, staff, doctor, secretary; Workplace: United Nations, department, office, computer, print, copy, introduce, self-introduction, paper, meeting, business trip, prepare, work overtime, ask for leave",
+        "vocabulary": [
+          "Work /wɜːk/",
+          "Teacher /ˈtiː.tʃər/",
+          "Student /ˈstjuː.dənt/",
+          "Doctor /ˈdɒk.tər/",
+          "Nurse /nɜːs/",
+          "Worker /ˈwɜː.kər/",
+          "Driver /ˈdraɪ.vər/",
+          "Businessperson /ˈbɪz.nɪs.pɜː.sən/",
+          "Manager /ˈmæn.ɪ.dʒər/",
+          "Writer /ˈraɪ.tər/",
+          "Painter /ˈpeɪn.tər/",
+          "Actor /ˈæk.tər/",
+          "Chef /ʃef/",
+          "Waiter /ˈweɪ.tər/",
+          "Police officer /pəˈliːs ˈɒf.ɪ.sər/",
+          "Lawyer /ˈlɔː.jər/",
+          "Office /ˈɒf.ɪs/",
+          "Company /ˈkʌm.pə.ni/",
+          "Hospital /ˈhɒs.pɪ.təl/",
+          "School /skuːl/",
+          "Factory /ˈfæk.tər.i/",
+          "Restaurant /ˈres.tər.ɒnt/",
+          "Bank /bæŋk/"
+        ]
+      },
+      "3": {
+        "name": "Cardinal number 0 to 100 and ordinal numeral",
+        "notes": "zero, one, ten, twenty-five, forty, eighty-six, one hundred; first, second, third…",
+        "vocabulary": [
+          "Zero /ˈzɪə.rəʊ/",
+          "One /wʌn/",
+          "Two /tuː/",
+          "Three /θriː/",
+          "Four /fɔːr/",
+          "Five /faɪv/",
+          "Six /sɪks/",
+          "Seven /ˈsev.ən/",
+          "Eight /eɪt/",
+          "Nine /naɪn/",
+          "Ten /ten/",
+          "Eleven /ɪˈlev.ən/",
+          "Twelve /twelv/",
+          "Twenty /ˈtwen.ti/",
+          "Twenty-one /ˈtwen.ti wʌn/",
+          "Thirty /ˈθɜː.ti/",
+          "Forty /ˈfɔː.ti/",
+          "Fifty /ˈfɪf.ti/",
+          "Sixty /ˈsɪk.sti/",
+          "Seventy /ˈsev.ən.ti/",
+          "Eighty /ˈeɪ.ti/",
+          "Ninety /ˈnaɪn.ti/",
+          "One hundred /wʌn ˈhʌn.drəd/",
+          "First /fɜːst/",
+          "Second /ˈsek.ənd/",
+          "Third /θɜːd/"
+        ]
+      },
+      "4": {
+        "name": "Countries, cities, and nationalities",
+        "notes": "e.g. China, Beijing, Shanghai, Chinese",
+        "vocabulary": [
+          "China /ˈtʃaɪ.nə/",
+          "Beijing /beɪˈdʒɪŋ/",
+          "Shanghai /ʃæŋˈhaɪ/",
+          "United States /juˈnaɪ.tɪd steɪts/",
+          "United Kingdom /juˈnaɪ.tɪd ˈkɪŋ.dəm/",
+          "France /frɑːns/",
+          "Germany /ˈdʒɜː.mə.ni/",
+          "Japan /dʒəˈpæn/",
+          "South Korea /saʊθ kəˈriː.ə/",
+          "Chinese /tʃaɪˈniːz/",
+          "American /əˈmer.ɪ.kən/",
+          "Foreigner /ˈfɒr.ə.nər/"
+        ]
+      },
+      "5": {
+        "name": "Languages",
+        "notes": "Chinese, English, French, Spanish, Russian, Arabic",
+        "vocabulary": [
+          "Chinese /tʃaɪˈniːz/",
+          "Chinese /tʃaɪˈniːz/",
+          "English /ˈɪŋ.ɡlɪʃ/",
+          "English /ˈɪŋ.ɡlɪʃ/",
+          "Foreign language /ˈfɒr.ɪn ˈlæŋ.ɡwɪdʒ/",
+          "Language /ˈlæŋ.ɡwɪdʒ/"
+        ]
+      },
+      "6": {
+        "name": "Learning",
+        "notes": "study, class, class, grammar, spoken language, Chinese character, new word, review, difficult, easy, homework, exam, practice, example",
+        "vocabulary": [
+          "Study /ˈstʌd.i/",
+          "Learn /lɜːn/",
+          "Read /riːd/",
+          "Write /raɪt/",
+          "Listen /ˈlɪs.ən/",
+          "Speak /spiːk/",
+          "Read books /riːd bʊks/",
+          "Read books /riːd bʊks/",
+          "Go to class /ɡəʊ tuː klɑːs/",
+          "Finish class /ˈfɪn.ɪʃ klɑːs/",
+          "Exam /ɪɡˈzæm/",
+          "Review /rɪˈvjuː/",
+          "Practice /ˈpræk.tɪs/",
+          "Homework /ˈhəʊm.wɜːk/",
+          "Word /wɜːd/",
+          "Sentence /ˈsen.təns/",
+          "Text /tekst/",
+          "Teacher /ˈtiː.tʃər/",
+          "Student /ˈstjuː.dənt/",
+          "School /skuːl/",
+          "Classroom /ˈklɑːs.ruːm/",
+          "Library /ˈlaɪ.brər.i/",
+          "Chinese /tʃaɪˈniːz/",
+          "Chinese /tʃaɪˈniːz/"
+        ]
+      },
+      "7": {
+        "name": "Expression of time",
+        "notes": "year, month, day, day, week, now, hour, minute, half, quarter, to, morning, morning, noon, afternoon, evening, yesterday, today, tomorrow, time, hour, minute",
+        "vocabulary": [
+          "Year /jɪər/",
+          "Month /mʌnθ/",
+          "Day /deɪ/",
+          "Date /deɪt/",
+          "Day /deɪ/",
+          "Week /wiːk/",
+          "Monday /ˈmʌn.deɪ/",
+          "Tuesday /ˈtjuːz.deɪ/",
+          "Wednesday /ˈwenz.deɪ/",
+          "Thursday /ˈθɜːz.deɪ/",
+          "Friday /ˈfraɪ.deɪ/",
+          "Saturday /ˈsæt.ə.deɪ/",
+          "Sunday /ˈsʌn.deɪ/",
+          "Sunday /ˈsʌn.deɪ/",
+          "Hour /aʊər/",
+          "Minute /ˈmɪn.ɪt/",
+          "Quarter /ˈkwɔː.tər/",
+          "Half /hɑːf/",
+          "Now /naʊ/",
+          "Today /təˈdeɪ/",
+          "Tomorrow /təˈmɒr.əʊ/",
+          "Yesterday /ˈjes.tər.deɪ/",
+          "Day before yesterday /deɪ bɪˈfɔːr ˈjes.tər.deɪ/",
+          "Day after tomorrow /deɪ ˈɑːf.tər təˈmɒr.əʊ/",
+          "Morning /ˈmɔː.nɪŋ/",
+          "Morning (late) /ˈmɔː.nɪŋ/",
+          "Noon /nuːn/",
+          "Afternoon /ˌɑːf.təˈnuːn/",
+          "Evening /ˈiːv.nɪŋ/",
+          "Midnight /ˈmɪd.naɪt/",
+          "Night /naɪt/",
+          "Daytime /ˈdeɪ.taɪm/",
+          "Hour /aʊər/",
+          "Minute /ˈmɪn.ɪt/",
+          "Time /taɪm/",
+          "Time /taɪm/"
+        ]
+      },
+      "8": {
+        "name": "Food and drink",
+        "notes": "eat, drink, water, tea, coffee, milk, alcohol, Chinese food, dish, rice, noodles, delicious, tasty, fragrant, hungry, thirsty, fruit, apple, banana, orange",
+        "vocabulary": [
+          "Eat /iːt/",
+          "Drink /drɪŋk/",
+          "Meal /miːl/",
+          "Dish /dɪʃ/",
+          "Breakfast /ˈbrek.fəst/",
+          "Lunch /lʌntʃ/",
+          "Dinner /ˈdɪn.ər/",
+          "Rice /raɪs/",
+          "Noodles /ˈnuː.dəlz/",
+          "Bread /bred/",
+          "Baozi (stuffed bun) /ˈbaʊ.zɪ/",
+          "Dumpling /ˈdʌm.plɪŋ/",
+          "Egg /eɡ/",
+          "Meat /miːt/",
+          "Fish /fɪʃ/",
+          "Milk /mɪlk/",
+          "Water /ˈwɔː.tər/",
+          "Tea /tiː/",
+          "Coffee /ˈkɒf.i/",
+          "Fruit /fruːt/",
+          "Apple /ˈæp.əl/",
+          "Delicious /dɪˈlɪʃ.əs/",
+          "Good to drink /ɡʊd tuː drɪŋk/",
+          "Hungry /ˈhʌŋ.ɡri/",
+          "Thirsty /ˈθɜː.sti/",
+          "Full /fʊl/"
+        ]
+      },
+      "9": {
+        "name": "Purchasing and money",
+        "notes": "buy, thing, money, piece, yuan, change, change, expensive, cheap",
+        "vocabulary": [
+          "Buy /baɪ/",
+          "Sell /sel/",
+          "Money /ˈmʌn.i/",
+          "How much /haʊ mʌtʃ/",
+          "Piece (money) /piːs/",
+          "Yuan /juˈɑːn/",
+          "Mao (currency) /maʊ/",
+          "Jiao (currency) /dʒjaʊ/",
+          "Fen (currency) /fen/",
+          "Expensive /ɪkˈspen.sɪv/",
+          "Cheap /tʃiːp/",
+          "Ticket /ˈtɪk.ɪt/",
+          "Bus ticket /bʌs ˈtɪk.ɪt/",
+          "Plane ticket /pleɪn ˈtɪk.ɪt/",
+          "Admission ticket /ədˈmɪʃ.ən ˈtɪk.ɪt/",
+          "Card /kɑːd/",
+          "Credit card /ˈkred.ɪt kɑːd/",
+          "Backpack /ˈbæk.pæk/",
+          "Clothes /kləʊðz/",
+          "Shop /ʃɒp/",
+          "Supermarket /ˈsuː.pə.mɑː.kɪt/",
+          "Market /ˈmɑː.kɪt/"
+        ]
+      },
+      "10": {
+        "name": "Public places and buildings",
+        "notes": "restaurant, classroom, cafeteria, bookstore, library, school, elementary school, middle school, university, park, supermarket, bank, hospital, station, train station, airport, company, shop, bar, subway station, dining hall",
+        "vocabulary": [
+          "School /skuːl/",
+          "Library /ˈlaɪ.brər.i/",
+          "Classroom /ˈklɑːs.ruːm/",
+          "Office /ˈɒf.ɪs/",
+          "Hospital /ˈhɒs.pɪ.təl/",
+          "Shop /ʃɒp/",
+          "Supermarket /ˈsuː.pə.mɑː.kɪt/",
+          "Market /ˈmɑː.kɪt/",
+          "Restaurant /ˈres.tər.ɒnt/",
+          "Restaurant /ˈres.tər.ɒnt/",
+          "Hotel /həʊˈtel/",
+          "Hotel /həʊˈtel/",
+          "Park /pɑːk/",
+          "Zoo /zuː/",
+          "Cinema /ˈsɪn.ə.mə/",
+          "Gymnasium /dʒɪmˈneɪ.zi.əm/",
+          "Bank /bæŋk/",
+          "Airport /ˈeə.pɔːt/",
+          "Station /ˈsteɪ.ʃən/",
+          "Train station /treɪn ˈsteɪ.ʃən/",
+          "Subway station /ˈsʌb.weɪ ˈsteɪ.ʃən/",
+          "Square /skweər/"
+        ]
+      },
+      "11": {
+        "name": "Home / House",
+        "notes": "place, home, house, building, room, bathroom, door, window, wall, cabinet, bed, table, chair, lamp, TV, telephone, mobile phone, garden",
+        "vocabulary": [
+          "Home /həʊm/",
+          "House /haʊs/",
+          "Room /ruːm/",
+          "Room /ruːm/",
+          "Door /dɔːr/",
+          "Window /ˈwɪn.dəʊ/",
+          "Bed /bed/",
+          "Table /ˈteɪ.bəl/",
+          "Chair /tʃeər/",
+          "Sofa /ˈsəʊ.fə/",
+          "Cabinet /ˈkæb.ɪ.nət/",
+          "Lamp /læmp/",
+          "Phone /fəʊn/",
+          "TV /ˌtiːˈviː/",
+          "Computer /kəmˈpjuː.tər/",
+          "Kitchen /ˈkɪtʃ.ɪn/",
+          "Toilet /ˈtɔɪ.lət/",
+          "Bathroom /ˈbɑːθ.ruːm/",
+          "Shower /ˈʃaʊ.ər/",
+          "Sleep /sliːp/"
+        ]
+      },
+      "12": {
+        "name": "Common adjective to describe a person or an object",
+        "vocabulary": [
+          "Good /ɡʊd/",
+          "Big /bɪɡ/",
+          "Small /smɔːl/",
+          "Many /ˈmen.i/",
+          "Few /fjuː/",
+          "Tall /tɔːl/",
+          "Low /ləʊ/",
+          "Long /lɒŋ/",
+          "Short /ʃɔːt/",
+          "Far /fɑːr/",
+          "Near /nɪər/",
+          "Fast /fɑːst/",
+          "Slow /sləʊ/",
+          "Early /ˈɜː.li/",
+          "Late /leɪt/",
+          "Correct /kəˈrekt/",
+          "Wrong /rɒŋ/",
+          "True /truː/",
+          "False /fɒls/",
+          "Expensive /ɪkˈspen.sɪv/",
+          "Cheap /tʃiːp/",
+          "Hot /hɒt/",
+          "Cold /kəʊld/",
+          "Warm /wɔːm/",
+          "Cool /kuːl/",
+          "Comfortable /ˈkʌm.fə.tə.bəl/",
+          "Uncomfortable /ʌnˈkʌm.fə.tə.bəl/",
+          "Beautiful /ˈbjuː.tɪ.fəl/",
+          "Good-looking /ˌɡʊdˈlʊk.ɪŋ/",
+          "Ugly /ˈʌɡ.li/",
+          "Delicious /dɪˈlɪʃ.əs/",
+          "Nice to hear /naɪs tuː hɪər/",
+          "Clean /kliːn/",
+          "Dirty /ˈdɜː.ti/",
+          "Busy /ˈbɪz.i/",
+          "Tired /taɪəd/",
+          "Happy /ˈhæp.i/",
+          "Serious /ˈsɪə.ri.əs/",
+          "Clear /klɪər/",
+          "Safe /seɪf/",
+          "Dangerous /ˈdeɪn.dʒər.əs/",
+          "Simple /ˈsɪm.pəl/",
+          "Complex /ˈkɒm.pleks/",
+          "Convenient /kənˈviː.ni.ənt/",
+          "Important /ɪmˈpɔː.tənt/",
+          "Same /seɪm/",
+          "New /njuː/",
+          "Old /əʊld/"
+        ]
+      },
+      "13": {
+        "name": "Common adverbs of degree",
+        "notes": "very, extremely, extremely, not very, too, really, a little, relatively",
+        "vocabulary": [
+          "Very /ˈver.i/",
+          "Extremely /ɪkˈstriːm.li/",
+          "Too /tuː/",
+          "Most /məʊst/",
+          "More /mɔːr/",
+          "Especially /ɪˈspeʃ.əl.i/",
+          "Very /ˈver.i/",
+          "How /haʊ/",
+          "Quite /kwaɪt/",
+          "A bit /ə bɪt/",
+          "Almost /ˈɔːl.məʊst/"
+        ]
+      },
+      "14": {
+        "name": "Hobbies",
+        "vocabulary": [
+          "Like /laɪk/",
+          "Hobby /ˈhɒb.i/",
+          "Sing /sɪŋ/",
+          "Play ball /pleɪ bɔːl/",
+          "Read books /riːd bʊks/",
+          "Watch movies /wɒtʃ ˈmuː.viz/",
+          "Listen to music /ˈlɪs.ən tuː ˈmjuː.zɪk/",
+          "Exercise /ˈek.sə.saɪz/",
+          "Go online /ɡəʊ ˈɒn.laɪn/",
+          "Have fun /hæv fʌn/",
+          "Travel /ˈtræv.əl/",
+          "Photo /ˈfəʊ.təʊ/",
+          "Take photos /teɪk ˈfəʊ.təʊz/"
+        ]
+      },
+      "15": {
+        "name": "Daily routine",
+        "vocabulary": [
+          "Get up /ɡet ʌp/",
+          "Go to work /ɡəʊ tuː wɜːk/",
+          "Go to class /ɡəʊ tuː klɑːs/",
+          "Finish class /ˈfɪn.ɪʃ klɑːs/",
+          "Get off work /ɡet ɒf wɜːk/",
+          "Go home /ɡəʊ həʊm/",
+          "Sleep /sliːp/",
+          "Eat /iːt/",
+          "Shower /ˈʃaʊ.ər/",
+          "Every day /ˈev.ri deɪ/",
+          "Morning /ˈmɔː.nɪŋ/",
+          "Morning (late) /ˈmɔː.nɪŋ/",
+          "Noon /nuːn/",
+          "Afternoon /ˌɑːf.təˈnuːn/",
+          "Evening /ˈiːv.nɪŋ/",
+          "Then /ðen/",
+          "First /fɜːst/",
+          "Then (again) /ðen əˈɡen/",
+          "Then (immediate) /ðen ɪˈmiː.di.ət/",
+          "Only then /ˈəʊn.li ðen/"
+        ]
+      },
+      "16": {
+        "name": "Clothes",
+        "notes": "clothes, coat, overcoat, shirt, pants, skirt, shoes",
+        "vocabulary": [
+          "Clothes /kləʊðz/",
+          "Wear /weər/",
+          "Pants /pænts/",
+          "Skirt /skɜːt/",
+          "Shoes /ʃuːz/",
+          "Hat /hæt/",
+          "Socks /sɒks/",
+          "Gloves /ɡlʌvz/",
+          "Bag /bæɡ/",
+          "Backpack /ˈbæk.pæk/",
+          "Wallet /ˈwɒl.ɪt/",
+          "Color /ˈkʌl.ər/",
+          "Red /red/",
+          "Yellow /ˈjel.əʊ/",
+          "Blue /bluː/",
+          "Green /ɡriːn/",
+          "White /waɪt/",
+          "Black /blæk/"
+        ]
+      },
+      "17": {
+        "name": "Primary colours",
+        "vocabulary": [
+          "Red /red/",
+          "Yellow /ˈjel.əʊ/",
+          "Blue /bluː/",
+          "Green /ɡriːn/",
+          "White /waɪt/",
+          "Black /blæk/",
+          "Color /ˈkʌl.ər/"
+        ]
+      },
+      "18": {
+        "name": "Common adverbs of frequency",
+        "notes": "always, often, often, not often, rarely, sometimes, never",
+        "vocabulary": [
+          "Often /ˈɒf.ən/",
+          "Often /ˈɒf.ən/",
+          "Usually /ˈjuː.ʒu.ə.li/",
+          "Always /ˈɔːl.weɪz/",
+          "Sometimes /ˈsʌm.taɪmz/",
+          "Never /ˈnev.ər/",
+          "Every day /ˈev.ri deɪ/",
+          "Time /taɪm/",
+          "Time (frequency) /taɪm/"
+        ]
+      },
+      "19": {
+        "name": "Appointments",
+        "notes": "appointment, place, time, meet, tell, agree, problem, matter",
+        "vocabulary": [
+          "Time /taɪm/",
+          "Hour /aʊər/",
+          "Minute /ˈmɪn.ɪt/",
+          "Meet /miːt/",
+          "Together /təˈɡeð.ər/",
+          "Go /ɡəʊ/",
+          "Come /kʌm/",
+          "At /æt/",
+          "Where /weər/",
+          "What time /wɒt taɪm/",
+          "Tomorrow /təˈmɒr.əʊ/",
+          "Weekend /ˌwiːkˈend/",
+          "OK /əʊˈkeɪ/",
+          "Question particle /ˈkwes.tʃən ˈpɑː.tɪ.kəl/",
+          "OK /əʊˈkeɪ/",
+          "OK /əʊˈkeɪ/",
+          "No problem /nəʊ ˈprɒb.ləm/",
+          "Sorry /ˈsɒr.i/",
+          "Busy /ˈbɪz.i/",
+          "Another day /əˈnʌð.ər deɪ/"
+        ]
+      },
+      "20": {
+        "name": "Simple online communication",
+        "notes": "hello, best regards, see you soon, thank you very much, goodbye",
+        "vocabulary": [
+          "Go online /ɡəʊ ˈɒn.laɪn/",
+          "Net friend /net frend/",
+          "Online /ˈɒn.laɪn/",
+          "Computer /kəmˈpjuː.tər/",
+          "Mobile phone /ˈməʊ.baɪl fəʊn/",
+          "Phone /fəʊn/",
+          "Make a call /meɪk ə kɔːl/",
+          "Send /send/",
+          "Message /ˈmes.ɪdʒ/",
+          "Email /ˈiː.meɪl/",
+          "WeChat /ˈwiː.tʃæt/",
+          "Watch /wɒtʃ/",
+          "Listen /ˈlɪs.ən/",
+          "Video /ˈvɪd.i.əʊ/"
+        ]
+      },
+      "21": {
+        "name": "Likes, dislikes, emotions, basic opinions",
+        "vocabulary": [
+          "Like /laɪk/",
+          "Love /lʌv/",
+          "Dislike /dɪsˈlaɪk/",
+          "Hate /heɪt/",
+          "Happy /ˈhæp.i/",
+          "Sad /sæd/",
+          "Angry /ˈæŋ.ɡri/",
+          "Tired /taɪəd/",
+          "Afraid /əˈfreɪd/",
+          "Think /θɪŋk/",
+          "Consider /kənˈsɪd.ər/",
+          "How? /haʊ/",
+          "Good /ɡʊd/",
+          "Correct /kəˈrekt/",
+          "OK /əʊˈkeɪ/",
+          "Not OK /nɒt əʊˈkeɪ/",
+          "Maybe /ˈmeɪ.bi/",
+          "Should /ʃʊd/",
+          "Really /ˈrɪə.li/",
+          "Too /tuː/",
+          "Particle (change) /ˈpɑː.tɪ.kəl/",
+          "Ah /ɑː/"
+        ]
+      },
+      "22": {
+        "name": "Travel and transportation",
+        "vocabulary": [
+          "Go /ɡəʊ/",
+          "Come /kʌm/",
+          "Walk /wɔːk/",
+          "Ride /raɪd/",
+          "Vehicle /ˈviː.ɪ.kəl/",
+          "Train /treɪn/",
+          "Airplane /ˈeə.pleɪn/",
+          "Subway /ˈsʌb.weɪ/",
+          "Bus /bʌs/",
+          "Taxi /ˈtæk.si/",
+          "Bicycle /ˈbaɪ.sɪ.kəl/",
+          "Walk /wɔːk/",
+          "Ticket /ˈtɪk.ɪt/",
+          "Buy ticket /baɪ ˈtɪk.ɪt/",
+          "Station /ˈsteɪ.ʃən/",
+          "Airport /ˈeə.pɔːt/",
+          "Train station /treɪn ˈsteɪ.ʃən/",
+          "Subway station /ˈsʌb.weɪ ˈsteɪ.ʃən/",
+          "Road /rəʊd/",
+          "Intersection /ˌɪn.təˈsek.ʃən/",
+          "Direction /daɪˈrek.ʃən/",
+          "Left side /left saɪd/",
+          "Right side /raɪt saɪd/",
+          "Front /frʌnt/",
+          "Back /bæk/",
+          "Far /fɑːr/",
+          "Near /nɪər/",
+          "Travel /ˈtræv.əl/",
+          "Travel /ˈtræv.əl/",
+          "Hotel /həʊˈtel/",
+          "Room /ruːm/"
+        ]
+      },
+      "23": {
+        "name": "Seasons and weather",
+        "notes": "summer, autumn, winter, weather, hot, cold, degree, sunny, cloudy, overcast, rain, snow",
+        "vocabulary": [
+          "Spring /sprɪŋ/",
+          "Summer /ˈsʌm.ər/",
+          "Autumn /ˈɔː.təm/",
+          "Winter /ˈwɪn.tər/",
+          "Weather /ˈweð.ər/",
+          "Hot /hɒt/",
+          "Cold /kəʊld/",
+          "Warm /wɔːm/",
+          "Cool /kuːl/",
+          "Rain /reɪn/",
+          "Snow /snəʊ/",
+          "Windy /ˈwɪn.di/",
+          "Sunny /ˈsʌn.i/",
+          "Cloudy /ˈklaʊ.di/",
+          "Cloudy /ˈklaʊ.di/",
+          "Temperature /ˈtem.prə.tʃər/"
+        ]
+      },
+      "24": {
+        "name": "Health",
+        "notes": "comfortable, uncomfortable, sick, cold, body, get sick",
+        "vocabulary": [
+          "Body /ˈbɒd.i/",
+          "Healthy /ˈhel.θi/",
+          "Get sick /ɡet sɪk/",
+          "Sick /sɪk/",
+          "Hospital /ˈhɒs.pɪ.təl/",
+          "Doctor /ˈdɒk.tər/",
+          "See a doctor /siː ə ˈdɒk.tər/",
+          "Take medicine /teɪk ˈmed.ɪ.sən/",
+          "Rest /rest/",
+          "Exercise /ˈek.sə.saɪz/",
+          "Tired /taɪəd/",
+          "Pain /peɪn/",
+          "Catch a cold /kætʃ ə kəʊld/"
+        ]
+      },
+      "25": {
+        "name": "Animals and nature",
+        "notes": "animal, dog, cat, horse, mountain, sea, river",
+        "vocabulary": [
+          "Animal /ˈæn.ɪ.məl/",
+          "Cat /kæt/",
+          "Dog /dɒɡ/",
+          "Bird /bɜːd/",
+          "Fish /fɪʃ/",
+          "Tree /triː/",
+          "Flower /ˈflaʊ.ər/",
+          "Grass /ɡrɑːs/",
+          "Mountain /ˈmaʊn.tɪn/",
+          "Water /ˈwɔː.tər/",
+          "River /ˈrɪv.ər/",
+          "Sea /siː/",
+          "Park /pɑːk/",
+          "Nature /ˈneɪ.tʃər/"
+        ]
+      }
+    }
+  }
+}

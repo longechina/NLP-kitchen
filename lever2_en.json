@@ -1,0 +1,2048 @@
+{
+  "LEVEL_II": {
+    "name": "Intermediate Level of Language Competence",
+    "PRAGMATIC_COMPETENCE": {
+      "name": "Pragmatic Competence - Functional Competence",
+      "1_interact_socially_and_professionally": {
+        "name": "Interact socially and professionally",
+        "1.1": {
+          "name": "Ask and give news and update of someone",
+          "examples": [
+            "Have you been in touch with her recently? How are things going with her work?",
+            "I heard she changed jobs again.",
+            "Do you have any news about him?"
+          ],
+          "vocabulary": [
+            "recently /ˈriː.sənt.li/",
+            "situation /ˌsɪtʃ.uˈeɪ.ʃən/",
+            "change /tʃeɪndʒ/",
+            "become /bɪˈkʌm/",
+            "grow up /ɡrəʊ ʌp/",
+            "develop /dɪˈvel.əp/",
+            "progress /ˈprəʊ.ɡres/",
+            "work /wɜːk/",
+            "life /laɪf/",
+            "study /ˈstʌd.i/",
+            "smoothly /ˈsmuːð.li/",
+            "how is it /haʊ ɪz ɪt/",
+            "long time no see /lɒŋ taɪm nəʊ siː/"
+          ]
+        },
+        "1.2": {
+          "name": "Interact on the phone, or using chat, messaging, and email",
+          "examples": [
+            "Who are you looking for? ... Please hold on.",
+            "Hello, this is ... Could you please ask Xiao Wang to come to the phone?",
+            "Sorry, I can't hear you clearly. Could you speak a little louder?",
+            "If needed, feel free to contact me anytime. By phone or email, both are fine.",
+            "Let's chat another day! Say hello to your family for me."
+          ],
+          "vocabulary": [
+            "make a phone call /meɪk ə fəʊn kɔːl/",
+            "answer the phone /ˈɑːn.sə ðə fəʊn/",
+            "return a call /rɪˈtɜːn ə kɔːl/",
+            "cell phone /ˈsel fəʊn/",
+            "text message /tekst ˈmes.ɪdʒ/",
+            "WeChat /ˈwiː.tʃæt/",
+            "email /ˈiː.meɪl/",
+            "email /ˈiː.meɪl/",
+            "send /send/",
+            "receive /rɪˈsiːv/",
+            "reply /rɪˈplaɪ/",
+            "go online /ɡəʊ ˈɒn.laɪn/",
+            "internet /ˈɪn.tə.net/",
+            "signal /ˈsɪɡ.nəl/",
+            "line busy /laɪn ˈbɪz.i/",
+            "leave a message /liːv ə ˈmes.ɪdʒ/",
+            "online /ˌɒnˈlaɪn/",
+            "log in /lɒɡ ɪn/",
+            "download /ˌdaʊnˈləʊd/",
+            "upload /ˌʌpˈləʊd/",
+            "video /ˈvɪd.i.əʊ/",
+            "voice message /vɔɪs ˈmes.ɪdʒ/"
+          ]
+        },
+        "1.3": {
+          "name": "Express gratitude, compliments, and congratulations",
+          "examples": [
+            "Thank you so much!",
+            "You've helped me so much, I don't know how to thank you!",
+            "You finally got this job. Congratulations!",
+            "A toast to our friendship!",
+            "This event was very successful, congratulations!"
+          ],
+          "vocabulary": [
+            "thanks /θæŋks/",
+            "gratitude /ˈɡræt.ɪ.tjuːd/",
+            "thank you so much /θæŋk juː səʊ mʌtʃ/",
+            "you're welcome /jɔː ˈwel.kəm/",
+            "it's nothing /ɪts ˈnʌθ.ɪŋ/",
+            "it's my duty /ɪts maɪ ˈdjuː.ti/",
+            "awesome /ˈɔː.səm/",
+            "great /ɡreɪt/",
+            "awesome /ˈɔː.səm/",
+            "beautiful /ˈbjuː.tɪ.fəl/",
+            "brilliant /ˈbrɪl.jənt/",
+            "perfect /ˈpɜː.fɪkt/",
+            "congratulations /kənˌɡrætʃ.uˈleɪ.ʃənz/",
+            "congratulations /kənˌɡrætʃ.uˈleɪ.ʃənz/",
+            "wish /wɪʃ/",
+            "good luck /ɡʊd lʌk/",
+            "success /səkˈses/",
+            "cheers /tʃɪəz/"
+          ]
+        },
+        "1.4": {
+          "name": "Express good wishes",
+          "examples": [
+            "Wishing you happiness! Good luck! Wishing you success!",
+            "Safe travels! Have a pleasant journey!"
+          ],
+          "vocabulary": [
+            "wish /wɪʃ/",
+            "hope /həʊp/",
+            "wish /wɪʃ/",
+            "happy /ˈhæp.i/",
+            "happiness /ˈhæp.i.nəs/",
+            "health /helθ/",
+            "safe and sound /seɪf ənd saʊnd/",
+            "smooth /smuːð/",
+            "success /səkˈses/",
+            "good luck /ɡʊd lʌk/",
+            "may all your wishes come true /meɪ ɔːl jɔː ˈwɪʃ.ɪz kʌm truː/",
+            "happy birthday /ˈhæp.i ˈbɜːθ.deɪ/",
+            "happy new year /ˈhæp.i njuː jɪər/",
+            "happy holiday /ˈhæp.i ˈhɒl.ə.deɪ/",
+            "safe journey /seɪf ˈdʒɜː.ni/",
+            "have a smooth trip /hæv ə smuːð trɪp/"
+          ]
+        },
+        "1.5": {
+          "name": "Express care and give encouragement",
+          "examples": [
+            "You didn't pass the exam? It's okay, you'll definitely pass next time!",
+            "I feel like you've been under a lot of work pressure lately. Your health is the most important, you should take a break.",
+            "You will definitely succeed. Come on!"
+          ],
+          "vocabulary": [
+            "be careful /biː ˈkeə.fəl/",
+            "pay attention /peɪ əˈten.ʃən/",
+            "take care /teɪk keər/",
+            "take care of yourself /teɪk keər əv jɔːˈself/",
+            "keep going /kiːp ˈɡəʊ.ɪŋ/",
+            "don't worry /dəʊnt ˈwʌr.i/",
+            "it's okay /ɪts əʊˈkeɪ/",
+            "no problem /nəʊ ˈprɒb.ləm/",
+            "take it slow /teɪk ɪt sləʊ/",
+            "persist /pəˈsɪst/",
+            "work hard /wɜːk hɑːd/",
+            "believe /bɪˈliːv/",
+            "you can do it /juː kæn duː ɪt/",
+            "relax /rɪˈlæks/",
+            "rest /rest/",
+            "tired /taɪəd/"
+          ]
+        },
+        "1.6": {
+          "name": "Offer or receive a gift",
+          "examples": [
+            "This is a little something from me, please accept it.",
+            "This gift is too precious, you're too kind!"
+          ],
+          "vocabulary": [
+            "gift /ɡɪft/",
+            "give /ɡɪv/",
+            "give /ɡɪv/",
+            "accept /əkˈsept/",
+            "receive /rɪˈsiːv/",
+            "thanks /θæŋks/",
+            "like /laɪk/",
+            "you're too kind /jɔː tuː kaɪnd/",
+            "no need, no need /nəʊ niːd nəʊ niːd/",
+            "open /ˈəʊ.pən/",
+            "take a look /teɪk ə lʊk/",
+            "beautiful /ˈbjuː.tɪ.fəl/",
+            "practical /ˈpræk.tɪ.kəl/"
+          ]
+        }
+      },
+      "2_exchange_information_describe_and_narrate": {
+        "name": "Exchange information, describe, and narrate",
+        "2.1": {
+          "name": "Ask and give specific everyday and work-related information",
+          "examples": [
+            "Which department do you work in at Tsinghua University? What exactly are your responsibilities?",
+            "My current job has very few vacation days, and I often need to travel for work, so I don't have time to spend with my kids.",
+            "Has the specific itinerary for our business trip next week been arranged?",
+            "We'll fly to Beijing on Monday, adjust to the time difference on Tuesday, and meet with Director Wang on Wednesday morning..."
+          ],
+          "vocabulary": [
+            "work /wɜːk/",
+            "study /ˈstʌd.i/",
+            "life /laɪf/",
+            "family /ˈfæm.əl.i/",
+            "hobby /ˈhɒb.i/",
+            "time /taɪm/",
+            "place /pleɪs/",
+            "person /ˈpɜː.sən/",
+            "matter /ˈmæt.ər/",
+            "reason /ˈriː.zən/",
+            "result /rɪˈzʌlt/",
+            "way /weɪ/",
+            "method /ˈmeθ.əd/",
+            "process /ˈprəʊ.ses/",
+            "content /ˈkɒn.tent/",
+            "situation /ˌsɪtʃ.uˈeɪ.ʃən/",
+            "information /ˌɪn.fəˈmeɪ.ʃən/",
+            "materials /məˈtɪə.ri.əlz/",
+            "data /ˈdeɪ.tə/",
+            "price /praɪs/",
+            "quantity /ˈkwɒn.tə.ti/",
+            "quality /ˈkwɒl.ə.ti/",
+            "type /taɪp/",
+            "characteristic /ˌkær.ək.təˈrɪs.tɪk/",
+            "requirement /rɪˈkwaɪə.mənt/",
+            "condition /kənˈdɪʃ.ən/",
+            "plan /plæn/",
+            "arrangement /əˈreɪndʒ.mənt/",
+            "meeting /ˈmiː.tɪŋ/",
+            "report /rɪˈpɔːt/",
+            "document /ˈdɒk.jə.mənt/",
+            "task /tɑːsk/",
+            "project /ˈprɒdʒ.ekt/",
+            "experience /ɪkˈspɪə.ri.əns/",
+            "experience /ɪkˈspɪə.ri.əns/"
+          ]
+        },
+        "2.2": {
+          "name": "Ask and give directions and instructions",
+          "examples": [
+            "You need to transfer twice on the subway. After you exit the subway station, follow the signs along the road, and you'll see the person waiting for you.",
+            "For this document, review it first, make sure there are no issues, then have Director Wang sign it, and then send it to these two departments.",
+            "Take this medicine twice a day, three tablets each time, and do not take on an empty stomach."
+          ],
+          "vocabulary": [
+            "how to get there /haʊ tuː ɡet ðeər/",
+            "where is it /weər ɪz ɪt/",
+            "toward /təˈwɔːd/",
+            "direction /daɪˈrek.ʃən/",
+            "in front /ɪn frʌnt/",
+            "behind /bɪˈhaɪnd/",
+            "left /left/",
+            "right /raɪt/",
+            "beside /bɪˈsaɪd/",
+            "opposite /ˈɒp.ə.zɪt/",
+            "intersection /ˌɪn.təˈsek.ʃən/",
+            "traffic light /ˈtræf.ɪk laɪt/",
+            "turn /tɜːn/",
+            "straight /streɪt/",
+            "arrive /əˈraɪv/",
+            "first /fɜːst/",
+            "then /ðen/",
+            "then /ðen/",
+            "finally /ˈfaɪ.nəl.i/",
+            "step /step/",
+            "method /ˈmeθ.əd/",
+            "way /weɪ/",
+            "explain /ɪkˈspleɪn/",
+            "pay attention /peɪ əˈten.ʃən/",
+            "be careful /biː ˈkeə.fəl/",
+            "definitely not /ˈdef.ɪ.nət.li nɒt/",
+            "must /mʌst/"
+          ]
+        },
+        "2.3": {
+          "name": "Ask and give a description of a person, object, or place",
+          "examples": [
+            "Besides appearance, could you be more specific, for example, what is her personality like? What is her attitude toward work?",
+            "My phone is waterproof, and there's a protective film on the screen, so it hasn't broken in five years.",
+            "This meeting room is connected to the internet, has audio equipment, and a projector screen that can be raised and lowered. The rent is 1500 per month."
+          ],
+          "vocabulary": [
+            "what kind /wɒt kaɪnd/",
+            "how /haʊ/",
+            "long /lɒŋ/",
+            "short /ʃɔːt/",
+            "tall /tɔːl/",
+            "short /ʃɔːt/",
+            "fat /fæt/",
+            "thin /θɪn/",
+            "big /bɪɡ/",
+            "small /smɔːl/",
+            "color /ˈkʌl.ər/",
+            "red /red/",
+            "yellow /ˈjel.əʊ/",
+            "blue /bluː/",
+            "green /ɡriːn/",
+            "white /waɪt/",
+            "black /blæk/",
+            "new /njuː/",
+            "old /əʊld/",
+            "beautiful /ˈbjuː.tɪ.fəl/",
+            "ugly /ˈʌɡ.li/",
+            "expensive /ɪkˈspen.sɪv/",
+            "cheap /tʃiːp/",
+            "clean /kliːn/",
+            "dirty /ˈdɜː.ti/",
+            "lively /ˈlaɪv.li/",
+            "quiet /ˈkwaɪ.ət/",
+            "convenient /kənˈviː.ni.ənt/",
+            "environment /ɪnˈvaɪ.rən.mənt/",
+            "place /pleɪs/",
+            "city /ˈsɪt.i/",
+            "countryside /ˈkʌn.tri.saɪd/",
+            "characteristic /ˌkær.ək.təˈrɪs.tɪk/",
+            "personality /ˌpɜː.sənˈæl.ə.ti/",
+            "hair /heər/",
+            "eye /aɪ/",
+            "clothes /kləʊðz/"
+          ]
+        },
+        "2.4": {
+          "name": "Ask and give information about an experience, situation, or event",
+          "examples": [
+            "I attended this training once two years ago, my supervisor asked me to go, but there weren't as many people back then, and the activities weren't as rich.",
+            "The event started with speeches from the leaders, then remarks from the main guests, followed by some performances, and ended with the closing ceremony and dinner. Everything went very smoothly."
+          ],
+          "vocabulary": [
+            "happen /ˈhæp.ən/",
+            "experience /ɪkˈspɪə.ri.əns/",
+            "matter /ˈmæt.ər/",
+            "situation /ˌsɪtʃ.uˈeɪ.ʃən/",
+            "event /ɪˈvent/",
+            "accident /ˈæk.sɪ.dənt/",
+            "news /njuːz/",
+            "news /njuːz/",
+            "hear /hɪər/",
+            "remember /rɪˈmem.bər/",
+            "forget /fəˈɡet/",
+            "when /wen/",
+            "where /weər/",
+            "with whom /wɪð huːm/",
+            "how /haʊ/",
+            "why /waɪ/",
+            "first /fɜːst/",
+            "then /ðen/",
+            "later /ˈleɪ.tər/",
+            "finally /ˈfaɪ.nəl.i/",
+            "le /lə/",
+            "guo /ɡuː/",
+            "before /bɪˈfɔːr/",
+            "after /ˈɑːf.tər/",
+            "when /wen/",
+            "feel /fiːl/",
+            "feel /fiːl/",
+            "how /haʊ/"
+          ]
+        },
+        "2.5": {
+          "name": "Ask and give clarification and explanation",
+          "examples": [
+            "I want to know why you didn't approve my leave request.",
+            "What exactly is going on? Can you explain it more clearly?",
+            "Okay, thank you for your question, let me explain.",
+            "Why do you think you are suitable for this job?"
+          ],
+          "vocabulary": [
+            "what do you mean /wɒt duː juː miːn/",
+            "didn't understand /ˈdɪd.ənt ˌʌn.dəˈstænd/",
+            "say it again /seɪ ɪt əˈɡen/",
+            "slower /ˈsləʊ.ər/",
+            "explain /ɪkˈspleɪn/",
+            "meaning /ˈmiː.nɪŋ/",
+            "that is to say /ðæt ɪz tuː seɪ/",
+            "for example /fɔːr ɪɡˈzɑːm.pəl/",
+            "for example /fɔːr ɪɡˈzɑːm.pəl/",
+            "because /bɪˈkɒz/",
+            "so /səʊ/",
+            "in order to /ɪn ˈɔː.dər tuː/",
+            "purpose /ˈpɜː.pəs/",
+            "reason /ˈriː.zən/",
+            "reason /ˈriː.zən/",
+            "explain /ɪkˈspleɪn/",
+            "specific /spəˈsɪf.ɪk/",
+            "detailed /ˈdiː.teɪld/",
+            "simple /ˈsɪm.pəl/",
+            "clear /klɪər/",
+            "understand /ˌʌn.dəˈstænd/"
+          ]
+        },
+        "2.6": {
+          "name": "Understand and make an announcement",
+          "examples": [
+            "Attention passengers traveling to ... Flight ... is now boarding. Please take your personal belongings, show your boarding pass, and board at gate ... Have a pleasant journey.",
+            "Attention everyone, today's document processing hours are from 8:00 AM to 12:00 PM. After 12:00, all document services will be suspended.",
+            "I have an announcement to make: ..."
+          ],
+          "vocabulary": [
+            "announcement /əˈnaʊns.mənt/",
+            "broadcast /ˈbrɔːd.kɑːst/",
+            "attention /əˈten.ʃən/",
+            "everyone /ˈev.ri.wʌn/",
+            "everyone /ˈev.ri.wʌn/",
+            "Mr. /ˈmɪs.tər/",
+            "Ms. /mɪz/",
+            "welcome /ˈwel.kəm/",
+            "please pay attention /pliːz peɪ əˈten.ʃən/",
+            "start /stɑːt/",
+            "end /end/",
+            "time /taɪm/",
+            "place /pleɪs/",
+            "change /tʃeɪndʒ/",
+            "cancel /ˈkæn.səl/",
+            "delay /dɪˈleɪ/",
+            "sorry /ˈsɒr.i/",
+            "thank you /ˈθæŋk juː/",
+            "cooperation /kəʊˌɒp.ərˈeɪ.ʃən/"
+          ]
+        },
+        "2.7": {
+          "name": "Summarize short narratives, biographies, presentations, and interviews",
+          "examples": [
+            "This story is mainly about a young Iranian man's difficult immigration experience.",
+            "He was born in Guangzhou, China, with ancestral roots in Suzhou, and is a famous Chinese-American architect.",
+            "During the interview, when the reporter asked why he chose this profession, he replied..."
+          ],
+          "vocabulary": [
+            "introduce /ˌɪn.trəˈdjuːs/",
+            "summarize /ˈsʌm.ər.aɪz/",
+            "summarize /ˈsʌm.ər.aɪz/",
+            "main content /meɪn ˈkɒn.tent/",
+            "characteristic /ˌkær.ək.təˈrɪs.tɪk/",
+            "key point /kiː pɔɪnt/",
+            "experience /ɪkˈspɪə.ri.əns/",
+            "background /ˈbæk.ɡraʊnd/",
+            "achievement /əˈtʃiːv.mənt/",
+            "contribution /ˌkɒn.trɪˈbjuː.ʃən/",
+            "influence /ˈɪn.flu.əns/",
+            "significance /sɪɡˈnɪf.ɪ.kəns/",
+            "opinion /əˈpɪn.jən/",
+            "viewpoint /ˈvjuː.pɔɪnt/",
+            "think /θɪŋk/",
+            "finally /ˈfaɪ.nəl.i/",
+            "in short /ɪn ʃɔːt/"
+          ]
+        }
+      },
+      "3_express_feelings_attitudes_and_opinions": {
+        "name": "Express feelings, attitudes, and opinions",
+        "3.1": {
+          "name": "Express basic feelings and emotions",
+          "examples": [
+            "Really? How could they do this!",
+            "I'm very sorry, I really can't help you.",
+            "Unfortunately...",
+            "He was very nervous, of course, when he was interviewed on TV for the first time.",
+            "She was so excited she couldn't speak."
+          ],
+          "vocabulary": [
+            "happy /ˈhæp.i/",
+            "sad /sæd/",
+            "angry /ˈæŋ.ɡri/",
+            "afraid /əˈfreɪd/",
+            "worried /ˈwʌr.id/",
+            "nervous /ˈnɜː.vəs/",
+            "relaxed /rɪˈlækst/",
+            "excited /ɪkˈsaɪ.tɪd/",
+            "disappointed /ˌdɪs.əˈpɔɪn.tɪd/",
+            "satisfied /ˈsæt.ɪs.faɪd/",
+            "dissatisfied /ˌdɪsˈsæt.ɪs.faɪd/",
+            "tired /taɪəd/",
+            "sleepy /ˈsliː.pi/",
+            "pain /peɪn/",
+            "comfortable /ˈkʌm.fə.tə.bəl/",
+            "uncomfortable /ʌnˈkʌm.fə.tə.bəl/",
+            "strange /streɪndʒ/",
+            "surprised /səˈpraɪzd/",
+            "regretful /rɪˈɡret.fəl/",
+            "bored /bɔːd/",
+            "happy /ˈhæp.i/",
+            "painful /ˈpeɪn.fəl/"
+          ]
+        },
+        "3.2": {
+          "name": "Express agreement and disagreement",
+          "examples": [
+            "I completely agree. I support your view.",
+            "I think that's a good idea.",
+            "I don't agree with that view/opinion. I oppose it.",
+            "I don't think so. I think..."
+          ],
+          "vocabulary": [
+            "agree /əˈɡriː/",
+            "disagree /ˌdɪs.əˈɡriː/",
+            "approve /əˈpruːv/",
+            "oppose /əˈpəʊz/",
+            "correct /kəˈrekt/",
+            "incorrect /ˌɪn.kəˈrekt/",
+            "yes /jes/",
+            "no /nəʊ/",
+            "that's right /ðæts raɪt/",
+            "of course /əv kɔːs/",
+            "not necessarily /nɒt ˈnes.ə.ser.ɪl.i/",
+            "I agree /aɪ əˈɡriː/",
+            "I disagree /aɪ ˌdɪs.əˈɡriː/",
+            "I oppose /aɪ əˈpəʊz/",
+            "I think /aɪ θɪŋk/",
+            "I believe /aɪ bɪˈliːv/"
+          ]
+        },
+        "3.3": {
+          "name": "Express interest and indifference",
+          "examples": [
+            "What you're saying is very interesting. Go on.",
+            "Sure, next time you go, remember to invite me.",
+            "Don't talk to me about this. I'm not really interested in this kind of thing.",
+            "I don't really have any opinion."
+          ],
+          "vocabulary": [
+            "interested /ˈɪn.trəs.tɪd/",
+            "interested /ˈɪn.trəs.tɪd/",
+            "not interested /nɒt ˈɪn.trəs.tɪd/",
+            "like /laɪk/",
+            "dislike /dɪsˈlaɪk/",
+            "love /lʌv/",
+            "don't love /dəʊnt lʌv/",
+            "care /keər/",
+            "not care /nɒt keər/",
+            "indifferent /ɪnˈdɪf.ər.ənt/",
+            "whatever /wɒtˈev.ər/",
+            "anything is fine /ˈen.i.θɪŋ ɪz faɪn/",
+            "so-so /ˈsəʊ.səʊ/",
+            "average /ˈæv.ər.ɪdʒ/"
+          ]
+        },
+        "3.4": {
+          "name": "Express intention and willingness",
+          "examples": [
+            "Who is willing to be responsible for notifying all departments? I'll do it.",
+            "I really want to work at your place for a while."
+          ],
+          "vocabulary": [
+            "want /wɒnt/",
+            "want /wɒnt/",
+            "plan /plæn/",
+            "plan /plæn/",
+            "prepare /prɪˈpeər/",
+            "willing /ˈwɪl.ɪŋ/",
+            "unwilling /ʌnˈwɪl.ɪŋ/",
+            "be willing to /biː ˈwɪl.ɪŋ tuː/",
+            "be unwilling to /biː ʌnˈwɪl.ɪŋ tuː/",
+            "dare /deər/",
+            "dare not /deər nɒt/",
+            "decide /dɪˈsaɪd/",
+            "determination /dɪˌtɜː.mɪˈneɪ.ʃən/",
+            "hope /həʊp/"
+          ]
+        },
+        "3.5": {
+          "name": "Express hopes, expectations, and ambitions",
+          "examples": [
+            "I hope I can also work at Tsinghua University! Is it too late to apply now?",
+            "I hope this event can conclude successfully.",
+            "My goal is to be able to... within two years."
+          ],
+          "vocabulary": [
+            "hope /həʊp/",
+            "expect /ɪkˈspekt/",
+            "look forward /lʊk ˈfɔː.wəd/",
+            "dream /driːm/",
+            "ideal /aɪˈdiː.əl/",
+            "goal /ɡəʊl/",
+            "wish /wɪʃ/",
+            "wish /wɪʃ/",
+            "want /wɒnt/",
+            "want /wɒnt/",
+            "become /bɪˈkʌm/",
+            "in the future /ɪn ðə ˈfjuː.tʃər/",
+            "later /ˈleɪ.tər/",
+            "definitely /ˈdef.ɪ.nət.li/",
+            "will /wɪl/",
+            "can /kæn/"
+          ]
+        },
+        "3.6": {
+          "name": "Express satisfaction or concerns",
+          "examples": [
+            "All delegations expressed satisfaction with the meeting schedule.",
+            "The problem is...",
+            "What is worrying is...",
+            "I'm worried that if this year's budget is insufficient, this project won't be completed on time."
+          ],
+          "vocabulary": [
+            "satisfied /ˈsæt.ɪs.faɪd/",
+            "dissatisfied /ˌdɪsˈsæt.ɪs.faɪd/",
+            "not bad /nɒt bæd/",
+            "very good /ˈver.i ɡʊd/",
+            "no problem /nəʊ ˈprɒb.ləm/",
+            "worry /ˈwʌr.i/",
+            "afraid /əˈfreɪd/",
+            "nervous /ˈnɜː.vəs/",
+            "anxious /ˈæŋk.ʃəs/",
+            "trouble /ˈtrʌb.əl/",
+            "have a problem /hæv ə ˈprɒb.ləm/",
+            "need help /niːd help/",
+            "what to do /wɒt tuː duː/"
+          ]
+        },
+        "3.7": {
+          "name": "Express certainty, probability, and doubt",
+          "examples": [
+            "With the joint efforts of all colleagues, this task will certainly be completed.",
+            "I'm afraid there's no time this time.",
+            "I'm wondering if he might have gotten the time wrong.",
+            "I'm not sure if he is willing to participate."
+          ],
+          "vocabulary": [
+            "definitely /ˈdef.ɪ.nət.li/",
+            "certainly /ˈsɜː.tən.li/",
+            "of course /əv kɔːs/",
+            "absolutely /ˌæb.səˈluːt.li/",
+            "maybe /ˈmeɪ.bi/",
+            "perhaps /pəˈhæps/",
+            "probably /ˈprɒb.ə.bli/",
+            "approximately /əˈprɒk.sɪ.mət.li/",
+            "I'm afraid /aɪm əˈfreɪd/",
+            "maybe /ˈmeɪ.bi/",
+            "doubt /daʊt/",
+            "think /θɪŋk/",
+            "believe /bɪˈliːv/",
+            "is it /ɪz ɪt/",
+            "really /ˈrɪə.li/"
+          ]
+        },
+        "3.8": {
+          "name": "Express obligation and necessity",
+          "examples": [
+            "I need to think about your suggestion again.",
+            "Applications must be submitted within the specified date.",
+            "I think it is necessary to bring up this issue again for discussion in this afternoon's meeting."
+          ],
+          "vocabulary": [
+            "should /ʃʊd/",
+            "should /ʃʊd/",
+            "should /ʃʊd/",
+            "must /mʌst/",
+            "have to /hæv tuː/",
+            "need /niːd/",
+            "don't need /dəʊnt niːd/",
+            "not necessary /nɒt ˈnes.ə.ser.i/",
+            "must /mʌst/",
+            "must not /mʌst nɒt/",
+            "had better /hæd ˈbet.ər/"
+          ]
+        },
+        "3.9": {
+          "name": "Give views and opinions",
+          "examples": [
+            "How should this problem be solved? My opinion is...",
+            "I think protecting the environment is not only the responsibility of governments and international organizations, but also something every one of us should do."
+          ],
+          "vocabulary": [
+            "think /θɪŋk/",
+            "believe /bɪˈliːv/",
+            "see /siː/",
+            "think /θɪŋk/",
+            "suggest /səˈdʒest/",
+            "opinion /əˈpɪn.jən/",
+            "viewpoint /ˈvjuː.pɔɪnt/",
+            "opinion /əˈpɪn.jən/",
+            "thought /θɔːt/",
+            "in my opinion /ɪn maɪ əˈpɪn.jən/",
+            "I think /aɪ θɪŋk/",
+            "I believe /aɪ bɪˈliːv/",
+            "right or wrong /raɪt ɔː rɒŋ/",
+            "is it /ɪz ɪt/"
+          ]
+        },
+        "3.10": {
+          "name": "Identify problems/issues and suggest solutions",
+          "examples": [
+            "If this proposal doesn't pass, what should we do?",
+            "The main problem now is...",
+            "In the city where we live, road traffic is a big problem because the population density is high and the city streets are narrow, so there are often traffic jams.",
+            "There is only one solution to this problem: to vigorously develop green public transportation and encourage low-carbon transport."
+          ],
+          "vocabulary": [
+            "problem /ˈprɒb.ləm/",
+            "trouble /ˈtrʌb.əl/",
+            "difficulty /ˈdɪf.ɪ.kəl.ti/",
+            "what to do /wɒt tuː duː/",
+            "solve /sɒlv/",
+            "way /weɪ/",
+            "method /ˈmeθ.əd/",
+            "suggestion /səˈdʒes.tʃən/",
+            "opinion /əˈpɪn.jən/",
+            "can /kæn/",
+            "can /kæn/",
+            "try /traɪ/",
+            "a bit /ə bɪt/",
+            "should /ʃʊd/",
+            "had better /hæd ˈbet.ər/",
+            "perhaps /pəˈhæps/",
+            "maybe /ˈmeɪ.bi/",
+            "need /niːd/",
+            "help /help/"
+          ]
+        }
+      },
+      "4_regulate_actions_with_others": {
+        "name": "Regulate actions with others",
+        "4.1": {
+          "name": "Make arrangement for an appointment, order, or reservation",
+          "examples": [
+            "Let's have a meeting at 10 AM on Wednesday. Do you have time? I want to discuss your work performance this year. It won't take more than an hour.",
+            "I don't eat meat. Do you have vegetarian dishes?",
+            "I want to order ten meal sets, each with an extra bottle of drink. Can you deliver them before 11:30 AM?"
+          ],
+          "vocabulary": [
+            "arrange /əˈreɪndʒ/",
+            "make an appointment /meɪk ən əˈpɔɪnt.mənt/",
+            "meet /miːt/",
+            "time /taɪm/",
+            "place /pleɪs/",
+            "when /wen/",
+            "where /weər/",
+            "what time /wɒt taɪm/",
+            "can /kæn/",
+            "ma /mɑː/",
+            "no problem /nəʊ ˈprɒb.ləm/",
+            "okay /əʊˈkeɪ/",
+            "okay /əʊˈkeɪ/",
+            "book /bʊk/",
+            "reserve /rɪˈzɜːv/",
+            "room /ruːm/",
+            "seat /siːt/",
+            "ticket /ˈtɪk.ɪt/",
+            "order food /ˈɔː.dər fuːd/",
+            "order meal /ˈɔː.dər miːl/",
+            "want /wɒnt/",
+            "this /ðɪs/",
+            "that /ðæt/",
+            "how much /haʊ mʌtʃ/"
+          ]
+        },
+        "4.2": {
+          "name": "Ask and offer help or services",
+          "examples": [
+            "Can I book plane tickets here?",
+            "Is there a direct bus from here to the airport?",
+            "Do you need help?",
+            "The training department offers courses in the six UN languages."
+          ],
+          "vocabulary": [
+            "help /help/",
+            "help /help/",
+            "can /kæn/",
+            "can /kæn/",
+            "need /niːd/",
+            "ma /mɑː/",
+            "thank you /ˈθæŋk juː/",
+            "trouble /ˈtrʌb.əl/",
+            "a moment /ə ˈməʊ.mənt/",
+            "may I ask /meɪ aɪ ɑːsk/",
+            "service /ˈsɜː.vɪs/",
+            "attendant /əˈten.dənt/",
+            "let me /let miː/",
+            "let me help you /let miː help juː/",
+            "do you need help /duː juː niːd help/"
+          ]
+        },
+        "4.3": {
+          "name": "Authorize or forbid an act",
+          "examples": [
+            "Tsinghua University's relevant departments allow and support employees working from home.",
+            "Please do not smoke indoors.",
+            "Photography is prohibited here."
+          ],
+          "vocabulary": [
+            "can /kæn/",
+            "can /kæn/",
+            "okay /əʊˈkeɪ/",
+            "not okay /nɒt əʊˈkeɪ/",
+            "cannot /ˈkæn.ɒt/",
+            "cannot /ˈkæn.ɒt/",
+            "not allowed /nɒt əˈlaʊd/",
+            "forbidden /fəˈbɪd.ən/",
+            "allow /əˈlaʊ/",
+            "agree /əˈɡriː/",
+            "disagree /ˌdɪs.əˈɡriː/",
+            "let /let/",
+            "not let /nɒt let/",
+            "must /mʌst/",
+            "must /mʌst/",
+            "must not /mʌst nɒt/",
+            "don't /dəʊnt/"
+          ]
+        },
+        "4.4": {
+          "name": "Make and respond to a suggestion or advice",
+          "examples": [
+            "Do you have any better ideas?",
+            "Try to drink less sugary drinks and eat more vegetables and fruits.",
+            "How about this: contact your colleagues in the math department to see if they can help.",
+            "I propose / I suggest..."
+          ],
+          "vocabulary": [
+            "suggest /səˈdʒest/",
+            "opinion /əˈpɪn.jən/",
+            "can /kæn/",
+            "should /ʃʊd/",
+            "had better /hæd ˈbet.ər/",
+            "try /traɪ/",
+            "a bit /ə bɪt/",
+            "ba /bɑː/",
+            "how about /haʊ əˈbaʊt/",
+            "okay /əʊˈkeɪ/",
+            "okay /əʊˈkeɪ/",
+            "okay /əʊˈkeɪ/",
+            "no problem /nəʊ ˈprɒb.ləm/",
+            "not okay /nɒt əʊˈkeɪ/",
+            "not so good /nɒt səʊ ɡʊd/",
+            "I think /aɪ θɪŋk/",
+            "maybe /ˈmeɪ.bi/",
+            "maybe /ˈmeɪ.bi/"
+          ]
+        },
+        "4.5": {
+          "name": "Make and respond to a request",
+          "examples": [
+            "Can you send that report by Friday?",
+            "Please let me know your decision as soon as possible.",
+            "For this document, review it first, make sure there are no issues, then have Director Wang sign it, and then send it to these two departments. Can you finish by 10 o'clock?"
+          ],
+          "vocabulary": [
+            "please /pliːz/",
+            "can /kæn/",
+            "can /kæn/",
+            "help /help/",
+            "a bit /ə bɪt/",
+            "ma /mɑː/",
+            "trouble /ˈtrʌb.əl/",
+            "may I ask /meɪ aɪ ɑːsk/",
+            "okay /əʊˈkeɪ/",
+            "okay /əʊˈkeɪ/",
+            "okay /əʊˈkeɪ/",
+            "no problem /nəʊ ˈprɒb.ləm/",
+            "sorry /ˈsɒr.i/",
+            "not okay /nɒt əʊˈkeɪ/",
+            "not now /nɒt naʊ/",
+            "wait a moment /weɪt ə ˈməʊ.mənt/"
+          ]
+        }
+      },
+      "5_organize_the_speech": {
+        "name": "Organize the speech",
+        "5.1": {
+          "name": "Initiate, maintain, and close conversations",
+          "examples": [
+            "Shall we begin?",
+            "The topic we want to discuss today is...",
+            "Where were we?",
+            "Sorry to interrupt, let's focus on the main issue first.",
+            "We're running out of time, let's end the discussion here!"
+          ],
+          "vocabulary": [
+            "hello /həˈləʊ/",
+            "hello /ˈhə.ləʊ/",
+            "hey /weɪ/",
+            "long time no see /lɒŋ taɪm nəʊ siː/",
+            "how have you been /haʊ hæv juː biːn/",
+            "busy /ˈbɪz.i/",
+            "really /ˈrɪə.li/",
+            "really /ˈrɪə.li/",
+            "and then /ænd ðen/",
+            "and then /ænd ðen/",
+            "yes /jes/",
+            "yes /jes/",
+            "uh /ʌn/",
+            "ah /ɑː/",
+            "okay /əʊˈkeɪ/",
+            "okay /əʊˈkeɪ/",
+            "no problem /nəʊ ˈprɒb.ləm/",
+            "goodbye /ˌɡʊdˈbaɪ/",
+            "see you tomorrow /siː juː təˈmɒr.əʊ/",
+            "talk next time /tɔːk nekst taɪm/",
+            "bye /baɪ/"
+          ]
+        },
+        "5.2": {
+          "name": "Request to speak and ask somebody to speak",
+          "examples": [
+            "Can I say a few words?",
+            "Xiao Gao is familiar with this situation, let's have him introduce it!"
+          ],
+          "vocabulary": [
+            "I want to say /aɪ wɒnt tuː seɪ/",
+            "let me say /let miː seɪ/",
+            "may I ask /meɪ aɪ ɑːsk/",
+            "you say /juː seɪ/",
+            "please speak /pliːz spiːk/",
+            "louder /ˈlaʊ.dər/",
+            "slower /ˈsləʊ.ər/",
+            "say it again /seɪ ɪt əˈɡen/",
+            "what do you mean /wɒt duː juː miːn/",
+            "didn't hear /ˈdɪd.ənt hɪər/"
+          ]
+        },
+        "5.3": {
+          "name": "Check understanding",
+          "examples": [
+            "Do you understand what I mean?",
+            "If I'm not mistaken, you mean...",
+            "If you have any questions, please feel free to ask."
+          ],
+          "vocabulary": [
+            "understand /ˌʌn.dəˈstænd/",
+            "understand /ʌn.dəˈstænd/",
+            "clear /klɪər/",
+            "know /nəʊ/",
+            "understand /ˌʌn.dəˈstænd/",
+            "understand /ˌʌn.dəˈstænd/",
+            "understand /ʌn.dəˈstænd/",
+            "clear /klɪər/",
+            "know /nəʊ/",
+            "don't understand /dəʊnt ˌʌn.dəˈstænd/",
+            "don't understand /dəʊnt ʌn.dəˈstænd/",
+            "not clear /nɒt klɪər/",
+            "what do you mean /wɒt duː juː miːn/",
+            "you mean /juː miːn/",
+            "what I mean is /wɒt aɪ miːn ɪz/"
+          ]
+        },
+        "5.4": {
+          "name": "Use connecting words expressing cause and effect, contrast, etc.",
+          "examples": [
+            "I agree, time is tight, but from another perspective...",
+            "Therefore, it is inevitable that such a situation would occur."
+          ],
+          "vocabulary": [
+            "because /bɪˈkɒz/",
+            "so /səʊ/",
+            "due to /djuː tuː/",
+            "therefore /ˈðeə.fɔːr/",
+            "but /bʌt/",
+            "but /bʌt/",
+            "however /haʊˈev.ər/",
+            "however /raːˈnɑː/",
+            "although /ɔːlˈðəʊ/",
+            "although /ɔːlˈðəʊ/",
+            "and /ænd/",
+            "and /ænd/",
+            "not only /nɒt ˈəʊn.li/",
+            "also /ˈɔːl.səʊ/",
+            "besides /bɪˈsaɪdz/",
+            "also /ˈɔːl.səʊ/",
+            "if /ɪf/",
+            "if /ɪf/",
+            "then /ðen/",
+            "then /ðen/",
+            "otherwise /ˈʌð.ə.waɪz/",
+            "otherwise /ˈʌð.ə.waɪz/",
+            "as long as /æz lɒŋ æz/",
+            "only if /ˈəʊn.li ɪf/",
+            "no matter /nəʊ ˈmæt.ər/",
+            "no matter /nəʊ ˈmæt.ər/",
+            "even if /ˈiː.vən ɪf/",
+            "even if /ˈiː.vən ɪf/",
+            "since /sɪns/",
+            "then /ðen/",
+            "then /ðen/",
+            "so /səʊ/",
+            "finally /ˈfaɪ.nəl.i/",
+            "in short /ɪn ʃɔːt/"
+          ]
+        }
+      }
+    },
+    "LINGUISTIC_COMPETENCE_MORPHOLOGY_SYNTAX": {
+      "name": "Linguistic Competence - Morphology and Syntax",
+      "1": {
+        "name": "Pronouns",
+        "notes": "it, we (inclusive), other",
+        "vocabulary": [
+          "this /ðɪs/",
+          "each /iːtʃ/",
+          "each one /iːtʃ wʌn/",
+          "certain /ˈsɜː.tən/",
+          "the rest /ðə rest/",
+          "other /ˈʌð.ər/",
+          "others /ˈʌð.əz/",
+          "oneself /wʌnˈself/",
+          "the other party /ði ˈʌð.ər ˈpɑː.ti/",
+          "both sides /bəʊθ saɪdz/"
+        ]
+      },
+      "2": {
+        "name": "Measure words",
+        "notes": "set, frame, unit, pack, box, kind, copy, plate, bowl, bottle, layer, letter, pair, pair, meter, kilometer, kilogram, jin (half kg), piece, time (as in occurrence), trip, event, line, row, tree, box",
+        "vocabulary": [
+          "ba /bɑː/",
+          "times /taɪmz/",
+          "dozen /ˈdʌz.ən/",
+          "copy /ˈkɒp.i/",
+          "root /ruːt/",
+          "row /rəʊ/",
+          "level /ˈlev.əl/",
+          "tree /triː/",
+          "type /taɪp/",
+          "column /ˈkɒl.əm/",
+          "plate /pleɪt/",
+          "song /sɒŋ/",
+          "pair /peər/",
+          "set /set/",
+          "item /ˈaɪ.təm/",
+          "stick /stɪk/",
+          "kind /kaɪnd/"
+        ]
+      },
+      "3": {
+        "name": "Conjunctions and connectors",
+        "3.1": {
+          "name": "Coordination",
+          "notes": "on one hand... on the other hand...",
+          "vocabulary": [
+            "and /ænd/",
+            "and /ænd/",
+            "and /ænd/",
+            "both /bəʊθ/",
+            "also /ˈɔːl.səʊ/",
+            "also /ˈɔːl.səʊ/",
+            "at the same time /æt ðə seɪm taɪm/",
+            "in addition /ɪn əˈdɪʃ.ən/"
+          ]
+        },
+        "3.2": {
+          "name": "Progression",
+          "notes": "the more... the more...",
+          "vocabulary": [
+            "then /ðen/",
+            "so /səʊ/",
+            "later /ˈleɪ.tər/",
+            "afterwards /ˈɑːf.tə.wədz/"
+          ]
+        },
+        "3.3": {
+          "name": "Choice",
+          "notes": "either... or...",
+          "vocabulary": [
+            "or /ɔːr/",
+            "or /ɔːr/"
+          ]
+        },
+        "3.4": {
+          "name": "Condition",
+          "notes": "since... then...; even if... still...; as long as... then...; only if... then...; no matter... all...",
+          "vocabulary": [
+            "if /ɪf/",
+            "if /ɪf/",
+            "as long as /æz lɒŋ æz/",
+            "only if /ˈəʊn.li ɪf/",
+            "if /ɪf/"
+          ]
+        },
+        "3.5": {
+          "name": "Addition",
+          "notes": "in addition, besides; especially; and",
+          "vocabulary": [
+            "in addition /ɪn əˈdɪʃ.ən/",
+            "besides /bɪˈsaɪdz/",
+            "also /ˈɔːl.səʊ/"
+          ]
+        },
+        "3.6": {
+          "name": "Contrast",
+          "notes": "although... but...",
+          "vocabulary": [
+            "however /haʊˈev.ər/",
+            "but /bʌt/",
+            "but /bʌt/",
+            "instead /ɪnˈsted/",
+            "but /bʌt/",
+            "but /bʌt/",
+            "however /haʊˈev.ər/",
+            "although /ɔːlˈðəʊ/",
+            "although /ɔːlˈðəʊ/"
+          ]
+        },
+        "3.7": {
+          "name": "Reference",
+          "notes": "in the opinion of...; generally speaking",
+          "vocabulary": [
+            "about /əˈbaʊt/",
+            "regarding /rɪˈɡɑː.dɪŋ/",
+            "as for /æz fɔːr/"
+          ]
+        },
+        "3.8": {
+          "name": "Illustration",
+          "notes": "for example",
+          "vocabulary": [
+            "for example /fɔːr ɪɡˈzɑːm.pəl/",
+            "for example /fɔːr ɪɡˈzɑːm.pəl/"
+          ]
+        },
+        "3.9": {
+          "name": "Cause and effect",
+          "notes": "therefore",
+          "vocabulary": [
+            "therefore /ˈðeə.fɔːr/",
+            "due to /djuː tuː/",
+            "because /bɪˈkɒz/",
+            "so /səʊ/"
+          ]
+        },
+        "3.10": {
+          "name": "Highlight",
+          "notes": "even... also/even...",
+          "vocabulary": [
+            "at least /æt liːst/",
+            "even /ˈiː.vən/",
+            "especially /ɪˈspeʃ.əl.i/"
+          ]
+        }
+      },
+      "4": {
+        "name": "Using 地 to describe the manner of an action",
+        "examples": [
+          "He carefully wrote a few characters on the paper."
+        ],
+        "vocabulary": [
+          "carefully /ˈkeə.fəl.i/",
+          "carefully /ˈkeə.fəl.i/",
+          "slowly /ˈsləʊ.li/",
+          "gradually /ˈɡrædʒ.u.ə.li/",
+          "suddenly /ˈsʌd.ən.li/",
+          "clearly /ˈklɪə.li/",
+          "fully /ˈfʊl.i/",
+          "thoroughly /ˈθʌr.ə.li/",
+          "directly /daɪˈrekt.li/",
+          "initiative /ɪˈnɪʃ.ə.tɪv/",
+          "quickly /ˈkwɪk.li/",
+          "warmly /ˈwɔːm.li/"
+        ]
+      },
+      "5": {
+        "name": "Reduplication of adjectives, adverbs, and measure words",
+        "notes": "nice and neat, comfortably, rows of buildings",
+        "vocabulary": [
+          "slowly /ˈsləʊ.li/",
+          "gradually /ˈɡrædʒ.u.ə.li/",
+          "properly /ˈprɒp.ə.li/",
+          "often /ˈɒf.ən/",
+          "one after another /wʌn ˈɑːf.tər əˈnʌð.ər/"
+        ]
+      },
+      "6": {
+        "name": "Comparing actions",
+        "examples": [
+          "I came much earlier than him.",
+          "My French is not as good as his.",
+          "He drives better than me.",
+          "I earn as much as you."
+        ],
+        "vocabulary": [
+          "compare /kəmˈpeər/",
+          "contrast /ˈkɒn.trɑːst/",
+          "same /seɪm/",
+          "similar /ˈsɪm.ɪ.lər/",
+          "opposite /ˈɒp.ə.zɪt/"
+        ]
+      },
+      "7": {
+        "name": "Indicating quantitative limits with 至多、至少",
+        "examples": [
+          "At least ten people will attend this meeting."
+        ],
+        "vocabulary": []
+      },
+      "8": {
+        "name": "Indicating time sequence with 之前、之后",
+        "examples": [
+          "We need to discuss before/after the meeting."
+        ],
+        "vocabulary": []
+      },
+      "9": {
+        "name": "Modal verb 得、必须、不得不",
+        "examples": [
+          "Sorry, I have to go home early today and can't go to dinner with everyone.",
+          "In the future, you must ask me first about such matters.",
+          "Although I know he might be very disappointed, I have to tell him this result."
+        ],
+        "vocabulary": []
+      },
+      "10": {
+        "name": "Using 着 to indicate continuation",
+        "examples": [
+          "He likes to sleep with the light on.",
+          "It's raining outside, don't go out."
+        ],
+        "vocabulary": []
+      },
+      "11": {
+        "name": "Double 了 structure",
+        "examples": [
+          "You've asked him about this question twice already.",
+          "They've been chatting for two or three hours."
+        ],
+        "vocabulary": []
+      },
+      "12": {
+        "name": "Verb complements",
+        "12.1": {
+          "name": "Resultative complement",
+          "examples": [
+            "She hasn't finished writing this thesis yet.",
+            "Did you wash this clothes clean?"
+          ],
+          "vocabulary": [
+            "off /ɒf/",
+            "empty /ˈemp.ti/",
+            "dead /ded/",
+            "fall /fɔːl/",
+            "broken /ˈbrəʊ.kən/",
+            "broken /ˈbrəʊ.kən/",
+            "through /θruː/",
+            "become /bɪˈkʌm/"
+          ]
+        },
+        "12.2": {
+          "name": "Potential complement",
+          "examples": [
+            "Can you finish writing this thesis or not?",
+            "I can't afford to buy this house."
+          ],
+          "vocabulary": [
+            "can /kæn/",
+            "cannot /ˈkæn.ɒt/",
+            "off /ɒf/",
+            "empty /ˈemp.ti/",
+            "dead /ded/",
+            "fall /fɔːl/",
+            "broken /ˈbrəʊ.kən/",
+            "broken /ˈbrəʊ.kən/",
+            "through /θruː/",
+            "become /bɪˈkʌm/"
+          ]
+        },
+        "12.3": {
+          "name": "Complex directional complement",
+          "examples": [
+            "He walked down from upstairs.",
+            "I remember now, we've met before.",
+            "A car is coming over from ahead.",
+            "Go on speaking, what you're saying is very interesting.",
+            "He looks a bit tired."
+          ],
+          "vocabulary": [
+            "up /ʌp/",
+            "up /ʌp/",
+            "down /daʊn/",
+            "down /daʊn/",
+            "in /ɪn/",
+            "in /ɪn/",
+            "out /aʊt/",
+            "out /aʊt/",
+            "back /bæk/",
+            "back /bæk/",
+            "over /ˈəʊ.vər/",
+            "over /ˈəʊ.vər/",
+            "up /ʌp/"
+          ]
+        }
+      },
+      "13": {
+        "name": "把 structure",
+        "13.1": {
+          "name": "To indicate a movement",
+          "examples": [
+            "Please bring the computer over."
+          ],
+          "vocabulary": []
+        },
+        "13.2": {
+          "name": "To indicate the effect applied",
+          "examples": [
+            "I have already washed the dishes clean.",
+            "Translate this article into Chinese."
+          ],
+          "vocabulary": []
+        }
+      },
+      "14": {
+        "name": "Use the 被 structure to indicate adversity",
+        "examples": [
+          "His wallet was stolen.",
+          "She was criticized by her supervisor."
+        ],
+        "vocabulary": []
+      },
+      "15": {
+        "name": "Using 又 to express the duplication of a fact",
+        "examples": [
+          "He came to see you again yesterday, and brought you a book.",
+          "Tomorrow is the weekend again."
+        ],
+        "vocabulary": []
+      },
+      "16": {
+        "name": "怎么 expressing surprise or incomprehension",
+        "examples": [
+          "What are you doing here?",
+          "How could he say something like that?"
+        ],
+        "vocabulary": []
+      },
+      "17": {
+        "name": "Expressing 'any' or 'none' with question words and 都 or 也",
+        "examples": [
+          "I haven't told anyone about this.",
+          "You can come anytime.",
+          "He didn't say anything."
+        ],
+        "vocabulary": []
+      },
+      "18": {
+        "name": "一点儿也/都不 and 一……也/都不……",
+        "examples": [
+          "I don't like this place at all.",
+          "I haven't read a single page of this thesis yet."
+        ],
+        "vocabulary": []
+      },
+      "19": {
+        "name": "还是 indicating an alternative as a personal preference or advice",
+        "examples": [
+          "Driving might be slower because your area often has traffic jams, so you'd better take the subway.",
+          "8 AM is a bit too early, so let's meet at 9 AM instead."
+        ],
+        "vocabulary": []
+      },
+      "20": {
+        "name": "来 used to attract attention or engage in a conversation",
+        "examples": [
+          "Let's discuss this issue.",
+          "Come take a look at this document."
+        ],
+        "vocabulary": []
+      },
+      "21": {
+        "name": "Particles 呢、啊 to soften the tone",
+        "examples": [
+          "What exactly is going on?",
+          "Don't worry!"
+        ],
+        "vocabulary": []
+      },
+      "22": {
+        "name": "Emphatic adverb 可",
+        "examples": [
+          "You must not drink too much!",
+          "This matter had a huge impact on him!"
+        ],
+        "vocabulary": []
+      },
+      "23": {
+        "name": "Preposition",
+        "23.1": {
+          "name": "Use 由 to indicate by whom an action is to be carried out",
+          "examples": [
+            "Let you organize this event."
+          ],
+          "vocabulary": []
+        },
+        "23.2": {
+          "name": "Use 为(了) to indicate purpose",
+          "examples": [
+            "He went to bed very late yesterday preparing for this meeting."
+          ],
+          "vocabulary": []
+        }
+      }
+    },
+    "LINGUISTIC_COMPETENCE_LEXIS": {
+      "name": "Linguistic Competence - Lexis",
+      "1": {
+        "name": "Big numbers",
+        "notes": "ten thousand, million, hundred million, billion",
+        "vocabulary": [
+          "ten million /ten ˈmɪl.jən/",
+          "hundred million /ˈhʌn.drəd ˈmɪl.jən/",
+          "times /taɪmz/"
+        ]
+      },
+      "2": {
+        "name": "Approximate numbers",
+        "notes": "a dozen or so, three or four pages, about, around",
+        "vocabulary": [
+          "about /əˈbaʊt/",
+          "probably /ˈprɒb.ə.bli/",
+          "about /əˈbaʊt/",
+          "almost /ˈɔːl.məʊst/",
+          "nearly /ˈnɪə.li/",
+          "at least /æt liːst/"
+        ]
+      },
+      "3": {
+        "name": "Signs, services in public spaces",
+        "vocabulary": [
+          "entrance /ˈen.trəns/",
+          "exit /ˈek.sɪt/",
+          "safety /ˈseɪf.ti/",
+          "danger /ˈdeɪn.dʒər/",
+          "forbidden /fəˈbɪd.ən/",
+          "stop /stɒp/",
+          "station /ˈsteɪ.ʃən/",
+          "ticket office /ˈtɪk.ɪt ˌɒf.ɪs/",
+          "service desk /ˈsɜː.vɪs desk/",
+          "restroom /ˈrest.ruːm/",
+          "restroom /ˈrest.ruːm/",
+          "elevator /ˈel.ɪ.veɪ.tər/",
+          "stairs /steəz/",
+          "parking lot /ˈpɑː.kɪŋ lɒt/",
+          "supermarket /ˈsuː.pə.mɑː.kɪt/",
+          "bank /bæŋk/",
+          "post office /ˈpəʊst ˌɒf.ɪs/",
+          "hospital /ˈhɒs.pɪ.təl/",
+          "school /skuːl/",
+          "library /ˈlaɪ.brər.i/",
+          "park /pɑːk/",
+          "museum /mjuːˈziː.əm/",
+          "gymnasium /dʒɪmˈneɪ.zi.əm/",
+          "airport /ˈeə.pɔːt/",
+          "train station /treɪn ˈsteɪ.ʃən/",
+          "subway /ˈsʌb.weɪ/",
+          "bus /bʌs/"
+        ]
+      },
+      "4": {
+        "name": "Food and drink",
+        "vocabulary": [
+          "delicacy /ˈdel.ɪ.kə.si/",
+          "dish /dɪʃ/",
+          "soup /suːp/",
+          "main food /meɪn fuːd/",
+          "rice /raɪs/",
+          "noodles /ˈnuː.dəlz/",
+          "steamed bun /stiːmd bʌn/",
+          "dumplings /ˈdʌm.plɪŋz/",
+          "bread /bred/",
+          "cake /keɪk/",
+          "meat /miːt/",
+          "fish /fɪʃ/",
+          "shrimp /ʃrɪmp/",
+          "egg /eɡ/",
+          "milk /mɪlk/",
+          "yogurt /ˈjɒɡ.ət/",
+          "coffee /ˈkɒf.i/",
+          "tea /tiː/",
+          "juice /dʒuːs/",
+          "beer /bɪər/",
+          "red wine /red waɪn/",
+          "sugar /ˈʃʊɡ.ər/",
+          "salt /sɒlt/",
+          "oil /ɔɪl/",
+          "soy sauce /ˈsɔɪ ˌsɔːs/",
+          "vinegar /ˈvɪn.ɪ.ɡər/",
+          "chili /ˈtʃɪl.i/",
+          "fruit /fruːt/",
+          "vegetable /ˈvedʒ.tə.bəl/",
+          "apple /ˈæp.əl/",
+          "banana /bəˈnɑː.nə/",
+          "watermelon /ˈwɔː.təˌmel.ən/",
+          "cucumber /ˈkjuː.kʌm.bər/",
+          "potato /pəˈteɪ.təʊ/",
+          "tofu /ˈtəʊ.fuː/"
+        ]
+      },
+      "5": {
+        "name": "Housing",
+        "vocabulary": [
+          "house /haʊs/",
+          "room /ruːm/",
+          "room /ruːm/",
+          "apartment /əˈpɑːt.mənt/",
+          "neighborhood /ˈneɪ.bə.hʊd/",
+          "community /kəˈmjuː.nə.ti/",
+          "neighbor /ˈneɪ.bər/",
+          "landlord /ˈlænd.lɔːd/",
+          "rent /rent/",
+          "rent /rent/",
+          "buy /baɪ/",
+          "sell /sel/",
+          "renovate /ˈren.ə.veɪt/",
+          "furniture /ˈfɜː.nɪ.tʃər/",
+          "bed /bed/",
+          "table /ˈteɪ.bəl/",
+          "chair /tʃeər/",
+          "sofa /ˈsəʊ.fə/",
+          "cabinet /ˈkæb.ɪ.nət/",
+          "bookshelf /ˈbʊk.ʃelf/",
+          "kitchen /ˈkɪtʃ.ɪn/",
+          "toilet /ˈtɔɪ.lət/",
+          "balcony /ˈbæl.kə.ni/",
+          "yard /jɑːd/",
+          "key /kiː/",
+          "lock /lɒk/",
+          "light /laɪt/",
+          "air conditioner /eər kənˈdɪʃ.ən.ər/",
+          "heating /ˈhiː.tɪŋ/",
+          "hot water /hɒt ˈwɔː.tər/",
+          "utilities /juːˈtɪl.ə.tiz/"
+        ]
+      },
+      "6": {
+        "name": "Routine activities, personal care, and chores",
+        "vocabulary": [
+          "get up /ɡet ʌp/",
+          "brush teeth /brʌʃ tiːθ/",
+          "wash face /wɒʃ feɪs/",
+          "take a shower /teɪk ə ˈʃaʊ.ər/",
+          "wash hair /wɒʃ heər/",
+          "dry hair /draɪ heər/",
+          "put on clothes /pʊt ɒn kləʊðz/",
+          "take off clothes /teɪk ɒf kləʊðz/",
+          "eat /iːt/",
+          "drink water /drɪŋk ˈwɔː.tər/",
+          "go to work /ɡəʊ tuː wɜːk/",
+          "get off work /ɡet ɒf wɜːk/",
+          "go to class /ɡəʊ tuː klɑːs/",
+          "finish class /ˈfɪn.ɪʃ klɑːs/",
+          "go home /ɡəʊ həʊm/",
+          "sleep /sliːp/",
+          "rest /rest/",
+          "clean /kliːn/",
+          "do laundry /duː ˈlɔːn.dri/",
+          "cook /kʊk/",
+          "wash dishes /wɒʃ ˈdɪʃ.ɪz/",
+          "take out trash /teɪk aʊt træʃ/",
+          "shop /ʃɒp/",
+          "wait /weɪt/",
+          "wait /weɪt/"
+        ]
+      },
+      "7": {
+        "name": "Travel and tourism",
+        "vocabulary": [
+          "travel /ˈtræv.əl/",
+          "travel /ˈtræv.əl/",
+          "tourist /ˈtʊə.rɪst/",
+          "tour guide /tʊər ɡaɪd/",
+          "attraction /əˈtræk.ʃən/",
+          "scenery /ˈsiː.nər.i/",
+          "entrance ticket /ˈen.trəns ˈtɪk.ɪt/",
+          "ticket /ˈtɪk.ɪt/",
+          "airplane /ˈeə.pleɪn/",
+          "train /treɪn/",
+          "high-speed rail /haɪ spiːd reɪl/",
+          "subway /ˈsʌb.weɪ/",
+          "bus /bʌs/",
+          "taxi /ˈtæk.si/",
+          "drive /draɪv/",
+          "park /pɑːk/",
+          "walk /wɔːk/",
+          "map /mæp/",
+          "navigation /ˌnæv.ɪˈɡeɪ.ʃən/",
+          "hotel /həʊˈtel/",
+          "inn /ɪn/",
+          "room /ruːm/",
+          "reserve /rɪˈzɜːv/",
+          "check out /tʃek aʊt/",
+          "luggage /ˈlʌɡ.ɪdʒ/",
+          "passport /ˈpɑːs.pɔːt/",
+          "visa /ˈviː.zə/",
+          "holiday /ˈhɒl.ə.deɪ/",
+          "weekend /ˌwiːkˈend/",
+          "seaside /ˈsiː.saɪd/",
+          "mountain /ˈmaʊn.tɪn/",
+          "river /ˈrɪv.ər/",
+          "lake /leɪk/"
+        ]
+      },
+      "8": {
+        "name": "Learning and working",
+        "vocabulary": [
+          "study /ˈstʌd.i/",
+          "work /wɜːk/",
+          "go to class /ɡəʊ tuː klɑːs/",
+          "finish class /ˈfɪn.ɪʃ klɑːs/",
+          "exam /ɪɡˈzæm/",
+          "grade /ɡreɪd/",
+          "homework /ˈhəʊm.wɜːk/",
+          "practice /ˈpræk.tɪs/",
+          "review /rɪˈvjuː/",
+          "preview /ˈpriː.vjuː/",
+          "research /rɪˈsɜːtʃ/",
+          "experiment /ɪkˈsper.ɪ.mənt/",
+          "project /ˈprɒdʒ.ekt/",
+          "report /rɪˈpɔːt/",
+          "thesis /ˈθiː.sɪs/",
+          "meeting /ˈmiː.tɪŋ/",
+          "training /ˈtreɪ.nɪŋ/",
+          "internship /ˈɪn.tɜːn.ʃɪp/",
+          "experience /ɪkˈspɪə.ri.əns/",
+          "ability /əˈbɪl.ə.ti/",
+          "knowledge /ˈnɒl.ɪdʒ/",
+          "major /ˈmeɪ.dʒər/",
+          "course /kɔːs/",
+          "textbook /ˈtekst.bʊk/",
+          "classroom /ˈklɑːs.ruːm/",
+          "laboratory /ləˈbɒr.ə.tər.i/",
+          "library /ˈlaɪ.brər.i/",
+          "office /ˈɒf.ɪs/",
+          "company /ˈkʌm.pə.ni/",
+          "work unit /wɜːk ˈjuː.nɪt/"
+        ]
+      },
+      "9": {
+        "name": "Professions",
+        "vocabulary": [
+          "profession /prəˈfeʃ.ən/",
+          "major /ˈmeɪ.dʒər/",
+          "engineer /ˌen.dʒɪˈnɪər/",
+          "lawyer /ˈlɔː.jər/",
+          "doctor /ˈdɒk.tər/",
+          "nurse /nɜːs/",
+          "teacher /ˈtiː.tʃər/",
+          "professor /prəˈfes.ər/",
+          "reporter /rɪˈpɔː.tər/",
+          "editor /ˈed.ɪ.tər/",
+          "writer /ˈraɪ.tər/",
+          "painter /ˈpeɪn.tər/",
+          "actor /ˈæk.tər/",
+          "director /daɪˈrek.tər/",
+          "singer /ˈsɪŋ.ər/",
+          "athlete /ˈæθ.liːt/",
+          "coach /kəʊtʃ/",
+          "police /pəˈliːs/",
+          "chef /ʃef/",
+          "waiter /ˈweɪ.tər/",
+          "salesperson /ˈseɪlz.pɜː.sən/",
+          "driver /ˈdraɪ.vər/",
+          "worker /ˈwɜː.kər/",
+          "farmer /ˈfɑː.mər/",
+          "businessperson /ˈbɪz.nɪs.pɜː.sən/",
+          "manager /ˈmæn.ɪ.dʒər/",
+          "boss /bɒs/",
+          "leader /ˈliː.dər/",
+          "civil servant /ˈsɪv.əl ˈsɜː.vənt/"
+        ]
+      },
+      "10": {
+        "name": "Hobbies and specialities",
+        "vocabulary": [
+          "hobby /ˈhɒb.i/",
+          "like /laɪk/",
+          "interested /ˈɪn.trəs.tɪd/",
+          "specialty /ˈspeʃ.əl.ti/",
+          "be good at /biː ɡʊd æt/",
+          "sing /sɪŋ/",
+          "dance /dɑːns/",
+          "paint /peɪnt/",
+          "photography /fəˈtɒɡ.rə.fi/",
+          "travel /ˈtræv.əl/",
+          "sports /spɔːts/",
+          "play ball /pleɪ bɔːl/",
+          "swim /swɪm/",
+          "run /rʌn/",
+          "work out /wɜːk aʊt/",
+          "read /riːd/",
+          "watch movies /wɒtʃ ˈmuː.viz/",
+          "listen to music /ˈlɪs.ən tuː ˈmjuː.zɪk/",
+          "play games /pleɪ ɡeɪmz/",
+          "go online /ɡəʊ ˈɒn.laɪn/",
+          "collect /kəˈlekt/",
+          "do crafts /duː krɑːfts/"
+        ]
+      },
+      "11": {
+        "name": "Health and fitness",
+        "vocabulary": [
+          "health /helθ/",
+          "body /ˈbɒd.i/",
+          "exercise /ˈek.sə.saɪz/",
+          "sports /spɔːts/",
+          "work out /wɜːk aʊt/",
+          "run /rʌn/",
+          "swim /swɪm/",
+          "lose weight /luːz weɪt/",
+          "weight /weɪt/",
+          "diet /ˈdaɪ.ət/",
+          "rest /rest/",
+          "sleep /sliːp/",
+          "get sick /ɡet sɪk/",
+          "catch a cold /kætʃ ə kəʊld/",
+          "have a fever /hæv ə ˈfiː.vər/",
+          "cough /kɒf/",
+          "headache /ˈhedeɪk/",
+          "toothache /ˈtuːθ.eɪk/",
+          "stomachache /ˈstʌm.ək.eɪk/",
+          "hospital /ˈhɒs.pɪ.təl/",
+          "doctor /ˈdɒk.tər/",
+          "nurse /nɜːs/",
+          "see a doctor /siː ə ˈdɒk.tər/",
+          "take medicine /teɪk ˈmed.ɪ.sən/",
+          "get an injection /ɡet ən ɪnˈdʒek.ʃən/",
+          "surgery /ˈsɜː.dʒər.i/",
+          "physical exam /ˈfɪz.ɪ.kəl ɪɡˈzæm/",
+          "register /ˈredʒ.ɪ.stər/",
+          "appointment /əˈpɔɪnt.mənt/"
+        ]
+      },
+      "12": {
+        "name": "Physical appearance and character",
+        "vocabulary": [
+          "appearance /əˈpɪə.rəns/",
+          "looks /lʊks/",
+          "height /haɪt/",
+          "height /haɪt/",
+          "weight /weɪt/",
+          "fat /fæt/",
+          "thin /θɪn/",
+          "tall /tɔːl/",
+          "short /ʃɔːt/",
+          "hair /heər/",
+          "eye /aɪ/",
+          "nose /nəʊz/",
+          "mouth /maʊθ/",
+          "face /feɪs/",
+          "skin /skɪn/",
+          "personality /ˌpɜː.sənˈæl.ə.ti/",
+          "character /ˈkær.ək.tər/",
+          "temper /ˈtem.pər/",
+          "cheerful /ˈtʃɪə.fəl/",
+          "introverted /ˈɪn.trə.vɜː.tɪd/",
+          "extroverted /ˈek.strə.vɜː.tɪd/",
+          "kind /kaɪnd/",
+          "warm /wɔːm/",
+          "serious /ˈsɪə.ri.əs/",
+          "careful /ˈkeə.fəl/",
+          "smart /smɑːt/",
+          "stupid /ˈstjuː.pɪd/",
+          "hardworking /ˌhɑːdˈwɜː.kɪŋ/",
+          "lazy /ˈleɪ.zi/"
+        ]
+      },
+      "13": {
+        "name": "Common human feelings and emotions",
+        "vocabulary": [
+          "happy /ˈhæp.i/",
+          "happy /ˈhæp.i/",
+          "happy /ˈhæp.i/",
+          "happy /ˈhæp.i/",
+          "excited /ɪkˈsaɪ.tɪd/",
+          "excited /ɪkˈsaɪ.tɪd/",
+          "satisfied /ˈsæt.ɪs.faɪd/",
+          "disappointed /ˌdɪs.əˈpɔɪn.tɪd/",
+          "sad /sæd/",
+          "sad /ˈsæd/",
+          "painful /ˈpeɪn.fəl/",
+          "angry /ˈæŋ.ɡri/",
+          "angry /ˈæŋ.ɡri/",
+          "afraid /əˈfreɪd/",
+          "nervous /ˈnɜː.vəs/",
+          "worried /ˈwʌr.id/",
+          "anxious /ˈæŋk.ʃəs/",
+          "embarrassed /ɪmˈbær.əst/",
+          "shy /ʃaɪ/",
+          "regretful /rɪˈɡret.fəl/",
+          "bored /bɔːd/",
+          "envious /ˈen.vi.əs/",
+          "jealous /ˈdʒel.əs/"
+        ]
+      },
+      "14": {
+        "name": "Shopping and payment",
+        "vocabulary": [
+          "shop /ʃɒp/",
+          "shop /ʃɒp/",
+          "supermarket /ˈsuː.pə.mɑː.kɪt/",
+          "mall /mɔːl/",
+          "store /stɔːr/",
+          "market /ˈmɑː.kɪt/",
+          "online shopping /ˈɒn.laɪn ˈʃɒp.ɪŋ/",
+          "price /praɪs/",
+          "price /praɪs/",
+          "cheap /tʃiːp/",
+          "expensive /ɪkˈspen.sɪv/",
+          "discount /ˈdɪs.kaʊnt/",
+          "discount /ˈdɪs.kaʊnt/",
+          "free /friː/",
+          "pay /peɪ/",
+          "pay /peɪ/",
+          "cash /kæʃ/",
+          "swipe card /swaɪp kɑːd/",
+          "WeChat /ˈwiː.tʃæt/",
+          "Alipay /ˈɑː.li.peɪ/",
+          "receipt /rɪˈsiːt/",
+          "return /rɪˈtɜːn/",
+          "exchange /ɪksˈtʃeɪndʒ/"
+        ]
+      },
+      "15": {
+        "name": "Clothing and accessories",
+        "vocabulary": [
+          "clothes /kləʊðz/",
+          "clothing /ˈkləʊ.ðɪŋ/",
+          "top /tɒp/",
+          "shirt /ʃɜːt/",
+          "pants /pænts/",
+          "skirt /skɜːt/",
+          "jacket /ˈdʒæk.ɪt/",
+          "sweater /ˈswet.ər/",
+          "coat /kəʊt/",
+          "shoes /ʃuːz/",
+          "socks /sɒks/",
+          "hat /hæt/",
+          "scarf /skɑːf/",
+          "gloves /ɡlʌvz/",
+          "bag /bæɡ/",
+          "backpack /ˈbæk.pæk/",
+          "wallet /ˈwɒl.ɪt/",
+          "belt /belt/",
+          "glasses /ˈɡlɑː.sɪz/",
+          "watch /wɒtʃ/",
+          "jewelry /ˈdʒuː.əl.ri/"
+        ]
+      },
+      "16": {
+        "name": "Colours, shades and nuances",
+        "vocabulary": [
+          "color /ˈkʌl.ər/",
+          "red /red/",
+          "yellow /ˈjel.əʊ/",
+          "blue /bluː/",
+          "green /ɡriːn/",
+          "white /waɪt/",
+          "black /blæk/",
+          "pink /pɪŋk/",
+          "purple /ˈpɜː.pəl/",
+          "brown /braʊn/",
+          "gray /ɡreɪ/",
+          "dark /dɑːk/",
+          "light /laɪt/",
+          "bright /braɪt/",
+          "dark /dɑːk/",
+          "bright /braɪt/"
+        ]
+      },
+      "17": {
+        "name": "Phone calls and online communication",
+        "vocabulary": [
+          "phone /fəʊn/",
+          "cell phone /ˈsel fəʊn/",
+          "make a call /meɪk ə kɔːl/",
+          "answer a call /ˈɑːn.sər ə kɔːl/",
+          "call back /kɔːl bæk/",
+          "text message /tekst ˈmes.ɪdʒ/",
+          "WeChat /ˈwiː.tʃæt/",
+          "email /ˈiː.meɪl/",
+          "send /send/",
+          "receive /rɪˈsiːv/",
+          "reply /rɪˈplaɪ/",
+          "forward /ˈfɔː.wəd/",
+          "delete /dɪˈliːt/",
+          "friend /frend/",
+          "group /ɡruːp/",
+          "moments /ˈməʊ.mənts/",
+          "like /laɪk/",
+          "comment /ˈkɒm.ent/",
+          "share /ʃeər/",
+          "go online /ɡəʊ ˈɒn.laɪn/",
+          "internet /ˈɪn.tə.net/",
+          "signal /ˈsɪɡ.nəl/",
+          "data /ˈdeɪ.tə/",
+          "Wi-Fi /ˈwaɪ.faɪ/",
+          "download /ˌdaʊnˈləʊd/",
+          "upload /ˌʌpˈləʊd/",
+          "video /ˈvɪd.i.əʊ/",
+          "voice /vɔɪs/"
+        ]
+      },
+      "18": {
+        "name": "Geography, arts, history, and technology",
+        "vocabulary": [
+          "geography /dʒiˈɒɡ.rə.fi/",
+          "nature /ˈneɪ.tʃər/",
+          "environment /ɪnˈvaɪ.rən.mənt/",
+          "climate /ˈklaɪ.mət/",
+          "weather /ˈweð.ər/",
+          "season /ˈsiː.zən/",
+          "earth /ɜːθ/",
+          "world /wɜːld/",
+          "country /ˈkʌn.tri/",
+          "city /ˈsɪt.i/",
+          "countryside /ˈkʌn.tri.saɪd/",
+          "mountain /ˈmaʊn.tɪn/",
+          "river /ˈrɪv.ər/",
+          "lake /leɪk/",
+          "sea /siː/",
+          "forest /ˈfɒr.ɪst/",
+          "art /ɑːt/",
+          "fine arts /faɪn ɑːts/",
+          "music /ˈmjuː.zɪk/",
+          "literature /ˈlɪt.rə.tʃər/",
+          "history /ˈhɪs.tər.i/",
+          "tradition /trəˈdɪʃ.ən/",
+          "culture /ˈkʌl.tʃər/",
+          "technology /tekˈnɒl.ə.dʒi/",
+          "technology /tekˈnɒl.ə.dʒi/",
+          "invention /ɪnˈven.ʃən/",
+          "creation /kriˈeɪ.ʃən/",
+          "innovation /ˌɪn.əˈveɪ.ʃən/",
+          "internet /ˈɪn.tə.net/",
+          "internet /ˈɪn.tə.net/",
+          "computer /kəmˈpjuː.tər/",
+          "cell phone /ˈsel fəʊn/",
+          "software /ˈsɒft.weər/",
+          "hardware /ˈhɑːd.weər/"
+        ]
+      },
+      "19": {
+        "name": "Changes",
+        "vocabulary": [
+          "change /tʃeɪndʒ/",
+          "change /tʃeɪndʒ/",
+          "become /bɪˈkʌm/",
+          "become /bɪˈkʌm/",
+          "develop /dɪˈvel.əp/",
+          "progress /ˈprəʊ.ɡres/",
+          "improve /ɪmˈpruːv/",
+          "reduce /rɪˈdjuːs/",
+          "increase /ɪnˈkriːs/",
+          "decrease /dɪˈkriːs/",
+          "expand /ɪkˈspænd/",
+          "shrink /ʃrɪŋk/",
+          "rise /raɪz/",
+          "fall /fɔːl/",
+          "turn /tɜːn/"
+        ]
+      },
+      "20": {
+        "name": "Plans, intentions, suggestions, recommendations, hopes, and wishes",
+        "vocabulary": [
+          "plan /plæn/",
+          "plan /plæn/",
+          "prepare /prɪˈpeər/",
+          "want /wɒnt/",
+          "want /wɒnt/",
+          "hope /həʊp/",
+          "wish /wɪʃ/",
+          "expect /ɪkˈspekt/",
+          "suggest /səˈdʒest/",
+          "opinion /əˈpɪn.jən/",
+          "recommend /ˌrek.əˈmend/",
+          "wish /wɪʃ/",
+          "willing /ˈwɪl.ɪŋ/",
+          "willing /ˈwɪl.ɪŋ/",
+          "decide /dɪˈsaɪd/"
+        ]
+      },
+      "21": {
+        "name": "Relatives and relationships",
+        "vocabulary": [
+          "family /ˈfæm.əl.i/",
+          "family /ˈfæm.əl.i/",
+          "parents /ˈpeə.rənts/",
+          "father /ˈfɑː.ðər/",
+          "mother /ˈmʌð.ər/",
+          "dad /dæd/",
+          "mom /mɒm/",
+          "grandfather /ˈɡræn.fɑː.ðər/",
+          "grandmother /ˈɡræn.mʌð.ər/",
+          "grandfather /ˈɡræn.fɑː.ðər/",
+          "grandmother /ˈɡræn.mʌð.ər/",
+          "older brother /ˈəʊl.dər ˈbrʌð.ər/",
+          "older sister /ˈəʊl.dər ˈsɪs.tər/",
+          "younger brother /ˈjʌŋ.ɡər ˈbrʌð.ər/",
+          "younger sister /ˈjʌŋ.ɡər ˈsɪs.tər/",
+          "husband /ˈhʌz.bənd/",
+          "wife /waɪf/",
+          "son /sʌn/",
+          "daughter /ˈdɔː.tər/",
+          "grandson /ˈɡræn.sʌn/",
+          "granddaughter /ˈɡræn.dɔː.tər/",
+          "relative /ˈrel.ə.tɪv/",
+          "relationship /rɪˈleɪ.ʃən.ʃɪp/",
+          "feeling /ˈfiː.lɪŋ/",
+          "love /lʌv/",
+          "like /laɪk/",
+          "marry /ˈmær.i/",
+          "divorce /dɪˈvɔːs/",
+          "friend /frend/",
+          "boyfriend /ˈbɔɪ.frend/",
+          "girlfriend /ˈɡɜːl.frend/",
+          "colleague /ˈkɒl.iːɡ/",
+          "classmate /ˈklɑːs.meɪt/",
+          "neighbor /ˈneɪ.bər/"
+        ]
+      },
+      "22": {
+        "name": "Living beings, landscape, and climate",
+        "vocabulary": [
+          "animal /ˈæn.ɪ.məl/",
+          "plant /plɑːnt/",
+          "cat /kæt/",
+          "dog /dɒɡ/",
+          "bird /bɜːd/",
+          "fish /fɪʃ/",
+          "tree /triː/",
+          "flower /ˈflaʊ.ər/",
+          "grass /ɡrɑːs/",
+          "mountain /ˈmaʊn.tɪn/",
+          "river /ˈrɪv.ər/",
+          "lake /leɪk/",
+          "sea /siː/",
+          "forest /ˈfɒr.ɪst/",
+          "grassland /ˈɡrɑːs.lænd/",
+          "desert /ˈdez.ət/",
+          "scenery /ˈsiː.nər.i/",
+          "scenery /ˈsiː.nər.i/",
+          "nature /ˈneɪ.tʃər/",
+          "environment /ɪnˈvaɪ.rən.mənt/",
+          "climate /ˈklaɪ.mət/",
+          "weather /ˈweð.ər/",
+          "season /ˈsiː.zən/",
+          "spring /sprɪŋ/",
+          "summer /ˈsʌm.ər/",
+          "autumn /ˈɔː.təm/",
+          "winter /ˈwɪn.tər/",
+          "hot /hɒt/",
+          "cold /kəʊld/",
+          "warm /wɔːm/",
+          "cool /kuːl/",
+          "rain /reɪn/",
+          "snow /snəʊ/",
+          "windy /ˈwɪn.di/",
+          "sunny /ˈsʌn.i/",
+          "cloudy /ˈklaʊ.di/",
+          "cloudy /ˈklaʊ.di/"
+        ]
+      },
+      "23": {
+        "name": "Customs and culture",
+        "vocabulary": [
+          "custom /ˈkʌs.təm/",
+          "habit /ˈhæb.ɪt/",
+          "tradition /trəˈdɪʃ.ən/",
+          "culture /ˈkʌl.tʃər/",
+          "festival /ˈfes.tɪ.vəl/",
+          "Spring Festival /sprɪŋ ˈfes.tɪ.vəl/",
+          "Mid-Autumn Festival /mɪd ˈɔː.təm ˈfes.tɪ.vəl/",
+          "Dragon Boat Festival /ˈdræɡ.ən bəʊt ˈfes.tɪ.vəl/",
+          "New Year /njuː jɪər/",
+          "birthday /ˈbɜːθ.deɪ/",
+          "gift /ɡɪft/",
+          "red envelope /red ˈen.və.ləʊp/",
+          "celebrate /ˈsel.ə.breɪt/",
+          "wedding /ˈwed.ɪŋ/",
+          "gathering /ˈɡæð.ər.ɪŋ/",
+          "manners /ˈmæn.əz/",
+          "rule /ruːl/",
+          "taboo /təˈbuː/"
+        ]
+      }
+    }
+  }
+}
