@@ -622,38 +622,7 @@ st.markdown(f"""
         text-decoration: underline !important;
     }}
 
-    /* 悬浮AI按钮 */
-    .chat-float-container {{
-        position: relative !important;
-        bottom: auto !important;
-        right: auto !important;
-    }}
-    button[data-testid="baseButton-secondary"][key="chat_toggle_btn"],
-    .chat-float-container .stButton button {{
-        width: 70px !important;
-        height: 70px !important;
-        border-radius: 50% !important;
-        background-color: rgba(255,255,255,0.4) !important;
-        border: 1px solid rgba(100,100,100,0.3) !important;
-        font-family: 'Manrope', sans-serif !important;
-        font-size: 32px !important;
-        font-weight: 800 !important;
-        color: #000000 !important;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
-        transition: all 0.3s ease !important;
-        padding: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        position: relative !important;
-        bottom: auto !important;
-        right: auto !important;
-    }}
-    button[data-testid="baseButton-secondary"][key="chat_toggle_btn"]:hover,
-    .chat-float-container .stButton button:hover {{
-        background-color: rgba(255,255,255,0.6) !important;
-        transform: scale(1.1);
-    }}
+
 
     /* 聊天面板 */
     .chat-panel {{
