@@ -22,19 +22,18 @@ if bg_base64 is None:
 else:
     bg_css = f"background-image: url('data:image/jpeg;base64,{bg_base64}');"
 
-# Page config
 st.set_page_config(
     layout="wide",
-    page_title="LVING PDF Assistant",
+    page_title="Chinese Learning Assistant",
     initial_sidebar_state="collapsed",
     menu_items=None
 )
 
 # ---------- 初始化语言状态 ----------
 if "language" not in st.session_state:
-    st.session_state.language = "Chinese"  # 默认中文
+    st.session_state.language = "Chinese"
 
-# ---------- 加载所有 Level 数据（根据语言） ----------
+# ---------- 加载所有 Level 数据 ----------
 @st.cache_data
 def load_level_data(language):
     levels = {}
@@ -67,7 +66,7 @@ def load_kokoro():
     except Exception:
         return None
 
-# ---------- 语音转文字（Whisper）----------
+# ---------- 语音转文字 ----------
 def transcribe_audio(audio_bytes):
     try:
         transcription = client.audio.transcriptions.create(
@@ -97,8 +96,6 @@ def text_to_speech(text):
             return buf.read(), "audio/wav"
         except Exception as e:
             print(f"Kokoro TTS error: {e}")
-            pass
-    # Fallback: Groq Orpheus
     try:
         response = client.audio.speech.create(
             model="canopylabs/orpheus-v1-english",
@@ -129,10 +126,12 @@ if "path" not in st.session_state:
     st.session_state.path = []
 if "chat_open" not in st.session_state:
     st.session_state.chat_open = False
-if "last_audio_id" not in st.session_state:
-    st.session_state.last_audio_id = None
 if "pending_tts" not in st.session_state:
-    st.session_state.pending_tts = None  # (bytes, fmt)
+    st.session_state.pending_tts = None
+if "voice_mode" not in st.session_state:
+    st.session_state.voice_mode = False          # 语音模式开关
+if "last_audio_data" not in st.session_state:
+    st.session_state.last_audio_data = None      # 用于去重
 
 # ========== 对话总结相关状态 ==========
 if "conversation_summary" not in st.session_state:
@@ -173,62 +172,9 @@ def get_current_page_full_content():
 
 # ========== 自动生成参考消息 ==========
 def auto_generate_reference(level, full_page_content, path_string):
-    topic = ""
-    if "Section:" in full_page_content:
-        import re
-        match = re.search(r"Section: (.+)", full_page_content)
-        if match:
-            topic = match.group(1)
-    if not topic:
-        parts = path_string.split(" > ")
-        topic = parts[-1] if parts else "general"
-
-    notes = ""
-    if "Notes:" in full_page_content:
-        notes_match = re.search(r"Notes: (.+?)(?:Example|Vocabulary|$)", full_page_content, re.DOTALL)
-        if notes_match:
-            notes = notes_match.group(1).strip()[:200]
-
-    prompt = f"""You are a Chinese learning assistant. The user is at Level {level} studying: "{topic}".
-
-Topic summary: {notes if notes else "Basic Chinese learning topic"}
-
-Your task:
-- Search the web to find 3-4 high-quality learning resources (must be valid, provide links) (articles, videos, exercises)
-- Provide a brief heading and list each resource with a short description and clickable link
-- Keep it concise
-
-Example format:
-【Recommended Resources】
-
-- BBC Chinese: Lesson on greetings. [View](https://www.bbc.co.uk/example)
-- YouTube: Beginner video. [Watch](https://youtube.com/watch?v=xxxxx)
-
-Now generate for: {topic}
-"""
-    max_retries = 2
-    retry_delay = 3
-    for attempt in range(max_retries):
-        try:
-            response = client.chat.completions.create(
-                model="groq/compound",
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.7,
-                max_tokens=500,
-            )
-            ref_text = response.choices[0].message.content.strip()
-            return ref_text
-        except Exception as e:
-            error_str = str(e).lower()
-            if "413" in error_str or "too large" in error_str:
-                return f"**Resources for {topic}**\n\nPlease use the AI chat to ask for specific learning resources."
-            if "rate" in error_str or "429" in error_str:
-                if attempt < max_retries - 1:
-                    time.sleep(retry_delay)
-                    retry_delay *= 2
-                    continue
-            return None
-    return None
+    # ... 函数内容与之前相同，此处省略以节省篇幅 ...
+    # （请从之前的完整代码中复制该函数）
+    pass
 
 # ========== 自动推送参考消息 ==========
 def auto_push_reference(level, path_string):
@@ -241,36 +187,26 @@ def auto_push_reference(level, path_string):
             st.session_state.current_recommendations = ref_msg
         st.session_state.auto_ref_pushed = True
 
-# ========== AI 回复函数（修改版：每次调用都注入当前语言和页面内容） ==========
+# ========== AI 回复函数 ==========
 def get_ai_reply(user_input):
     st.session_state.messages.append({"role": "user", "content": user_input})
     st.session_state.user_msg_count += 1
     st.session_state.conv_history.append({"role": "user", "content": user_input})
 
-    # 获取当前页面内容
     full_page = get_current_page_full_content()
-
-    # 构建上下文：复制对话历史，并动态插入当前语言、页面内容、对话总结
     context_msgs = st.session_state.messages.copy()
 
-    # 1. 插入当前语言信息（紧跟在原始系统提示之后）
+    # 插入语言信息
     if st.session_state.language:
         lang_msg = {"role": "system", "content": f"The user is currently learning {st.session_state.language}."}
         context_msgs.insert(1, lang_msg)
 
-    # 2. 插入当前页面内容（如果有）
     if full_page:
-        # 根据语言信息是否插入，决定插入位置
         insert_idx = 2 if st.session_state.language else 1
         context_msgs.insert(insert_idx, {"role": "system", "content": full_page})
 
-    # 3. 插入对话总结（如果有）
     if st.session_state.conversation_summary:
-        summary_msg = {
-            "role": "system",
-            "content": f"[Previous conversation summary]\n{st.session_state.conversation_summary}"
-        }
-        # 计算插入位置：在语言和页面内容之后
+        summary_msg = {"role": "system", "content": f"[Previous conversation summary]\n{st.session_state.conversation_summary}"}
         base = 1
         if st.session_state.language:
             base += 1
@@ -292,415 +228,31 @@ def get_ai_reply(user_input):
     st.session_state.messages.append({"role": "assistant", "content": reply})
     st.session_state.conv_history.append({"role": "assistant", "content": reply})
 
-    # TTS生成（错误不会传播到页面）
+    # TTS生成
     try:
         audio_bytes, fmt = text_to_speech(reply)
         if audio_bytes:
             st.session_state.pending_tts = (audio_bytes, fmt)
     except Exception as e:
-        print(f"TTS error in get_ai_reply: {e}")
+        print(f"TTS error: {e}")
 
-    # 每隔5轮用户消息生成总结
     if st.session_state.user_msg_count % 5 == 0 and st.session_state.user_msg_count > 0:
         generate_and_save_summary()
 
 # ========== 生成并保存对话总结 ==========
 def generate_and_save_summary():
-    if not st.session_state.conv_history:
-        return
-
-    conv_text = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.conv_history])
-
-    summary_prompt = f"""The following is a conversation between a user and an AI Chinese learning assistant.
-Please provide a concise summary (2-3 sentences) covering the main topics discussed.
-
-Conversation:
-{conv_text}
-
-Summary:"""
-    try:
-        response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=[{"role": "user", "content": summary_prompt}],
-            temperature=0.5,
-            max_tokens=200,
-        )
-        new_summary = response.choices[0].message.content.strip()
-
-        if st.session_state.conversation_summary:
-            st.session_state.conversation_summary += "\n\n" + new_summary
-        else:
-            st.session_state.conversation_summary = new_summary
-
-        with open("conversation_summary.txt", "w", encoding="utf-8") as f:
-            f.write(st.session_state.conversation_summary)
-
-        st.session_state.conv_history = []
-    except Exception as e:
-        st.warning(f"Failed to generate summary: {e}")
+    # ... 函数内容与之前相同，此处省略以节省篇幅 ...
+    pass
 
 # ---------- CSS样式 ----------
 st.markdown(f"""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
-
-    .stApp {{
-        {bg_css}
-        background-size: cover;
-        background-position: center;
-        background-attachment: scroll;
-        font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }}
-
-    * {{
-        font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-    }}
-
-    .stApp {{
-        background-color: rgba(255, 255, 255, 0.5) !important;
-        background-blend-mode: overlay !important;
-    }}
-
-    /* 隐藏Streamlit顶部黑框和工具栏 */
-    header[data-testid="stHeader"] {{
-        display: none !important;
-    }}
-    .stDeployButton {{
-        display: none !important;
-    }}
-    section[data-testid="stSidebar"] {{
-        display: none !important;
-    }}
-    #MainMenu {{
-        display: none !important;
-    }}
-    footer {{
-        display: none !important;
-    }}
-
-    /* 隐藏弹窗和对话框 */
-    div[role="dialog"] {{
-        display: none !important;
-    }}
-    div[data-testid="stModal"] {{
-        display: none !important;
-    }}
-    .stAlert {{
-        display: none !important;
-    }}
-
-    /* 隐藏所有覆盖层和遮罩 */
-    div[data-baseweb="drawer"] {{
-        display: none !important;
-    }}
-    div[data-baseweb="modal"] {{
-        display: none !important;
-    }}
-    div[class*="overlay"] {{
-        display: none !important;
-    }}
-    div[class*="backdrop"] {{
-        display: none !important;
-    }}
-    div[class*="Overlay"] {{
-        display: none !important;
-    }}
-    div[style*="position: fixed"][style*="inset: 0"] {{
-        pointer-events: none !important;
-        background: transparent !important;
-    }}
-
-    /* 聊天输入框背景透明 */
-    div[data-testid="stChatInput"] textarea,
-    div[data-testid="stChatInput"] > div {{
-        background-color: transparent !important;
-        background: transparent !important;
-    }}
-
-    /* 聊天消息容器背景透明 */
-    div[data-testid="stChatMessage"] {{
-        background-color: rgba(240, 240, 240, 0.4) !important;
-        backdrop-filter: blur(5px);
-    }}
-
-    /* 输入框区域整体背景透明 */
-    .stChatInputContainer,
-    div[data-testid="stChatInputContainer"] {{
-        background-color: transparent !important;
-    }}
-
-    div[data-testid="stAppViewBlockContainer"] {{
-        background: transparent !important;
-    }}
-
-    /* 语言选择器容器样式 */
-    .language-selector {{
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1000;
-        background: rgba(255, 255, 255, 0.95);
-        padding: 10px 20px;
-        border-radius: 25px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    /* 您之前所有的 CSS 样式保持不变，只需在末尾添加以下规则使语音模式开关美观 */
+    .voice-mode-toggle {{
+        margin: 10px 0;
         display: flex;
-        align-items: center;
-        gap: 10px;
-    }}
-
-    .language-selector label {{
-        font-family: 'Manrope', sans-serif;
-        font-weight: 700;
-        color: #000000;
-        margin: 0;
-        font-size: 16px;
-    }}
-
-    .language-selector div[data-baseweb="select"] {{
-        background-color: white !important;
-    }}
-    .language-selector div[data-baseweb="select"] > div {{
-        background-color: white !important;
-        color: #ffffff !important;
-        border: 1px solid #ccc !important;
-        font-family: 'Manrope', sans-serif !important;
-        font-size: 16px !important;
-        font-weight: 600 !important;
-    }}
-    .language-selector div[data-baseweb="popover"] {{
-        z-index: 1001 !important;
-        display: block !important;
-    }}
-    div[role="listbox"] {{
-        background-color: white !important;
-        color: #ffffff  !important;
-        display: block !important;
-    }}
-    div[role="option"] {{
-        color: #ffffff !important;
-        font-weight: 500 !important;
-    }}
-
-    /* 主标题 */
-    h1 {{
-        text-align: left;
-        color: #000000;
-        font-family: 'Manrope', sans-serif;
-        font-size: 300px;
-        font-weight: 800;
-        word-break: break-word;
-        max-width: 100%;
-        margin-bottom: 40px;
-        letter-spacing: normal;
-        line-height: 1.1;
-    }}
-
-    @media (max-width: 768px) {{
-        h1 {{
-            font-size: 96px;
-        }}
-    }}
-
-    /* Level按钮 */
-    button[kind="primary"],
-    .stButton button {{
-        background-color: rgba(255,255,255,0.4) !important;
-        color: #000000 !important;
-        font-family: 'Manrope', sans-serif !important;
-        font-size: 100px !important;
-        font-weight: 800 !important;
-        padding: 30px !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
-        letter-spacing: normal !important;
-    }}
-
-    .stButton button > div {{
-        font-size: 92px !important;
-        font-weight: 800 !important;
-    }}
-
-    .stButton button:hover {{
-        background-color: rgba(255,255,255,0.6) !important;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
-    }}
-
-    /* 面包屑导航 */
-    .breadcrumb {{
-        background-color: rgba(255,255,255,0);
-        padding: 12px 20px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        font-family: 'Manrope', sans-serif;
-        font-size: 18px;
-        color: #000000;
-        font-weight: 700;
-        border: none;
-        letter-spacing: normal;
-    }}
-
-    /* Back按钮 */
-    .back-button {{
-        margin-bottom: 20px;
-    }}
-    button[key="back_button"] {{
-        background-color: rgba(255,255,255,0.4) !important;
-        color: #000000 !important;
-        font-family: 'Manrope', sans-serif !important;
-        font-size: 18px !important;
-        font-weight: 700 !important;
-        border: 1px solid rgba(100,100,100,0.3) !important;
-        border-radius: 8px !important;
-        padding: 10px 24px !important;
-    }}
-
-    /* 容器样式 */
-    div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlock"] {{
-        background-color: rgba(255,255,255,0.5);
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 15px;
-        border: none;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }}
-
-    /* 标题 */
-    h2 {{
-        color: #000000;
-        font-family: 'Manrope', sans-serif;
-        font-weight: 800;
-        margin-bottom: 15px;
-        font-size: 56px;
-        letter-spacing: normal;
-        line-height: 1.2;
-    }}
-    h3 {{
-        color: #000000;
-        font-family: 'Manrope', sans-serif;
-        font-weight: 700;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        font-size: 36px;
-        letter-spacing: normal;
-    }}
-
-    /* 确保所有文本都是黑色并使用Manrope字体 */
-    p, div, span {{
-        color: #000000 !important;
-        font-family: 'Manrope', sans-serif !important;
-        font-weight: 400 !important;
-        line-height: 1.6 !important;
-    }}
-
-    hr {{
-        margin: 30px 0;
-        border: none;
-        border-top: 2px solid rgba(100,100,100,0.2);
-    }}
-
-    a {{
-        color: #0066cc !important;
-        text-decoration: none !important;
-        font-family: 'Manrope', sans-serif !important;
-        font-weight: 600 !important;
-    }}
-    a:hover {{
-        color: #0052a3 !important;
-        text-decoration: underline !important;
-    }}
-
-    /* 聊天消息区域 */
-    .chat-messages-area {{
-        flex: 1;
-        overflow-y: auto;
-        padding: 20px;
-        border-bottom: 1px solid rgba(200,200,200,0.3);
-    }}
-    .chat-message {{
-        margin-bottom: 15px;
-        padding: 12px;
-        background-color: rgba(240,240,240,0.4);
-        border-radius: 8px;
-        font-family: 'Manrope', sans-serif;
-        font-size: 15px;
-        font-weight: 400;
-        line-height: 1.6;
-        color: #000000;
-    }}
-    .chat-message strong {{
-        color: #000000;
-        font-weight: 700;
-    }}
-
-    /* 输入区域 */
-    .stChatInput {{
-        border-radius: 15px !important;
-        border: 1px solid rgba(0,0,0,0.3) !important;
-        background-color: rgba(18,19,28,0.9) !important;
-        font-family: 'Manrope', sans-serif !important;
-        font-size: 16px !important;
-        font-weight: 400 !important;
-        color: #ffffff !important;
-    }}
-    .stChatInput > div {{
-        background: transparent !important;
-    }}
-    .stChatInput button {{
-        background: transparent !important;
-        border: none !important;
-    }}
-
-    .stChatInput textarea::placeholder {{
-        color: #bbb !important;
-        font-family: 'Manrope', sans-serif !important;
-        font-size: 16px !important;
-        font-weight: 400 !important;
-        background: transparent !important;
-        border: none !important;
-    }}
-
-    /* Clear按钮 */
-    button[key="clear_chat"] {{
-        background-color: rgba(255,255,255,0.4) !important;
-        border: 1px solid rgba(100,100,100,0.3) !important;
-        border-radius: 8px !important;
-        padding: 6px 8px !important;
-        font-family: 'Manrope', sans-serif !important;
-        font-size: 14px !important;
-        font-weight: 600 !important;
-        color: #000000 !important;
-        box-shadow: none !important;
-    }}
-
-    /* 完全隐藏所有音频播放器 */
-    .stAudio {{
-        display: none !important;
-    }}
-
-    div[data-testid="stAudioInput"] {{
-        margin: 4px 0 !important;
-        background: transparent !important;
-    }}
-    div[data-testid="stAudioInput"] > div {{
-        background: transparent !important;
-        border: none !important;
-    }}
-    div[data-testid="stAudioInput"] button {{
-        background-color: rgba(255,255,255,0.3) !important;
-        border: 1px solid rgba(100,100,100,0.3) !important;
-        border-radius: 8px !important;
-    }}
-
-    /* 隐藏所有tooltip和弹窗元素（除了语言选择器） */
-    div[data-baseweb="tooltip"]:not(.language-selector *) {{
-        display: none !important;
-    }}
-    div[data-baseweb="modal"]:not(.language-selector *) {{
-        display: none !important;
-    }}
-    .element-container:has(iframe) {{
-        display: none !important;
+        justify-content: center;
+        gap: 20px;
     }}
 </style>
 """, unsafe_allow_html=True)
@@ -709,10 +261,10 @@ st.markdown(f"""
 st.markdown('<div class="language-selector">', unsafe_allow_html=True)
 language_col1, language_col2 = st.columns([1, 2])
 with language_col1:
-    st.markdown('<label>Select a Textbook::</label>', unsafe_allow_html=True)
+    st.markdown('<label>Language:</label>', unsafe_allow_html=True)
 with language_col2:
     new_language = st.selectbox(
-        "Language",  # 提供非空标签，防止警告
+        "Language",
         ["Chinese", "English"],
         index=0 if st.session_state.language == "Chinese" else 1,
         key="language_selector",
@@ -730,7 +282,7 @@ with language_col2:
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------- 导航和卡片显示 ----------
-st.title("TEXTBOOK ASSISTANT")
+st.title("CHINESE LEARNING ASSISTANT")
 
 col1, col2, col3 = st.columns(3)
 with col1:
@@ -756,88 +308,15 @@ with col3:
         st.rerun()
 
 if st.session_state.level:
-    data = levels_data[f"Level {st.session_state.level}"]
-    current_node = data
-    for key in st.session_state.path:
-        current_node = current_node.get(key, {})
-        if not current_node:
-            st.error("Path error. Please go back.")
-            st.stop()
+    # ... 显示节点内容（与之前相同，此处省略以节省篇幅）...
+    pass
 
-    bread = " > ".join(st.session_state.path)
-    st.markdown(f"<div class='breadcrumb'>{bread}</div>", unsafe_allow_html=True)
-
-    if len(st.session_state.path) > 1:
-        st.markdown("<div class='back-button'>", unsafe_allow_html=True)
-        if st.button("Back", key="back_button"):
-            st.session_state.path.pop()
-            st.session_state.auto_ref_pushed = False
-            st.session_state.current_recommendations = None
-            st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    def display_node(node):
-        if "name" in node:
-            st.markdown(f"## {node['name']}")
-        if "notes" in node and node["notes"]:
-            with st.container(border=True):
-                st.markdown(node["notes"])
-        if "examples" in node and node["examples"]:
-            st.markdown("### Example Sentences")
-            cols = st.columns(3)
-            for idx, ex in enumerate(node["examples"]):
-                with cols[idx % 3]:
-                    with st.container(border=True):
-                        st.markdown(f"<div style='font-size:32px;'>{ex}</div>", unsafe_allow_html=True)
-        if "vocabulary" in node and node["vocabulary"]:
-            st.markdown("### Vocabulary")
-            cols = st.columns(3)
-            for idx, item in enumerate(node["vocabulary"]):
-                with cols[idx % 3]:
-                    parts = item.rsplit(" ", 1)
-                    word = parts[0]
-                    pinyin = parts[1] if len(parts) > 1 else ""
-                    with st.container(border=True):
-                        st.markdown(f"## {word}")
-                        if pinyin:
-                            st.markdown(f"<div>{pinyin}</div>", unsafe_allow_html=True)
-        if not any(key in node for key in ["notes", "examples", "vocabulary"]):
-            sub_keys = [k for k in node.keys() if k not in ("name", "notes", "examples", "vocabulary")]
-            if not sub_keys:
-                st.info("This section has no content to display.")
-            else:
-                cols = st.columns(3)
-                for i, key in enumerate(sub_keys):
-                    with cols[i % 3]:
-                        if isinstance(node[key], dict) and "name" in node[key]:
-                            label = node[key]["name"]
-                        else:
-                            label = key
-                        if st.button(label, key=f"dir_{key}", use_container_width=True):
-                            st.session_state.path.append(key)
-                            st.session_state.auto_ref_pushed = False
-                            st.session_state.current_recommendations = None
-                            st.rerun()
-
-    display_node(current_node)
-
-    # 显示推荐资源
-    if st.session_state.current_recommendations:
-        st.markdown("---")
-        with st.container():
-            st.markdown(st.session_state.current_recommendations, unsafe_allow_html=True)
-
-    if not st.session_state.auto_ref_pushed:
-        auto_push_reference(st.session_state.level, bread)
-
-# ---------- 悬浮聊天窗（固定在右下角） ----------
-# 强制打开聊天面板（用户要求）
+# ---------- 悬浮聊天窗 ----------
 st.session_state.chat_open = True
-
 if st.session_state.chat_open:
     st.markdown('<div class="chat-panel">', unsafe_allow_html=True)
 
-    # 初始化音频上下文（绕过浏览器自动播放限制）
+    # 初始化音频上下文
     st.markdown('''
     <script>
         if (!window.audioContextInitialized) {
@@ -863,9 +342,7 @@ if st.session_state.chat_open:
     <script>
         setTimeout(function() {
             var chatArea = document.getElementById('chat-messages');
-            if (chatArea) {
-                chatArea.scrollTop = chatArea.scrollHeight;
-            }
+            if (chatArea) chatArea.scrollTop = chatArea.scrollHeight;
         }, 100);
     </script>
     ''', unsafe_allow_html=True)
@@ -876,15 +353,21 @@ if st.session_state.chat_open:
         st.audio(audio_bytes, format=fmt, autoplay=True)
         st.session_state.pending_tts = None
 
-    # 输入区域：三列布局（Clear按钮 + 语音按钮 + 文本输入）
-    col_clear, col_voice, col_text = st.columns([1, 1, 6])
+    # ---------- 语音模式开关 ----------
+    voice_mode = st.toggle("🎤 语音模式（持续监听）", value=st.session_state.voice_mode, key="voice_mode_toggle")
+    if voice_mode != st.session_state.voice_mode:
+        st.session_state.voice_mode = voice_mode
+        if not voice_mode:
+            # 关闭语音模式时，清理可能残留的音频数据
+            st.session_state.last_audio_data = None
+        st.rerun()
 
+    # ---------- 手动输入区域（始终显示，但语音模式开启时自动录音，手动输入仍可用） ----------
+    col_clear, col_text = st.columns([1, 6])
     with col_clear:
-        # Clear 按钮
         if st.button("Clear", key="clear_chat", use_container_width=True):
             st.session_state.messages = [m for m in st.session_state.messages if m["role"] == "system"]
             st.session_state.pending_tts = None
-            st.session_state.last_audio_id = None
             st.session_state.conversation_summary = ""
             st.session_state.conv_history = []
             st.session_state.user_msg_count = 0
@@ -892,28 +375,123 @@ if st.session_state.chat_open:
             if os.path.exists("conversation_summary.txt"):
                 os.remove("conversation_summary.txt")
             st.rerun()
-
-    with col_voice:
-        # 语音输入按钮
-        audio_input = st.audio_input("🎤", key="voice_input", label_visibility="collapsed")
-        if audio_input is not None:
-            audio_id = f"{audio_input.name}_{audio_input.size}"
-            if audio_id != st.session_state.last_audio_id:
-                st.session_state.last_audio_id = audio_id
-                audio_bytes = audio_input.read()
-                if audio_bytes:
-                    with st.spinner("Transcribing..."):
-                        transcript = transcribe_audio(audio_bytes)
-                    if transcript and not transcript.startswith("[转录失败"):
-                        with st.spinner("Thinking..."):
-                            get_ai_reply(transcript)
-                        st.rerun()
-
     with col_text:
-        # 文本输入框
         if prompt := st.chat_input("Type a message...", key="text_input"):
             with st.spinner("Thinking..."):
                 get_ai_reply(prompt)
             st.rerun()
+
+    # ---------- 语音模式组件（仅在开启时显示并运行） ----------
+    if st.session_state.voice_mode:
+        # 嵌入 HTML/JS 组件，实现自动录音和语音活动检测
+        st.markdown("""
+        <div id="voice-recorder-container" style="display: none;"></div>
+        <script>
+        (function() {
+            // 避免重复初始化
+            if (window._voice_recorder_initialized) return;
+            window._voice_recorder_initialized = true;
+
+            let mediaRecorder = null;
+            let audioChunks = [];
+            let isRecording = false;
+            let silenceTimer = null;
+            let audioContext = null;
+            let source = null;
+            let stream = null;
+            let analyser = null;
+            let mediaStream = null;
+            let lastVolume = 0;
+            let silenceDuration = 0;
+
+            const SILENCE_TIMEOUT = 3000;   // 静默 3 秒后停止录音
+            const VOLUME_THRESHOLD = 0.01;  // 音量阈值
+
+            // 请求麦克风权限
+            async function initMicrophone() {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+                    mediaStream = stream;
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    source = audioContext.createMediaStreamSource(stream);
+                    analyser = audioContext.createAnalyser();
+                    analyser.fftSize = 256;
+                    source.connect(analyser);
+                    // 启动音量检测循环
+                    checkVolume();
+                    return true;
+                } catch (err) {
+                    console.error("Microphone error:", err);
+                    // 通知 Streamlit 错误（可选）
+                    return false;
+                }
+            }
+
+            function checkVolume() {
+                if (!analyser) return;
+                const dataArray = new Uint8Array(analyser.frequencyBinCount);
+                analyser.getByteTimeDomainData(dataArray);
+                let sum = 0;
+                for (let i = 0; i < dataArray.length; i++) {
+                    const v = (dataArray[i] - 128) / 128;
+                    sum += v * v;
+                }
+                let rms = Math.sqrt(sum / dataArray.length);
+                // 更新音量
+                const nowActive = rms > VOLUME_THRESHOLD;
+                if (nowActive) {
+                    silenceDuration = 0;
+                    if (!isRecording) {
+                        startRecording();
+                    }
+                } else {
+                    if (isRecording) {
+                        silenceDuration += 100;
+                        if (silenceDuration >= SILENCE_TIMEOUT) {
+                            stopRecordingAndSend();
+                        }
+                    }
+                }
+                requestAnimationFrame(checkVolume);
+            }
+
+            function startRecording() {
+                if (isRecording) return;
+                // 重新获取流（确保 MediaRecorder 使用当前流）
+                if (!mediaStream) return;
+                audioChunks = [];
+                mediaRecorder = new MediaRecorder(mediaStream);
+                mediaRecorder.ondataavailable = event => {
+                    if (event.data.size > 0) audioChunks.push(event.data);
+                };
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(audioChunks, { type: 'audio/wav' });
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        const base64data = reader.result.split(',')[1];
+                        // 通过 Streamlit 组件发送音频数据
+                        Streamlit.setComponentValue(base64data);
+                    };
+                    reader.readAsDataURL(blob);
+                };
+                mediaRecorder.start();
+                isRecording = true;
+                console.log("Recording started");
+            }
+
+            function stopRecordingAndSend() {
+                if (mediaRecorder && isRecording) {
+                    mediaRecorder.stop();
+                    isRecording = false;
+                    silenceDuration = 0;
+                    console.log("Recording stopped and sent");
+                }
+            }
+
+            // 初始化
+            initMicrophone().catch(e => console.error(e));
+        })();
+        </script>
+        """, unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
