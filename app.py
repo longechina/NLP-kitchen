@@ -189,52 +189,57 @@ def auto_generate_reference(level, full_page_content, path_string):
         parts = path_string.split(" > ")
         topic = parts[-1] if parts else "general"
     
-    prompt = f"""You are a Chinese learning assistant. The user is at Level {level} and studying the topic: "{topic}".
+    # 简化内容，只提取关键信息
+    notes = ""
+    if "Notes:" in full_page_content:
+        notes_match = re.search(r"Notes: (.+?)(?:Example|Vocabulary|$)", full_page_content, re.DOTALL)
+        if notes_match:
+            notes = notes_match.group(1).strip()[:200]  # 限制长度
+    
+    # 简化的prompt，避免发送过多内容
+    prompt = f"""You are a Chinese learning assistant. The user is at Level {level} studying: "{topic}".
 
-The complete content of the current page is provided below. Use it to understand exactly what the user is learning.
-
-{full_page_content}
+Topic summary: {notes if notes else "Basic Chinese learning topic"}
 
 Your task:
-- Search information on web to find specific, authoritative online resources(include article, Q&A, meida, picture and videos) that about current topic, content and level.(The source must be high quality and form main stream)
-- Based on the search results, provide a structured recommendation in clear structure.
-- Include a brief heading (Recommended Resources), then list each resource with a short description and a clickable web links.
-- Keep the answer concise but informative.
+- Search the web to find 3-4 high-quality learning resources (articles, videos, exercises)
+- Provide a brief heading and list each resource with a short description and clickable link
+- Keep it concise
 
-Example output:
+Example format:
 【Recommended Resources】
 
-- BBC: A lesson on greetings with audio and quizzes. [View](https://www.bbc.co.uk/example)
-- YouTube: A beginner video on introducing yourself. [Watch](https://www.youtube.com/watch?v=xxxxx)
+- BBC Chinese: Lesson on greetings. [View](https://www.bbc.co.uk/example)
+- YouTube: Beginner video. [Watch](https://youtube.com/watch?v=xxxxx)
 
-Now generate for the topic: {topic}
+Now generate for: {topic}
 """
     
-    max_retries = 3
-    retry_delay = 5  # 秒
+    max_retries = 2
+    retry_delay = 3
     for attempt in range(max_retries):
         try:
             response = client.chat.completions.create(
                 model="groq/compound",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.7,
-                max_tokens=800,
+                max_tokens=500,  # 减少token数
             )
             ref_text = response.choices[0].message.content.strip()
             return ref_text
         except Exception as e:
             error_str = str(e).lower()
+            if "413" in error_str or "too large" in error_str:
+                # 如果内容太大，返回简化版本
+                return f"**Resources for {topic}**\n\nPlease use the AI chat to ask for specific learning resources."
             if "rate" in error_str or "429" in error_str:
                 if attempt < max_retries - 1:
-                    st.warning(f"Speed limit reached, retrying in {retry_delay} seconds... (attempt {attempt+1}/{max_retries})")
                     time.sleep(retry_delay)
-                    retry_delay *= 2  # Exponential backoff
+                    retry_delay *= 2
                     continue
-                else:
-                    return f"Unable to generate recommendations: Exceeded rate limit after {max_retries} retries. Please try again later."
-            else:
-                return f"Unable to generate recommendations: {e}"
-    return "Unable to generate recommendations after multiple retries."
+            # 其他错误不显示，避免影响用户体验
+            return None
+    return None
 
 # ========== 自动推送参考消息到页面显示 ==========
 def auto_push_reference(level, path_string):
@@ -247,10 +252,11 @@ def auto_push_reference(level, path_string):
     
     full_page_content = get_current_page_full_content()
     if full_page_content:
-        with st.spinner("Generating recommended resources..."):
-            ref_msg = auto_generate_reference(level, full_page_content, path_string)
-        # 保存到 session_state 用于页面显示
-        st.session_state.current_recommendations = ref_msg
+        # 静默生成，不显示加载提示
+        ref_msg = auto_generate_reference(level, full_page_content, path_string)
+        # 只有成功生成才保存
+        if ref_msg:
+            st.session_state.current_recommendations = ref_msg
         # 设置标记，避免重复推送
         st.session_state.auto_ref_pushed = True
 
@@ -391,6 +397,15 @@ st.markdown(f"""
     div[style*="position: fixed"][style*="inset: 0"] {{
         pointer-events: none !important;
         background: transparent !important;
+    }}
+    
+    /* 隐藏所有streamlit的内部元素 */
+    .stButton > button > div {{
+        pointer-events: none !important;
+    }}
+    button:focus {{
+        outline: none !important;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
     }}
     
     /* 语言选择器容器样式 */
@@ -580,13 +595,14 @@ st.markdown(f"""
         right: 30px;
         width: 450px;
         height: 600px;
-        background-color: rgba(255,255,255,0.98);
+        background-color: rgba(255,255,255,0.85);
         border-radius: 16px;
         box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         display: flex;
         flex-direction: column;
         z-index: 998;
         border: none;
+        backdrop-filter: blur(10px);
     }}
 
     /* 聊天消息区域 */
@@ -599,7 +615,7 @@ st.markdown(f"""
     .chat-message {{
         margin-bottom: 15px;
         padding: 12px;
-        background-color: rgba(240,240,240,0.6);
+        background-color: rgba(240,240,240,0.4);
         border-radius: 8px;
         line-height: 1.6;
         color: #000000;
@@ -611,14 +627,22 @@ st.markdown(f"""
     /* 输入区域 */
     .chat-input-area {{
         padding: 15px;
-        background-color: rgba(250,250,250,0.95);
+        background-color: rgba(250,250,250,0.8);
         border-radius: 0 0 14px 14px;
+        backdrop-filter: blur(5px);
     }}
     .stChatInput {{
         border-radius: 25px !important;
         border: 1px solid rgba(100,100,100,0.3) !important;
         background-color: rgba(255,255,255,0.9) !important;
         font-size: 16px !important;
+    }}
+    .stChatInput > div {{
+        background: transparent !important;
+    }}
+    .stChatInput button {{
+        background: transparent !important;
+        border: none !important;
     }}
 
     /* Clear按钮 */
@@ -641,7 +665,19 @@ st.markdown(f"""
     /* 完全隐藏所有音频播放器 */
     .stAudio {{ display: none !important; }}
 
-    div[data-testid="stAudioInput"] {{ margin: 4px 0 !important; }}
+    div[data-testid="stAudioInput"] {{ 
+        margin: 4px 0 !important;
+        background: transparent !important;
+    }}
+    div[data-testid="stAudioInput"] > div {{
+        background: transparent !important;
+        border: none !important;
+    }}
+    div[data-testid="stAudioInput"] button {{
+        background-color: rgba(255,255,255,0.3) !important;
+        border: 1px solid rgba(100,100,100,0.3) !important;
+        border-radius: 8px !important;
+    }}
     
     /* 隐藏所有tooltip和弹窗元素（除了语言选择器） */
     div[data-baseweb="tooltip"]:not(.language-selector *) {{
