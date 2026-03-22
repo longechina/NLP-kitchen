@@ -25,20 +25,26 @@ else:
 # Page config
 st.set_page_config(layout="wide", page_title="Chinese Learning Assistant")
 
-# ---------- 加载所有 Level 数据 ----------
+# ---------- 初始化语言状态 ----------
+if "language" not in st.session_state:
+    st.session_state.language = "Chinese"  # 默认中文
+
+# ---------- 加载所有 Level 数据（根据语言） ----------
 @st.cache_data
-def load_level_data():
+def load_level_data(language):
     levels = {}
+    suffix = "_en" if language == "English" else ""
     for i in range(1, 4):
         try:
-            with open(f"level{i}.json", "r", encoding="utf-8") as f:
+            filename = f"level{i}{suffix}.json"
+            with open(filename, "r", encoding="utf-8") as f:
                 levels[f"Level {i}"] = json.load(f)
         except FileNotFoundError:
-            st.error(f"level{i}.json not found. Please ensure all level files exist.")
+            st.error(f"{filename} not found. Please ensure all level files exist.")
             st.stop()
     return levels
 
-levels_data = load_level_data()
+levels_data = load_level_data(st.session_state.language)
 
 # ---------- Groq 客户端 ----------
 client = groq.Client(api_key=os.environ.get("GROQ_API_KEY") or st.secrets["GROQ_API_KEY"])
@@ -206,420 +212,317 @@ Now generate for the topic: {topic}
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.7,
                 max_tokens=800,
-             
             )
-            # 返回的内容可能是文本，也可能包含工具调用，直接取 content
-            return response.choices[0].message.content
+            ref_text = response.choices[0].message.content.strip()
+            return ref_text
         except Exception as e:
-            if "429" in str(e) or "rate_limit_exceeded" in str(e):
+            error_str = str(e).lower()
+            if "rate" in error_str or "429" in error_str:
                 if attempt < max_retries - 1:
-                    time.sleep(retry_delay * (attempt + 1))  # 递增等待
+                    st.warning(f"Speed limit reached, retrying in {retry_delay} seconds... (attempt {attempt+1}/{max_retries})")
+                    time.sleep(retry_delay)
+                    retry_delay *= 2  # Exponential backoff
                     continue
-            return f"Auto-generation error: {e}"
-    return "Auto-generation error: Rate limit exceeded after retries."
+                else:
+                    return f"Unable to generate recommendations: Exceeded rate limit after {max_retries} retries. Please try again later."
+            else:
+                return f"Unable to generate recommendations: {e}"
+    return "Unable to generate recommendations after multiple retries."
 
+# ========== 自动推送参考消息到聊天窗口 ==========
 def auto_push_reference(level, path_string):
     """
-    自动推送参考消息到聊天记录，并生成语音（可选）。
-    只在未推送时执行一次。
+    自动在 AI 面板中生成并推送参考消息。
+    仅在首次进入某个水平时调用一次（由 auto_ref_pushed 控制）。
     """
     if st.session_state.auto_ref_pushed:
         return
-
-    # 获取当前页面的完整内容
+    
     full_page_content = get_current_page_full_content()
-    if not full_page_content:
-        return
-
-    ref_content = auto_generate_reference(level, full_page_content, path_string)
-    if ref_content:
-        # 直接使用 AI 生成的 Markdown 内容（无需额外包装）
-        final_msg = ref_content.strip()
-        st.session_state.messages.append({"role": "assistant", "content": final_msg})
-
-        # 可选：生成语音（如果不需要可注释掉）
-        audio_bytes, fmt = text_to_speech(final_msg)
-        if audio_bytes:
-            st.session_state.pending_tts = (audio_bytes, fmt)
-
+    if full_page_content:
+        with st.spinner("Generating recommended resources..."):
+            ref_msg = auto_generate_reference(level, full_page_content, path_string)
+        # 将参考消息以 assistant 角色推入对话历史
+        st.session_state.messages.append({"role": "assistant", "content": ref_msg})
+        # 设置标记，避免重复推送
         st.session_state.auto_ref_pushed = True
 
-# ========== 缓存的 AI 回复函数 ==========
-@st.cache_data(ttl=3600, max_entries=100)
-def cached_chat_completion(system_prompt, page_context, summary_text, user_text):
-    """缓存 AI 回复，参数必须可哈希"""
-    messages = [{"role": "system", "content": system_prompt}]
-    if page_context:
-        messages.append({"role": "system", "content": f"[Current page context]\n{page_context}"})
-    if summary_text:
-        messages.append({"role": "system", "content": f"[Previous conversation summary]\n{summary_text}"})
-    messages.append({"role": "user", "content": user_text})
-    try:
-        response = client.chat.completions.create(
-            model="groq/compound",
-            messages=messages,
-            temperature=0.7,
-            max_tokens=8192
-        )
-        return response.choices[0].message.content
-    except Exception as e:
-        err = str(e)
-        if "rate_limit_exceeded" in err or "quota" in err.lower():
-            return "I've reached my usage limit. Please try again in a few moments, or click Clear to start fresh."
-        else:
-            return f"Sorry, I encountered an error: {err}"
-
-# ========== 生成总结的函数 ==========
-def generate_summary(history, old_summary=""):
-    """基于历史对话和旧总结生成新总结（使用 AI 自身）"""
-    if not history:
-        return old_summary
-    # 构建总结提示
-    prompt = "请用中文总结以下对话的核心内容，保持简洁。"
-    if old_summary:
-        prompt += f"已有的总结：{old_summary}\n"
-    prompt += "新对话：\n" + "\n".join([f"{msg['role']}: {msg['content']}" for msg in history])
-    try:
-        response = client.chat.completions.create(
-            model="groq/compound",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.5,
-            max_tokens=8192
-        )
-        new_summary = response.choices[0].message.content
-        # 保存到文件（便于调试和持久化）
-        with open("conversation_summary.txt", "w", encoding="utf-8") as f:
-            f.write(new_summary)
-        return new_summary
-    except Exception:
-        # 如果调用失败，返回旧总结
-        return old_summary
-
-# ========== 修改后的 get_ai_reply ==========
-def get_ai_reply(user_text):
-    # 1. 将用户消息加入历史（用于显示和总结）
-    st.session_state.messages.append({"role": "user", "content": user_text})
-    st.session_state.conv_history.append({"role": "user", "content": user_text})
+# ========== AI 回复函数 ==========
+def get_ai_reply(user_input):
+    """处理用户输入，获取AI回复，并触发TTS。"""
+    st.session_state.messages.append({"role": "user", "content": user_input})
     st.session_state.user_msg_count += 1
-
-    # 2. 检查是否需要生成总结（每5条用户消息触发一次）
-    if st.session_state.user_msg_count % 5 == 0 and st.session_state.conv_history:
-        # 生成总结，基于当前对话历史（包括本次用户消息）和旧总结
-        new_summary = generate_summary(st.session_state.conv_history, st.session_state.conversation_summary)
-        st.session_state.conversation_summary = new_summary
-        # 清空历史，为下一轮总结做准备
-        st.session_state.conv_history.clear()
-
-    # 3. 获取当前页面上下文
-    page_context = get_current_page_full_content()  # 注意：这里是用于聊天时的上下文，我们保留原逻辑但改用了完整内容
-
-    # 4. 调用缓存的 AI 回复（只传递总结，不传递全部历史）
-    reply = cached_chat_completion(
-        system_prompt,
-        page_context if page_context else "",
-        st.session_state.conversation_summary,
-        user_text
-    )
-
-    # 5. 将 AI 回复存入显示用的 messages，并加入对话历史（用于下次总结）
+    st.session_state.conv_history.append({"role": "user", "content": user_input})
+    
+    full_page = get_current_page_full_content()
+    context_msgs = st.session_state.messages.copy()
+    if full_page and st.session_state.user_msg_count == 1:
+        context_msgs.insert(1, {"role": "system", "content": full_page})
+    
+    if st.session_state.conversation_summary:
+        summary_msg = {
+            "role": "system",
+            "content": f"[Previous conversation summary]\n{st.session_state.conversation_summary}"
+        }
+        context_msgs.insert(1, summary_msg)
+    
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=context_msgs,
+            temperature=0.7,
+            max_tokens=512,
+        )
+        reply = response.choices[0].message.content.strip()
+    except Exception as e:
+        reply = f"[Error: {e}]"
+    
     st.session_state.messages.append({"role": "assistant", "content": reply})
     st.session_state.conv_history.append({"role": "assistant", "content": reply})
-
-    # 6. 生成语音
+    
+    # TTS生成
     audio_bytes, fmt = text_to_speech(reply)
     if audio_bytes:
         st.session_state.pending_tts = (audio_bytes, fmt)
+    
+    # 每隔5轮用户消息生成总结
+    if st.session_state.user_msg_count % 5 == 0 and st.session_state.user_msg_count > 0:
+        generate_and_save_summary()
 
-# ---------- 自定义CSS ----------
+# ========== 生成并保存对话总结 ==========
+def generate_and_save_summary():
+    """
+    使用 AI 生成对话总结，并保存到文件和 session_state。
+    """
+    if not st.session_state.conv_history:
+        return
+    
+    conv_text = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.conv_history])
+    
+    summary_prompt = f"""The following is a conversation between a user and an AI Chinese learning assistant.
+Please provide a concise summary (2-3 sentences) covering the main topics discussed.
+
+Conversation:
+{conv_text}
+
+Summary:"""
+    
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[{"role": "user", "content": summary_prompt}],
+            temperature=0.5,
+            max_tokens=200,
+        )
+        new_summary = response.choices[0].message.content.strip()
+        
+        if st.session_state.conversation_summary:
+            st.session_state.conversation_summary += "\n\n" + new_summary
+        else:
+            st.session_state.conversation_summary = new_summary
+        
+        with open("conversation_summary.txt", "w", encoding="utf-8") as f:
+            f.write(st.session_state.conversation_summary)
+        
+        st.session_state.conv_history = []
+        
+    except Exception as e:
+        st.warning(f"Failed to generate summary: {e}")
+
+# ---------- CSS样式 ----------
 st.markdown(f"""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
-
-    body {{
+    /* 全局样式 */
+    .stApp {{
         {bg_css}
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-color: #f0f0f0;
+    }}
+    
+    /* 语言选择器容器样式 */
+    .language-selector {{
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 10px 20px;
+        border-radius: 25px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }}
+    
+    .language-selector label {{
+        font-weight: 600;
+        color: #333;
+        margin: 0;
     }}
 
-    html, body, .stApp, .main, div[data-testid="stAppViewContainer"],
-    div[data-testid="stHeader"], div[data-testid="stToolbar"],
-    div[data-testid="stVerticalBlock"], div[data-testid="column"],
-    header, footer {{
-        background-color: transparent !important;
-    }}
-
-    #stFooter {{ display: none !important; }}
-    .main {{ padding: 2rem 1rem !important; }}
-
-    html, body, [class*="css"], h1, h2, h3, p, div, span, .stMarkdown {{
-        color: #000000 !important;
-        text-shadow: none !important;
-    }}
-
+    /* 主标题 */
     h1 {{
-        font-size: 72px !important;
-        font-weight: 800 !important;
-        letter-spacing: -0.5px;
+        text-align: center;
+        color: #000000;
+        font-size: 48px;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        margin-bottom: 30px;
+    }}
+
+    /* Level按钮 */
+    .stButton button {{
+        background-color: rgba(255,255,255,0.2) !important;
         color: #000000 !important;
-        margin-bottom: 16px !important;
-        text-transform: uppercase;
+        font-size: 20px !important;
+        font-weight: 600 !important;
+        border: 2px solid #000000 !important;
+        border-radius: 12px !important;
+        padding: 20px !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
     }}
-
-    h2 {{
-        font-size: 54px !important;
-        font-weight: 400 !important;
-        color: #000000 !important;
-        margin: 24px 0 8px 0 !important;
-    }}
-
-    h3 {{
-        font-size: 42px !important;
-        font-weight: 500 !important;
-        color: #000000 !important;
-        margin: 16px 0 8px 0 !important;
-    }}
-
-    div[data-testid="column"] .stButton > button {{
-        font-size: 56px !important;
-        font-weight: 700 !important;
-        background-color: transparent !important;
-        color: #000000 !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 8px 0 !important;
-        border-radius: 0 !important;
-        transition: all 0.2s ease !important;
-        width: 100%;
-        text-align: left;
-        margin: 0 !important;
-        line-height: 1.2;
-    }}
-    div[data-testid="column"] .stButton > button:hover {{
-        text-decoration: underline !important;
-        background-color: transparent !important;
-    }}
-
-    .stButton > button {{
-        font-size: 28px !important;
-        font-weight: 500 !important;
-        padding: 20px 24px !important;
-        border-radius: 40px !important;
-        background-color: transparent !important;
-        color: #000000 !important;
-        border: 2px solid rgba(0,0,0,0.3) !important;
-        transition: all 0.2s ease !important;
-        width: 100%;
-        box-shadow: none !important;
-    }}
-
-    .stButton > button:hover {{
-        background-color: rgba(255,255,255,0.3) !important;
-        border-color: #000000 !important;
-    }}
-
-    div[data-testid="stVerticalBlock"] > div {{
+    .stButton button:hover {{
         background-color: rgba(255,255,255,0.4) !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 16px !important;
-        border-radius: 16px !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
     }}
 
-    div[data-testid="stVerticalBlock"] > div h3 {{
-        font-size: 48px !important;
-        font-weight: 500 !important;
-        color: #000000 !important;
-        margin: 0 0 8px 0 !important;
-    }}
-
-    div[data-testid="stVerticalBlock"] > div div {{
-        font-size: 32px !important;
-        color: #333333 !important;
-        margin-bottom: 8px !important;
-    }}
-
-    div[data-testid="stVerticalBlock"] > div p {{
-        font-size: 32px !important;
-        color: #000000 !important;
-    }}
-
+    /* 面包屑导航 */
     .breadcrumb {{
-        font-size: 28px !important;
-        color: #333333 !important;
-        padding: 12px 0;
-        border-bottom: 2px solid rgba(0,0,0,0.2);
-        margin-bottom: 24px;
-        font-weight: 400;
+        background-color: rgba(255,255,255,0.15);
+        padding: 12px 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #000000;
+        font-weight: 500;
+        border: 1px solid rgba(0,0,0,0.1);
     }}
 
-    .back-button .stButton > button {{
-        background-color: transparent !important;
+    /* Back按钮 */
+    .back-button {{
+        margin-bottom: 20px;
+    }}
+    button[key="back_button"] {{
+        background-color: rgba(255,255,255,0.2) !important;
         color: #000000 !important;
-        border: none !important;
-        padding: 12px 0 !important;
-        font-size: 28px !important;
-        text-align: left;
-        font-weight: 500 !important;
-        box-shadow: none !important;
-        border-bottom: 2px solid transparent !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        border: 2px solid #000000 !important;
+        border-radius: 8px !important;
+        padding: 10px 24px !important;
     }}
 
-    .back-button .stButton > button:hover {{
-        background-color: transparent !important;
-        border-bottom: 2px solid #000000 !important;
+    /* 容器样式 */
+    div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlock"] {{
+        background-color: rgba(255,255,255,0.15);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        border: 1px solid rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }}
 
-    div[data-testid="column"] {{ padding: 8px !important; }}
-
-    hr {{
-        margin: 24px 0 !important;
-        border-color: rgba(0,0,0,0.1) !important;
+    /* 标题 */
+    h2 {{
+        color: #000000;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }}
+    h3 {{
+        color: #000000;
+        font-weight: 600;
+        margin-top: 20px;
+        margin-bottom: 10px;
     }}
 
+    /* 悬浮AI按钮 */
     .chat-float-container {{
         position: fixed;
         bottom: 30px;
         right: 30px;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
+        z-index: 999;
     }}
-
-    .chat-panel {{
-        width: 420px;
-        height: 600px;
-        background-color: #ffffff !important;
-        border-radius: 20px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        border: 1px solid rgba(0,0,0,0.1);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }}
-
-    .chat-messages-area {{
-        flex: 1;
-        overflow-y: auto;
-        padding: 16px;
-    }}
-
-    .chat-input-area {{
-        padding: 12px 16px;
-        border-top: 1px solid #e0e0e0;
-    }}
-
-    /* 输入区域列布局优化 */
-    .chat-input-area div[data-testid="column"] {{
-        padding: 0 4px !important;
-        display: flex !important;
-        align-items: center !important;
-    }}
-
-    /* 语音输入样式 - 紧凑的小黑框 */
-    .chat-input-area div[data-testid="stAudioInput"] {{
-        margin: 0 !important;
-    }}
-    
-    .chat-input-area div[data-testid="stAudioInput"] > div {{
-        background-color: #2d3748 !important;
-        border: none !important;
-        border-radius: 12px !important;
-        margin: 0 !important;
-        padding: 8px !important;
-        width: 56px !important;
-        height: 56px !important;
+    button[data-testid="baseButton-secondary"][key="chat_toggle_btn"],
+    .chat-float-container .stButton button {{
+        width: 70px !important;
+        height: 70px !important;
+        border-radius: 50% !important;
+        background-color: rgba(255,255,255,0.2) !important;
+        border: 2px solid #000000 !important;
+        font-size: 28px !important;
+        font-weight: 700 !important;
+        color: #000000 !important;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
+        transition: all 0.3s ease !important;
+        padding: 0 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
     }}
-    
-    .chat-input-area div[data-testid="stAudioInput"] button {{
-        color: #ffffff !important;
-        background-color: transparent !important;
-        padding: 0 !important;
-        min-height: auto !important;
+    button[data-testid="baseButton-secondary"][key="chat_toggle_btn"]:hover,
+    .chat-float-container .stButton button:hover {{
+        background-color: rgba(255,255,255,0.4) !important;
+        transform: scale(1.1);
     }}
 
-    /* 文字输入框样式 - 椭圆形，大字体，矮框 */
-    .chat-input-area .stChatInput {{
-        margin: 0 !important;
-    }}
-    .chat-input-area .stChatInput > div {{
-        background-color: #2d3748 !important;
-        border: none !important;
-        border-radius: 28px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        height: 56px !important;
-    }}
-    .chat-input-area .stChatInput input {{
-        font-size: 22px !important;
-        padding: 0 20px !important;
-        background-color: transparent !important;
-        color: #ffffff !important;
-        height: 56px !important;
-        min-height: 56px !important;
-        max-height: 56px !important;
-        border: none !important;
-        line-height: 56px !important;
-    }}
-    .chat-input-area .stChatInput input::placeholder {{
-        font-size: 22px !important;
-        color: #a0aec0 !important;
-    }}
-    
-    /* 移除可能的红色边框 */
-    .chat-input-area .stChatInput > div:focus-within,
-    .chat-input-area .stChatInput input:focus {{
-        border: none !important;
-        outline: none !important;
-        box-shadow: none !important;
+    /* 聊天面板 */
+    .chat-panel {{
+        position: fixed;
+        bottom: 120px;
+        right: 30px;
+        width: 450px;
+        height: 600px;
+        background-color: rgba(255,255,255,0.98);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        display: flex;
+        flex-direction: column;
+        z-index: 998;
+        border: 2px solid #000000;
     }}
 
+    /* 聊天消息区域 */
+    .chat-messages-area {{
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        border-bottom: 2px solid rgba(0,0,0,0.1);
+    }}
     .chat-message {{
-        margin-bottom: 16px;
-        font-size: 16px;
-        line-height: 1.5;
-        padding: 8px 0;
+        margin-bottom: 15px;
+        padding: 12px;
+        background-color: rgba(240,240,240,0.6);
+        border-radius: 8px;
+        line-height: 1.6;
+        color: #000000;
     }}
-
     .chat-message strong {{
-        font-weight: 600;
-        margin-right: 6px;
-        color: #2d3748;
+        color: #000000;
     }}
 
-    .clear-button-container .stButton > button {{
-        background-color: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        color: #666666 !important;
+    /* 输入区域 */
+    .chat-input-area {{
+        padding: 15px;
+        background-color: rgba(250,250,250,0.95);
+        border-radius: 0 0 14px 14px;
+    }}
+    .stChatInput {{
+        border-radius: 25px !important;
+        border: 2px solid #000000 !important;
+        background-color: rgba(255,255,255,0.9) !important;
+        font-size: 16px !important;
+    }}
+
+    /* Clear按钮 */
+    button[key="clear_chat"] {{
+        background-color: rgba(255,255,255,0.2) !important;
+        border: 2px solid #000000 !important;
+        border-radius: 8px !important;
+        padding: 6px 16px !important;
         font-size: 14px !important;
-        padding: 4px 12px !important;
-        margin: 0 !important;
-        width: auto !important;
-        text-decoration: none !important;
-        cursor: pointer;
-        font-weight: 500 !important;
-        border-radius: 16px !important;
-    }}
-    .clear-button-container .stButton > button:hover {{
-        color: #000000 !important;
-        background-color: rgba(0,0,0,0.05) !important;
-    }}
-
-    /* AI按钮样式 - 简洁的圆角按钮外观 */
-    button[data-testid="baseButton-secondary"][key="chat_toggle_btn"],
-    .chat-float-container .stButton button {{
-        background-color: transparent !important;
-        border: 2px solid rgba(0,0,0,0.3) !important;
-        border-radius: 40px !important;
-        padding: 16px 32px !important;
-        font-size: 28px !important;
         font-weight: 500 !important;
         color: #000000 !important;
         box-shadow: none !important;
@@ -636,6 +539,31 @@ st.markdown(f"""
     div[data-testid="stAudioInput"] {{ margin: 4px 0 !important; }}
 </style>
 """, unsafe_allow_html=True)
+
+# ---------- 语言选择器（固定在右上角） ----------
+st.markdown('<div class="language-selector">', unsafe_allow_html=True)
+language_col1, language_col2 = st.columns([1, 2])
+with language_col1:
+    st.markdown('<label>Language:</label>', unsafe_allow_html=True)
+with language_col2:
+    new_language = st.selectbox(
+        "",
+        ["Chinese", "English"],
+        index=0 if st.session_state.language == "Chinese" else 1,
+        key="language_selector",
+        label_visibility="collapsed"
+    )
+    
+    # 如果语言改变，重新加载数据并重置状态
+    if new_language != st.session_state.language:
+        st.session_state.language = new_language
+        levels_data = load_level_data(st.session_state.language)
+        st.session_state.level = None
+        st.session_state.path = []
+        st.session_state.messages = [{"role": "system", "content": system_prompt}]
+        st.session_state.auto_ref_pushed = False
+        st.rerun()
+st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------- 导航和卡片显示 ----------
 st.title("CHINESE LEARNING ASSISTANT")
