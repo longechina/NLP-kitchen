@@ -418,8 +418,6 @@ st.markdown(f"""
     div[data-testid="stChatMessage"] {{
         background-color: rgba(240, 240, 240, 0.4) !important;
         backdrop-filter: blur(5px);
-        border-radius: 12px;
-        border: 1px solid rgba(200, 200, 200, 0.3);
     }}
 
     /* 输入框区域整体背景透明 */
