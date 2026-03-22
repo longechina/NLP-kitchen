@@ -649,17 +649,19 @@ st.markdown(f"""
     /* 输入区域 */
     .chat-input-area {{
         padding: 15px;
-        background-color: rgba(250,250,250,0.8);
+        background-color: rgba(0,0,0,0.8);
         border-radius: 0 0 14px 14px;
         backdrop-filter: blur(5px);
     }}
     .stChatInput {{
         border-radius: 25px !important;
-        border: 1px solid rgba(100,100,100,0.3) !important;
-        background-color: rgba(255,255,255,0.9) !important;
+        border: 1px solid rgba(0,0,0,0.3) !important;
+        background-color: rgba(0,0,0,0.9) !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 16px !important;
         font-weight: 400 !important;
+        color: #ffffff !important;  /* 字体白色 */
+
     }}
     .stChatInput > div {{
         background: transparent !important;
