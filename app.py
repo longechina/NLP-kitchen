@@ -624,10 +624,9 @@ st.markdown(f"""
 
     /* 悬浮AI按钮 */
     .chat-float-container {{
-        position: relative;
-        bottom: auto;
-        right: auto;
-        z-index: auto;
+        position: relative !important;
+        bottom: auto !important;
+        right: auto !important;
     }}
     button[data-testid="baseButton-secondary"][key="chat_toggle_btn"],
     .chat-float-container .stButton button {{
@@ -646,6 +645,9 @@ st.markdown(f"""
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        position: relative !important;
+        bottom: auto !important;
+        right: auto !important;
     }}
     button[data-testid="baseButton-secondary"][key="chat_toggle_btn"]:hover,
     .chat-float-container .stButton button:hover {{
@@ -761,6 +763,20 @@ st.markdown(f"""
     .element-container:has(iframe) {{
         display: none !important;
     }}
+
+    /* 取消固定定位 */
+    .chat-float-container {
+        position: relative !important;
+        margin-top: 30px !important;
+        display: flex !important;
+        justify-content: flex-end !important;
+    }
+    button[data-testid="baseButton-secondary"][key="chat_toggle_btn"] {
+        position: relative !important;
+        bottom: auto !important;
+        right: auto !important;
+    }
+
 </style>
 """, unsafe_allow_html=True)
 
