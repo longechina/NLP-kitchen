@@ -730,7 +730,7 @@ with language_col2:
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------- 导航和卡片显示 ----------
-st.title("CHINESE LEARNING ASSISTANT")
+st.title("TEXTBOOK ASSISTANT")
 
 col1, col2, col3 = st.columns(3)
 with col1:
