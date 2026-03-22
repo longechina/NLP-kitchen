@@ -358,6 +358,10 @@ st.markdown(f"""
         font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }}
 
+    * {{
+        font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    }}
+
     /* ↓ 新增代码放在这里 ↓ */
     .stApp {{
         background-color: rgba(255, 255, 255, 0.7) !important;
@@ -496,6 +500,12 @@ st.markdown(f"""
         margin-bottom: 40px;
         letter-spacing: -2px;
         line-height: 1.1;
+    }}
+
+    @media (max-width: 768px) {{
+    h1 {{
+        font-size: 96px;
+    }}
     }}
 
     /* Level按钮 */
