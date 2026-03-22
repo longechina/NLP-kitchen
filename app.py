@@ -709,7 +709,7 @@ st.markdown(f"""
 st.markdown('<div class="language-selector">', unsafe_allow_html=True)
 language_col1, language_col2 = st.columns([1, 2])
 with language_col1:
-    st.markdown('<label>Pick A PDF:</label>', unsafe_allow_html=True)
+    st.markdown('<label>Select a Textbook::</label>', unsafe_allow_html=True)
 with language_col2:
     new_language = st.selectbox(
         "Language",  # 提供非空标签，防止警告
