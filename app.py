@@ -764,20 +764,6 @@ st.markdown(f"""
         display: none !important;
     }}
 
-    /* 取消固定定位 */
-    .chat-float-container {{
-        position: relative !important;
-        margin-top: 30px !important;
-        display: flex !important;
-        justify-content: flex-end !important;
-    }}
-
-    button[data-testid="baseButton-secondary"][key="chat_toggle_btn"] {{
-        position: relative !important;
-        bottom: auto !important;
-        right: auto !important;
-    }}
-
 
 </style>
 """, unsafe_allow_html=True)
@@ -912,101 +898,97 @@ if st.session_state.level:
         auto_push_reference(st.session_state.level, bread)
 
 # ---------- 悬浮聊天窗 ----------
-with st.container():
-    st.markdown('<div class="chat-float-container">', unsafe_allow_html=True)
 
-    if st.button("AI", key="chat_toggle_btn"):
-        st.session_state.chat_open = not st.session_state.chat_open
+st.session_state.chat_open = True
+
+if st.session_state.chat_open:
+    st.markdown('<div class="chat-panel">', unsafe_allow_html=True)
+    
+    # 初始化音频上下文（绕过浏览器自动播放限制）
+    st.markdown('''
+    <script>
+        if (!window.audioContextInitialized) {
+            window.audioContextInitialized = true;
+            // 创建静默音频上下文以启用自动播放
+            var silentAudio = document.createElement('audio');
+            silentAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+            silentAudio.play().catch(function() {});
+        }
+    </script>
+    ''', unsafe_allow_html=True)
+
+    # Clear 按钮
+    st.markdown('<div class="clear-button-container" style="display:flex;justify-content:flex-end;padding:8px 16px 0;">', unsafe_allow_html=True)
+    if st.button("Clear", key="clear_chat"):
+        st.session_state.messages = [m for m in st.session_state.messages if m["role"] == "system"]
+        st.session_state.pending_tts = None
+        st.session_state.last_audio_id = None
+        # 清理总结相关状态
+        st.session_state.conversation_summary = ""
+        st.session_state.conv_history = []
+        st.session_state.user_msg_count = 0
+        st.session_state.auto_ref_pushed = False   # 重置自动推送标记
+        # 可选：删除总结文件
+        if os.path.exists("conversation_summary.txt"):
+            os.remove("conversation_summary.txt")
         st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
 
-    if st.session_state.chat_open:
-        st.markdown('<div class="chat-panel">', unsafe_allow_html=True)
-        
-        # 初始化音频上下文（绕过浏览器自动播放限制）
-        st.markdown('''
-        <script>
-            if (!window.audioContextInitialized) {
-                window.audioContextInitialized = true;
-                // 创建静默音频上下文以启用自动播放
-                var silentAudio = document.createElement('audio');
-                silentAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
-                silentAudio.play().catch(function() {});
+    # 消息区域
+    st.markdown('<div class="chat-messages-area" id="chat-messages">', unsafe_allow_html=True)
+    for msg in st.session_state.messages:
+        if msg["role"] == "user":
+            st.markdown(f'<div class="chat-message"><strong>You:</strong> {msg["content"]}</div>', unsafe_allow_html=True)
+        elif msg["role"] == "assistant":
+            st.markdown(f'<div class="chat-message"><strong>AI:</strong> {msg["content"]}</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # 自动滚动到底部
+    st.markdown('''
+    <script>
+        setTimeout(function() {
+            var chatArea = document.getElementById('chat-messages');
+            if (chatArea) {
+                chatArea.scrollTop = chatArea.scrollHeight;
             }
-        </script>
-        ''', unsafe_allow_html=True)
+        }, 100);
+    </script>
+    ''', unsafe_allow_html=True)
 
-        # Clear 按钮
-        st.markdown('<div class="clear-button-container" style="display:flex;justify-content:flex-end;padding:8px 16px 0;">', unsafe_allow_html=True)
-        if st.button("Clear", key="clear_chat"):
-            st.session_state.messages = [m for m in st.session_state.messages if m["role"] == "system"]
-            st.session_state.pending_tts = None
-            st.session_state.last_audio_id = None
-            # 清理总结相关状态
-            st.session_state.conversation_summary = ""
-            st.session_state.conv_history = []
-            st.session_state.user_msg_count = 0
-            st.session_state.auto_ref_pushed = False   # 重置自动推送标记
-            # 可选：删除总结文件
-            if os.path.exists("conversation_summary.txt"):
-                os.remove("conversation_summary.txt")
+    # ========== 修改：自动播放使用 st.audio 并隐藏 ==========
+    if st.session_state.pending_tts:
+        audio_bytes, fmt = st.session_state.pending_tts
+        st.audio(audio_bytes, format=fmt, autoplay=True)
+        st.session_state.pending_tts = None
+
+    # 输入区域
+    st.markdown('<div class="chat-input-area">', unsafe_allow_html=True)
+    
+    # 创建两列布局：语音按钮在左，文字输入在右
+    col_voice, col_text = st.columns([1, 6])
+    
+    with col_voice:
+        # 语音输入 - 小黑框
+        audio_input = st.audio_input("🎤", key="voice_input", label_visibility="collapsed")
+        if audio_input is not None:
+            audio_id = f"{audio_input.name}_{audio_input.size}"
+            if audio_id != st.session_state.last_audio_id:
+                st.session_state.last_audio_id = audio_id
+                with st.spinner("Transcribing..."):
+                    transcript = transcribe_audio(audio_input.read())
+                if transcript and not transcript.startswith("[转录失败"):
+                    with st.spinner("Thinking..."):
+                        get_ai_reply(transcript)
+                    st.rerun()
+    
+    with col_text:
+        # 文字输入 - 椭圆形大字体
+        if prompt := st.chat_input("Type a message...", key="text_input"):
+            with st.spinner("Thinking..."):
+                get_ai_reply(prompt)
             st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
-
-        # 消息区域
-        st.markdown('<div class="chat-messages-area" id="chat-messages">', unsafe_allow_html=True)
-        for msg in st.session_state.messages:
-            if msg["role"] == "user":
-                st.markdown(f'<div class="chat-message"><strong>You:</strong> {msg["content"]}</div>', unsafe_allow_html=True)
-            elif msg["role"] == "assistant":
-                st.markdown(f'<div class="chat-message"><strong>AI:</strong> {msg["content"]}</div>', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
-        
-        # 自动滚动到底部
-        st.markdown('''
-        <script>
-            setTimeout(function() {
-                var chatArea = document.getElementById('chat-messages');
-                if (chatArea) {
-                    chatArea.scrollTop = chatArea.scrollHeight;
-                }
-            }, 100);
-        </script>
-        ''', unsafe_allow_html=True)
-
-        # ========== 修改：自动播放使用 st.audio 并隐藏 ==========
-        if st.session_state.pending_tts:
-            audio_bytes, fmt = st.session_state.pending_tts
-            st.audio(audio_bytes, format=fmt, autoplay=True)
-            st.session_state.pending_tts = None
-
-        # 输入区域
-        st.markdown('<div class="chat-input-area">', unsafe_allow_html=True)
-        
-        # 创建两列布局：语音按钮在左，文字输入在右
-        col_voice, col_text = st.columns([1, 6])
-        
-        with col_voice:
-            # 语音输入 - 小黑框
-            audio_input = st.audio_input("🎤", key="voice_input", label_visibility="collapsed")
-            if audio_input is not None:
-                audio_id = f"{audio_input.name}_{audio_input.size}"
-                if audio_id != st.session_state.last_audio_id:
-                    st.session_state.last_audio_id = audio_id
-                    with st.spinner("Transcribing..."):
-                        transcript = transcribe_audio(audio_input.read())
-                    if transcript and not transcript.startswith("[转录失败"):
-                        with st.spinner("Thinking..."):
-                            get_ai_reply(transcript)
-                        st.rerun()
-        
-        with col_text:
-            # 文字输入 - 椭圆形大字体
-            if prompt := st.chat_input("Type a message...", key="text_input"):
-                with st.spinner("Thinking..."):
-                    get_ai_reply(prompt)
-                st.rerun()
-
-        st.markdown('</div>', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
