@@ -567,7 +567,7 @@ st.markdown(f"""
 
     /* 容器样式 */
     div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlock"] {{
-        background-color: rgba(255,255,255,0.85);
+        background-color: rgba(255,255,255,1);
         border-radius: 12px;
         padding: 20px;
         margin-bottom: 15px;
