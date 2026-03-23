@@ -6,6 +6,11 @@ import os
 import time
 import streamlit as st
 import groq
+from streamlit_webrtc import webrtc_streamer, AudioProcessorBase, WebRtcMode
+import numpy as np
+import queue
+import threading
+import soundfile as sf
 
 # ---------- 将背景图片转换为 Base64 嵌入 CSS ----------
 def get_base64_of_image(image_path):
@@ -22,19 +27,18 @@ if bg_base64 is None:
 else:
     bg_css = f"background-image: url('data:image/jpeg;base64,{bg_base64}');"
 
-# Page config
 st.set_page_config(
     layout="wide",
-    page_title="LVING PDF Assistant",
+    page_title="Chinese Learning Assistant",
     initial_sidebar_state="collapsed",
     menu_items=None
 )
 
 # ---------- 初始化语言状态 ----------
 if "language" not in st.session_state:
-    st.session_state.language = "Chinese"  # 默认中文
+    st.session_state.language = "Chinese"
 
-# ---------- 加载所有 Level 数据（根据语言） ----------
+# ---------- 加载所有 Level 数据 ----------
 @st.cache_data
 def load_level_data(language):
     levels = {}
@@ -67,7 +71,7 @@ def load_kokoro():
     except Exception:
         return None
 
-# ---------- 语音转文字（Whisper）----------
+# ---------- 语音转文字 ----------
 def transcribe_audio(audio_bytes):
     try:
         transcription = client.audio.transcriptions.create(
@@ -97,8 +101,6 @@ def text_to_speech(text):
             return buf.read(), "audio/wav"
         except Exception as e:
             print(f"Kokoro TTS error: {e}")
-            pass
-    # Fallback: Groq Orpheus
     try:
         response = client.audio.speech.create(
             model="canopylabs/orpheus-v1-english",
@@ -129,10 +131,12 @@ if "path" not in st.session_state:
     st.session_state.path = []
 if "chat_open" not in st.session_state:
     st.session_state.chat_open = False
-if "last_audio_id" not in st.session_state:
-    st.session_state.last_audio_id = None
 if "pending_tts" not in st.session_state:
-    st.session_state.pending_tts = None  # (bytes, fmt)
+    st.session_state.pending_tts = None
+if "voice_mode" not in st.session_state:
+    st.session_state.voice_mode = False          # 语音模式开关
+if "last_audio_data" not in st.session_state:
+    st.session_state.last_audio_data = None      # 用于去重
 
 # ========== 对话总结相关状态 ==========
 if "conversation_summary" not in st.session_state:
@@ -241,36 +245,26 @@ def auto_push_reference(level, path_string):
             st.session_state.current_recommendations = ref_msg
         st.session_state.auto_ref_pushed = True
 
-# ========== AI 回复函数（修改版：每次调用都注入当前语言和页面内容） ==========
+# ========== AI 回复函数（注入语言和页面内容） ==========
 def get_ai_reply(user_input):
     st.session_state.messages.append({"role": "user", "content": user_input})
     st.session_state.user_msg_count += 1
     st.session_state.conv_history.append({"role": "user", "content": user_input})
 
-    # 获取当前页面内容
     full_page = get_current_page_full_content()
-
-    # 构建上下文：复制对话历史，并动态插入当前语言、页面内容、对话总结
     context_msgs = st.session_state.messages.copy()
 
-    # 1. 插入当前语言信息（紧跟在原始系统提示之后）
+    # 插入语言信息
     if st.session_state.language:
         lang_msg = {"role": "system", "content": f"The user is currently learning {st.session_state.language}."}
         context_msgs.insert(1, lang_msg)
 
-    # 2. 插入当前页面内容（如果有）
     if full_page:
-        # 根据语言信息是否插入，决定插入位置
         insert_idx = 2 if st.session_state.language else 1
         context_msgs.insert(insert_idx, {"role": "system", "content": full_page})
 
-    # 3. 插入对话总结（如果有）
     if st.session_state.conversation_summary:
-        summary_msg = {
-            "role": "system",
-            "content": f"[Previous conversation summary]\n{st.session_state.conversation_summary}"
-        }
-        # 计算插入位置：在语言和页面内容之后
+        summary_msg = {"role": "system", "content": f"[Previous conversation summary]\n{st.session_state.conversation_summary}"}
         base = 1
         if st.session_state.language:
             base += 1
@@ -280,7 +274,7 @@ def get_ai_reply(user_input):
 
     try:
         response = client.chat.completions.create(
-            model="groq/compound",
+            model="llama-3.3-70b-versatile",
             messages=context_msgs,
             temperature=0.7,
             max_tokens=512,
@@ -292,15 +286,14 @@ def get_ai_reply(user_input):
     st.session_state.messages.append({"role": "assistant", "content": reply})
     st.session_state.conv_history.append({"role": "assistant", "content": reply})
 
-    # TTS生成（错误不会传播到页面）
+    # TTS生成
     try:
         audio_bytes, fmt = text_to_speech(reply)
         if audio_bytes:
             st.session_state.pending_tts = (audio_bytes, fmt)
     except Exception as e:
-        print(f"TTS error in get_ai_reply: {e}")
+        print(f"TTS error: {e}")
 
-    # 每隔5轮用户消息生成总结
     if st.session_state.user_msg_count % 5 == 0 and st.session_state.user_msg_count > 0:
         generate_and_save_summary()
 
@@ -320,7 +313,7 @@ Conversation:
 Summary:"""
     try:
         response = client.chat.completions.create(
-            model="groq/compound",
+            model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": summary_prompt}],
             temperature=0.5,
             max_tokens=200,
@@ -338,6 +331,40 @@ Summary:"""
         st.session_state.conv_history = []
     except Exception as e:
         st.warning(f"Failed to generate summary: {e}")
+
+# ---------- 自定义音频处理器：实现语音活动检测和自动录音 ----------
+class VoiceActivityDetector(AudioProcessorBase):
+    def __init__(self):
+        self.audio_queue = queue.Queue()
+        self.recording = False
+        self.silence_frames = 0
+        self.silence_threshold = 30   # 约 3 秒 (假设 10ms 一帧)
+        self.volume_threshold = 0.02
+        self.audio_chunks = []
+        self.lock = threading.Lock()
+
+    def recv(self, frame):
+        """接收音频帧（numpy 数组）"""
+        audio = frame.to_ndarray().flatten()
+        rms = np.sqrt(np.mean(audio ** 2))
+        with self.lock:
+            if rms > self.volume_threshold:
+                # 有声音，开始或继续录音
+                if not self.recording:
+                    self.recording = True
+                    self.audio_chunks = []
+                self.silence_frames = 0
+                self.audio_chunks.append(audio)
+            else:
+                if self.recording:
+                    self.silence_frames += 1
+                    self.audio_chunks.append(audio)
+                    if self.silence_frames >= self.silence_threshold:
+                        # 静默超过阈值，停止录音并发送
+                        self.recording = False
+                        full_audio = np.concatenate(self.audio_chunks)
+                        self.audio_queue.put(full_audio)
+        return frame
 
 # ---------- CSS样式 ----------
 st.markdown(f"""
@@ -709,10 +736,10 @@ st.markdown(f"""
 st.markdown('<div class="language-selector">', unsafe_allow_html=True)
 language_col1, language_col2 = st.columns([1, 2])
 with language_col1:
-    st.markdown('<label>Select a Textbook::</label>', unsafe_allow_html=True)
+    st.markdown('<label>Language:</label>', unsafe_allow_html=True)
 with language_col2:
     new_language = st.selectbox(
-        "Language",  # 提供非空标签，防止警告
+        "Language",
         ["Chinese", "English"],
         index=0 if st.session_state.language == "Chinese" else 1,
         key="language_selector",
@@ -730,7 +757,7 @@ with language_col2:
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------- 导航和卡片显示 ----------
-st.title("TEXTBOOK ASSISTANT")
+st.title("Chinese Learning Assistant")
 
 col1, col2, col3 = st.columns(3)
 with col1:
@@ -830,8 +857,7 @@ if st.session_state.level:
     if not st.session_state.auto_ref_pushed:
         auto_push_reference(st.session_state.level, bread)
 
-# ---------- 悬浮聊天窗（固定在右下角） ----------
-# 强制打开聊天面板（用户要求）
+# ---------- 悬浮聊天窗 ----------
 st.session_state.chat_open = True
 
 if st.session_state.chat_open:
@@ -876,15 +902,13 @@ if st.session_state.chat_open:
         st.audio(audio_bytes, format=fmt, autoplay=True)
         st.session_state.pending_tts = None
 
-    # 输入区域：三列布局（Clear按钮 + 语音按钮 + 文本输入）
+    # 输入区域：三列布局（Clear按钮 + 语音模式开关 + 文本输入）
     col_clear, col_voice, col_text = st.columns([1, 1, 6])
 
     with col_clear:
-        # Clear 按钮
         if st.button("Clear", key="clear_chat", use_container_width=True):
             st.session_state.messages = [m for m in st.session_state.messages if m["role"] == "system"]
             st.session_state.pending_tts = None
-            st.session_state.last_audio_id = None
             st.session_state.conversation_summary = ""
             st.session_state.conv_history = []
             st.session_state.user_msg_count = 0
@@ -894,23 +918,49 @@ if st.session_state.chat_open:
             st.rerun()
 
     with col_voice:
-        # 语音输入按钮
-        audio_input = st.audio_input("🎤", key="voice_input", label_visibility="collapsed")
-        if audio_input is not None:
-            audio_id = f"{audio_input.name}_{audio_input.size}"
-            if audio_id != st.session_state.last_audio_id:
-                st.session_state.last_audio_id = audio_id
-                audio_bytes = audio_input.read()
-                if audio_bytes:
-                    with st.spinner("Transcribing..."):
-                        transcript = transcribe_audio(audio_bytes)
-                    if transcript and not transcript.startswith("[转录失败"):
-                        with st.spinner("Thinking..."):
-                            get_ai_reply(transcript)
-                        st.rerun()
+        # 语音模式开关按钮
+        if st.button("🎤 语音模式" if not st.session_state.voice_mode else "🔴 关闭语音", key="voice_toggle", use_container_width=True):
+            st.session_state.voice_mode = not st.session_state.voice_mode
+            st.rerun()
+
+        # 当语音模式开启时，启动 webrtc_streamer
+        if st.session_state.voice_mode:
+            # 隐藏的 webrtc_streamer 容器，高度设为 0
+            with st.container():
+                st.markdown("""<style>iframe[title="streamlit_webrtc.streamlit_webrtc"] { height: 0px !important; min-height: 0px !important; }</style>""", unsafe_allow_html=True)
+                webrtc_ctx = webrtc_streamer(
+                    key="voice_detector",
+                    mode=WebRtcMode.SENDRECV,
+                    audio_processor_factory=VoiceActivityDetector,
+                    media_stream_constraints={"video": False, "audio": True},
+                    async_processing=True,
+                )
+                if webrtc_ctx.audio_processor:
+                    processor = webrtc_ctx.audio_processor
+                    # 从队列中取出完整音频（当一段录音结束时）
+                    try:
+                        audio_data = processor.audio_queue.get_nowait()
+                    except queue.Empty:
+                        audio_data = None
+                    if audio_data is not None:
+                        # 将 numpy 数组转换为 WAV 字节流
+                        buf = io.BytesIO()
+                        sf.write(buf, audio_data, 16000, format="WAV")
+                        buf.seek(0)
+                        audio_bytes = buf.read()
+                        # 避免重复处理同一段音频
+                        if audio_bytes != st.session_state.last_audio_data:
+                            st.session_state.last_audio_data = audio_bytes
+                            with st.spinner("正在转录..."):
+                                transcript = transcribe_audio(audio_bytes)
+                            if transcript and not transcript.startswith("[转录失败"):
+                                with st.spinner("思考中..."):
+                                    get_ai_reply(transcript)
+                                st.rerun()
+            # 显示提示
+            st.caption("语音模式已开启，开始说话即可自动录音，静默3秒后自动识别")
 
     with col_text:
-        # 文本输入框
         if prompt := st.chat_input("Type a message...", key="text_input"):
             with st.spinner("Thinking..."):
                 get_ai_reply(prompt)
