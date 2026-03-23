@@ -4,13 +4,8 @@ import io
 import re
 import os
 import time
-import queue
-import threading
-import numpy as np
-import soundfile as sf
 import streamlit as st
 import groq
-from streamlit_webrtc import webrtc_streamer, AudioProcessorBase, WebRtcMode
 
 # ---------- 将背景图片转换为 Base64 嵌入 CSS ----------
 def get_base64_of_image(image_path):
@@ -27,18 +22,19 @@ if bg_base64 is None:
 else:
     bg_css = f"background-image: url('data:image/jpeg;base64,{bg_base64}');"
 
+# Page config
 st.set_page_config(
     layout="wide",
-    page_title="Chinese Learning Assistant",
+    page_title="LVING PDF Assistant",
     initial_sidebar_state="collapsed",
     menu_items=None
 )
 
 # ---------- 初始化语言状态 ----------
 if "language" not in st.session_state:
-    st.session_state.language = "Chinese"
+    st.session_state.language = "Chinese"  # 默认中文
 
-# ---------- 加载所有 Level 数据 ----------
+# ---------- 加载所有 Level 数据（根据语言） ----------
 @st.cache_data
 def load_level_data(language):
     levels = {}
@@ -71,7 +67,7 @@ def load_kokoro():
     except Exception:
         return None
 
-# ---------- 语音转文字 ----------
+# ---------- 语音转文字（Whisper）----------
 def transcribe_audio(audio_bytes):
     try:
         transcription = client.audio.transcriptions.create(
@@ -80,7 +76,7 @@ def transcribe_audio(audio_bytes):
         )
         return transcription.text
     except Exception as e:
-        st.error(f"Speech recognition failed: {e}")
+        st.error(f"语音识别失败: {e}")
         return None
 
 # ---------- 判断文本是否含中文 ----------
@@ -101,6 +97,8 @@ def text_to_speech(text):
             return buf.read(), "audio/wav"
         except Exception as e:
             print(f"Kokoro TTS error: {e}")
+            pass
+    # Fallback: Groq Orpheus
     try:
         response = client.audio.speech.create(
             model="canopylabs/orpheus-v1-english",
@@ -131,14 +129,10 @@ if "path" not in st.session_state:
     st.session_state.path = []
 if "chat_open" not in st.session_state:
     st.session_state.chat_open = False
+if "last_audio_id" not in st.session_state:
+    st.session_state.last_audio_id = None
 if "pending_tts" not in st.session_state:
-    st.session_state.pending_tts = None
-if "voice_mode" not in st.session_state:
-    st.session_state.voice_mode = False
-if "last_audio_data" not in st.session_state:
-    st.session_state.last_audio_data = None
-if "recording_status" not in st.session_state:
-    st.session_state.recording_status = "Idle"   # Idle, Recording
+    st.session_state.pending_tts = None  # (bytes, fmt)
 
 # ========== 对话总结相关状态 ==========
 if "conversation_summary" not in st.session_state:
@@ -247,26 +241,36 @@ def auto_push_reference(level, path_string):
             st.session_state.current_recommendations = ref_msg
         st.session_state.auto_ref_pushed = True
 
-# ========== AI 回复函数（注入语言和页面内容） ==========
+# ========== AI 回复函数（修改版：每次调用都注入当前语言和页面内容） ==========
 def get_ai_reply(user_input):
     st.session_state.messages.append({"role": "user", "content": user_input})
     st.session_state.user_msg_count += 1
     st.session_state.conv_history.append({"role": "user", "content": user_input})
 
+    # 获取当前页面内容
     full_page = get_current_page_full_content()
+
+    # 构建上下文：复制对话历史，并动态插入当前语言、页面内容、对话总结
     context_msgs = st.session_state.messages.copy()
 
-    # 插入语言信息
+    # 1. 插入当前语言信息（紧跟在原始系统提示之后）
     if st.session_state.language:
         lang_msg = {"role": "system", "content": f"The user is currently learning {st.session_state.language}."}
         context_msgs.insert(1, lang_msg)
 
+    # 2. 插入当前页面内容（如果有）
     if full_page:
+        # 根据语言信息是否插入，决定插入位置
         insert_idx = 2 if st.session_state.language else 1
         context_msgs.insert(insert_idx, {"role": "system", "content": full_page})
 
+    # 3. 插入对话总结（如果有）
     if st.session_state.conversation_summary:
-        summary_msg = {"role": "system", "content": f"[Previous conversation summary]\n{st.session_state.conversation_summary}"}
+        summary_msg = {
+            "role": "system",
+            "content": f"[Previous conversation summary]\n{st.session_state.conversation_summary}"
+        }
+        # 计算插入位置：在语言和页面内容之后
         base = 1
         if st.session_state.language:
             base += 1
@@ -288,14 +292,15 @@ def get_ai_reply(user_input):
     st.session_state.messages.append({"role": "assistant", "content": reply})
     st.session_state.conv_history.append({"role": "assistant", "content": reply})
 
-    # TTS生成
+    # TTS生成（错误不会传播到页面）
     try:
         audio_bytes, fmt = text_to_speech(reply)
         if audio_bytes:
             st.session_state.pending_tts = (audio_bytes, fmt)
     except Exception as e:
-        print(f"TTS error: {e}")
+        print(f"TTS error in get_ai_reply: {e}")
 
+    # 每隔5轮用户消息生成总结
     if st.session_state.user_msg_count % 5 == 0 and st.session_state.user_msg_count > 0:
         generate_and_save_summary()
 
@@ -333,53 +338,6 @@ Summary:"""
         st.session_state.conv_history = []
     except Exception as e:
         st.warning(f"Failed to generate summary: {e}")
-
-# ---------- 自定义音频处理器：实现语音活动检测和自动录音 ----------
-class VoiceActivityDetector(AudioProcessorBase):
-    def __init__(self):
-        self.audio_queue = queue.Queue()
-        self.recording = False
-        self.silence_start_time = None
-        self.volume_threshold = 0.02
-        self.silence_duration = 3.0
-        self.audio_chunks = []
-        self.lock = threading.Lock()
-        self._recording_status = "Idle"   # 用于状态显示
-
-    @property
-    def recording_status(self):
-        with self.lock:
-            return self._recording_status
-
-    def recv(self, frame):
-        audio = frame.to_ndarray().flatten()
-        rms = np.sqrt(np.mean(audio ** 2))
-
-        with self.lock:
-            if rms > self.volume_threshold:
-                # 有声音
-                if not self.recording:
-                    self.recording = True
-                    self._recording_status = "Recording"
-                    self.audio_chunks = []
-                    self.silence_start_time = None
-                self.audio_chunks.append(audio)
-            else:
-                if self.recording:
-                    if self.silence_start_time is None:
-                        self.silence_start_time = time.time()
-                    elif time.time() - self.silence_start_time >= self.silence_duration:
-                        # 静默超时，停止录音
-                        self.recording = False
-                        self._recording_status = "Idle"
-                        full_audio = np.concatenate(self.audio_chunks)
-                        self.audio_queue.put(full_audio)
-                        self.audio_chunks = []
-                        self.silence_start_time = None
-                    else:
-                        # 静默期间仍然累积音频
-                        self.audio_chunks.append(audio)
-        return frame
 
 # ---------- CSS样式 ----------
 st.markdown(f"""
@@ -751,10 +709,10 @@ st.markdown(f"""
 st.markdown('<div class="language-selector">', unsafe_allow_html=True)
 language_col1, language_col2 = st.columns([1, 2])
 with language_col1:
-    st.markdown('<label>Language:</label>', unsafe_allow_html=True)
+    st.markdown('<label>Select a Textbook::</label>', unsafe_allow_html=True)
 with language_col2:
     new_language = st.selectbox(
-        "Language",
+        "Language",  # 提供非空标签，防止警告
         ["Chinese", "English"],
         index=0 if st.session_state.language == "Chinese" else 1,
         key="language_selector",
@@ -772,7 +730,7 @@ with language_col2:
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------- 导航和卡片显示 ----------
-st.title("Chinese Learning Assistant")
+st.title("TEXTBOOK ASSISTANT")
 
 col1, col2, col3 = st.columns(3)
 with col1:
@@ -872,7 +830,8 @@ if st.session_state.level:
     if not st.session_state.auto_ref_pushed:
         auto_push_reference(st.session_state.level, bread)
 
-# ---------- 悬浮聊天窗 ----------
+# ---------- 悬浮聊天窗（固定在右下角） ----------
+# 强制打开聊天面板（用户要求）
 st.session_state.chat_open = True
 
 if st.session_state.chat_open:
@@ -917,13 +876,15 @@ if st.session_state.chat_open:
         st.audio(audio_bytes, format=fmt, autoplay=True)
         st.session_state.pending_tts = None
 
-    # 输入区域：三列布局（Clear按钮 + 语音模式开关 + 文本输入）
+    # 输入区域：三列布局（Clear按钮 + 语音按钮 + 文本输入）
     col_clear, col_voice, col_text = st.columns([1, 1, 6])
 
     with col_clear:
+        # Clear 按钮
         if st.button("Clear", key="clear_chat", use_container_width=True):
             st.session_state.messages = [m for m in st.session_state.messages if m["role"] == "system"]
             st.session_state.pending_tts = None
+            st.session_state.last_audio_id = None
             st.session_state.conversation_summary = ""
             st.session_state.conv_history = []
             st.session_state.user_msg_count = 0
@@ -933,55 +894,23 @@ if st.session_state.chat_open:
             st.rerun()
 
     with col_voice:
-        # 语音模式开关按钮（无emoji）
-        button_label = "Voice Mode" if not st.session_state.voice_mode else "Exit Voice Mode"
-        if st.button(button_label, key="voice_toggle", use_container_width=True):
-            st.session_state.voice_mode = not st.session_state.voice_mode
-            st.rerun()
-
-        if st.session_state.voice_mode:
-            # 隐藏 webrtc_streamer 界面
-            st.markdown("""<style>iframe[title="streamlit_webrtc.streamlit_webrtc"] { height: 0px !important; min-height: 0px !important; }</style>""", unsafe_allow_html=True)
-            webrtc_ctx = webrtc_streamer(
-                key="voice_detector",
-                mode=WebRtcMode.SENDRECV,
-                audio_processor_factory=VoiceActivityDetector,
-                media_stream_constraints={"video": False, "audio": True},
-                async_processing=True,
-            )
-            if webrtc_ctx.audio_processor:
-                processor = webrtc_ctx.audio_processor
-                # 显示录音状态
-                status_placeholder = st.empty()
-                status_placeholder.info("Listening...")
-                # 轮询音频队列
-                try:
-                    audio_data = processor.audio_queue.get_nowait()
-                except queue.Empty:
-                    audio_data = None
-                if audio_data is not None:
-                    # 转换为 WAV
-                    buf = io.BytesIO()
-                    sf.write(buf, audio_data, 16000, format="WAV")
-                    buf.seek(0)
-                    audio_bytes = buf.read()
-                    if audio_bytes != st.session_state.last_audio_data:
-                        st.session_state.last_audio_data = audio_bytes
-                        with st.spinner("Transcribing..."):
-                            transcript = transcribe_audio(audio_bytes)
-                        if transcript and not transcript.startswith("[转录失败"):
-                            with st.spinner("Thinking..."):
-                                get_ai_reply(transcript)
-                            st.rerun()
-                # 更新状态显示
-                if processor.recording:
-                    status_placeholder.info("Recording...")
-                else:
-                    status_placeholder.info("Listening...")
-            else:
-                st.error("Microphone not ready. Please check permissions.")
+        # 语音输入按钮
+        audio_input = st.audio_input("🎤", key="voice_input", label_visibility="collapsed")
+        if audio_input is not None:
+            audio_id = f"{audio_input.name}_{audio_input.size}"
+            if audio_id != st.session_state.last_audio_id:
+                st.session_state.last_audio_id = audio_id
+                audio_bytes = audio_input.read()
+                if audio_bytes:
+                    with st.spinner("Transcribing..."):
+                        transcript = transcribe_audio(audio_bytes)
+                    if transcript and not transcript.startswith("[转录失败"):
+                        with st.spinner("Thinking..."):
+                            get_ai_reply(transcript)
+                        st.rerun()
 
     with col_text:
+        # 文本输入框
         if prompt := st.chat_input("Type a message...", key="text_input"):
             with st.spinner("Thinking..."):
                 get_ai_reply(prompt)
