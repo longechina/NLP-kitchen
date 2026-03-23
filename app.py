@@ -787,7 +787,7 @@ if st.session_state.chat_open:
         if st.session_state.voice_mode:
             # 录音组件，必须提供 label
             audio_obj = st.audio_input(
-                "Speak here",
+                " ",
                 sample_rate=16000,
                 key="voice_input"
             )
