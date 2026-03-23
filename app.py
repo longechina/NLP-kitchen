@@ -580,17 +580,17 @@ st.markdown(f"""
     .language-selector label {{
         font-family: 'Manrope', sans-serif;
         font-weight: 700;
-        color: #ffffff;
+        color: #000000;
         margin: 0;
         font-size: 16px;
     }}
 
     .language-selector div[data-baseweb="select"] {{
-        background-color: #ffffff !important;
+        background-color: #000000 !important;
     }}
     .language-selector div[data-baseweb="select"] > div {{
-        background-color: #ffffff !important;
-        color: #ffffff !important;
+        background-color: #000000 !important;
+        color: #000000 !important;
         border: 1px solid #ccc !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 16px !important;
@@ -601,12 +601,12 @@ st.markdown(f"""
         display: block !important;
     }}
     div[role="listbox"] {{
-        background-color: #ffffff !important;
-        color: #ffffff  !important;
+        background-color: #000000 !important;
+        color: #000000  !important;
         display: block !important;
     }}
     div[role="option"] {{
-        color: #ffffff !important;
+        color: #000000 !important;
         font-weight: 500 !important;
     }}
 
