@@ -630,7 +630,14 @@ st.markdown(f"""
         }}
     }}
 
-    /* Level按钮 */
+    /* Level按钮 - 放大两倍（原100px -> 200px） */
+    button[data-key="level_1_btn"],
+    button[data-key="level_2_btn"],
+    button[data-key="level_3_btn"] {{
+        font-size: 200px !important;
+    }}
+
+    /* 其他按钮保持原样 */
     button[kind="primary"],
     .stButton button {{
         background-color: rgba(255,255,255,0.4) !important;
@@ -837,8 +844,8 @@ st.markdown(f"""
         margin-top: 80px;
     }}
 
-    /* 词汇卡片按钮字体放大两倍 */
-    button[key^="btn_vocab_"] {{
+    /* 词汇卡片按钮字体放大两倍（使用 data-key 属性选择器） */
+    button[data-key^="btn_vocab_"] {{
         font-size: 2em !important;
     }}
 </style>
@@ -918,21 +925,22 @@ st.title("TEXTBOOK ASSISTANT")
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    if st.button("Level 1", use_container_width=True):
+    # 为 Level 按钮添加唯一 key，以便 CSS 选择器定位
+    if st.button("Level 1", use_container_width=True, key="level_1_btn"):
         st.session_state.level = 1
         st.session_state.path = ["LEVEL_I"]
         st.session_state.auto_ref_pushed = False
         st.session_state.current_recommendations = None
         st.rerun()
 with col2:
-    if st.button("Level 2", use_container_width=True):
+    if st.button("Level 2", use_container_width=True, key="level_2_btn"):
         st.session_state.level = 2
         st.session_state.path = ["LEVEL_II"]
         st.session_state.auto_ref_pushed = False
         st.session_state.current_recommendations = None
         st.rerun()
 with col3:
-    if st.button("Level 3", use_container_width=True):
+    if st.button("Level 3", use_container_width=True, key="level_3_btn"):
         st.session_state.level = 3
         st.session_state.path = ["LEVEL_III"]
         st.session_state.auto_ref_pushed = False
