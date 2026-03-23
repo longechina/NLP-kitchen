@@ -580,16 +580,16 @@ st.markdown(f"""
     .language-selector label {{
         font-family: 'Manrope', sans-serif;
         font-weight: 700;
-        color: #000000;
+        color: #ffffff;
         margin: 0;
         font-size: 16px;
     }}
 
     .language-selector div[data-baseweb="select"] {{
-        background-color: white !important;
+        background-color: #ffffff !important;
     }}
     .language-selector div[data-baseweb="select"] > div {{
-        background-color: white !important;
+        background-color: #ffffff !important;
         color: #ffffff !important;
         border: 1px solid #ccc !important;
         font-family: 'Manrope', sans-serif !important;
@@ -601,7 +601,7 @@ st.markdown(f"""
         display: block !important;
     }}
     div[role="listbox"] {{
-        background-color: white !important;
+        background-color: #ffffff !important;
         color: #ffffff  !important;
         display: block !important;
     }}
