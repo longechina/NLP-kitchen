@@ -317,8 +317,8 @@ Your task:
 - No emojis!
 
 Use these rules to generate links:
-- YouTube: https://www.youtube.com/results?search_query=key_word+in+english
-- Quizlet: https://quizlet.com/search?query=english+key_words+vocabulary
+- YouTube: https://www.youtube.com/results?search_query=advanced english+key_word
+- Quizlet: https://quizlet.com/search?query=advanced english+key_words+vocabulary
 - StackExchange: https://english.stackexchange.com/search?q=only1_key_word
 
 Example format:
