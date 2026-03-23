@@ -115,7 +115,7 @@ def text_to_speech(text):
 def build_system_prompt(levels):
     prompt = """You are a language learning assistant helping students learn Languages.
 You have access to learning materials across 3 levels covering grammar, vocabulary, and conversation.
-Keep your answers concise, clear, and helpful. Focus on what the user is currently studying."""
+Keep your answers concise, clear, and helpful. Focus on what the user is currently studying. No emojis!"""
     return prompt
 
 system_prompt = build_system_prompt(levels_data)
@@ -197,6 +197,7 @@ Your task:
 - Search the web to find 3-4 high-quality learning resources (must be valid, provide links) (articles, videos, exercises)
 - Provide a brief heading and list each resource with a short description and clickable link
 - Keep it concise
+- No emojis!
 
 Example format:
 【Recommended Resources】
