@@ -272,7 +272,9 @@ def auto_generate_reference(level, full_page_content, path_string):
         if notes_match:
             notes = notes_match.group(1).strip()[:200]
 
-    prompt = f"""You are a Chinese learning assistant. The user is at Level {level} studying: "{topic}".
+    # 根据语言选择不同的提示和链接模板
+    if st.session_state.language == "Chinese":
+        prompt = f"""You are a Chinese learning assistant. The user is at Level {level} studying: "{topic}".
 
 Topic summary: {notes if notes else "Basic Chinese learning topic"}
 
@@ -299,6 +301,37 @@ Example format:
 
 - Chinese StackExchange: Community Q&A discussion  
   [Explore](https://chinese.stackexchange.com/search?q=chinese+grammar)
+
+Now generate for: {topic}
+"""
+    else:  # English
+        prompt = f"""You are an English learning assistant. The user is at Level {level} studying: "{topic}".
+
+Topic summary: {notes if notes else "Basic English learning topic"}
+
+Your task:
+- Generate 3-4 high-quality learning resources using fixed trusted platforms
+- DO search the web
+- Use the topic keyword to build real, valid search links
+- Keep it concise
+- No emojis!
+
+Use these rules to generate links:
+- YouTube: https://www.youtube.com/results?search_query=key_word+in+english
+- Quizlet: https://quizlet.com/search?query=key_words+english+vocabulary
+- StackExchange: https://english.stackexchange.com/search?q=only1_key_word
+
+Example format:
+【Recommended Resources】
+
+- YouTube: Beginner explanation video  
+  [Watch](https://www.youtube.com/results?search_query=english+grammar+english+learning)
+
+- Quizlet: Flashcards for practice  
+  [Practice](https://quizlet.com/search?query=english+grammar+english+vocabulary)
+
+- English StackExchange: Community Q&A discussion  
+  [Explore](https://english.stackexchange.com/search?q=english+grammar)
 
 Now generate for: {topic}
 """
