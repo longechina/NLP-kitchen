@@ -280,7 +280,7 @@ def get_ai_reply(user_input):
 
     try:
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="groq/compound",
             messages=context_msgs,
             temperature=0.7,
             max_tokens=512,
@@ -320,7 +320,7 @@ Conversation:
 Summary:"""
     try:
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="groq/compound",
             messages=[{"role": "user", "content": summary_prompt}],
             temperature=0.5,
             max_tokens=200,
