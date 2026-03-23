@@ -4,6 +4,4 @@ kokoro-onnx
 soundfile
 requests
 beautifulsoup4
-streamlit-webrtc
-aiortc 
-pydub 
+audio-recorder-streamlit
