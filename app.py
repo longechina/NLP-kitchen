@@ -568,7 +568,7 @@ st.markdown(f"""
         top: 20px;
         right: 20px;
         z-index: 1000;
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(255, 255, 255, 0.95);
         padding: 10px 20px;
         border-radius: 25px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -580,7 +580,7 @@ st.markdown(f"""
     .language-selector label {{
         font-family: 'Manrope', sans-serif;
         font-weight: 700;
-        color: #000000;
+        color: 	#FFFFFF;
         margin: 0;
         font-size: 16px;
     }}
