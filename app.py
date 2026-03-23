@@ -203,7 +203,7 @@ Your task:
 Use these rules to generate links:
 - YouTube: https://www.youtube.com/results?search_query=关键词+in+chinese
 - Quizlet: https://quizlet.com/search?query=关键词(中文)+chinese
-- StackExchange: https://chinese.stackexchange.com/search?q=关键词
+- StackExchange: https://chinese.stackexchange.com/search?q=关键词(only 1 keyword)
 
 Example format:
 【Recommended Resources】
