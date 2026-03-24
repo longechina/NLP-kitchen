@@ -1,6 +1,8 @@
 # Chinese Learning Materials – User Guide
-The background image is from: [Teddy Ninh](https://www.teddyninh.com/projects/google-illustrations)
+
 This guide explains how to use the Chinese learning materials website provided in this project.
+
+- The background image is from: [Teddy Ninh](https://www.teddyninh.com/projects/google-illustrations)
 
 ---
 
@@ -52,7 +54,6 @@ You can directly ask questions about this content without providing additional b
 
 ---
 
-> Note: Place all images in the project root (or corresponding `main` branch path) and make sure the Markdown paths match the image locations.
 
 # Chinese Learning Dataset
 
