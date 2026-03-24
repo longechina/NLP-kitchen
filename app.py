@@ -590,7 +590,7 @@ st.markdown(f"""
     }}
     .language-selector div[data-baseweb="select"] > div {{
         background-color: white !important;
-        color: #ffffff !important;
+        color:  #000000 !important;
         border: 1px solid #ccc !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 16px !important;
@@ -602,11 +602,11 @@ st.markdown(f"""
     }}
     div[role="listbox"] {{
         background-color: white !important;
-        color: #ffffff  !important;
+        color:  #000000  !important;
         display: block !important;
     }}
     div[role="option"] {{
-        color: #ffffff !important;
+        color:  #000000 !important;
         font-weight: 500 !important;
     }}
 
@@ -770,7 +770,7 @@ st.markdown(f"""
         font-family: 'Manrope', sans-serif !important;
         font-size: 16px !important;
         font-weight: 400 !important;
-        color: #ffffff !important;
+        color:  #000000 !important;
     }}
     .stChatInput > div {{
         background: transparent !important;
