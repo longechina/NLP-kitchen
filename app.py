@@ -61,11 +61,9 @@ def load_nemt_cet_data():
     
     for filename in files_to_load:
         try:
-            print(f"Attempting to load: {filename}")
             with open(filename, "r", encoding="utf-8") as f:
                 nemt_cet_data[filename.replace('.json', '')] = json.load(f)
                 st.success(f"✅ Loaded {filename}")
-                print(f"✅ Successfully loaded {filename}")
         except FileNotFoundError:
             st.warning(f"⚠️ {filename} not found. Creating empty structure.")
             print(f"❌ {filename} not found")
@@ -933,24 +931,47 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- 语言选择器（固定在右上角，字体白色） ----------
+# ---------- 语言选择器（固定在右上角） ----------
 st.markdown('<div class="language-selector">', unsafe_allow_html=True)
 language_col1, language_col2 = st.columns([1, 2])
 with language_col1:
-    st.markdown('<label>Select a Textbook:</label>', unsafe_allow_html=True)
+    st.markdown('<label>Select Mode:</label>', unsafe_allow_html=True)
 with language_col2:
+    # 三个选项：Chinese、English、NEMT & CET
+    mode_options = ["Chinese", "English", "NEMT & CET"]
+    current_index = 0
+    if st.session_state.language == "English":
+        current_index = 1
+    elif st.session_state.language == "NEMT & CET":
+        current_index = 2
+    
     new_language = st.selectbox(
-        "Language",  # 提供非空标签，防止警告
-        ["Chinese", "English"],
-        index=0 if st.session_state.language == "Chinese" else 1,
+        "Mode",
+        mode_options,
+        index=current_index,
         key="language_selector",
         label_visibility="collapsed"
     )
     if new_language != st.session_state.language:
         st.session_state.language = new_language
-        levels_data = load_level_data(st.session_state.language)
-        st.session_state.level = None
-        st.session_state.path = []
+        
+        # 根据选择的模式设置不同的界面
+        if new_language == "NEMT & CET":
+            # 切换到 NEMT & CET 模式
+            st.session_state.current_mode = "nemt_cet"
+            st.session_state.level = None
+            st.session_state.path = []
+            st.session_state.selected_nemt_cet = None
+            st.session_state.nemt_cet_path = []
+        else:
+            # 切换到教材模式
+            st.session_state.current_mode = "textbook"
+            levels_data = load_level_data(st.session_state.language)
+            st.session_state.level = None
+            st.session_state.path = []
+            st.session_state.selected_nemt_cet = None
+            st.session_state.nemt_cet_path = []
+        
         st.session_state.messages = [{"role": "system", "content": system_prompt}]
         st.session_state.auto_ref_pushed = False
         st.session_state.current_recommendations = None
