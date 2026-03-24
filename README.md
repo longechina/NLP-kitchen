@@ -24,7 +24,7 @@ If it happens to be useful for anyone learning Chinese, great — but this is no
 - [ ] Structure data into JSON format
 
 ### Model
-Currently using a lightweight open-source language model from Meta (free tier). It has limitations and isn't great for complex tasks, but it works fine as an experiment. Planning to find cheaper or free multimodal AI alternatives down the line.
+Currently using supported models by Groq. It has limitations and isn't great for complex tasks, but it works fine as an experiment. Planning to find cheaper or free multimodal AI alternatives down the line. Groq has rate limits that make using agents very difficult.
 
 ---
 
