@@ -1027,38 +1027,67 @@ with st.container():
 # ---------- 导航和卡片显示 ----------
 st.title("TEXTBOOK ASSISTANT")
 
-# 显示三个主按钮 - 改为三个文件名
-col1, col2, col3 = st.columns(3)
-with col1:
-    if st.button("TEM-8", use_container_width=True):
-        st.session_state.current_mode = "nemt_cet"
-        st.session_state.selected_nemt_cet = "TEM-8"
-        st.session_state.nemt_cet_path = []
-        st.session_state.level = None
-        st.session_state.path = []
-        st.session_state.auto_ref_pushed = False
-        st.session_state.current_recommendations = None
-        st.rerun()
-with col2:
-    if st.button("NEMT", use_container_width=True):
-        st.session_state.current_mode = "nemt_cet"
-        st.session_state.selected_nemt_cet = "NEMT"
-        st.session_state.nemt_cet_path = []
-        st.session_state.level = None
-        st.session_state.path = []
-        st.session_state.auto_ref_pushed = False
-        st.session_state.current_recommendations = None
-        st.rerun()
-with col3:
-    if st.button("CET-46", use_container_width=True):
-        st.session_state.current_mode = "nemt_cet"
-        st.session_state.selected_nemt_cet = "CET-46"
-        st.session_state.nemt_cet_path = []
-        st.session_state.level = None
-        st.session_state.path = []
-        st.session_state.auto_ref_pushed = False
-        st.session_state.current_recommendations = None
-        st.rerun()
+# 根据语言选择器显示不同的主界面
+if st.session_state.language == "NEMT & CET":
+    # 显示 NEMT & CET 的三个考试按钮
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("TEM-8", use_container_width=True):
+            st.session_state.current_mode = "nemt_cet"
+            st.session_state.selected_nemt_cet = "TEM-8"
+            st.session_state.nemt_cet_path = []
+            st.session_state.level = None
+            st.session_state.path = []
+            st.session_state.auto_ref_pushed = False
+            st.session_state.current_recommendations = None
+            st.rerun()
+    with col2:
+        if st.button("NEMT", use_container_width=True):
+            st.session_state.current_mode = "nemt_cet"
+            st.session_state.selected_nemt_cet = "NEMT"
+            st.session_state.nemt_cet_path = []
+            st.session_state.level = None
+            st.session_state.path = []
+            st.session_state.auto_ref_pushed = False
+            st.session_state.current_recommendations = None
+            st.rerun()
+    with col3:
+        if st.button("CET-46", use_container_width=True):
+            st.session_state.current_mode = "nemt_cet"
+            st.session_state.selected_nemt_cet = "CET-46"
+            st.session_state.nemt_cet_path = []
+            st.session_state.level = None
+            st.session_state.path = []
+            st.session_state.auto_ref_pushed = False
+            st.session_state.current_recommendations = None
+            st.rerun()
+else:
+    # 显示教材的 Level 按钮
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("Level 1", use_container_width=True):
+            st.session_state.current_mode = "textbook"
+            st.session_state.level = 1
+            st.session_state.path = ["LEVEL_I"]
+            st.session_state.auto_ref_pushed = False
+            st.session_state.current_recommendations = None
+            st.rerun()
+    with col2:
+        if st.button("Level 2", use_container_width=True):
+            st.session_state.current_mode = "textbook"
+            st.session_state.level = 2
+            st.session_state.path = ["LEVEL_II"]
+            st.session_state.auto_ref_pushed = False
+            st.session_state.current_recommendations = None
+            st.rerun()
+    with col3:
+        if st.button("Level 3", use_container_width=True):
+            st.session_state.current_mode = "textbook"
+            st.session_state.level = 3
+            st.session_state.path = ["LEVEL_III"]
+            st.session_state.auto_ref_pushed = False
+            st.session_state.current_recommendations = None
+            st.rerun()
 
 # 如果当前在 textbook 模式且未选择级别，显示原有的 level 按钮
 if st.session_state.current_mode == "textbook":
