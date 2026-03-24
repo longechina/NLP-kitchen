@@ -51,6 +51,40 @@ def load_level_data(language):
 
 levels_data = load_level_data(st.session_state.language)
 
+# ---------- 加载 NEMT & CET 数据 ----------
+@st.cache_data
+def load_nemt_cet_data():
+    nemt_cet_data = {}
+    try:
+        with open("TEM-8.json", "r", encoding="utf-8") as f:
+            nemt_cet_data["TEM-8"] = json.load(f)
+    except FileNotFoundError:
+        st.warning("TEM-8.json not found.")
+    
+    try:
+        with open("NEMT.json", "r", encoding="utf-8") as f:
+            nemt_cet_data["NEMT"] = json.load(f)
+    except FileNotFoundError:
+        st.warning("NEMT.json not found.")
+    
+    try:
+        with open("CET-46.json", "r", encoding="utf-8") as f:
+            nemt_cet_data["CET-46"] = json.load(f)
+    except FileNotFoundError:
+        st.warning("CET-46.json not found.")
+    
+    return nemt_cet_data
+
+nemt_cet_data = load_nemt_cet_data()
+
+# 添加一个状态来跟踪当前是否在 NEMT & CET 界面
+if "current_mode" not in st.session_state:
+    st.session_state.current_mode = "textbook"  # "textbook" or "nemt_cet"
+if "selected_nemt_cet" not in st.session_state:
+    st.session_state.selected_nemt_cet = None
+if "nemt_cet_path" not in st.session_state:
+    st.session_state.nemt_cet_path = []
+
 # ---------- Groq 客户端 ----------
 client = groq.Client(api_key=os.environ.get("GROQ_API_KEY") or st.secrets["GROQ_API_KEY"])
 
@@ -160,26 +194,48 @@ if "search_results" not in st.session_state:
 
 # ---------- 获取当前页面全部内容 ----------
 def get_current_page_full_content():
-    if not st.session_state.level or not st.session_state.path:
-        return None
-    data = levels_data[f"Level {st.session_state.level}"]
-    node = data
-    for key in st.session_state.path:
-        node = node.get(key, {})
-        if not node:
+    if st.session_state.current_mode == "nemt_cet":
+        if not st.session_state.selected_nemt_cet or not st.session_state.nemt_cet_path:
             return None
-    parts = []
-    location = " > ".join(st.session_state.path)
-    parts.append(f"The user is currently viewing: {location}")
-    if "name" in node:
-        parts.append(f"Section: {node['name']}")
-    if "notes" in node and node["notes"]:
-        parts.append(f"Notes: {node['notes']}")
-    if "examples" in node and node["examples"]:
-        parts.append("Example sentences:\n" + "\n".join(f"  - {e}" for e in node["examples"]))
-    if "vocabulary" in node and node["vocabulary"]:
-        parts.append("Vocabulary:\n" + "\n".join(f"  - {v}" for v in node["vocabulary"]))
-    return "\n".join(parts)
+        data = nemt_cet_data.get(st.session_state.selected_nemt_cet, {})
+        node = data
+        for key in st.session_state.nemt_cet_path:
+            node = node.get(key, {})
+            if not node:
+                return None
+        parts = []
+        location = " > ".join(st.session_state.nemt_cet_path)
+        parts.append(f"The user is currently viewing: {location}")
+        if "name" in node:
+            parts.append(f"Section: {node['name']}")
+        if "notes" in node and node["notes"]:
+            parts.append(f"Notes: {node['notes']}")
+        if "examples" in node and node["examples"]:
+            parts.append("Example sentences:\n" + "\n".join(f"  - {e}" for e in node["examples"]))
+        if "words" in node and node["words"]:
+            parts.append("Words:\n" + "\n".join(f"  - {w}" for w in node["words"]))
+        return "\n".join(parts)
+    else:
+        if not st.session_state.level or not st.session_state.path:
+            return None
+        data = levels_data[f"Level {st.session_state.level}"]
+        node = data
+        for key in st.session_state.path:
+            node = node.get(key, {})
+            if not node:
+                return None
+        parts = []
+        location = " > ".join(st.session_state.path)
+        parts.append(f"The user is currently viewing: {location}")
+        if "name" in node:
+            parts.append(f"Section: {node['name']}")
+        if "notes" in node and node["notes"]:
+            parts.append(f"Notes: {node['notes']}")
+        if "examples" in node and node["examples"]:
+            parts.append("Example sentences:\n" + "\n".join(f"  - {e}" for e in node["examples"]))
+        if "vocabulary" in node and node["vocabulary"]:
+            parts.append("Vocabulary:\n" + "\n".join(f"  - {v}" for v in node["vocabulary"]))
+        return "\n".join(parts)
 
 # ========== 全局搜索函数 ==========
 def search_in_node(node, path_list, level_num, keyword):
@@ -233,7 +289,7 @@ def search_in_node(node, path_list, level_num, keyword):
     
     # 递归搜索子节点
     for key, value in node.items():
-        if isinstance(value, dict) and key not in ("name", "notes", "examples", "vocabulary"):
+        if isinstance(value, dict) and key not in ("name", "notes", "examples", "vocabulary", "words"):
             matches.extend(search_in_node(value, path_list + [key], level_num, keyword))
     
     return matches
@@ -369,6 +425,26 @@ def auto_push_reference(level, path_string):
         if ref_msg:
             st.session_state.current_recommendations = ref_msg
         st.session_state.auto_ref_pushed = True
+
+# ========== 使用语言模型翻译单词 ==========
+def translate_word(word, target_lang="Chinese"):
+    """使用Groq语言模型翻译单词"""
+    try:
+        prompt = f"""Translate the following English word to {target_lang}. Only return the translation, nothing else.
+Word: {word}
+Translation:"""
+        
+        response = client.chat.completions.create(
+            model="openai/gpt-oss-120b",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3,
+            max_tokens=50,
+        )
+        translation = response.choices[0].message.content.strip()
+        return translation
+    except Exception as e:
+        print(f"Translation error: {e}")
+        return f"(Translation unavailable)"
 
 # ========== AI 回复函数（修改版：每次调用都注入当前语言和页面内容） ==========
 def get_ai_reply(user_input):
@@ -562,13 +638,13 @@ st.markdown(f"""
         background: transparent !important;
     }}
 
-    /* 语言选择器容器样式 */
+    /* 语言选择器容器样式 - 字体白色 */
     .language-selector {{
         position: fixed;
         top: 20px;
         right: 20px;
         z-index: 1000;
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(0, 0, 0, 0.7);
         padding: 10px 20px;
         border-radius: 25px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -580,18 +656,18 @@ st.markdown(f"""
     .language-selector label {{
         font-family: 'Manrope', sans-serif;
         font-weight: 700;
-        color: #000000;
+        color: #FFFFFF !important;
         margin: 0;
         font-size: 16px;
     }}
 
     .language-selector div[data-baseweb="select"] {{
-        background-color: white !important;
+        background-color: rgba(255, 255, 255, 0.2) !important;
     }}
     .language-selector div[data-baseweb="select"] > div {{
-        background-color: white !important;
-        color:  #000000 !important;
-        border: 1px solid #ccc !important;
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        color: #FFFFFF !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 16px !important;
         font-weight: 600 !important;
@@ -601,12 +677,12 @@ st.markdown(f"""
         display: block !important;
     }}
     div[role="listbox"] {{
-        background-color: white !important;
-        color:  #000000  !important;
+        background-color: #333 !important;
+        color: #FFFFFF !important;
         display: block !important;
     }}
     div[role="option"] {{
-        color:  #000000 !important;
+        color: #FFFFFF !important;
         font-weight: 500 !important;
     }}
 
@@ -836,14 +912,28 @@ st.markdown(f"""
     div[data-testid="stVerticalBlock"] > div:first-child {{
         margin-top: 80px;
     }}
+    
+    /* NEMT & CET 单词卡片样式 */
+    .word-card {{
+        background-color: rgba(255,255,255,0.9);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 10px 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }}
+    .word-card:hover {{
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }}
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- 语言选择器（固定在右上角） ----------
+# ---------- 语言选择器（固定在右上角，字体白色） ----------
 st.markdown('<div class="language-selector">', unsafe_allow_html=True)
 language_col1, language_col2 = st.columns([1, 2])
 with language_col1:
-    st.markdown('<label>Select a Textbook::</label>', unsafe_allow_html=True)
+    st.markdown('<label>Select a Textbook:</label>', unsafe_allow_html=True)
 with language_col2:
     new_language = st.selectbox(
         "Language",  # 提供非空标签，防止警告
@@ -899,6 +989,7 @@ with st.container():
                     st.markdown(f"{content_preview}")
                 # 跳转按钮
                 if st.button(f"Go to {path_str}", key=f"search_{res['level']}_{'_'.join(res['path'])}_{res['type']}_{res.get('index', '')}"):
+                    st.session_state.current_mode = "textbook"
                     st.session_state.level = res["level"]
                     st.session_state.path = res["path"]
                     st.session_state.search_keyword = ""
@@ -911,179 +1002,322 @@ with st.container():
 # ---------- 导航和卡片显示 ----------
 st.title("TEXTBOOK ASSISTANT")
 
+# 显示三个主按钮 - 改为三个文件名
 col1, col2, col3 = st.columns(3)
 with col1:
-    if st.button("Level 1", use_container_width=True):
-        st.session_state.level = 1
-        st.session_state.path = ["LEVEL_I"]
+    if st.button("TEM-8", use_container_width=True):
+        st.session_state.current_mode = "nemt_cet"
+        st.session_state.selected_nemt_cet = "TEM-8"
+        st.session_state.nemt_cet_path = []
+        st.session_state.level = None
+        st.session_state.path = []
         st.session_state.auto_ref_pushed = False
         st.session_state.current_recommendations = None
         st.rerun()
 with col2:
-    if st.button("Level 2", use_container_width=True):
-        st.session_state.level = 2
-        st.session_state.path = ["LEVEL_II"]
+    if st.button("NEMT", use_container_width=True):
+        st.session_state.current_mode = "nemt_cet"
+        st.session_state.selected_nemt_cet = "NEMT"
+        st.session_state.nemt_cet_path = []
+        st.session_state.level = None
+        st.session_state.path = []
         st.session_state.auto_ref_pushed = False
         st.session_state.current_recommendations = None
         st.rerun()
 with col3:
-    if st.button("Level 3", use_container_width=True):
-        st.session_state.level = 3
-        st.session_state.path = ["LEVEL_III"]
+    if st.button("CET-46", use_container_width=True):
+        st.session_state.current_mode = "nemt_cet"
+        st.session_state.selected_nemt_cet = "CET-46"
+        st.session_state.nemt_cet_path = []
+        st.session_state.level = None
+        st.session_state.path = []
         st.session_state.auto_ref_pushed = False
         st.session_state.current_recommendations = None
         st.rerun()
 
-if st.session_state.level:
-    data = levels_data[f"Level {st.session_state.level}"]
-    current_node = data
-    for key in st.session_state.path:
-        current_node = current_node.get(key, {})
-        if not current_node:
-            st.error("Path error. Please go back.")
-            st.stop()
-
-    bread = " > ".join(st.session_state.path)
-    st.markdown(f"<div class='breadcrumb'>{bread}</div>", unsafe_allow_html=True)
-
-    if len(st.session_state.path) > 1:
-        st.markdown("<div class='back-button'>", unsafe_allow_html=True)
-        if st.button("Back", key="back_button"):
-            st.session_state.path.pop()
-            st.session_state.auto_ref_pushed = False
-            st.session_state.current_recommendations = None
-            st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    # ========== 修改后的 display_node 函数（支持卡片翻转） ==========
-    def display_node(node):
-        # 获取当前语言和另一语言
-        current_lang = st.session_state.language
-        other_lang = "English" if current_lang == "Chinese" else "Chinese"
-
-        # 加载另一语言的数据
-        other_levels_data = load_level_data(other_lang)
-        other_node = other_levels_data[f"Level {st.session_state.level}"]
-        # 根据当前路径定位另一语言的节点
+# 如果当前在 textbook 模式且未选择级别，显示原有的 level 按钮
+if st.session_state.current_mode == "textbook":
+    if st.session_state.level:
+        data = levels_data[f"Level {st.session_state.level}"]
+        current_node = data
         for key in st.session_state.path:
-            other_node = other_node.get(key, {})
-            if not other_node:
-                other_node = None
-                break
+            current_node = current_node.get(key, {})
+            if not current_node:
+                st.error("Path error. Please go back.")
+                st.stop()
 
-        if "name" in node:
-            st.markdown(f"## {node['name']}")
+        bread = " > ".join(st.session_state.path)
+        st.markdown(f"<div class='breadcrumb'>{bread}</div>", unsafe_allow_html=True)
 
-        # 笔记部分（不翻转）
-        if "notes" in node and node["notes"]:
-            with st.container(border=True):
-                st.markdown(node["notes"])
+        if len(st.session_state.path) > 1:
+            st.markdown("<div class='back-button'>", unsafe_allow_html=True)
+            if st.button("Back", key="back_button"):
+                st.session_state.path.pop()
+                st.session_state.auto_ref_pushed = False
+                st.session_state.current_recommendations = None
+                st.rerun()
+            st.markdown("</div>", unsafe_allow_html=True)
 
-        # 例句部分（可翻转）
-        if "examples" in node and node["examples"]:
-            st.markdown("### Example Sentences")
-            cols = st.columns(3)
-            for idx, ex in enumerate(node["examples"]):
-                with cols[idx % 3]:
-                    # 唯一键
-                    key = f"example_{idx}"
-                    # 获取反面内容（如果另一语言节点存在且有对应索引）
-                    other_ex = None
-                    if other_node and "examples" in other_node and len(other_node["examples"]) > idx:
-                        other_ex = other_node["examples"][idx]
+        # ========== display_node 函数 ==========
+        def display_node(node):
+            # 获取当前语言和另一语言
+            current_lang = st.session_state.language
+            other_lang = "English" if current_lang == "Chinese" else "Chinese"
 
-                    # 当前翻转状态
-                    flipped = st.session_state.get("flip_states", {}).get(key, False)
+            # 加载另一语言的数据
+            other_levels_data = load_level_data(other_lang)
+            other_node = other_levels_data[f"Level {st.session_state.level}"]
+            # 根据当前路径定位另一语言的节点
+            for key in st.session_state.path:
+                other_node = other_node.get(key, {})
+                if not other_node:
+                    other_node = None
+                    break
 
-                    # 根据翻转状态显示内容
-                    if flipped:
-                        # 显示反面
-                        display_content = other_ex if other_ex else "(Translation not available)"
-                    else:
-                        # 显示正面
-                        display_content = ex
+            if "name" in node:
+                st.markdown(f"## {node['name']}")
 
-                    # 卡片按钮
-                    if st.button(display_content, key=f"btn_{key}", use_container_width=True):
-                        # 切换状态
-                        if "flip_states" not in st.session_state:
-                            st.session_state.flip_states = {}
-                        st.session_state.flip_states[key] = not flipped
-                        st.rerun()
+            # 笔记部分（不翻转）
+            if "notes" in node and node["notes"]:
+                with st.container(border=True):
+                    st.markdown(node["notes"])
 
-        # 词汇部分（可翻转）
-        if "vocabulary" in node and node["vocabulary"]:
-            st.markdown("### Vocabulary")
-            cols = st.columns(3)
-            for idx, item in enumerate(node["vocabulary"]):
-                with cols[idx % 3]:
-                    # 正面：解析当前语言的词汇（可能带拼音/音标）
-                    parts = item.rsplit(" ", 1)
-                    word = parts[0]
-                    pinyin = parts[1] if len(parts) > 1 else ""
-
-                    # 反面：从另一语言获取对应词汇
-                    other_item = None
-                    if other_node and "vocabulary" in other_node and len(other_node["vocabulary"]) > idx:
-                        other_item = other_node["vocabulary"][idx]
-                    other_parts = other_item.rsplit(" ", 1) if other_item else ["", ""]
-                    other_word = other_parts[0]
-                    other_pron = other_parts[1] if len(other_parts) > 1 else ""
-
-                    # 唯一键
-                    key = f"vocab_{idx}"
-                    flipped = st.session_state.get("flip_states", {}).get(key, False)
-
-                    # 构建显示内容
-                    if flipped:
-                        # 反面：显示另一语言的词汇 + 发音（如果有）
-                        display_content = other_word
-                        if other_pron:
-                            display_content += f"\n{other_pron}"
-                    else:
-                        # 正面：显示当前语言词汇 + 拼音
-                        display_content = word
-                        if pinyin:
-                            display_content += f"\n{pinyin}"
-
-                    # 卡片按钮
-                    if st.button(display_content, key=f"btn_{key}", use_container_width=True):
-                        if "flip_states" not in st.session_state:
-                            st.session_state.flip_states = {}
-                        st.session_state.flip_states[key] = not flipped
-                        st.rerun()
-
-        # 子目录导航（保持原有逻辑）
-        if not any(key in node for key in ["notes", "examples", "vocabulary"]):
-            sub_keys = [k for k in node.keys() if k not in ("name", "notes", "examples", "vocabulary")]
-            if not sub_keys:
-                st.info("This section has no content to display.")
-            else:
+            # 例句部分（可翻转）
+            if "examples" in node and node["examples"]:
+                st.markdown("### Example Sentences")
                 cols = st.columns(3)
-                for i, key in enumerate(sub_keys):
-                    with cols[i % 3]:
-                        if isinstance(node[key], dict) and "name" in node[key]:
-                            label = node[key]["name"]
+                for idx, ex in enumerate(node["examples"]):
+                    with cols[idx % 3]:
+                        # 唯一键
+                        key = f"example_{idx}"
+                        # 获取反面内容（如果另一语言节点存在且有对应索引）
+                        other_ex = None
+                        if other_node and "examples" in other_node and len(other_node["examples"]) > idx:
+                            other_ex = other_node["examples"][idx]
+
+                        # 当前翻转状态
+                        flipped = st.session_state.get("flip_states", {}).get(key, False)
+
+                        # 根据翻转状态显示内容
+                        if flipped:
+                            # 显示反面
+                            display_content = other_ex if other_ex else "(Translation not available)"
                         else:
-                            label = key
-                        if st.button(label, key=f"dir_{key}", use_container_width=True):
-                            st.session_state.path.append(key)
-                            st.session_state.auto_ref_pushed = False
-                            st.session_state.current_recommendations = None
-                            # 路径改变时清空翻转状态（可选，提升体验）
-                            st.session_state.flip_states = {}
+                            # 显示正面
+                            display_content = ex
+
+                        # 卡片按钮
+                        if st.button(display_content, key=f"btn_{key}", use_container_width=True):
+                            # 切换状态
+                            if "flip_states" not in st.session_state:
+                                st.session_state.flip_states = {}
+                            st.session_state.flip_states[key] = not flipped
                             st.rerun()
 
-    display_node(current_node)
+            # 词汇部分（可翻转）
+            if "vocabulary" in node and node["vocabulary"]:
+                st.markdown("### Vocabulary")
+                cols = st.columns(3)
+                for idx, item in enumerate(node["vocabulary"]):
+                    with cols[idx % 3]:
+                        # 正面：解析当前语言的词汇（可能带拼音/音标）
+                        parts = item.rsplit(" ", 1)
+                        word = parts[0]
+                        pinyin = parts[1] if len(parts) > 1 else ""
 
-    # 显示推荐资源
-    if st.session_state.current_recommendations:
-        st.markdown("---")
-        with st.container():
-            st.markdown(st.session_state.current_recommendations, unsafe_allow_html=True)
+                        # 反面：从另一语言获取对应词汇
+                        other_item = None
+                        if other_node and "vocabulary" in other_node and len(other_node["vocabulary"]) > idx:
+                            other_item = other_node["vocabulary"][idx]
+                        other_parts = other_item.rsplit(" ", 1) if other_item else ["", ""]
+                        other_word = other_parts[0]
+                        other_pron = other_parts[1] if len(other_parts) > 1 else ""
 
-    if not st.session_state.auto_ref_pushed:
-        auto_push_reference(st.session_state.level, bread)
+                        # 唯一键
+                        key = f"vocab_{idx}"
+                        flipped = st.session_state.get("flip_states", {}).get(key, False)
+
+                        # 构建显示内容
+                        if flipped:
+                            # 反面：显示另一语言的词汇 + 发音（如果有）
+                            display_content = other_word
+                            if other_pron:
+                                display_content += f"\n{other_pron}"
+                        else:
+                            # 正面：显示当前语言词汇 + 拼音
+                            display_content = word
+                            if pinyin:
+                                display_content += f"\n{pinyin}"
+
+                        # 卡片按钮
+                        if st.button(display_content, key=f"btn_{key}", use_container_width=True):
+                            if "flip_states" not in st.session_state:
+                                st.session_state.flip_states = {}
+                            st.session_state.flip_states[key] = not flipped
+                            st.rerun()
+
+            # 子目录导航（保持原有逻辑）
+            if not any(key in node for key in ["notes", "examples", "vocabulary"]):
+                sub_keys = [k for k in node.keys() if k not in ("name", "notes", "examples", "vocabulary")]
+                if not sub_keys:
+                    st.info("This section has no content to display.")
+                else:
+                    cols = st.columns(3)
+                    for i, key in enumerate(sub_keys):
+                        with cols[i % 3]:
+                            if isinstance(node[key], dict) and "name" in node[key]:
+                                label = node[key]["name"]
+                            else:
+                                label = key
+                            if st.button(label, key=f"dir_{key}", use_container_width=True):
+                                st.session_state.path.append(key)
+                                st.session_state.auto_ref_pushed = False
+                                st.session_state.current_recommendations = None
+                                # 路径改变时清空翻转状态（可选，提升体验）
+                                st.session_state.flip_states = {}
+                                st.rerun()
+
+        display_node(current_node)
+
+        # 显示推荐资源
+        if st.session_state.current_recommendations:
+            st.markdown("---")
+            with st.container():
+                st.markdown(st.session_state.current_recommendations, unsafe_allow_html=True)
+
+        if not st.session_state.auto_ref_pushed:
+            auto_push_reference(st.session_state.level, bread)
+
+# 如果当前在 NEMT & CET 模式
+elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_nemt_cet:
+    data = nemt_cet_data.get(st.session_state.selected_nemt_cet, {})
+    
+    # 如果没有路径，显示根目录内容
+    if not st.session_state.nemt_cet_path:
+        # 显示当前选择的考试名称
+        st.markdown(f"## {st.session_state.selected_nemt_cet}")
+        
+        # 获取所有子目录
+        sub_keys = [k for k in data.keys() if isinstance(data[k], dict)]
+        if sub_keys:
+            cols = st.columns(3)
+            for i, key in enumerate(sub_keys):
+                with cols[i % 3]:
+                    if isinstance(data[key], dict) and "name" in data[key]:
+                        label = data[key]["name"]
+                    else:
+                        label = key
+                    if st.button(label, key=f"nemt_dir_{key}", use_container_width=True):
+                        st.session_state.nemt_cet_path.append(key)
+                        st.rerun()
+        else:
+            st.info("No content available.")
+    else:
+        # 导航到具体内容
+        current_node = data
+        for key in st.session_state.nemt_cet_path:
+            current_node = current_node.get(key, {})
+            if not current_node:
+                st.error("Path error. Please go back.")
+                st.stop()
+        
+        bread = " > ".join(st.session_state.nemt_cet_path)
+        st.markdown(f"<div class='breadcrumb'>{bread}</div>", unsafe_allow_html=True)
+        
+        # Back 按钮
+        if len(st.session_state.nemt_cet_path) > 1:
+            st.markdown("<div class='back-button'>", unsafe_allow_html=True)
+            if st.button("Back", key="nemt_back_button"):
+                st.session_state.nemt_cet_path.pop()
+                st.rerun()
+            st.markdown("</div>", unsafe_allow_html=True)
+        
+        # 显示内容
+        if "name" in current_node:
+            st.markdown(f"## {current_node['name']}")
+        
+        # 显示 notes（如果有）
+        if "notes" in current_node and current_node["notes"]:
+            with st.container(border=True):
+                st.markdown(current_node["notes"])
+        
+        # 显示 words（单词列表）- 使用语言模型翻译
+        if "words" in current_node and current_node["words"]:
+            st.markdown("### Words")
+            
+            # 使用缓存来存储翻译结果，避免重复调用API
+            if "translation_cache" not in st.session_state:
+                st.session_state.translation_cache = {}
+            
+            cols = st.columns(3)
+            for idx, word_item in enumerate(current_node["words"]):
+                with cols[idx % 3]:
+                    # 解析单词（可能包含词性等信息）
+                    if isinstance(word_item, dict):
+                        word = word_item.get("word", "")
+                        definition = word_item.get("definition", "")
+                    else:
+                        # 如果是字符串，尝试分割
+                        parts = str(word_item).split(" ", 1)
+                        word = parts[0]
+                        definition = parts[1] if len(parts) > 1 else ""
+                    
+                    # 获取翻译（如果目标语言是中文，翻译为中文；如果是英文，翻译为英文）
+                    target_lang = "Chinese" if st.session_state.language == "Chinese" else "English"
+                    cache_key = f"{word}_{target_lang}"
+                    
+                    if cache_key in st.session_state.translation_cache:
+                        translation = st.session_state.translation_cache[cache_key]
+                    else:
+                        with st.spinner(f"Translating {word}..."):
+                            translation = translate_word(word, target_lang)
+                            st.session_state.translation_cache[cache_key] = translation
+                    
+                    # 唯一键
+                    key = f"nemt_word_{idx}"
+                    flipped = st.session_state.get("flip_states", {}).get(key, False)
+                    
+                    # 构建显示内容
+                    if flipped:
+                        # 显示翻译
+                        display_content = translation
+                        if definition:
+                            display_content += f"\n\n{definition}"
+                    else:
+                        # 显示原词
+                        display_content = word
+                        if definition:
+                            display_content += f"\n\n{definition}"
+                    
+                    # 卡片按钮
+                    if st.button(display_content, key=f"btn_{key}", use_container_width=True):
+                        if "flip_states" not in st.session_state:
+                            st.session_state.flip_states = {}
+                        st.session_state.flip_states[key] = not flipped
+                        st.rerun()
+        
+        # 显示 examples（如果有）
+        if "examples" in current_node and current_node["examples"]:
+            st.markdown("### Example Sentences")
+            cols = st.columns(2)
+            for idx, ex in enumerate(current_node["examples"]):
+                with cols[idx % 2]:
+                    st.markdown(f"- {ex}")
+        
+        # 显示子目录
+        sub_keys = [k for k in current_node.keys() if k not in ("name", "notes", "examples", "words")]
+        if sub_keys:
+            st.markdown("### Sections")
+            cols = st.columns(3)
+            for i, key in enumerate(sub_keys):
+                with cols[i % 3]:
+                    if isinstance(current_node[key], dict) and "name" in current_node[key]:
+                        label = current_node[key]["name"]
+                    else:
+                        label = key
+                    if st.button(label, key=f"nemt_subdir_{key}", use_container_width=True):
+                        st.session_state.nemt_cet_path.append(key)
+                        st.rerun()
 
 # ---------- 悬浮聊天窗（固定在右下角） ----------
 # 强制打开聊天面板（用户要求）
