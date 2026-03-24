@@ -586,11 +586,11 @@ st.markdown(f"""
     }}
 
     .language-selector div[data-baseweb="select"] {{
-        background-color: #000000 !important;
+        background-color: white !important;
     }}
     .language-selector div[data-baseweb="select"] > div {{
-        background-color: #000000 !important;
-        color: #000000 !important;
+        background-color: white !important;
+        color: #ffffff !important;
         border: 1px solid #ccc !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 16px !important;
@@ -601,12 +601,12 @@ st.markdown(f"""
         display: block !important;
     }}
     div[role="listbox"] {{
-        background-color: #000000 !important;
-        color: #000000  !important;
+        background-color: white !important;
+        color: #ffffff  !important;
         display: block !important;
     }}
     div[role="option"] {{
-        color: #000000 !important;
+        color: #ffffff !important;
         font-weight: 500 !important;
     }}
 
@@ -650,7 +650,7 @@ st.markdown(f"""
     }}
 
     .stButton button:hover {{
-        background-color: rgba(255,255,255,0.5) !important;
+        background-color: rgba(255,255,255,0.6) !important;
         transform: translateY(-2px);
         box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
     }}
@@ -716,7 +716,7 @@ st.markdown(f"""
 
     /* 确保所有文本都是黑色并使用Manrope字体 */
     p, div, span {{
-        color: #FFFFFF !important;
+        color: #000000 !important;
         font-family: 'Manrope', sans-serif !important;
         font-weight: 400 !important;
         line-height: 1.6 !important;
