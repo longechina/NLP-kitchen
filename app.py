@@ -291,7 +291,7 @@ D. gone
 1. tomorrow / I / will / go / school
 """
     
-    prompt = f"""You are a language test designer. Generate 3 COMPLETE quiz questions about "{topic}" using the template below.
+    prompt = f"""You are a language test designer. Generate 3 COMPLETE quiz questions about "{topic}" using the template below, and make quiz in very structured format.
 
 **TEMPLATE (MUST FOLLOW THE QUESTION TYPES):**
 {template}
