@@ -262,7 +262,7 @@ Generate the quiz:"""
             model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            max_tokens=65000,
+            max_tokens=32768,
         )
         quiz_text = response.choices[0].message.content.strip()
         
@@ -705,7 +705,7 @@ Now generate for: {topic}
                 model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.7,
-                max_tokens=65000,
+                max_tokens=32768,
             )
             ref_text = response.choices[0].message.content.strip()
             return ref_text
@@ -787,7 +787,7 @@ Translation:"""
             model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
-            max_tokens=65000,
+            max_tokens=32768,
         )
         translation = response.choices[0].message.content.strip()
         
@@ -820,7 +820,7 @@ Summary:"""
             model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": summary_prompt}],
             temperature=0.5,
-            max_tokens=65000,
+            max_tokens=32768,
         )
         new_summary = response.choices[0].message.content.strip()
 
@@ -987,7 +987,7 @@ Total: X/5"""
                     model="llama-3.3-70b-versatile",
                     messages=[{"role": "user", "content": eval_prompt}],
                     temperature=0.3,
-                    max_tokens=65000,
+                    max_tokens=32768,
                 )
                 evaluation = eval_response.choices[0].message.content.strip()
                 
@@ -1100,7 +1100,7 @@ Total: X/5"""
             model="llama-3.3-70b-versatile",
             messages=context_msgs,
             temperature=0.7,
-            max_tokens=65000,
+            max_tokens=32768,
         )
         reply = response.choices[0].message.content.strip()
         logger.info(f"AI reply: {reply[:100]}...")
