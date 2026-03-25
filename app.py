@@ -2033,17 +2033,29 @@ with st.container():
                 path_list = []
                 for p in res["path"]:
                     p_clean = str(p).split("[")[0] if isinstance(p, str) else str(p)
+                    # 过滤掉内部结构标识
                     if p_clean and p_clean not in ["LEVEL_I", "LEVEL_II", "LEVEL_III"]:
-                        path_list.append(p_clean)
-                path_str = " > ".join(path_list)
+                        # 跳过纯数字的索引（如 "0", "1", "2"）
+                        if not p_clean.isdigit():
+                            path_list.append(p_clean)
+                path_str = " > ".join(path_list) if path_list else "Root"
             else:
                 path_str = "Unknown location"
             
             # 来源信息
             if res.get("source") == "textbook":
-                source_info = f"Level {res.get('level', '?')}"
+                source_info = f"Textbook - Level {res.get('level', '?')}"
             elif res.get("source") == "nemt_cet":
-                source_info = res.get('exam', 'Exam')
+                exam_name = res.get('exam', 'Exam')
+                # 获取主题名称（路径中的最后一个）
+                topic_name = ""
+                if "path" in res and len(res["path"]) > 1:
+                    last_path = str(res["path"][-1]).split("[")[0]
+                    if not last_path.isdigit():
+                        topic_name = last_path
+                source_info = f"{exam_name}"
+                if topic_name:
+                    source_info += f" - {topic_name}"
             else:
                 source_info = "Content"
             
@@ -2052,48 +2064,72 @@ with st.container():
             if len(res["content"]) > 120:
                 content_preview += "..."
             
-            # 卡片按钮 - 整个卡片就是一个可点击的按钮
+            # 卡片按钮
             button_label = f"""
-**{res.get('type', 'Content')}** | {source_info}
+    **{res.get('type', 'Content')}** | {source_info}
 
-{content_preview}
+    {content_preview}
 
-📍 {path_str}
-"""
+    {path_str}
+    """
             
             if st.button(
                 button_label,
                 key=f"result_card_{idx}_{res.get('source', '')}_{res.get('type', '')}_{res.get('index', idx)}",
                 use_container_width=True
             ):
-                # 导航到搜索结果
+                # ========== Textbook 模式导航 ==========
                 if res.get("source") == "textbook" and "level" in res and res["level"]:
                     st.session_state.current_mode = "textbook"
                     st.session_state.level = res["level"]
+                    
+                    # 构建 textbook 路径
                     if "path" in res and res["path"]:
                         new_path = []
                         for p in res["path"]:
                             p_str = str(p).split("[")[0] if isinstance(p, str) else str(p)
-                            if p_str and p_str not in ["LEVEL_I", "LEVEL_II", "LEVEL_III"]:
+                            # 保留 LEVEL_I, LEVEL_II, LEVEL_III 作为第一级
+                            if p_str in ["LEVEL_I", "LEVEL_II", "LEVEL_III"]:
                                 new_path.append(p_str)
+                            # 其他非数字的路径也保留
+                            elif p_str and not p_str.isdigit():
+                                new_path.append(p_str)
+                        
                         if new_path:
                             st.session_state.path = new_path
+                        else:
+                            # 默认路径
+                            st.session_state.path = [f"LEVEL_{['I','II','III'][res['level']-1]}"]
+                    else:
+                        st.session_state.path = [f"LEVEL_{['I','II','III'][res['level']-1]}"]
+                    
                     st.session_state.search_keyword = ""
                     st.session_state.search_results = []
                     st.rerun()
+                
+                # ========== NEMT & CET 模式导航 ==========
                 elif res.get("source") == "nemt_cet" and "exam" in res:
                     st.session_state.current_mode = "nemt_cet"
                     st.session_state.selected_nemt_cet = res["exam"]
+                    
+                    # 构建 NEMT/CET 路径
                     if "path" in res and len(res["path"]) > 1:
-                        st.session_state.nemt_cet_path = res["path"][1:]
+                        new_path = []
+                        for p in res["path"][1:]:  # 跳过第一个（exam名称）
+                            p_str = str(p).split("[")[0] if isinstance(p, str) else str(p)
+                            # 保留非数字的路径（主题名称）
+                            if p_str and not p_str.isdigit():
+                                new_path.append(p_str)
+                        st.session_state.nemt_cet_path = new_path
                     else:
                         st.session_state.nemt_cet_path = []
+                    
                     st.session_state.search_keyword = ""
                     st.session_state.search_results = []
                     st.rerun()
         
         st.markdown("---")
-    
+
     elif st.session_state.search_keyword:
         st.info(f"No results found for '{st.session_state.search_keyword}'.")
 
