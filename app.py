@@ -1555,9 +1555,7 @@ st.markdown(f"""
     .stDeployButton {{
         display: none !important;
     }}
-    section[data-testid="stSidebar"] {{
-        display: block !important;
-    }}
+  
     #MainMenu {{
         display: none !important;
     }}
