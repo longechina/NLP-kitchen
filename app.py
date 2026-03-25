@@ -5,6 +5,7 @@ import re
 import os
 import time
 import logging
+import datetime
 import streamlit as st
 import groq
 
@@ -21,6 +22,117 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger(__name__)
+
+# ---------- 加载 Teaching Principles ----------
+def load_teaching_principles():
+    try:
+        with open("teaching_principle.txt", "r", encoding="utf-8") as f:
+            return f.read()
+    except FileNotFoundError:
+        return """Core: Guide, Don't Answer
+NEVER give direct answers. Use guidance instead.
+Guidance: Analogy, examples, simple words, Socratic questions
+After response, generate quiz. Block non-quiz input until answered.
+Feedback: Show score, indicate correct/incorrect. DO NOT give answers unless requested.
+Log every quiz to feedback.md"""
+
+TEACHING_PRINCIPLES = load_teaching_principles()
+
+# ---------- Quiz 状态管理 ----------
+if "quiz_active" not in st.session_state:
+    st.session_state.quiz_active = False
+if "current_quiz" not in st.session_state:
+    st.session_state.current_quiz = None  # {"questions": [], "topic": "", "guidance": ""}
+if "quiz_answers" not in st.session_state:
+    st.session_state.quiz_answers = {}
+if "quiz_asked" not in st.session_state:
+    st.session_state.quiz_asked = False
+
+# ---------- 保存 Quiz 到 feedback.md ----------
+def save_quiz_to_feedback(topic, questions, user_answers, feedback, score, total):
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    entry = f"""
+## Quiz Record - {timestamp}
+
+**Topic:** {topic}
+**Questions:**
+{chr(10).join([f"{i+1}. {q}" for i, q in enumerate(questions)])}
+
+**User Answers:**
+{chr(10).join([f"{i+1}. {user_answers.get(i+1, 'No answer')}" for i in range(len(questions))])}
+
+**Feedback:**
+{chr(10).join([f"- Q{i+1}: {'Correct' if feedback[i] else 'Incorrect'}" for i in range(len(questions))])}
+
+**Score:** {score}/{total}
+
+---
+"""
+    try:
+        with open("feedback.md", "a", encoding="utf-8") as f:
+            f.write(entry)
+        logger.info(f"Quiz saved to feedback.md - Topic: {topic}, Score: {score}/{total}")
+    except Exception as e:
+        logger.error(f"Failed to save quiz: {e}")
+
+# ---------- 生成 Quiz ----------
+def generate_quiz(topic, guidance, full_page_content):
+    prompt = f"""You are a language learning assistant following these principles:
+{TEACHING_PRINCIPLES}
+
+Based on the following topic and guidance, generate 2-3 quiz questions to test understanding.
+
+Topic: {topic}
+Guidance provided: {guidance}
+Current page content: {full_page_content[:500] if full_page_content else "None"}
+
+Rules:
+- Questions should be relevant to the topic
+- Include multiple choice or short answer
+- DO NOT include answers in the questions
+- Return ONLY the questions, one per line, numbered 1., 2., etc.
+
+Generate quiz questions:"""
+    
+    try:
+        response = client.chat.completions.create(
+            model="openai/gpt-oss-120b",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.5,
+            max_tokens=300,
+        )
+        questions_text = response.choices[0].message.content.strip()
+        questions = [q.strip() for q in questions_text.split('\n') if q.strip() and q[0].isdigit()]
+        return questions
+    except Exception as e:
+        logger.error(f"Quiz generation error: {e}")
+        return ["What did you learn from this topic?", "Can you explain the main concept?"]
+
+# ---------- 评估 Quiz 答案 ----------
+def evaluate_quiz(questions, user_answers):
+    prompt = f"""Evaluate these quiz answers. For each question, indicate if correct or incorrect. DO NOT provide correct answers unless user asks.
+
+Questions and Answers:
+{chr(10).join([f"Q{i+1}: {q}\nA: {user_answers.get(i+1, 'No answer')}" for i, q in enumerate(questions)])}
+
+Return format:
+- Q1: Correct/Incorrect
+- Q2: Correct/Incorrect
+Score: X/Y
+
+Only return the evaluation, no extra text."""
+    
+    try:
+        response = client.chat.completions.create(
+            model="openai/gpt-oss-120b",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3,
+            max_tokens=200,
+        )
+        return response.choices[0].message.content.strip()
+    except Exception as e:
+        logger.error(f"Quiz evaluation error: {e}")
+        return "Unable to evaluate. Please try again."
 
 # ---------- 将背景图片转换为 Base64 嵌入 CSS ----------
 def get_base64_of_image(image_path):
@@ -158,8 +270,12 @@ def text_to_speech(text):
 
 # ---------- 构建系统提示 ----------
 def build_system_prompt(levels):
-    prompt = """You are a language learning assistant helping students learn Languages.
+    prompt = f"""You are a language learning assistant helping students learn Languages.
 You have access to learning materials across 3 levels covering grammar, vocabulary, and conversation.
+
+TEACHING PRINCIPLES (MUST FOLLOW):
+{TEACHING_PRINCIPLES}
+
 Keep your answers concise, clear, and helpful. Focus on what the user is currently studying. No emojis!"""
     return prompt
 
@@ -188,9 +304,8 @@ if "user_msg_count" not in st.session_state:
     st.session_state.user_msg_count = 0
 
 # ========== 自动参考相关状态 - 独立于用户输入 ==========
-# 为每个页面单独存储推荐资源，不受用户消息影响
 if "page_recommendations" not in st.session_state:
-    st.session_state.page_recommendations = {}  # 存储每个页面的推荐资源
+    st.session_state.page_recommendations = {}
 if "current_page_key" not in st.session_state:
     st.session_state.current_page_key = None
 
@@ -218,7 +333,6 @@ def get_current_page_full_content():
             return None
         data = nemt_cet_data.get(st.session_state.selected_nemt_cet, {})
         
-        # 处理嵌套结构
         if len(data) == 1 and st.session_state.selected_nemt_cet in data:
             data = data[st.session_state.selected_nemt_cet]
         
@@ -228,27 +342,21 @@ def get_current_page_full_content():
             if not node:
                 return None
         
-        # 获取实际内容节点和目录名称
         content_node = node
         dir_name = ""
         
-        # 提取目录名称（如 "Education, Academic & Research"）
         if isinstance(content_node, dict):
-            # 如果当前节点只有一个键，且该键是目录名称
             if len(content_node) == 1:
                 dir_name = list(content_node.keys())[0]
                 content_node = content_node[dir_name]
-            # 如果当前节点已经有 name 字段
             elif "name" in content_node:
                 dir_name = content_node["name"]
         
-        # 构建完整的面包屑路径（显示所有目录名称，不显示数字）
         name_path_parts = []
         temp_data = data
         for path_key in st.session_state.nemt_cet_path:
             temp_data = temp_data.get(path_key, {})
             if isinstance(temp_data, dict) and len(temp_data) > 0:
-                # 获取这个数字节点下的目录名称
                 if len(temp_data) == 1:
                     inner_dir_name = list(temp_data.keys())[0]
                     name_path_parts.append(inner_dir_name)
@@ -259,7 +367,6 @@ def get_current_page_full_content():
         location = " > ".join(name_path_parts) if name_path_parts else st.session_state.selected_nemt_cet
         parts.append(f"The user is currently viewing: {location}")
         
-        # 添加当前目录名称 - 让 AI 知道正在学习什么主题
         if dir_name:
             parts.append(f"Section: {dir_name}")
         elif "name" in content_node:
@@ -270,7 +377,6 @@ def get_current_page_full_content():
         if "examples" in content_node and content_node["examples"]:
             parts.append("Example sentences:\n" + "\n".join(f"  - {e}" for e in content_node["examples"]))
         if "words" in content_node and content_node["words"]:
-            # 如果是字符串，按 / 分割显示
             if isinstance(content_node["words"], str):
                 words_list = content_node["words"].split(" / ")
             else:
@@ -366,9 +472,7 @@ def auto_generate_reference(level, full_page_content, path_string, mode="textboo
         if notes_match:
             notes = notes_match.group(1).strip()[:200]
 
-    # 根据语言和模式生成不同的提示
     if mode == "nemt_cet" or st.session_state.language == "English":
-        # 英文模式 - 使用英文关键词
         single_keyword = topic.split()[-1] if topic else "english"
         single_keyword = re.sub(r'[^\w\s]', '', single_keyword).strip().lower()
         
@@ -402,7 +506,7 @@ Example format:
 
 Now generate for: {topic}
 """
-    else:  # Chinese 模式
+    else:
         single_keyword = topic.split()[-1] if topic else "中文"
         single_keyword = re.sub(r'[^\u4e00-\u9fff\w\s]', '', single_keyword).strip()
         
@@ -460,15 +564,13 @@ Now generate for: {topic}
             return None
     return None
 
-# ========== 获取或生成当前页面的推荐资源（独立于用户输入）==========
+# ========== 获取或生成当前页面的推荐资源 ==========
 def get_page_recommendations():
     page_key = get_current_page_key()
     
-    # 如果页面已切换，更新当前页面key
     if st.session_state.current_page_key != page_key:
         st.session_state.current_page_key = page_key
     
-    # 如果当前页面还没有推荐资源，生成一个
     if page_key not in st.session_state.page_recommendations:
         full_page_content = get_current_page_full_content()
         if full_page_content:
@@ -481,25 +583,21 @@ def get_page_recommendations():
                 mode = "textbook"
                 level = st.session_state.level
             else:
-                # NEMT & CET 模式：获取目录名称路径（不显示数字）
                 data = nemt_cet_data.get(st.session_state.selected_nemt_cet, {})
                 if len(data) == 1 and st.session_state.selected_nemt_cet in data:
                     data = data[st.session_state.selected_nemt_cet]
                 
-                # 构建目录名称路径
                 name_path_parts = []
                 temp_data = data
                 for path_key in st.session_state.nemt_cet_path:
                     temp_data = temp_data.get(path_key, {})
                     if isinstance(temp_data, dict) and len(temp_data) > 0:
-                        # 获取这个数字节点下的目录名称
                         if len(temp_data) == 1:
                             inner_dir_name = list(temp_data.keys())[0]
                             name_path_parts.append(inner_dir_name)
                         elif "name" in temp_data:
                             name_path_parts.append(temp_data["name"])
                 
-                # 使用目录名称路径作为 path_string
                 path_string = " > ".join(name_path_parts) if name_path_parts else st.session_state.selected_nemt_cet
                 mode = "nemt_cet"
                 level = None
@@ -544,9 +642,88 @@ Translation:"""
         logger.error(f"Translation error for '{word}': {e}")
         return word
 
-# ========== AI 回复函数 ==========
+# ========== AI 回复函数（带 Quiz 系统）==========
 def get_ai_reply(user_input):
     logger.info(f"User input: {user_input[:100]}...")
+    
+    # 如果 Quiz 处于活跃状态，处理 Quiz 答案
+    if st.session_state.quiz_active and st.session_state.current_quiz:
+        # 检查用户是否在回答 quiz
+        # 简单判断：如果用户输入看起来像答案（不是请求帮助等）
+        if user_input.lower().strip() in ["give me answers", "show answers", "give answers"]:
+            # 用户明确要求答案
+            st.session_state.quiz_active = False
+            # 继续正常回复
+        else:
+            # 收集答案
+            st.session_state.quiz_answers[len(st.session_state.quiz_answers) + 1] = user_input
+            
+            # 检查是否已经回答了所有问题
+            if len(st.session_state.quiz_answers) >= len(st.session_state.current_quiz["questions"]):
+                # 评估答案
+                questions = st.session_state.current_quiz["questions"]
+                user_answers = st.session_state.quiz_answers
+                
+                evaluation = evaluate_quiz(questions, user_answers)
+                
+                # 解析分数
+                score_match = re.search(r'Score:\s*(\d+)/(\d+)', evaluation)
+                score = int(score_match.group(1)) if score_match else 0
+                total = int(score_match.group(2)) if score_match else len(questions)
+                
+                # 生成反馈列表
+                feedback_list = []
+                for i, q in enumerate(questions):
+                    is_correct = f"Q{i+1}" in evaluation and "Correct" in evaluation.split(f"Q{i+1}:")[1] if f"Q{i+1}" in evaluation else False
+                    feedback_list.append(is_correct)
+                
+                # 保存到 feedback.md
+                save_quiz_to_feedback(
+                    st.session_state.current_quiz["topic"],
+                    questions,
+                    user_answers,
+                    feedback_list,
+                    score,
+                    total
+                )
+                
+                # 构建回复
+                reply = f"{evaluation}\n\nGreat job! Let me know if you have any questions about the feedback."
+                
+                # 重置 quiz 状态
+                st.session_state.quiz_active = False
+                st.session_state.current_quiz = None
+                st.session_state.quiz_answers = {}
+                st.session_state.quiz_asked = False
+                
+                # 添加到消息历史
+                st.session_state.messages.append({"role": "assistant", "content": reply})
+                st.session_state.conv_history.append({"role": "assistant", "content": reply})
+                
+                # TTS
+                try:
+                    audio_bytes, fmt = text_to_speech(reply)
+                    if audio_bytes:
+                        st.session_state.pending_tts = (audio_bytes, fmt)
+                except Exception as e:
+                    logger.error(f"TTS error: {e}")
+                return
+            else:
+                # 还有更多问题
+                remaining = len(questions) - len(user_answers)
+                reply = f"Please answer question {len(user_answers) + 1}: {questions[len(user_answers)]}"
+                st.session_state.messages.append({"role": "assistant", "content": reply})
+                st.session_state.conv_history.append({"role": "assistant", "content": reply})
+                
+                try:
+                    audio_bytes, fmt = text_to_speech(reply)
+                    if audio_bytes:
+                        st.session_state.pending_tts = (audio_bytes, fmt)
+                except Exception as e:
+                    logger.error(f"TTS error: {e}")
+                return
+    
+    # 正常处理用户输入（非 Quiz 状态）
     st.session_state.messages.append({"role": "user", "content": user_input})
     st.session_state.user_msg_count += 1
     st.session_state.conv_history.append({"role": "user", "content": user_input})
@@ -583,6 +760,27 @@ def get_ai_reply(user_input):
     except Exception as e:
         logger.error(f"AI reply error: {e}")
         reply = f"[Error: {e}]"
+
+    # 生成 Quiz（如果需要）
+    if not st.session_state.quiz_active and not st.session_state.quiz_asked:
+        # 获取 topic
+        topic = "general"
+        if full_page:
+            sec_match = re.search(r"Section: (.+)", full_page)
+            if sec_match:
+                topic = sec_match.group(1)
+        
+        # 生成 quiz
+        questions = generate_quiz(topic, reply, full_page)
+        if questions:
+            st.session_state.quiz_active = True
+            st.session_state.current_quiz = {"questions": questions, "topic": topic, "guidance": reply}
+            st.session_state.quiz_answers = {}
+            st.session_state.quiz_asked = True
+            
+            # 添加 quiz 到回复
+            quiz_text = "\n\n**Quiz:**\n" + "\n".join(questions)
+            reply = reply + quiz_text + "\n\nPlease answer the questions above."
 
     st.session_state.messages.append({"role": "assistant", "content": reply})
     st.session_state.conv_history.append({"role": "assistant", "content": reply})
@@ -722,7 +920,6 @@ st.markdown(f"""
         background: transparent !important;
     }}
 
-    /* 语言选择器容器样式 - 白色背景 */
     .language-selector {{
         position: fixed;
         top: 20px;
@@ -1042,7 +1239,11 @@ with language_col2:
             st.session_state.nemt_cet_path = []
         
         st.session_state.messages = [{"role": "system", "content": system_prompt}]
-        # 切换语言时不清空推荐资源缓存
+        # 重置 quiz 状态
+        st.session_state.quiz_active = False
+        st.session_state.current_quiz = None
+        st.session_state.quiz_answers = {}
+        st.session_state.quiz_asked = False
         st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -1254,7 +1455,6 @@ if st.session_state.current_mode == "textbook":
 
         display_node(current_node)
         
-        # 显示推荐资源（独立于用户输入）
         recommendations = get_page_recommendations()
         if recommendations:
             st.markdown("---")
@@ -1408,7 +1608,6 @@ elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_n
                         st.session_state.nemt_cet_path.append(num_key)
                         st.rerun()
         
-        # 显示推荐资源（独立于用户输入）
         recommendations = get_page_recommendations()
         if recommendations:
             st.markdown("---")
@@ -1466,6 +1665,10 @@ if st.session_state.chat_open:
             st.session_state.conversation_summary = ""
             st.session_state.conv_history = []
             st.session_state.user_msg_count = 0
+            st.session_state.quiz_active = False
+            st.session_state.current_quiz = None
+            st.session_state.quiz_answers = {}
+            st.session_state.quiz_asked = False
             if os.path.exists("conversation_summary.txt"):
                 os.remove("conversation_summary.txt")
             st.rerun()
