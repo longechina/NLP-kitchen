@@ -313,25 +313,68 @@ def global_search(keyword):
     return results
 
 # ========== 自动生成参考消息 ==========
-def auto_generate_reference(level, full_page_content, path_string):
+def auto_generate_reference(level, full_page_content, path_string, mode="textbook"):
     topic = ""
-    if "Section:" in full_page_content:
-        import re
-        match = re.search(r"Section: (.+)", full_page_content)
-        if match:
-            topic = match.group(1)
-    if not topic:
-        parts = path_string.split(" > ")
-        topic = parts[-1] if parts else "general"
+    
+    # 根据模式获取 topic
+    if mode == "nemt_cet":
+        # 从 path_string 获取 topic（取最后一级目录名）
+        if path_string:
+            parts = path_string.split(" > ")
+            topic = parts[-1] if parts else "English exam vocabulary"
+        else:
+            topic = "English exam vocabulary"
+    else:
+        # textbook 模式：从 Section 或 path 获取
+        if "Section:" in full_page_content:
+            import re
+            match = re.search(r"Section: (.+)", full_page_content)
+            if match:
+                topic = match.group(1)
+        if not topic:
+            parts = path_string.split(" > ")
+            topic = parts[-1] if parts else "general"
 
     notes = ""
     if "Notes:" in full_page_content:
-        notes_match = re.search(r"Notes: (.+?)(?:Example|Vocabulary|$)", full_page_content, re.DOTALL)
+        notes_match = re.search(r"Notes: (.+?)(?:Example|Vocabulary|Words|$)", full_page_content, re.DOTALL)
         if notes_match:
             notes = notes_match.group(1).strip()[:200]
 
-    # 根据语言选择不同的提示和链接模板
-    if st.session_state.language == "Chinese":
+    # 根据模式选择不同的提示
+    if mode == "nemt_cet":
+        # NEMT & CET 模式的提示 - 和 English 模式格式一样
+        prompt = f"""You are an English learning assistant. The user is studying: "{topic}".
+
+Topic summary: {notes if notes else "English exam vocabulary and usage"}
+
+Your task:
+- Generate 3-4 high-quality learning resources using fixed trusted platforms
+- DO search the web
+- Use the topic keyword to build real, valid search links
+- Keep it concise
+- No emojis!
+
+Use these rules to generate links:
+- YouTube: https://www.youtube.com/results?search_query=advanced english+key_word
+- Quizlet: https://quizlet.com/search?query=advanced english+key_words+vocabulary
+- StackExchange: https://english.stackexchange.com/search?q=only1_key_word
+
+Example format:
+【Recommended Resources】
+
+- YouTube: Explanation video  
+  [Watch](https://www.youtube.com/results?search_query=english+grammar+english+learning)
+
+- Quizlet: Flashcards for practice  
+  [Practice](https://quizlet.com/search?query=english+grammar+english+vocabulary)
+
+- English StackExchange: Community Q&A discussion  
+  [Explore](https://english.stackexchange.com/search?q=english+grammar)
+
+Now generate for: {topic}
+"""
+    elif st.session_state.language == "Chinese":
         prompt = f"""You are a Chinese learning assistant. The user is at Level {level} studying: "{topic}".
 
 Topic summary: {notes if notes else "Basic Chinese learning topic"}
@@ -362,7 +405,7 @@ Example format:
 
 Now generate for: {topic}
 """
-    else:  # English
+    else:  # English textbook mode
         prompt = f"""You are an English learning assistant. The user is at Level {level} studying: "{topic}".
 
 Topic summary: {notes if notes else "Basic English learning topic"}
@@ -417,13 +460,14 @@ Now generate for: {topic}
             return None
     return None
 
+
 # ========== 自动推送参考消息 ==========
-def auto_push_reference(level, path_string):
+def auto_push_reference(level, path_string, mode="textbook"):
     if st.session_state.auto_ref_pushed:
         return
     full_page_content = get_current_page_full_content()
     if full_page_content:
-        ref_msg = auto_generate_reference(level, full_page_content, path_string)
+        ref_msg = auto_generate_reference(level, full_page_content, path_string, mode)
         if ref_msg:
             st.session_state.current_recommendations = ref_msg
         st.session_state.auto_ref_pushed = True
@@ -1473,7 +1517,33 @@ elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_n
                     if st.button(dir_name, key=f"nemt_subdir_{num_key}", use_container_width=True):
                         st.session_state.nemt_cet_path.append(num_key)
                         st.rerun()
-
+        
+        # ========== 在这里添加自动推送参考资源 ==========
+        # 显示完所有内容后，自动推送参考资源（如果还没有推送）
+        if not st.session_state.auto_ref_pushed and st.session_state.nemt_cet_path:
+            # 构建当前路径字符串用于显示
+            current_path_parts = []
+            temp_data = data
+            for path_key in st.session_state.nemt_cet_path:
+                temp_data = temp_data.get(path_key, {})
+                if isinstance(temp_data, dict) and len(temp_data) > 0:
+                    inner_data = temp_data
+                    while len(inner_data) == 1 and isinstance(list(inner_data.values())[0], dict):
+                        inner_data = list(inner_data.values())[0]
+                    if isinstance(inner_data, dict) and "name" in inner_data:
+                        current_path_parts.append(inner_data["name"])
+                    elif len(inner_data) > 0:
+                        first_key = list(inner_data.keys())[0] if inner_data else ""
+                        if first_key:
+                            current_path_parts.append(first_key)
+            current_path_string = " > ".join(current_path_parts)
+            auto_push_reference(None, current_path_string, mode="nemt_cet")
+        
+        # 显示推荐资源（如果有）
+        if st.session_state.current_recommendations:
+            st.markdown("---")
+            with st.container():
+                st.markdown(st.session_state.current_recommendations, unsafe_allow_html=True)
 
 # ---------- 悬浮聊天窗（固定在右下角） ----------
 # 强制打开聊天面板（用户要求）
