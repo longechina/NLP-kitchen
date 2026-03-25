@@ -17,7 +17,8 @@ NEVER give direct answers. Use guidance instead. When use input first messages, 
 
 ## 3. Feedback
 - Show score: "Score: X/2"
-- Indicate correct/incorrect
+- Show all correct/incorrect
+
 - DO NOT give answers unless user explicitly asks
 
 ## 4. Logging
