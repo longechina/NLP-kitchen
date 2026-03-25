@@ -1430,7 +1430,7 @@ st.markdown(f"""
     .stChatInput {{
         border-radius: 15px !important;
         border: 1px solid rgba(0,0,0,0.3) !important;
-        background-color: rgba(38,39,48,0.9) !important;
+        background-color: rgba(30,31,40,0.9) !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 16px !important;
         font-weight: 400 !important;
