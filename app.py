@@ -323,71 +323,68 @@ Generate the quiz:"""
         
 # ========== 评估 Quiz 答案（修复版）==========
 def evaluate_quiz(questions, user_answers):
-    # 如果用户一次性回答了所有问题（答案包含多个）
-    user_input = list(user_answers.values())[-1] if user_answers else ""
+    # 构建问题和答案的详细列表
+    qa_pairs = []
+    for i, q in enumerate(questions):
+        user_ans = user_answers.get(i+1, "No answer")
+        qa_pairs.append(f"Q{i+1}: {q}\nUser Answer: {user_ans}")
     
-    # 检查是否一次性回答
-    if len(user_answers) == 1 and len(user_answers) < len(questions):
-        # 尝试解析一次性答案
-        answers = []
-        for i in range(len(questions)):
-            # 匹配 "1. xxx" 或 "1: xxx" 或 "1 xxx" 格式
-            patterns = [
-                rf'{i+1}\.\s*(.+?)(?=\d+\.|$)',
-                rf'{i+1}:\s*(.+?)(?=\d+:|$)',
-                rf'{i+1}\s+(.+?)(?=\d+\s|$)'
-            ]
-            for pattern in patterns:
-                match = re.search(pattern, user_input, re.DOTALL)
-                if match:
-                    answers.append(match.group(1).strip())
-                    break
-            else:
-                answers.append("")
-        
-        # 如果成功解析出答案，使用解析结果
-        if any(answers):
-            user_answers = {i+1: ans for i, ans in enumerate(answers) if ans}
-    
-    prompt = f"""Evaluate these quiz answers. For each question, indicate if correct or incorrect. DO NOT provide correct answers unless user asks.
+    prompt = f"""You are a language teacher evaluating quiz answers. For each question, determine if the user's answer is CORRECT or INCORRECT.
 
-Questions and Answers:
-{chr(10).join([f"Q{i+1}: {q}\nA: {user_answers.get(i+1, 'No answer')}" for i, q in enumerate(questions)])}
+Be GENEROUS in your evaluation:
+- For multiple choice, accept the letter (A, B, C, D) or the full text
+- For fill-in-the-blank, accept synonyms or similar meaning
+- For translation, accept if the meaning is correct, even if wording differs
+- For error correction, accept if the error is correctly identified and fixed
+- For sentence making, accept if the sentence is grammatically correct and uses all words
+
+Quiz Questions and User Answers:
+{chr(10).join(qa_pairs)}
 
 Return format:
 - Q1: Correct/Incorrect
 - Q2: Correct/Incorrect
-Score: X/Y
+- Q3: Correct/Incorrect
+- Q4: Correct/Incorrect
+- Q5: Correct/Incorrect
+Score: X/5
 
 Only return the evaluation, no extra text."""
     
     try:
         response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
+            model="openai/gpt-oss-120b",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
-            max_tokens=200,
+            max_tokens=300,
         )
         evaluation = response.choices[0].message.content.strip()
         
-        # 安全解析分数
+        # 解析分数
         score_match = re.search(r'Score:\s*(\d+)/(\d+)', evaluation)
-        score = int(score_match.group(1)) if score_match else 0
-        total = int(score_match.group(2)) if score_match else len(questions)
+        if score_match:
+            score = int(score_match.group(1))
+            total = int(score_match.group(2))
+        else:
+            # 手动计算分数
+            correct_count = 0
+            for i in range(len(questions)):
+                if f"Q{i+1}: Correct" in evaluation or f"Q{i+1}: correct" in evaluation:
+                    correct_count += 1
+            score = correct_count
+            total = len(questions)
         
-        # 安全生成反馈列表 - 修复 IndexError
+        # 生成反馈列表
         feedback_list = []
         for i in range(len(questions)):
             is_correct = False
-            # 多种匹配方式
             if f"Q{i+1}: Correct" in evaluation or f"Q{i+1}: correct" in evaluation:
                 is_correct = True
-            elif f"Q{i+1} Correct" in evaluation or f"Q{i+1} correct" in evaluation:
-                is_correct = True
-            # 如果 evaluation 中包含 "Q1: Incorrect" 则不匹配
-            if f"Q{i+1}: Incorrect" in evaluation or f"Q{i+1}: incorrect" in evaluation:
-                is_correct = False
             feedback_list.append(is_correct)
+        
+        # 确保 evaluation 包含分数
+        if "Score:" not in evaluation:
+            evaluation += f"\nScore: {score}/{total}"
         
         return evaluation, score, total, feedback_list
         
@@ -911,59 +908,9 @@ Translation:"""
         return word
 
 
-# ========== AI 回复函数（修复版）==========
+# ========== AI 回复函数（只在用户要求时才生成 Quiz）==========
 def get_ai_reply(user_input):
     logger.info(f"User input: {user_input[:100]}...")
-    
-    # 检查用户是否要求 quiz
-    user_lower = user_input.lower().strip()
-    if "quiz" in user_lower or "test me" in user_lower or "问问我" in user_lower or "测试我" in user_lower:
-        full_page = get_current_page_full_content()
-        topic = "general"
-        if full_page:
-            sec_match = re.search(r"Section: (.+)", full_page)
-            if sec_match:
-                topic = sec_match.group(1)
-        
-        quiz_text = generate_quiz(topic, full_page)
-        if quiz_text:
-            st.session_state.quiz_active = True
-            # 存储完整的 quiz 文本和问题列表（用于评估）
-            # 提取问题列表用于评估
-            questions = []
-            for line in quiz_text.split('\n'):
-                line = line.strip()
-                # 匹配以数字开头的行（问题）
-                if re.match(r'^\d+\.', line):
-                    questions.append(line)
-                # 也匹配带括号的选项行（多选题选项）
-                elif re.match(r'^[A-D]\.', line):
-                    continue
-                # 匹配翻译题、改错题等
-                elif line and not line.startswith('###') and not line.startswith('##'):
-                    if len(questions) > 0 and questions[-1] not in line:
-                        pass
-            
-            st.session_state.current_quiz = {
-                "questions": questions,  # 存储提取的问题列表用于评估
-                "quiz_text": quiz_text,  # 存储完整文本用于显示
-                "topic": topic
-            }
-            st.session_state.quiz_answers = {}
-            st.session_state.quiz_asked = True
-            
-            reply = f"Here's a quiz on {topic}:\n\n{quiz_text}\n\nPlease answer the questions (you can answer all at once, e.g., '1. A, 2. B, 3. C')."
-            
-            st.session_state.messages.append({"role": "assistant", "content": reply})
-            st.session_state.conv_history.append({"role": "assistant", "content": reply})
-            
-            try:
-                audio_bytes, fmt = text_to_speech(reply)
-                if audio_bytes:
-                    st.session_state.pending_tts = (audio_bytes, fmt)
-            except Exception as e:
-                logger.error(f"TTS error: {e}")
-            return
     
     # 如果 Quiz 处于活跃状态，处理 Quiz 答案
     if st.session_state.quiz_active and st.session_state.current_quiz:
@@ -991,8 +938,8 @@ def get_ai_reply(user_input):
         # ========== 解析用户答案 ==========
         user_input_lower = user_input.lower().strip()
         
-        # 尝试匹配 "1. A, 2. B, 3. C" 或 "1. A" 或 "1. A, 2. B" 等格式
-        # 匹配数字后跟 . : 或空格，然后跟答案内容（直到下一个数字或结尾）
+        # 尝试匹配 "1. A, 2. B, 3. C" 或 "1- A" 等格式
+        # 匹配数字后跟 . : - 或空格，然后跟答案内容
         answer_pattern = re.findall(r'(\d+)[\.\:\-\s]+([^,]+?)(?=\s*\d+[\.\:\-\s]|$)', user_input)
         
         if answer_pattern:
@@ -1020,7 +967,31 @@ def get_ai_reply(user_input):
                 total
             )
             
-            reply = f"{evaluation}\n\nGreat job! Let me know if you have any questions about the feedback."
+            # ========== 构建详细反馈 ==========
+            feedback_lines = []
+            
+            # 添加评估结果
+            feedback_lines.append(evaluation)
+            feedback_lines.append("")
+            feedback_lines.append("--- Detailed Feedback ---")
+            
+            # 逐题添加详细反馈
+            for i, q in enumerate(questions):
+                user_ans = st.session_state.quiz_answers.get(i+1, "No answer")
+                is_correct = feedback_list[i] if i < len(feedback_list) else False
+                status = "🎉 Correct" if is_correct else "❌ Incorrect"
+                
+                feedback_lines.append(f"\n**Q{i+1}: {q}**")
+                feedback_lines.append(f"Your answer: {user_ans}")
+                feedback_lines.append(f"Status: {status}")
+                
+                # 如果错误，给出提示
+                if not is_correct:
+                    feedback_lines.append("Hint: Review the topic and try again.")
+            
+            feedback_lines.append("\nGreat job! Let me know if you have any questions about the feedback.")
+            
+            reply = "\n".join(feedback_lines)
             
             st.session_state.quiz_active = False
             st.session_state.current_quiz = None
@@ -1045,8 +1016,9 @@ def get_ai_reply(user_input):
                 next_q_num += 1
             
             if next_q_num <= len(questions):
+                # 从问题列表中获取当前问题文本
                 current_q_text = questions[next_q_num - 1] if next_q_num - 1 < len(questions) else f"Question {next_q_num}"
-                reply = f"Please answer question {next_q_num}: {current_q_text}"
+                reply = f"Please answer question {next_q_num}: {current_q_text}\n\nUse format: '{next_q_num}. answer' (e.g., '1. A')"
             else:
                 reply = f"Please answer the remaining questions."
             
@@ -1061,7 +1033,7 @@ def get_ai_reply(user_input):
                 logger.error(f"TTS error: {e}")
             return
     
-    # 正常处理用户输入（非 Quiz 状态）
+    # ========== 正常处理用户输入（非 Quiz 状态）==========
     st.session_state.messages.append({"role": "user", "content": user_input})
     st.session_state.user_msg_count += 1
     st.session_state.conv_history.append({"role": "user", "content": user_input})
@@ -1088,7 +1060,7 @@ def get_ai_reply(user_input):
 
     try:
         response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
+            model="openai/gpt-oss-120b",
             messages=context_msgs,
             temperature=0.7,
             max_tokens=512,
@@ -1111,7 +1083,6 @@ def get_ai_reply(user_input):
 
     if st.session_state.user_msg_count % 5 == 0 and st.session_state.user_msg_count > 0:
         generate_and_save_summary()
-
 
 # ========== 生成并保存对话总结 ==========
 def generate_and_save_summary():
