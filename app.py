@@ -1172,6 +1172,71 @@ Total: X/5"""
         generate_and_save_summary()
 
 
+# ========== AI 回复函数（带图片）==========
+def get_ai_reply_with_image(user_input, image_bytes):
+    logger.info(f"User input with image: {user_input[:100]}...")
+    
+    # 将图片转换为 base64
+    image_base64 = base64.b64encode(image_bytes).decode("utf-8")
+    mime_type = st.session_state.get("image_mime", "image/jpeg")
+    image_url = f"data:{mime_type};base64,{image_base64}"
+    
+    # 构建消息
+    context_msgs = st.session_state.messages.copy()
+    
+    # 添加当前页面内容
+    full_page = get_current_page_full_content()
+    if full_page:
+        context_msgs.insert(1, {"role": "system", "content": full_page})
+    
+    # 添加语言信息
+    if st.session_state.language:
+        lang_msg = {"role": "system", "content": f"The user is currently learning {st.session_state.language}."}
+        context_msgs.insert(1, lang_msg)
+    
+    # 添加对话总结
+    if st.session_state.conversation_summary:
+        summary_msg = {"role": "system", "content": f"[Previous conversation summary]\n{st.session_state.conversation_summary}"}
+        base = 1
+        if st.session_state.language:
+            base += 1
+        if full_page:
+            base += 1
+        context_msgs.insert(base, summary_msg)
+    
+    # 添加带图片的用户消息
+    context_msgs.append({
+        "role": "user",
+        "content": [
+            {"type": "text", "text": user_input},
+            {"type": "image_url", "image_url": {"url": image_url}}
+        ]
+    })
+    
+    try:
+        response = client.chat.completions.create(
+            model=st.session_state.model_name,
+            messages=context_msgs,
+            temperature=0.7,
+            max_tokens=st.session_state.model_max_tokens,
+        )
+        reply = response.choices[0].message.content.strip()
+        logger.info(f"AI reply with image: {reply[:100]}...")
+    except Exception as e:
+        logger.error(f"AI reply error with image: {e}")
+        reply = f"[Error: {e}]"
+    
+    st.session_state.messages.append({"role": "assistant", "content": reply})
+    st.session_state.conv_history.append({"role": "assistant", "content": reply})
+    
+    # TTS
+    try:
+        audio_bytes, fmt = text_to_speech(reply)
+        if audio_bytes:
+            st.session_state.pending_tts = (audio_bytes, fmt)
+    except Exception as e:
+        logger.error(f"TTS error in get_ai_reply_with_image: {e}")
+
 # ---------- CSS样式 ----------
 st.markdown(f"""
 <style>
@@ -1994,8 +2059,8 @@ if st.session_state.chat_open:
         st.audio(audio_bytes, format=fmt, autoplay=True)
         st.session_state.pending_tts = None
 
-    # 输入区域：五列布局（Clear按钮 + 语音按钮 + Quiz按钮 + 模型选择 + 文本输入）
-    col_clear, col_voice, col_quiz, col_model, col_text = st.columns([1, 1, 1, 2, 4])
+    # 输入区域：六列布局（Clear + 语音 + Quiz + 模型选择 + 图片上传 + 文本输入）
+    col_clear, col_voice, col_quiz, col_model, col_image, col_text = st.columns([1, 1, 1, 2, 1, 3])
 
     with col_clear:
         if st.button("Clear", key="clear_chat", use_container_width=True):
@@ -2030,7 +2095,6 @@ if st.session_state.chat_open:
 
     with col_quiz:
         if st.button("Quiz", key="quiz_button", use_container_width=True):
-            # 生成 quiz
             full_page = get_current_page_full_content()
             topic = "general"
             if full_page:
@@ -2041,7 +2105,6 @@ if st.session_state.chat_open:
             quiz_text = generate_quiz(topic, full_page)
             if quiz_text:
                 st.session_state.quiz_active = True
-                # 提取问题列表用于评估
                 questions = []
                 for line in quiz_text.split('\n'):
                     line = line.strip()
@@ -2070,7 +2133,6 @@ if st.session_state.chat_open:
                 st.rerun()
 
     with col_model:
-        # 模型选择下拉框
         selected_model_display = st.selectbox(
             "Model",
             options=list(AVAILABLE_MODELS.keys()),
@@ -2084,8 +2146,41 @@ if st.session_state.chat_open:
             st.session_state.model_max_tokens = AVAILABLE_MODELS[selected_model_display]["max_tokens"]
             st.rerun()
 
+    with col_image:
+        # 图片上传按钮
+        uploaded_file = st.file_uploader(
+            "📷",
+            type=["jpg", "jpeg", "png", "webp"],
+            key="image_uploader",
+            label_visibility="collapsed"
+        )
+        
+        # 显示已上传的图片预览
+        if uploaded_file is not None:
+            # 保存图片到 session_state
+            image_bytes = uploaded_file.read()
+            st.session_state.uploaded_image = image_bytes
+            st.session_state.image_filename = uploaded_file.name
+            st.session_state.image_mime = uploaded_file.type
+            
+            # 显示小预览图
+            st.image(image_bytes, width=40, caption="")
+        elif hasattr(st.session_state, 'uploaded_image') and st.session_state.uploaded_image:
+            # 如果已有上传的图片，显示预览
+            st.image(st.session_state.uploaded_image, width=40, caption="")
+            # 添加清除按钮（可选）
+            if st.button("✖", key="clear_image", help="Clear image"):
+                del st.session_state.uploaded_image
+                st.rerun()
+
     with col_text:
         if prompt := st.chat_input("Type a message...", key="text_input"):
             with st.spinner("Thinking..."):
-                get_ai_reply(prompt)
+                # 如果有图片，调用带图片的回复函数
+                if hasattr(st.session_state, 'uploaded_image'):
+                    get_ai_reply_with_image(prompt, st.session_state.uploaded_image)
+                    # 发送后清除图片
+                    del st.session_state.uploaded_image
+                else:
+                    get_ai_reply(prompt)
             st.rerun()
