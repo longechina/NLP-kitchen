@@ -233,8 +233,34 @@ Generate 3 COMPLETE quiz questions for "{topic}":"""
         ]
 
 
-# ---------- 评估 Quiz 答案 ----------
+# ========== 评估 Quiz 答案（修复版）==========
 def evaluate_quiz(questions, user_answers):
+    # 如果用户一次性回答了所有问题（答案包含多个）
+    user_input = list(user_answers.values())[-1] if user_answers else ""
+    
+    # 检查是否一次性回答
+    if len(user_answers) == 1 and len(user_answers) < len(questions):
+        # 尝试解析一次性答案
+        answers = []
+        for i in range(len(questions)):
+            # 匹配 "1. xxx" 或 "1: xxx" 或 "1 xxx" 格式
+            patterns = [
+                rf'{i+1}\.\s*(.+?)(?=\d+\.|$)',
+                rf'{i+1}:\s*(.+?)(?=\d+:|$)',
+                rf'{i+1}\s+(.+?)(?=\d+\s|$)'
+            ]
+            for pattern in patterns:
+                match = re.search(pattern, user_input, re.DOTALL)
+                if match:
+                    answers.append(match.group(1).strip())
+                    break
+            else:
+                answers.append("")
+        
+        # 如果成功解析出答案，使用解析结果
+        if any(answers):
+            user_answers = {i+1: ans for i, ans in enumerate(answers) if ans}
+    
     prompt = f"""Evaluate these quiz answers. For each question, indicate if correct or incorrect. DO NOT provide correct answers unless user asks.
 
 Questions and Answers:
@@ -254,11 +280,32 @@ Only return the evaluation, no extra text."""
             temperature=0.3,
             max_tokens=200,
         )
-        return response.choices[0].message.content.strip()
+        evaluation = response.choices[0].message.content.strip()
+        
+        # 安全解析分数
+        score_match = re.search(r'Score:\s*(\d+)/(\d+)', evaluation)
+        score = int(score_match.group(1)) if score_match else 0
+        total = int(score_match.group(2)) if score_match else len(questions)
+        
+        # 安全生成反馈列表 - 修复 IndexError
+        feedback_list = []
+        for i in range(len(questions)):
+            is_correct = False
+            # 多种匹配方式
+            if f"Q{i+1}: Correct" in evaluation or f"Q{i+1}: correct" in evaluation:
+                is_correct = True
+            elif f"Q{i+1} Correct" in evaluation or f"Q{i+1} correct" in evaluation:
+                is_correct = True
+            # 如果 evaluation 中包含 "Q1: Incorrect" 则不匹配
+            if f"Q{i+1}: Incorrect" in evaluation or f"Q{i+1}: incorrect" in evaluation:
+                is_correct = False
+            feedback_list.append(is_correct)
+        
+        return evaluation, score, total, feedback_list
+        
     except Exception as e:
         logger.error(f"Quiz evaluation error: {e}")
-        return "Unable to evaluate. Please try again."
-
+        return "Unable to evaluate. Please try again.", 0, len(questions), [False] * len(questions)
 
 # ---------- 将背景图片转换为 Base64 嵌入 CSS ----------
 def get_base64_of_image(image_path):
@@ -797,8 +844,8 @@ def get_ai_reply(user_input):
             st.session_state.quiz_answers = {}
             st.session_state.quiz_asked = True
             
-            quiz_text = "\n\n**Quiz:**\n" + "\n".join([f"{i+1}. {q}" for i, q in enumerate(questions)])
-            reply = f"I've created a quiz to test your understanding of {topic}:\n{quiz_text}\n\nPlease answer the questions above (1, 2, 3...)."
+            quiz_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(questions)])
+            reply = f"Here's a quick quiz on {topic}:\n\n{quiz_text}\n\nPlease answer the questions (you can answer all at once, e.g., '1. answer, 2. answer, 3. answer')."
             
             st.session_state.messages.append({"role": "assistant", "content": reply})
             st.session_state.conv_history.append({"role": "assistant", "content": reply})
@@ -836,25 +883,12 @@ def get_ai_reply(user_input):
         st.session_state.quiz_answers[len(st.session_state.quiz_answers) + 1] = user_input
         
         if len(st.session_state.quiz_answers) >= len(questions):
-            user_answers = st.session_state.quiz_answers
-            evaluation = evaluate_quiz(questions, user_answers)
-            
-            score_match = re.search(r'Score:\s*(\d+)/(\d+)', evaluation)
-            score = int(score_match.group(1)) if score_match else 0
-            total = int(score_match.group(2)) if score_match else len(questions)
-            
-            feedback_list = []
-            for i in range(len(questions)):
-                is_correct = False
-                if f"Q{i+1}" in evaluation:
-                    part = evaluation.split(f"Q{i+1}:")[1].split("\n")[0] if f"Q{i+1}" in evaluation else ""
-                    is_correct = "Correct" in part or "correct" in part.lower()
-                feedback_list.append(is_correct)
+            evaluation, score, total, feedback_list = evaluate_quiz(questions, st.session_state.quiz_answers)
             
             save_quiz_to_feedback(
                 st.session_state.current_quiz.get("topic", "General"),
                 questions,
-                user_answers,
+                st.session_state.quiz_answers,
                 feedback_list,
                 score,
                 total
