@@ -225,3 +225,31 @@
 **Score:** 0/5
 
 ---
+
+## Quiz Record - 2026-03-25 05:53:22
+
+**Topic:** Law / Politics / Governance / Religion
+**Questions:**
+1. 1. 在以下哪一项中，最能准确描述“subjection”这一法律概念？
+2. 2. 在法律体系中，____ 是指个人或团体被迫服从更高权威的状态。
+3. 3. Translate into Chinese:
+4. 4. Find and correct the mistake:
+5. 5. Use the given words to make a sentence:
+
+**User Answers:**
+1. A
+2. subjection
+3. 法庭将于明天开庭审理此案。
+4. The tribunal will convene tomorrow to hear the case.
+5. The tribunal enforces law to prevent subjection.
+
+**Feedback:**
+- Q1: ❌ Incorrect
+- Q2: ❌ Incorrect
+- Q3: ❌ Incorrect
+- Q4: ❌ Incorrect
+- Q5: ❌ Incorrect
+
+**Score:** 0/5
+
+---
