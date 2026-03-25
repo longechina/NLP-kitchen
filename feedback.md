@@ -69,3 +69,25 @@
 **Score:** 0/3
 
 ---
+
+## Quiz Record - 2026-03-25 02:51:36
+
+**Topic:** Give a simple narration of an experience
+**Questions:**
+1. Fill in the blank with the appropriate time word: _____ 我去广州出差，觉得非常有意思。
+2. Choose the sentence that correctly uses the sequence words “先…然后…” to describe a two‑step experience:
+3. Explain the difference between the particles **了** and **过** when they appear after a verb in a simple narration of an experience.
+
+**User Answers:**
+1. pass
+2. pass
+3. pass
+
+**Feedback:**
+- Q1: ✅ Correct
+- Q2: ✅ Correct
+- Q3: ✅ Correct
+
+**Score:** 0/3
+
+---
