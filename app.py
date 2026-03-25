@@ -735,77 +735,25 @@ def global_search(keyword):
         return []
     
     results = []
-    print(f"=== GLOBAL SEARCH for '{keyword}' ===")
     
     # ========== 1. 搜索 textbook 数据 ==========
-    textbook_count = 0
     for level_num in range(1, 4):
         level_key = f"Level {level_num}"
         if level_key in levels_data:
             root_node = levels_data[level_key]
-            print(f"  Searching Level {level_num}...")
-            for root_key, root_value in root_node.items():
-                if isinstance(root_value, dict):
-                    matches = search_in_dict(root_value, [root_key], "textbook", level_num, keyword)
-                    textbook_count += len(matches)
-                    results.extend(matches)
-    print(f"  Textbook results: {textbook_count}")
-    
-    # ========== 2. 搜索 NEMT & CET 数据 ==========
-    nemt_count = 0
-    for exam_name, exam_data in nemt_cet_data.items():
-        if not exam_data:
-            continue
-        
-        print(f"  Searching {exam_name}...")
-        data_to_search = exam_data
-        if len(exam_data) == 1 and exam_name in exam_data:
-            data_to_search = exam_data[exam_name]
-        
-        for key, value in data_to_search.items():
-            if isinstance(value, dict):
-                # 主题名称匹配
-                if keyword.lower() in str(key).lower():
-                    nemt_count += 1
-                    results.append({
-                        "source": "nemt_cet",
-                        "exam": exam_name,
-                        "level": None,
-                        "path": [exam_name, key],
-                        "type": "Category",
-                        "content": str(key)[:150]
-                    })
-                # 递归搜索主题内容
-                matches = search_in_dict(value, [exam_name, key], "nemt_cet", None, keyword)
-                nemt_count += len(matches)
-                results.extend(matches)
-    
-    print(f"  NEMT/CET results: {nemt_count}")
-    print(f"  TOTAL results: {len(results)}")
-    
-    return results
-    
-    # ========== 1. 搜索 textbook 数据 (level1.json, level2.json, level3.json 等) ==========
-    for level_num in range(1, 4):
-        level_key = f"Level {level_num}"
-        if level_key in levels_data:
-            root_node = levels_data[level_key]
-            # level_data 结构是 {"LEVEL_I": {...}} 或直接是内容
             for root_key, root_value in root_node.items():
                 if isinstance(root_value, dict):
                     results.extend(search_in_dict(root_value, [root_key], "textbook", level_num, keyword))
     
-    # ========== 2. 搜索 NEMT & CET 数据 (TEM-8.json, NEMT.json, CET-46.json) ==========
+    # ========== 2. 搜索 NEMT & CET 数据 ==========
     for exam_name, exam_data in nemt_cet_data.items():
         if not exam_data:
             continue
         
-        # 处理可能的嵌套结构 {"TEM-8": {"0": {...}}}
         data_to_search = exam_data
         if len(exam_data) == 1 and exam_name in exam_data:
             data_to_search = exam_data[exam_name]
         
-        # 搜索每个主题分类
         for key, value in data_to_search.items():
             if isinstance(value, dict):
                 # 主题名称匹配
@@ -823,8 +771,7 @@ def global_search(keyword):
     
     return results
 
-
-# ========== 本地搜索（只在当前模式搜索）==========
+# ========== 本地搜索 ==========
 def local_search_textbook(keyword):
     """在textbook模式下搜索当前所在level的内容"""
     if not keyword.strip():
@@ -856,15 +803,12 @@ def local_search_nemt_cet(keyword):
     if not exam_data:
         return results
     
-    # 处理可能的嵌套结构
     data_to_search = exam_data
     if len(exam_data) == 1 and exam_name in exam_data:
         data_to_search = exam_data[exam_name]
     
-    # 搜索当前 exam 的所有内容
     for key, value in data_to_search.items():
         if isinstance(value, dict):
-            # 主题名称匹配
             if keyword.lower() in str(key).lower():
                 results.append({
                     "source": "nemt_cet",
@@ -874,7 +818,6 @@ def local_search_nemt_cet(keyword):
                     "type": "Category",
                     "content": str(key)[:150]
                 })
-            # 递归搜索内容
             results.extend(search_in_dict(value, [exam_name, key], "nemt_cet", None, keyword))
     
     return results
@@ -887,7 +830,6 @@ def local_search(keyword):
     elif st.session_state.current_mode == "nemt_cet":
         return local_search_nemt_cet(keyword)
     return []
-
 
 # ========== 自动生成参考消息 ==========
 def auto_generate_reference(level, full_page_content, path_string, mode="textbook"):
@@ -2036,18 +1978,18 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------- 全局搜索框（带下拉选项）----------
 with st.container():
-    # 使用三列布局：搜索范围选择器 + 搜索输入框 + 清除按钮
+    # 搜索范围选择器 + 搜索输入框 + 清除按钮
     search_col_scope, search_col_input, search_col_clear = st.columns([1, 4, 1])
     
     with search_col_scope:
         search_scope = st.selectbox(
             "Search in",
-            options=["🌐 Global", "📍 Local"],
+            options=["Global", "Local"],
             index=0 if st.session_state.search_scope == "global" else 1,
             key="search_scope_selector",
             label_visibility="collapsed"
         )
-        new_scope = "global" if search_scope == "🌐 Global" else "local"
+        new_scope = "global" if search_scope == "Global" else "local"
         if new_scope != st.session_state.search_scope:
             st.session_state.search_scope = new_scope
             st.session_state.search_results = []
@@ -2072,113 +2014,88 @@ with st.container():
     if search_input != st.session_state.search_keyword:
         st.session_state.search_keyword = search_input
         if search_input.strip():
-            # 根据选择的搜索范围执行搜索
             if st.session_state.search_scope == "global":
                 st.session_state.search_results = global_search(search_input)
             else:
                 st.session_state.search_results = local_search(search_input)
-            
-            # 调试：打印搜索结果数量
-            print(f"Search '{search_input}' in {st.session_state.search_scope} mode: found {len(st.session_state.search_results)} results")
         else:
             st.session_state.search_results = []
         st.rerun()
     
-    # ========== 显示搜索结果（卡片形式）==========
+    # 显示搜索结果 - 简洁卡片，整个卡片可点击
     if st.session_state.search_keyword and st.session_state.search_results:
-        scope_text = "Global" if st.session_state.search_scope == "global" else "Local"
-        st.markdown(f"### 🔍 {scope_text} Search Results for '{st.session_state.search_keyword}'")
-        st.markdown(f"**Found {len(st.session_state.search_results)} result(s)**")
-        st.markdown("---")
+        st.markdown(f"### Search Results for '{st.session_state.search_keyword}'")
+        st.markdown(f"Found {len(st.session_state.search_results)} result(s)")
         
         for idx, res in enumerate(st.session_state.search_results):
-            # 构建完整路径
+            # 构建路径字符串
             if "path" in res and res["path"]:
-                # 处理不同类型的路径
                 path_list = []
                 for p in res["path"]:
-                    # 清理路径中的特殊标记
-                    p_clean = str(p).replace("[", "").replace("]", "").split("_")[0] if isinstance(p, str) else str(p)
-                    path_list.append(p_clean)
+                    p_clean = str(p).split("[")[0] if isinstance(p, str) else str(p)
+                    if p_clean and p_clean not in ["LEVEL_I", "LEVEL_II", "LEVEL_III"]:
+                        path_list.append(p_clean)
                 path_str = " > ".join(path_list)
             else:
                 path_str = "Unknown location"
             
-            # 添加来源标识
+            # 来源信息
             if res.get("source") == "textbook":
-                source_tag = "📚 Textbook"
-                if res.get("level"):
-                    source_tag += f" - Level {res['level']}"
+                source_info = f"Level {res.get('level', '?')}"
             elif res.get("source") == "nemt_cet":
-                source_tag = f"📖 {res.get('exam', 'Exam')}"
+                source_info = res.get('exam', 'Exam')
             else:
-                source_tag = "📄 Content"
-            
-            # 根据类型设置图标
-            type_icons = {
-                "Section": "📁",
-                "Note": "📝",
-                "Example": "💬",
-                "Vocabulary": "📖",
-                "Words": "🔤",
-                "Category": "🏷️"
-            }
-            type_icon = type_icons.get(res.get("type", ""), "📄")
+                source_info = "Content"
             
             # 内容预览
-            content_preview = res["content"].replace("\n", " ")[:200]
-            if len(res["content"]) > 200:
+            content_preview = res["content"].replace("\n", " ")[:120]
+            if len(res["content"]) > 120:
                 content_preview += "..."
             
-            # 创建卡片
-            with st.container(border=True):
-                # 第一行：类型 + 来源 + 路径
-                col1, col2, col3 = st.columns([1, 2, 1])
-                with col1:
-                    st.markdown(f"**{type_icon} {res.get('type', 'Content')}**")
-                with col2:
-                    st.markdown(f"**Source:** {source_tag}")
-                with col3:
-                    if st.button("🔗 Go to", key=f"search_go_{idx}_{res.get('type', '')}_{res.get('index', idx)}", use_container_width=True):
-                        # 导航到搜索结果
-                        if res.get("source") == "textbook" and "level" in res and res["level"]:
-                            st.session_state.current_mode = "textbook"
-                            st.session_state.level = res["level"]
-                            # 构建路径
-                            if "path" in res and res["path"]:
-                                new_path = []
-                                for p in res["path"]:
-                                    p_str = str(p).split("[")[0] if isinstance(p, str) else str(p)
-                                    if p_str and p_str not in ["LEVEL_I", "LEVEL_II", "LEVEL_III"]:
-                                        new_path.append(p_str)
-                                if new_path:
-                                    st.session_state.path = new_path
-                            st.session_state.search_keyword = ""
-                            st.session_state.search_results = []
-                            st.rerun()
-                        elif res.get("source") == "nemt_cet" and "exam" in res:
-                            st.session_state.current_mode = "nemt_cet"
-                            st.session_state.selected_nemt_cet = res["exam"]
-                            if "path" in res and len(res["path"]) > 1:
-                                st.session_state.nemt_cet_path = res["path"][1:]
-                            else:
-                                st.session_state.nemt_cet_path = []
-                            st.session_state.search_keyword = ""
-                            st.session_state.search_results = []
-                            st.rerun()
-                
-                # 第二行：内容预览
-                st.markdown(f"**Preview:** {content_preview}")
-                
-                # 第三行：路径
-                st.markdown(f"**📍 Path:** `{path_str}`")
+            # 卡片按钮 - 整个卡片就是一个可点击的按钮
+            button_label = f"""
+**{res.get('type', 'Content')}** | {source_info}
+
+{content_preview}
+
+📍 {path_str}
+"""
+            
+            if st.button(
+                button_label,
+                key=f"result_card_{idx}_{res.get('source', '')}_{res.get('type', '')}_{res.get('index', idx)}",
+                use_container_width=True
+            ):
+                # 导航到搜索结果
+                if res.get("source") == "textbook" and "level" in res and res["level"]:
+                    st.session_state.current_mode = "textbook"
+                    st.session_state.level = res["level"]
+                    if "path" in res and res["path"]:
+                        new_path = []
+                        for p in res["path"]:
+                            p_str = str(p).split("[")[0] if isinstance(p, str) else str(p)
+                            if p_str and p_str not in ["LEVEL_I", "LEVEL_II", "LEVEL_III"]:
+                                new_path.append(p_str)
+                        if new_path:
+                            st.session_state.path = new_path
+                    st.session_state.search_keyword = ""
+                    st.session_state.search_results = []
+                    st.rerun()
+                elif res.get("source") == "nemt_cet" and "exam" in res:
+                    st.session_state.current_mode = "nemt_cet"
+                    st.session_state.selected_nemt_cet = res["exam"]
+                    if "path" in res and len(res["path"]) > 1:
+                        st.session_state.nemt_cet_path = res["path"][1:]
+                    else:
+                        st.session_state.nemt_cet_path = []
+                    st.session_state.search_keyword = ""
+                    st.session_state.search_results = []
+                    st.rerun()
         
         st.markdown("---")
     
     elif st.session_state.search_keyword:
-        scope_text = "global" if st.session_state.search_scope == "global" else "local"
-        st.info(f"🔍 No results found in {scope_text} search for '{st.session_state.search_keyword}'. Try a different keyword or check your spelling.")
-
+        st.info(f"No results found for '{st.session_state.search_keyword}'.")
 
 # ---------- 导航和卡片显示 ----------
 st.title("TEXTBOOK ASSISTANT")
