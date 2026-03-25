@@ -207,14 +207,14 @@ def save_conversation_summary(summary):
         logger.error(f"Failed to save local summary: {e}")
 
 
-# ---------- 生成 Quiz（根据语言模式使用相应模板）----------
+# ---------- 生成 Quiz（根据语言模式使用相应模板，生成所有题型）----------
 def generate_quiz(topic, full_page_content):
     # 根据当前语言模式选择模板
     if st.session_state.language == "Chinese":
-        # 中文学习模板
+        # 中文学习模板 - 所有题型
         template = """
 ### 1. 单选题 (Multiple Choice)
-**Instruction (EN):** Choose the ONE best answer.
+**Instruction:** Choose the ONE best answer.
 
 1. 他________每天都去学校。  
 A. 都  
@@ -225,36 +225,36 @@ D. 也
 ---
 
 ### 2. 填空题 (Fill in the blank)
-**Instruction (EN):** Fill in the blank with the correct word.
+**Instruction:** Fill in the blank with the correct word.
 
 1. 我今天________朋友见面。  
 
 ---
 
 ### 3. 翻译题 (Translation)
-**Instruction (EN):** Translate into English.
+**Instruction:** Translate into English.
 
 1. 她喜欢喝咖啡。  
 
 ---
 
 ### 4. 改错题 (Error correction)
-**Instruction (EN):** Find and correct the mistake.
+**Instruction:** Find and correct the mistake.
 
 1. 我昨天去看电影了在商场。  
 
 ---
 
 ### 5. 造句题 (Sentence making)
-**Instruction (EN):** Use the given words to make a sentence.
+**Instruction:** Use the given words to make a sentence.
 
 1. 明天 / 我 / 去 / 学校  
 """
     else:
-        # 英文学习模板
+        # 英文学习模板 - 所有题型
         template = """
 ### 1. 单选题 (Multiple Choice)
-**Instruction (EN):** Choose the ONE best answer.
+**Instruction:** Choose the ONE best answer.
 
 1. He ______ to school every day.  
 A. go  
@@ -265,124 +265,87 @@ D. gone
 ---
 
 ### 2. 填空题 (Fill in the blank)
-**Instruction (EN):** Fill in the blank with the correct word.
+**Instruction:** Fill in the blank with the correct word.
 
 1. I ______ a book yesterday.  
 
 ---
 
 ### 3. 翻译题 (Translation)
-**Instruction (EN):** Translate into Chinese.
+**Instruction:** Translate into Chinese.
 
 1. She likes drinking coffee.  
 
 ---
 
 ### 4. 改错题 (Error correction)
-**Instruction (EN):** Find and correct the mistake.
+**Instruction:** Find and correct the mistake.
 
 1. He go to school every day.  
 
 ---
 
 ### 5. 造句题 (Sentence making)
-**Instruction (EN):** Use the given words to make a sentence.
+**Instruction:** Use the given words to make a sentence.
 
 1. tomorrow / I / will / go / school
 """
     
-    prompt = f"""You are a language test designer. Generate 3 COMPLETE quiz questions about "{topic}" using the template below, and make quiz in very structured format.
+    prompt = f"""You are a language test designer. Based on the topic and content below, generate COMPLETE quiz questions for ALL 5 question types from the template.
 
-**TEMPLATE (MUST FOLLOW THE QUESTION TYPES):**
+**Topic:** {topic}
+**Current Content:** {full_page_content[:800] if full_page_content else "No additional content"}
+
+**Question Types (generate ONE question for EACH type):**
 {template}
 
-**CRITICAL RULES:**
-1. Choose 3 DIFFERENT question types from the template
-2. For each question, replace the placeholder content with actual content about "{topic}"
-3. Each question must be COMPLETE with all options and context
-4. Multiple choice questions MUST have A, B, C, D options
-5. Fill-in-the-blank questions MUST have a complete sentence with blank
-6. Translation questions MUST have a full sentence to translate
-7. Error correction questions MUST have a sentence with an error
-8. Sentence making questions MUST provide words to arrange
-9. NEVER include the answer in the question
-10. Return ONLY the 3 questions, numbered 1., 2., 3.
+**STRUCTURE REQUIREMENTS:**
+1. Generate ONE question for EACH of the 5 types above
+2. Use this EXACT STRUCTURE for the output:
 
-Generate 3 COMPLETE quiz questions about "{topic}":"""
+## Quiz: {topic}
+
+### 1. 单选题 (Multiple Choice)
+[Your complete multiple choice question with 4 options A, B, C, D]
+
+### 2. 填空题 (Fill in the blank)
+[Your complete fill-in-the-blank question]
+
+### 3. 翻译题 (Translation)
+[Your complete translation question]
+
+### 4. 改错题 (Error correction)
+[Your complete error correction question]
+
+### 5. 造句题 (Sentence making)
+[Your complete sentence making question with words to arrange]
+
+**CRITICAL RULES:**
+- Replace ALL placeholder content with ACTUAL content related to "{topic}"
+- Create COMPLETE, answerable questions
+- Multiple choice: Provide 4 realistic options related to the topic
+- Fill in the blank: Create a complete sentence with one blank
+- Translation: Provide a full sentence to translate (to English if Chinese mode, to Chinese if English mode)
+- Error correction: Provide a sentence with ONE specific error to correct
+- Sentence making: Provide 3-5 words that can form a meaningful sentence
+- NEVER include the answer
+- Use EXACTLY the structure format above with the numbered sections
+
+Generate the quiz:"""
     
     try:
         response = client.chat.completions.create(
             model="openai/gpt-oss-120b",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            max_tokens=1200,
+            max_tokens=1500,
         )
-        questions_text = response.choices[0].message.content.strip()
-        
-        # 解析问题
-        questions = []
-        current_question = ""
-        lines = questions_text.split('\n')
-        
-        for line in lines:
-            line = line.strip()
-            if not line:
-                continue
-            
-            # 匹配新问题开始
-            if re.match(r'^\d+\.', line):
-                if current_question:
-                    questions.append(current_question)
-                current_question = line
-            else:
-                if current_question:
-                    current_question += "\n" + line
-        
-        if current_question:
-            questions.append(current_question)
-        
-        # 清理问题，移除多余内容
-        cleaned_questions = []
-        for q in questions:
-            # 移除 "Instruction" 等标题
-            q = re.sub(r'Instruction.*?:\s*', '', q)
-            # 确保问题有编号
-            if not re.match(r'^\d+\.', q):
-                q = f"{len(cleaned_questions) + 1}. {q}"
-            cleaned_questions.append(q)
-        
-        # 确保有3个问题
-        if len(cleaned_questions) < 3:
-            if st.session_state.language == "Chinese":
-                default_questions = [
-                    f"1. 单选题：以下哪个选项最符合“{topic}”的含义？\n   A. 选项A\n   B. 选项B\n   C. 选项C\n   D. 选项D",
-                    f"2. 填空题：请用与“{topic}”相关的词语完成以下句子：\n   他今天心情很好，脸上露出了___的笑容。",
-                    f"3. 翻译题：请将以下句子翻译成中文：\n   This is an example about {topic}."
-                ]
-            else:
-                default_questions = [
-                    f"1. Multiple Choice: Which of the following best describes \"{topic}\"?\n   A. Option A\n   B. Option B\n   C. Option C\n   D. Option D",
-                    f"2. Fill in the blank: The ___ provided accommodation for 50 guests.",
-                    f"3. Translation: Translate into Chinese: This is an example about {topic}."
-                ]
-            cleaned_questions = (cleaned_questions + default_questions)[:3]
-        
-        return cleaned_questions[:3]
+        quiz_text = response.choices[0].message.content.strip()
+        return quiz_text
         
     except Exception as e:
         logger.error(f"Quiz generation error: {e}")
-        if st.session_state.language == "Chinese":
-            return [
-                f"1. 单选题：以下哪个选项最符合“{topic}”的含义？\n   A. 选项A\n   B. 选项B\n   C. 选项C\n   D. 选项D",
-                f"2. 填空题：请用与“{topic}”相关的词语完成以下句子：\n   ______",
-                f"3. 翻译题：请将以下句子翻译成中文：\n   ______"
-            ]
-        else:
-            return [
-                f"1. Multiple Choice: Which of the following best describes \"{topic}\"?\n   A. Option A\n   B. Option B\n   C. Option C\n   D. Option D",
-                f"2. Fill in the blank: ______",
-                f"3. Translation: Translate into Chinese: ______"
-            ]
+        return None
 
 # ========== 评估 Quiz 答案（修复版）==========
 def evaluate_quiz(questions, user_answers):
@@ -988,15 +951,14 @@ def get_ai_reply(user_input):
             if sec_match:
                 topic = sec_match.group(1)
         
-        questions = generate_quiz(topic, full_page)
-        if questions:
+        quiz_text = generate_quiz(topic, full_page)
+        if quiz_text:
             st.session_state.quiz_active = True
-            st.session_state.current_quiz = {"questions": questions, "topic": topic}
+            st.session_state.current_quiz = {"questions": quiz_text, "topic": topic}
             st.session_state.quiz_answers = {}
             st.session_state.quiz_asked = True
             
-            quiz_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(questions)])
-            reply = f"Here's a quick quiz on {topic}:\n\n{quiz_text}\n\nPlease answer the questions (you can answer all at once, e.g., '1. answer, 2. answer, 3. answer')."
+            reply = f"Here's a quiz on {topic}:\n\n{quiz_text}\n\nPlease answer the questions (you can answer all at once)."
             
             st.session_state.messages.append({"role": "assistant", "content": reply})
             st.session_state.conv_history.append({"role": "assistant", "content": reply})
@@ -1008,6 +970,8 @@ def get_ai_reply(user_input):
             except Exception as e:
                 logger.error(f"TTS error: {e}")
             return
+    
+    # ... 后续代码不变
     
     # 如果 Quiz 处于活跃状态，处理 Quiz 答案
     if st.session_state.quiz_active and st.session_state.current_quiz:
