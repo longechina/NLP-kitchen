@@ -1285,7 +1285,6 @@ if st.session_state.current_mode == "textbook":
 
         if not st.session_state.auto_ref_pushed:
             auto_push_reference(st.session_state.level, bread)
-
 # 如果当前在 NEMT & CET 模式
 elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_nemt_cet:
     data = nemt_cet_data.get(st.session_state.selected_nemt_cet, {})
@@ -1294,17 +1293,17 @@ elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_n
     if len(data) == 1 and st.session_state.selected_nemt_cet in data:
         data = data[st.session_state.selected_nemt_cet]
     
-    # 如果没有路径，显示根目录内容（所有数字编号）
+    # 如果没有路径，显示根目录内容（所有目录名称）
     if not st.session_state.nemt_cet_path:
         # 显示当前选择的考试名称
         st.markdown(f"## {st.session_state.selected_nemt_cet}")
         
-        # 获取所有数字编号（按数字排序）
+        # 获取所有目录（按数字排序后取目录名称）
         sub_keys = sorted([k for k in data.keys() if isinstance(data[k], dict) and str(k).isdigit()], key=lambda x: int(x))
         
         if sub_keys:
             st.markdown("### Categories")
-            # 使用网格布局显示数字按钮（每行2个，显示数字+目录名称）
+            # 使用网格布局显示目录按钮（每行2个）
             cols = st.columns(2)
             for i, key in enumerate(sub_keys):
                 with cols[i % 2]:
@@ -1314,8 +1313,8 @@ elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_n
                         dir_name = list(inner_dict.keys())[0] if inner_dict else f"Section {key}"
                     else:
                         dir_name = f"Section {key}"
-                    # 显示数字 + 目录名称的按钮
-                    if st.button(f"📁 {key}. {dir_name}", key=f"nemt_num_{key}", use_container_width=True):
+                    # 显示目录名称按钮
+                    if st.button(dir_name, key=f"nemt_dir_{key}", use_container_width=True):
                         st.session_state.nemt_cet_path.append(key)
                         st.rerun()
         else:
@@ -1337,7 +1336,7 @@ elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_n
             while len(content_node) == 1 and isinstance(list(content_node.values())[0], dict):
                 content_node = list(content_node.values())[0]
         
-        # 构建面包屑路径（显示目录名称，不显示数字编号）
+        # 构建面包屑路径（显示目录名称）
         bread_parts = []
         temp_data = data
         for idx, path_key in enumerate(st.session_state.nemt_cet_path):
@@ -1404,10 +1403,8 @@ elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_n
                 if not word_item.strip():
                     continue
                 
-                # 解析单词（可能包含词性等信息，如 "sorcerer n."）
-                word_parts = word_item.strip().split(" ", 1)
-                word = word_parts[0]
-                pos = word_parts[1] if len(word_parts) > 1 else ""
+                # 只取单词本身，去掉词性
+                word = word_item.strip().split(" ", 1)[0]
                 
                 # 获取翻译
                 cache_key = f"{word}_{target_lang}"
@@ -1427,13 +1424,11 @@ elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_n
                     if flipped:
                         # 显示翻译
                         display_word = translation
-                        display_sub = f"{pos}" if pos else ""
                     else:
                         # 显示原词
                         display_word = word
-                        display_sub = f"{pos}" if pos else ""
                     
-                    # 构建可点击的卡片HTML（点击卡片本身触发翻转）
+                    # 构建可点击的卡片HTML（只显示单词）
                     card_html = f"""
                     <div id="card_{card_key}" style="
                         background-color: rgba(255,255,255,0.95);
@@ -1445,17 +1440,14 @@ elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_n
                         cursor: pointer;
                         text-align: center;
                         border: 1px solid rgba(0,0,0,0.05);
-                        min-height: 100px;
+                        min-height: 80px;
                         display: flex;
-                        flex-direction: column;
+                        align-items: center;
                         justify-content: center;
                     "
                     onclick="document.getElementById('btn_{card_key}').click()">
-                        <div style="font-size: 22px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px;">
+                        <div style="font-size: 22px; font-weight: 700; color: #1a1a2e;">
                             {display_word}
-                        </div>
-                        <div style="font-size: 14px; color: #666; font-style: italic;">
-                            {display_sub}
                         </div>
                     </div>
                     """
@@ -1485,7 +1477,7 @@ elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_n
             for ex in content_node["examples"]:
                 st.markdown(f"<div style='font-size: 20px; padding: 8px 0;'>• {ex}</div>", unsafe_allow_html=True)
         
-        # 显示子目录（下一级的数字编号）
+        # 显示子目录（下一级的数字编号，但显示目录名称）
         sub_items = []
         for k, v in current_node.items():
             if isinstance(v, dict):
@@ -1507,7 +1499,7 @@ elif st.session_state.current_mode == "nemt_cet" and st.session_state.selected_n
             cols = st.columns(2)
             for i, (num_key, dir_name) in enumerate(sub_items):
                 with cols[i % 2]:
-                    if st.button(f"{num_key}. {dir_name}", key=f"nemt_subdir_{num_key}", use_container_width=True):
+                    if st.button(dir_name, key=f"nemt_subdir_{num_key}", use_container_width=True):
                         st.session_state.nemt_cet_path.append(num_key)
                         st.rerun()
         
