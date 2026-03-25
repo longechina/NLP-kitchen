@@ -13,3 +13,8 @@ The assistant introduced basic Chinese greetings and self‑introduction vocabul
 The assistant introduced Chinese sentence patterns for making and canceling appointments, listing key vocabulary such as 预订, 取消, 时间, 房间, 可以, 吗, and gave example sentences plus a practice task. When the user asked for word‑by‑
 
 ---
+
+## Conversation Summary - 2026-03-25 03:45:50
+The user began a Chinese‑learning session focused on basic greetings and self‑introductions, receiving example sentences and a vocabulary list (e.g., 你好, 再见, 先生). The assistant then explained the term 先生, comparing it to “Mr.” and showing how it’s used in polite address. Later, the assistant presented additional material containing condolence expressions and related vocabulary.
+
+---
