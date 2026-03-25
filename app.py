@@ -1573,9 +1573,6 @@ st.markdown(f"""
         display: none !important;
     }}
 
-    div[data-baseweb="drawer"] {{
-        display: none !important;
-    }}
     div[data-baseweb="modal"] {{
         display: none !important;
     }}
