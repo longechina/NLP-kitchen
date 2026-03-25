@@ -9,6 +9,14 @@ import datetime
 import streamlit as st
 import groq
 import requests
+import tempfile
+import zipfile
+from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+# 导入OCR模块
+from ocr_image_module import ocr_images_batch, BAIMIAO_CONFIG as IMAGE_OCR_CONFIG, format_results_as_text, save_results_to_txt
+from ocr_pdf_module import ocr_pdf, BAIMIAO_CONFIG as PDF_OCR_CONFIG
 
 # ---------- 配置日志记录 ----------
 if not os.path.exists("logs"):
@@ -23,6 +31,56 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger(__name__)
+
+# ---------- 模型配置 ----------
+AVAILABLE_MODELS = {
+    "Llama 4 Scout 17B": {
+        "id": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "max_tokens": 8192
+    },
+    "Llama 3.3 70B": {
+        "id": "llama-3.3-70b-versatile",
+        "max_tokens": 8192
+    },
+    "Llama 3.1 8B": {
+        "id": "llama-3.1-8b-instant",
+        "max_tokens": 8192
+    },
+    "GPT OSS 120B": {
+        "id": "openai/gpt-oss-120b",
+        "max_tokens": 8192
+    },
+    "GPT OSS 20B": {
+        "id": "openai/gpt-oss-20b",
+        "max_tokens": 8192
+    },
+    "Qwen 3 32B": {
+        "id": "qwen/qwen3-32b",
+        "max_tokens": 8192
+    },
+    "Kimi K2 Instruct": {
+        "id": "moonshotai/kimi-k2-instruct-0905",
+        "max_tokens": 8192
+    },
+    "Groq Compound": {
+        "id": "groq/compound",
+        "max_tokens": 8192
+    },
+    "Groq Compound Mini": {
+        "id": "groq/compound-mini",
+        "max_tokens": 8192
+    },
+}
+
+DEFAULT_MODEL = "Llama 3.3 70B"
+
+# 初始化模型选择状态
+if "selected_model" not in st.session_state:
+    st.session_state.selected_model = DEFAULT_MODEL
+if "model_name" not in st.session_state:
+    st.session_state.model_name = AVAILABLE_MODELS[DEFAULT_MODEL]["id"]
+if "model_max_tokens" not in st.session_state:
+    st.session_state.model_max_tokens = AVAILABLE_MODELS[DEFAULT_MODEL]["max_tokens"]
 
 # ---------- GitHub 配置 ----------
 GITHUB_TOKEN = st.secrets.get("GITHUB_TOKEN")
@@ -144,42 +202,6 @@ if "quiz_answers" not in st.session_state:
 if "quiz_asked" not in st.session_state:
     st.session_state.quiz_asked = False
 
-# ---------- 保存 Quiz 到 feedback.md ----------
-def save_quiz_to_feedback(topic, questions, user_answers, feedback, score, total):
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    entry = f"""
-## Quiz Record - {timestamp}
-
-**Topic:** {topic}
-**Questions:**
-{chr(10).join([f"{i+1}. {q}" for i, q in enumerate(questions)])}
-
-**User Answers:**
-{chr(10).join([f"{i+1}. {user_answers.get(i+1, 'No answer')}" for i in range(len(questions))])}
-
-**Feedback:**
-{chr(10).join([f"- Q{i+1}: {'✅ Correct' if feedback[i] else '❌ Incorrect'}" for i in range(len(questions))])}
-
-**Score:** {score}/{total}
-
----
-"""
-    existing_content = ""
-    try:
-        with open("feedback.md", "r", encoding="utf-8") as f:
-            existing_content = f.read()
-    except FileNotFoundError:
-        pass
-    
-    new_content = existing_content + entry if existing_content else "# Quiz Records\n\n" + entry
-    save_to_github("feedback.md", new_content, f"Add quiz record - {timestamp}")
-    
-    try:
-        with open("feedback.md", "w", encoding="utf-8") as f:
-            f.write(new_content)
-    except Exception as e:
-        logger.error(f"Failed to save local feedback: {e}")
-
 
 # ---------- 保存对话总结到 GitHub ----------
 def save_conversation_summary(summary):
@@ -207,7 +229,7 @@ def save_conversation_summary(summary):
         logger.error(f"Failed to save local summary: {e}")
 
 
-# ---------- 生成 Quiz（根据语言模式使用相应模板，生成所有题型）----------
+# ---------- 生成 Quiz ----------
 def generate_quiz(topic, full_page_content):
     if st.session_state.language == "Chinese":
         template = """
@@ -295,10 +317,10 @@ Generate the quiz:"""
     
     try:
         response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
+            model=st.session_state.model_name,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            max_tokens=1500,
+            max_tokens=st.session_state.model_max_tokens,
         )
         quiz_text = response.choices[0].message.content.strip()
         
@@ -321,81 +343,6 @@ Generate the quiz:"""
         logger.error(f"Quiz generation error: {e}")
         return None
         
-# ========== 评估 Quiz 答案 ==========
-def evaluate_quiz(questions, user_answers):
-    # 构建问题和答案的详细列表
-    qa_pairs = []
-    for i, q in enumerate(questions):
-        # 清理问题：移除开头的 "1. " 或 "**Q1:** " 等
-        clean_q = re.sub(r'^\d+\.\s*', '', q)
-        clean_q = re.sub(r'^\*\*Q\d+:\*\*\s*', '', clean_q)
-        clean_q = clean_q.strip()
-        user_ans = user_answers.get(i+1, "No answer")
-        qa_pairs.append(f"Q{i+1}: {clean_q}\nUser Answer: {user_ans}")
-    
-    prompt = f"""You are a language teacher evaluating quiz answers. For each question, determine if the user's answer is CORRECT or INCORRECT.
-
-Be GENEROUS in your evaluation:
-- Multiple choice: accept the letter (A, B, C, D) or the full text
-- Fill-in-the-blank: accept synonyms or similar meaning
-- Translation: accept if the meaning is correct, even if wording differs
-- Error correction: accept if the error is correctly identified and fixed
-- Sentence making: accept if the sentence is grammatically correct and uses all words
-
-Quiz Questions and User Answers:
-{chr(10).join(qa_pairs)}
-
-Return format:
-- Q1: Correct/Incorrect
-- Q2: Correct/Incorrect
-- Q3: Correct/Incorrect
-- Q4: Correct/Incorrect
-- Q5: Correct/Incorrect
-Score: X/5
-
-Only return the evaluation, no extra text."""
-    
-    try:
-        response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.2,
-            max_tokens=300,
-        )
-        evaluation = response.choices[0].message.content.strip()
-        
-        # 解析分数
-        score_match = re.search(r'Score:\s*(\d+)/(\d+)', evaluation)
-        if score_match:
-            score = int(score_match.group(1))
-            total = int(score_match.group(2))
-        else:
-            # 手动计算分数
-            correct_count = 0
-            for i in range(len(questions)):
-                if f"Q{i+1}: Correct" in evaluation or f"Q{i+1}: correct" in evaluation:
-                    correct_count += 1
-            score = correct_count
-            total = len(questions)
-        
-        # 生成反馈列表
-        feedback_list = []
-        for i in range(len(questions)):
-            is_correct = False
-            if f"Q{i+1}: Correct" in evaluation or f"Q{i+1}: correct" in evaluation:
-                is_correct = True
-            feedback_list.append(is_correct)
-        
-        # 确保 evaluation 包含分数
-        if "Score:" not in evaluation:
-            evaluation += f"\nScore: {score}/{total}"
-        
-        return evaluation, score, total, feedback_list
-        
-    except Exception as e:
-        logger.error(f"Quiz evaluation error: {e}")
-        default_eval = f"Unable to evaluate. Please try again.\nScore: 0/{len(questions)}"
-        return default_eval, 0, len(questions), [False] * len(questions)
 
 # ---------- 将背景图片转换为 Base64 嵌入 CSS ----------
 def get_base64_of_image(image_path):
@@ -581,6 +528,8 @@ if "search_keyword" not in st.session_state:
     st.session_state.search_keyword = ""
 if "search_results" not in st.session_state:
     st.session_state.search_results = []
+if "search_scope" not in st.session_state:
+    st.session_state.search_scope = "global"
 
 
 # ---------- 获取当前页面唯一标识 ----------
@@ -672,47 +621,272 @@ def get_current_page_full_content():
         return "\n".join(parts)
 
 
-# ========== 全局搜索函数 ==========
-def search_in_node(node, path_list, level_num, keyword):
+# ========== 通用递归搜索函数 ==========
+def search_in_dict(node, path_list, source, level_num, keyword):
+    """
+    递归搜索字典中的所有内容
+    node: 当前节点
+    path_list: 路径列表
+    source: 数据来源 ("textbook" 或 "nemt_cet")
+    level_num: 等级 (textbook用)
+    keyword: 搜索关键词
+    """
     matches = []
     keyword_lower = keyword.lower()
     
-    if "name" in node and keyword_lower in node["name"].lower():
-        matches.append({"level": level_num, "path": path_list, "type": "Section", "content": node["name"]})
+    if not isinstance(node, dict):
+        return matches
     
-    if "notes" in node and keyword_lower in node["notes"].lower():
-        content = node["notes"][:200] + "..." if len(node["notes"]) > 200 else node["notes"]
-        matches.append({"level": level_num, "path": path_list, "type": "Note", "content": content})
+    # 1. 搜索 name 字段
+    if "name" in node and node["name"] and keyword_lower in str(node["name"]).lower():
+        matches.append({
+            "source": source,
+            "level": level_num,
+            "path": path_list.copy(),
+            "type": "Section",
+            "content": str(node["name"])[:150]
+        })
     
-    if "examples" in node:
-        for idx, ex in enumerate(node["examples"]):
-            if keyword_lower in ex.lower():
-                matches.append({"level": level_num, "path": path_list, "type": "Example", "content": ex, "index": idx})
+    # 2. 搜索 notes 字段
+    if "notes" in node and node["notes"] and keyword_lower in str(node["notes"]).lower():
+        content = str(node["notes"])[:200] + "..." if len(str(node["notes"])) > 200 else str(node["notes"])
+        matches.append({
+            "source": source,
+            "level": level_num,
+            "path": path_list.copy(),
+            "type": "Note",
+            "content": content
+        })
     
-    if "vocabulary" in node:
-        for idx, item in enumerate(node["vocabulary"]):
-            if keyword_lower in item.lower():
-                matches.append({"level": level_num, "path": path_list, "type": "Vocabulary", "content": item, "index": idx})
+    # 3. 搜索 examples 字段（列表或字符串）
+    if "examples" in node and node["examples"]:
+        if isinstance(node["examples"], list):
+            for idx, ex in enumerate(node["examples"]):
+                if ex and keyword_lower in str(ex).lower():
+                    matches.append({
+                        "source": source,
+                        "level": level_num,
+                        "path": path_list.copy(),
+                        "type": "Example",
+                        "content": str(ex)[:150],
+                        "index": idx
+                    })
+        elif isinstance(node["examples"], str) and keyword_lower in node["examples"].lower():
+            matches.append({
+                "source": source,
+                "level": level_num,
+                "path": path_list.copy(),
+                "type": "Example",
+                "content": node["examples"][:150]
+            })
     
+    # 4. 搜索 vocabulary 字段（列表或字符串）
+    if "vocabulary" in node and node["vocabulary"]:
+        if isinstance(node["vocabulary"], list):
+            for idx, item in enumerate(node["vocabulary"]):
+                if item and keyword_lower in str(item).lower():
+                    matches.append({
+                        "source": source,
+                        "level": level_num,
+                        "path": path_list.copy(),
+                        "type": "Vocabulary",
+                        "content": str(item)[:150],
+                        "index": idx
+                    })
+        elif isinstance(node["vocabulary"], str) and keyword_lower in node["vocabulary"].lower():
+            matches.append({
+                "source": source,
+                "level": level_num,
+                "path": path_list.copy(),
+                "type": "Vocabulary",
+                "content": node["vocabulary"][:150]
+            })
+    
+    # 5. 搜索 words 字段（用于 NEMT/CET 数据）
+    if "words" in node and node["words"] and keyword_lower in str(node["words"]).lower():
+        content = str(node["words"])[:200] + "..." if len(str(node["words"])) > 200 else str(node["words"])
+        matches.append({
+            "source": source,
+            "level": level_num,
+            "path": path_list.copy(),
+            "type": "Words",
+            "content": content
+        })
+    
+    # 6. 递归搜索所有子字典
     for key, value in node.items():
-        if isinstance(value, dict) and key not in ("name", "notes", "examples", "vocabulary", "words"):
-            matches.extend(search_in_node(value, path_list + [key], level_num, keyword))
+        # 跳过已经搜索过的字段
+        if key in ("name", "notes", "examples", "vocabulary", "words"):
+            continue
+        if isinstance(value, dict):
+            matches.extend(search_in_dict(value, path_list + [key], source, level_num, keyword))
+        elif isinstance(value, list):
+            for idx, item in enumerate(value):
+                if isinstance(item, dict):
+                    matches.extend(search_in_dict(item, path_list + [f"{key}[{idx}]"], source, level_num, keyword))
     
     return matches
 
 
+# ========== 全局搜索（搜索所有数据）==========
 def global_search(keyword):
+    """全局搜索：搜索所有 textbook 和 NEMT/CET 内容"""
     if not keyword.strip():
         return []
+    
     results = []
+    print(f"=== GLOBAL SEARCH for '{keyword}' ===")
+    
+    # ========== 1. 搜索 textbook 数据 ==========
+    textbook_count = 0
     for level_num in range(1, 4):
         level_key = f"Level {level_num}"
         if level_key in levels_data:
             root_node = levels_data[level_key]
+            print(f"  Searching Level {level_num}...")
             for root_key, root_value in root_node.items():
                 if isinstance(root_value, dict):
-                    results.extend(search_in_node(root_value, [root_key], level_num, keyword))
+                    matches = search_in_dict(root_value, [root_key], "textbook", level_num, keyword)
+                    textbook_count += len(matches)
+                    results.extend(matches)
+    print(f"  Textbook results: {textbook_count}")
+    
+    # ========== 2. 搜索 NEMT & CET 数据 ==========
+    nemt_count = 0
+    for exam_name, exam_data in nemt_cet_data.items():
+        if not exam_data:
+            continue
+        
+        print(f"  Searching {exam_name}...")
+        data_to_search = exam_data
+        if len(exam_data) == 1 and exam_name in exam_data:
+            data_to_search = exam_data[exam_name]
+        
+        for key, value in data_to_search.items():
+            if isinstance(value, dict):
+                # 主题名称匹配
+                if keyword.lower() in str(key).lower():
+                    nemt_count += 1
+                    results.append({
+                        "source": "nemt_cet",
+                        "exam": exam_name,
+                        "level": None,
+                        "path": [exam_name, key],
+                        "type": "Category",
+                        "content": str(key)[:150]
+                    })
+                # 递归搜索主题内容
+                matches = search_in_dict(value, [exam_name, key], "nemt_cet", None, keyword)
+                nemt_count += len(matches)
+                results.extend(matches)
+    
+    print(f"  NEMT/CET results: {nemt_count}")
+    print(f"  TOTAL results: {len(results)}")
+    
     return results
+    
+    # ========== 1. 搜索 textbook 数据 (level1.json, level2.json, level3.json 等) ==========
+    for level_num in range(1, 4):
+        level_key = f"Level {level_num}"
+        if level_key in levels_data:
+            root_node = levels_data[level_key]
+            # level_data 结构是 {"LEVEL_I": {...}} 或直接是内容
+            for root_key, root_value in root_node.items():
+                if isinstance(root_value, dict):
+                    results.extend(search_in_dict(root_value, [root_key], "textbook", level_num, keyword))
+    
+    # ========== 2. 搜索 NEMT & CET 数据 (TEM-8.json, NEMT.json, CET-46.json) ==========
+    for exam_name, exam_data in nemt_cet_data.items():
+        if not exam_data:
+            continue
+        
+        # 处理可能的嵌套结构 {"TEM-8": {"0": {...}}}
+        data_to_search = exam_data
+        if len(exam_data) == 1 and exam_name in exam_data:
+            data_to_search = exam_data[exam_name]
+        
+        # 搜索每个主题分类
+        for key, value in data_to_search.items():
+            if isinstance(value, dict):
+                # 主题名称匹配
+                if keyword.lower() in str(key).lower():
+                    results.append({
+                        "source": "nemt_cet",
+                        "exam": exam_name,
+                        "level": None,
+                        "path": [exam_name, key],
+                        "type": "Category",
+                        "content": str(key)[:150]
+                    })
+                # 递归搜索主题内容
+                results.extend(search_in_dict(value, [exam_name, key], "nemt_cet", None, keyword))
+    
+    return results
+
+
+# ========== 本地搜索（只在当前模式搜索）==========
+def local_search_textbook(keyword):
+    """在textbook模式下搜索当前所在level的内容"""
+    if not keyword.strip():
+        return []
+    if not st.session_state.level:
+        return []
+    
+    results = []
+    level_key = f"Level {st.session_state.level}"
+    if level_key in levels_data:
+        root_node = levels_data[level_key]
+        for root_key, root_value in root_node.items():
+            if isinstance(root_value, dict):
+                results.extend(search_in_dict(root_value, [root_key], "textbook", st.session_state.level, keyword))
+    return results
+
+
+def local_search_nemt_cet(keyword):
+    """在NEMT & CET模式下搜索当前选中的exam内容"""
+    if not keyword.strip():
+        return []
+    if not st.session_state.selected_nemt_cet:
+        return []
+    
+    results = []
+    exam_name = st.session_state.selected_nemt_cet
+    exam_data = nemt_cet_data.get(exam_name, {})
+    
+    if not exam_data:
+        return results
+    
+    # 处理可能的嵌套结构
+    data_to_search = exam_data
+    if len(exam_data) == 1 and exam_name in exam_data:
+        data_to_search = exam_data[exam_name]
+    
+    # 搜索当前 exam 的所有内容
+    for key, value in data_to_search.items():
+        if isinstance(value, dict):
+            # 主题名称匹配
+            if keyword.lower() in str(key).lower():
+                results.append({
+                    "source": "nemt_cet",
+                    "exam": exam_name,
+                    "level": None,
+                    "path": [exam_name, key],
+                    "type": "Category",
+                    "content": str(key)[:150]
+                })
+            # 递归搜索内容
+            results.extend(search_in_dict(value, [exam_name, key], "nemt_cet", None, keyword))
+    
+    return results
+
+
+def local_search(keyword):
+    """根据当前模式执行本地搜索"""
+    if st.session_state.current_mode == "textbook":
+        return local_search_textbook(keyword)
+    elif st.session_state.current_mode == "nemt_cet":
+        return local_search_nemt_cet(keyword)
+    return []
 
 
 # ========== 自动生成参考消息 ==========
@@ -813,10 +987,10 @@ Now generate for: {topic}
     for attempt in range(max_retries):
         try:
             response = client.chat.completions.create(
-                model="openai/gpt-oss-20b",
+                model=st.session_state.model_name,
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.7,
-                max_tokens=500,
+                max_tokens=st.session_state.model_max_tokens,
             )
             ref_text = response.choices[0].message.content.strip()
             return ref_text
@@ -831,7 +1005,6 @@ Now generate for: {topic}
                     continue
             return None
     return None
-
 
 # ========== 获取或生成当前页面的推荐资源 ==========
 def get_page_recommendations():
@@ -895,10 +1068,10 @@ Word: {clean_word}
 Translation:"""
         
         response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
+            model=st.session_state.model_name,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
-            max_tokens=50,
+            max_tokens=st.session_state.model_max_tokens,
         )
         translation = response.choices[0].message.content.strip()
         
@@ -912,8 +1085,42 @@ Translation:"""
         logger.error(f"Translation error for '{word}': {e}")
         return word
 
+# ========== 生成并保存对话总结 ==========
+def generate_and_save_summary():
+    if not st.session_state.conv_history:
+        return
 
-# ========== AI 回复函数（只在用户要求时才生成 Quiz）==========
+    conv_text = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.conv_history])
+
+    summary_prompt = f"""The following is a conversation between a user and an AI Chinese learning assistant.
+Please provide a concise summary (2-3 sentences) covering the main topics discussed.
+
+Conversation:
+{conv_text}
+
+Summary:"""
+    try:
+        response = client.chat.completions.create(
+            model=st.session_state.model_name,
+            messages=[{"role": "user", "content": summary_prompt}],
+            temperature=0.5,
+            max_tokens=st.session_state.model_max_tokens,
+        )
+        new_summary = response.choices[0].message.content.strip()
+
+        if st.session_state.conversation_summary:
+            st.session_state.conversation_summary += "\n\n" + new_summary
+        else:
+            st.session_state.conversation_summary = new_summary
+
+        save_conversation_summary(st.session_state.conversation_summary)
+
+        st.session_state.conv_history = []
+    except Exception as e:
+        logger.error(f"Failed to generate summary: {e}")
+        st.warning(f"Failed to generate summary: {e}")
+
+# ========== AI 回复函数 ==========
 def get_ai_reply(user_input):
     logger.info(f"User input: {user_input[:100]}...")
     
@@ -940,88 +1147,196 @@ def get_ai_reply(user_input):
                 logger.error(f"TTS error: {e}")
             return
         
-        # ========== 解析用户答案 ==========
-        user_input_lower = user_input.lower().strip()
+        # ========== 解析用户答案（支持多行）==========
+        lines = user_input.split('\n')
+        all_matches = []
         
-        # 尝试匹配 "1. A, 2. B, 3. C" 或 "1- A" 等格式
-        # 匹配数字后跟 . : - 或空格，然后跟答案内容
-        answer_pattern = re.findall(r'(\d+)[\.\:\-\s]+([^,]+?)(?=\s*\d+[\.\:\-\s]|$)', user_input)
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            match = re.match(r'^(\d+)[\.\:\-\s]+(.+)$', line)
+            if match:
+                q_num = int(match.group(1))
+                ans = match.group(2).strip()
+                all_matches.append((q_num, ans))
         
-        if answer_pattern:
-            # 有编号格式的回答（可能是部分或全部）
-            for num_str, ans in answer_pattern:
-                q_num = int(num_str)
+        if all_matches:
+            # 有多行格式的回答，直接填充所有答案
+            for q_num, ans in all_matches:
                 if 1 <= q_num <= len(questions):
-                    st.session_state.quiz_answers[q_num] = ans.strip()
+                    st.session_state.quiz_answers[q_num] = ans
         else:
-            # 没有编号，当作顺序回答（回答当前需要回答的问题）
-            current_q_num = len(st.session_state.quiz_answers) + 1
-            if current_q_num <= len(questions):
-                st.session_state.quiz_answers[current_q_num] = user_input
+            # 尝试匹配单行 "1. A, 2. B, 3. C" 格式
+            answer_pattern = re.findall(r'(\d+)[\.\:\-\s]+([^,]+?)(?=\s*\d+[\.\:\-\s]|$)', user_input)
+            if answer_pattern:
+                for num_str, ans in answer_pattern:
+                    q_num = int(num_str)
+                    if 1 <= q_num <= len(questions):
+                        st.session_state.quiz_answers[q_num] = ans.strip()
+            else:
+                # 没有编号，当作顺序回答
+                current_q_num = len(st.session_state.quiz_answers) + 1
+                if current_q_num <= len(questions):
+                    st.session_state.quiz_answers[current_q_num] = user_input
         
-        # 检查是否已经回答了所有问题
+        # ========== 关键修复：每次输入后都检查是否已完成 ==========
+        # 如果已经收集到所有答案，立即评估
         if len(st.session_state.quiz_answers) >= len(questions):
-            evaluation, score, total, feedback_list = evaluate_quiz(questions, st.session_state.quiz_answers)
-            
-            save_quiz_to_feedback(
-                st.session_state.current_quiz.get("topic", "General"),
-                questions,
-                st.session_state.quiz_answers,
-                feedback_list,
-                score,
-                total
-            )
-            
-            # ========== 构建详细反馈 ==========
-            feedback_lines = []
-            
-            # 添加评估结果
-            feedback_lines.append(evaluation)
-            feedback_lines.append("")
-            feedback_lines.append("--- Detailed Feedback ---")
-            
-            # 逐题添加详细反馈
+            # 构建问题和答案列表
+            qa_list = []
             for i, q in enumerate(questions):
                 user_ans = st.session_state.quiz_answers.get(i+1, "No answer")
-                is_correct = feedback_list[i] if i < len(feedback_list) else False
-                status = "🎉 Correct" if is_correct else "❌ Incorrect"
-                
-                feedback_lines.append(f"\n**Q{i+1}: {q}**")
-                feedback_lines.append(f"Your answer: {user_ans}")
-                feedback_lines.append(f"Status: {status}")
-                
-                # 如果错误，给出提示
-                if not is_correct:
-                    feedback_lines.append("Hint: Review the topic and try again.")
+                qa_list.append(f"Question {i+1}: {q}\nYour answer: {user_ans}")
             
-            feedback_lines.append("\nGreat job! Let me know if you have any questions about the feedback.")
-            
-            reply = "\n".join(feedback_lines)
-            
-            st.session_state.quiz_active = False
-            st.session_state.current_quiz = None
-            st.session_state.quiz_answers = {}
-            st.session_state.quiz_asked = False
-            
-            st.session_state.messages.append({"role": "assistant", "content": reply})
-            st.session_state.conv_history.append({"role": "assistant", "content": reply})
+            # 根据模式选择评估提示
+            if st.session_state.language == "Chinese":
+                eval_prompt = f"""You are a language teacher. Evaluate these quiz answers. Be GENEROUS in your evaluation.
+
+CRITICAL RULES:
+- Multiple choice: Accept the letter (A, B, C, D) OR the full text. Any answer that indicates the correct option is CORRECT.
+- Fill in the blank: Accept ANY word that makes the sentence grammatically correct and semantically meaningful. If multiple answers are possible, ALL are CORRECT. Only mark incorrect if the word makes no sense or creates a grammar error.- Translation: Accept if the meaning is preserved. Wording can vary. Even if it's not exactly the same, if the idea is conveyed, it's CORRECT.
+- Error correction: Accept if the error is fixed. The fix doesn't have to be exactly the same as expected.
+- Sentence making: Accept ANY grammatically correct sentence that uses all the given words. Order and wording can vary.
+
+For incorrect answers, DO NOT give the correct answer directly. Instead:
+1. Briefly explain why it's not ideal
+2. Ask a Socratic question to help
+
+CRITICAL: Must give the correct answers when the user asks for them (e.g., "give me answers", "show answers").
+
+Quiz Questions and Answers:
+{chr(10).join(qa_list)}
+
+Return exactly this format:
+1: [✅/❌] - [if ❌: brief explanation + Socratic question]
+2: [✅/❌] - [if ❌: brief explanation + Socratic question]
+3: [✅/❌] - [if ❌: brief explanation + Socratic question]
+4: [✅/❌] - [if ❌: brief explanation + Socratic question]
+5: [✅/❌] - [if ❌: brief explanation + Socratic question]
+Total: X/5"""
+            elif st.session_state.language == "English":
+                eval_prompt = f"""You are a language teacher. Evaluate these quiz answers. Be GENEROUS in your evaluation.
+
+CRITICAL RULES:
+- Multiple choice: Accept the letter (A, B, C, D) OR the full text. Any answer that indicates the correct option is CORRECT.
+- Fill in the blank: Accept ANY word that makes the sentence grammatically correct and semantically meaningful. If multiple answers are possible, ALL are CORRECT. Only mark incorrect if the word makes no sense or creates a grammar error.- Translation: Accept if the meaning is preserved. Wording can vary. Even if it's not exactly the same, if the idea is conveyed, it's CORRECT.
+- Error correction: Accept if the error is fixed. The fix doesn't have to be exactly the same as expected.
+- Sentence making: Accept ANY grammatically correct sentence that uses all the given words. Order and wording can vary.
+
+For incorrect answers, DO NOT give the correct answer directly. Instead:
+1. Briefly explain why it's not ideal
+2. Ask a Socratic question to help
+
+CRITICAL: Must give the correct answers when the user asks for them (e.g., "give me answers", "show answers").
+
+Quiz Questions and Answers:
+{chr(10).join(qa_list)}
+
+Return exactly this format:
+1: [✅/❌] - [if ❌: brief explanation + Socratic question]
+2: [✅/❌] - [if ❌: brief explanation + Socratic question]
+3: [✅/❌] - [if ❌: brief explanation + Socratic question]
+4: [✅/❌] - [if ❌: brief explanation + Socratic question]
+5: [✅/❌] - [if ❌: brief explanation + Socratic question]
+Total: X/5"""
+            else:
+                eval_prompt = f"""You are a language teacher. Evaluate these quiz answers. Be GENEROUS in your evaluation.
+
+CRITICAL RULES:
+- Multiple choice: Accept the letter (A, B, C, D) OR the full text. Any answer that indicates the correct option is CORRECT.
+- Fill in the blank: Accept ANY word that makes the sentence grammatically correct and semantically meaningful. If multiple answers are possible, ALL are CORRECT. Only mark incorrect if the word makes no sense or creates a grammar error.- Translation: Accept if the meaning is preserved. Wording can vary. Even if it's not exactly the same, if the idea is conveyed, it's CORRECT.
+- Error correction: Accept if the error is fixed. The fix doesn't have to be exactly the same as expected.
+- Sentence making: Accept ANY grammatically correct sentence that uses all the given words. Order and wording can vary.
+
+For incorrect answers, DO NOT give the correct answer directly. Instead:
+1. Briefly explain why it's not ideal
+2. Ask a Socratic question to help
+
+CRITICAL: Must give the correct answers when the user asks for them (e.g., "give me answers", "show answers").
+
+Quiz Questions and Answers:
+{chr(10).join(qa_list)}
+
+Return exactly this format:
+1: [✅/❌] - [if ❌: brief explanation + Socratic question]
+2: [✅/❌] - [if ❌: brief explanation + Socratic question]
+3: [✅/❌] - [if ❌: brief explanation + Socratic question]
+4: [✅/❌] - [if ❌: brief explanation + Socratic question]
+5: [✅/❌] - [if ❌: brief explanation + Socratic question]
+Total: X/5"""
             
             try:
-                audio_bytes, fmt = text_to_speech(reply)
-                if audio_bytes:
-                    st.session_state.pending_tts = (audio_bytes, fmt)
+                eval_response = client.chat.completions.create(
+                    model=st.session_state.model_name,
+                    messages=[{"role": "user", "content": eval_prompt}],
+                    temperature=0.3,
+                    max_tokens=st.session_state.model_max_tokens,
+                )
+                evaluation = eval_response.choices[0].message.content.strip()
+                
+                # 保存到 feedback.md
+                # 保存到 feedback.md（直接保存完整的 quiz 内容）
+                timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                entry = f"""
+## Quiz Record - {timestamp}
+
+**Topic:** {st.session_state.current_quiz.get("topic", "General")}
+**Mode:** {st.session_state.language}
+
+### Quiz:
+{st.session_state.current_quiz.get("quiz_text", "No quiz text")}
+
+### User Answers:
+{chr(10).join([f"{i+1}. {st.session_state.quiz_answers.get(i+1, 'No answer')}" for i in range(len(questions))])}
+
+### Evaluation:
+{evaluation}
+
+---
+"""
+                with open("feedback.md", "a", encoding="utf-8") as f:
+                    f.write(entry)
+                save_to_github("feedback.md", entry, f"Add quiz record - {timestamp}")      
+                reply = evaluation + "\n\nGreat job! Let me know if you have any questions about the feedback."
+                
+                # 重置 quiz 状态
+                st.session_state.quiz_active = False
+                st.session_state.current_quiz = None
+                st.session_state.quiz_answers = {}
+                st.session_state.quiz_asked = False
+                
+                st.session_state.messages.append({"role": "assistant", "content": reply})
+                st.session_state.conv_history.append({"role": "assistant", "content": reply})
+                
+                try:
+                    audio_bytes, fmt = text_to_speech(reply)
+                    if audio_bytes:
+                        st.session_state.pending_tts = (audio_bytes, fmt)
+                except Exception as e:
+                    logger.error(f"TTS error: {e}")
+                return
+                
             except Exception as e:
-                logger.error(f"TTS error: {e}")
-            return
+                logger.error(f"Evaluation error: {e}")
+                reply = f"Evaluation failed: {str(e)}\n\nPlease try again."
+                st.session_state.messages.append({"role": "assistant", "content": reply})
+                st.session_state.conv_history.append({"role": "assistant", "content": reply})
+                try:
+                    audio_bytes, fmt = text_to_speech(reply)
+                    if audio_bytes:
+                        st.session_state.pending_tts = (audio_bytes, fmt)
+                except Exception as e:
+                    logger.error(f"TTS error: {e}")
+                return
         else:
-            # 找出下一个未回答的问题编号
+            # 还没答完所有问题，提示下一个
             answered = set(st.session_state.quiz_answers.keys())
             next_q_num = 1
             while next_q_num in answered:
                 next_q_num += 1
             
             if next_q_num <= len(questions):
-                # 从问题列表中获取当前问题文本
                 current_q_text = questions[next_q_num - 1] if next_q_num - 1 < len(questions) else f"Question {next_q_num}"
                 reply = f"Please answer question {next_q_num}: {current_q_text}\n\nUse format: '{next_q_num}. answer' (e.g., '1. A')"
             else:
@@ -1038,6 +1353,7 @@ def get_ai_reply(user_input):
                 logger.error(f"TTS error: {e}")
             return
     
+ 
     # ========== 正常处理用户输入（非 Quiz 状态）==========
     st.session_state.messages.append({"role": "user", "content": user_input})
     st.session_state.user_msg_count += 1
@@ -1065,10 +1381,10 @@ def get_ai_reply(user_input):
 
     try:
         response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
+            model=st.session_state.model_name,
             messages=context_msgs,
             temperature=0.7,
-            max_tokens=512,
+            max_tokens=st.session_state.model_max_tokens,
         )
         reply = response.choices[0].message.content.strip()
         logger.info(f"AI reply: {reply[:100]}...")
@@ -1089,40 +1405,203 @@ def get_ai_reply(user_input):
     if st.session_state.user_msg_count % 5 == 0 and st.session_state.user_msg_count > 0:
         generate_and_save_summary()
 
-# ========== 生成并保存对话总结 ==========
-def generate_and_save_summary():
-    if not st.session_state.conv_history:
-        return
 
-    conv_text = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.conv_history])
-
-    summary_prompt = f"""The following is a conversation between a user and an AI Chinese learning assistant.
-Please provide a concise summary (2-3 sentences) covering the main topics discussed.
-
-Conversation:
-{conv_text}
-
-Summary:"""
+# ========== AI 回复函数（带图片）==========
+def get_ai_reply_with_image(user_input, image_bytes):
+    logger.info(f"User input with image: {user_input[:100]}...")
+    
+    # 将图片转换为 base64
+    image_base64 = base64.b64encode(image_bytes).decode("utf-8")
+    mime_type = st.session_state.get("image_mime", "image/jpeg")
+    image_url = f"data:{mime_type};base64,{image_base64}"
+    
+    # 构建消息
+    context_msgs = st.session_state.messages.copy()
+    
+    # 添加当前页面内容
+    full_page = get_current_page_full_content()
+    if full_page:
+        context_msgs.insert(1, {"role": "system", "content": full_page})
+    
+    # 添加语言信息
+    if st.session_state.language:
+        lang_msg = {"role": "system", "content": f"The user is currently learning {st.session_state.language}."}
+        context_msgs.insert(1, lang_msg)
+    
+    # 添加对话总结
+    if st.session_state.conversation_summary:
+        summary_msg = {"role": "system", "content": f"[Previous conversation summary]\n{st.session_state.conversation_summary}"}
+        base = 1
+        if st.session_state.language:
+            base += 1
+        if full_page:
+            base += 1
+        context_msgs.insert(base, summary_msg)
+    
+    # 添加带图片的用户消息
+    context_msgs.append({
+        "role": "user",
+        "content": [
+            {"type": "text", "text": user_input},
+            {"type": "image_url", "image_url": {"url": image_url}}
+        ]
+    })
+    
     try:
         response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
-            messages=[{"role": "user", "content": summary_prompt}],
-            temperature=0.5,
-            max_tokens=200,
+            model=st.session_state.model_name,
+            messages=context_msgs,
+            temperature=0.7,
+            max_tokens=st.session_state.model_max_tokens,
         )
-        new_summary = response.choices[0].message.content.strip()
-
-        if st.session_state.conversation_summary:
-            st.session_state.conversation_summary += "\n\n" + new_summary
-        else:
-            st.session_state.conversation_summary = new_summary
-
-        save_conversation_summary(st.session_state.conversation_summary)
-
-        st.session_state.conv_history = []
+        reply = response.choices[0].message.content.strip()
+        logger.info(f"AI reply with image: {reply[:100]}...")
     except Exception as e:
-        logger.error(f"Failed to generate summary: {e}")
-        st.warning(f"Failed to generate summary: {e}")
+        logger.error(f"AI reply error with image: {e}")
+        reply = f"[Error: {e}]"
+    
+    st.session_state.messages.append({"role": "assistant", "content": reply})
+    st.session_state.conv_history.append({"role": "assistant", "content": reply})
+    
+    # TTS
+    try:
+        audio_bytes, fmt = text_to_speech(reply)
+        if audio_bytes:
+            st.session_state.pending_tts = (audio_bytes, fmt)
+    except Exception as e:
+        logger.error(f"TTS error in get_ai_reply_with_image: {e}")
+
+
+# ========== OCR 处理函数（带详细日志）==========
+def process_ocr_images(uploaded_files):
+    """处理图片OCR - 带详细日志"""
+    if not uploaded_files:
+        return None
+    
+    logger.info(f"=== OCR图片处理开始 ===")
+    logger.info(f"上传图片数量: {len(uploaded_files)}")
+    
+    # 记录每张图片信息
+    for idx, f in enumerate(uploaded_files):
+        logger.info(f"  图片 {idx+1}: {f.name}, 大小: {f.size} bytes, 类型: {f.type}")
+    
+    # 限制最多300张
+    if len(uploaded_files) > 300:
+        logger.warning(f"图片数量超过300，只处理前300张")
+        uploaded_files = uploaded_files[:300]
+    
+    # 准备图片数据，记录读取时间
+    image_list = []
+    for f in uploaded_files:
+        read_start = time.time()
+        img_bytes = f.read()
+        read_time = time.time() - read_start
+        logger.info(f"读取图片 {f.name}: {read_time:.2f}秒, 大小: {len(img_bytes)/1024:.1f}KB")
+        image_list.append((img_bytes, f.name))
+    
+    # 进度显示
+    progress_bar = st.progress(0)
+    status_text = st.empty()
+    
+    def update_progress(current, total, filename, status, preview):
+        progress_bar.progress(current / total)
+        status_text.text(f"Processing: {current}/{total} - {filename} - {status}")
+        logger.info(f"OCR进度: {current}/{total} - {filename} - {status}")
+        if preview:
+            logger.debug(f"  预览: {preview[:100]}...")
+    
+    # 执行OCR，记录总时间
+    ocr_start = time.time()
+    logger.info("开始调用 ocr_images_batch...")
+    
+    try:
+        results = ocr_images_batch(image_list, IMAGE_OCR_CONFIG, progress_callback=update_progress)
+        ocr_time = time.time() - ocr_start
+        logger.info(f"ocr_images_batch 完成，耗时: {ocr_time:.2f}秒")
+        
+        # 记录结果统计
+        if results:
+            success_count = sum(1 for r in results if r[1] == "success")
+            failed_count = len(results) - success_count
+            logger.info(f"OCR结果: 成功={success_count}, 失败={failed_count}")
+            
+            for filename, status, text in results:
+                if status == "success":
+                    logger.info(f"  ✅ {filename}: {len(text)} 字符")
+                else:
+                    logger.error(f"  ❌ {filename}: 识别失败")
+        else:
+            logger.warning("OCR结果为空")
+            
+    except Exception as e:
+        logger.error(f"OCR处理异常: {e}", exc_info=True)
+        results = None
+    
+    progress_bar.empty()
+    status_text.empty()
+    
+    logger.info(f"=== OCR图片处理结束 ===")
+    return results
+
+
+def process_ocr_pdf(uploaded_pdf):
+    """处理PDF OCR - 带详细日志"""
+    if not uploaded_pdf:
+        return None
+    
+    logger.info(f"=== OCR PDF处理开始 ===")
+    logger.info(f"PDF文件: {uploaded_pdf.name}, 大小: {uploaded_pdf.size} bytes")
+    
+    read_start = time.time()
+    pdf_bytes = uploaded_pdf.read()
+    read_time = time.time() - read_start
+    logger.info(f"读取PDF耗时: {read_time:.2f}秒, 大小: {len(pdf_bytes)/1024:.1f}KB")
+    
+    # 进度显示
+    progress_bar = st.progress(0)
+    status_text = st.empty()
+    
+    def update_progress(current, total, message):
+        progress_bar.progress(current / total)
+        status_text.text(f"OCR: {message}")
+        logger.info(f"PDF OCR进度: {current}/{total} - {message}")
+    
+    ocr_start = time.time()
+    logger.info("开始调用 ocr_pdf...")
+    
+    try:
+        status, text = ocr_pdf(
+            pdf_bytes,
+            uploaded_pdf.name,
+            PDF_OCR_CONFIG["cookie"],
+            PDF_OCR_CONFIG["x_auth_token"],
+            PDF_OCR_CONFIG["x_auth_uuid"],
+            progress_callback=update_progress,
+            config=PDF_OCR_CONFIG
+        )
+        
+        ocr_time = time.time() - ocr_start
+        logger.info(f"ocr_pdf 完成，耗时: {ocr_time:.2f}秒")
+        
+        if status == "success":
+            logger.info(f"PDF OCR成功，文本长度: {len(text)} 字符")
+        else:
+            logger.error(f"PDF OCR失败，状态: {status}")
+            
+    except Exception as e:
+        logger.error(f"PDF OCR异常: {e}", exc_info=True)
+        status = "failed"
+        text = None
+    
+    progress_bar.empty()
+    status_text.empty()
+    
+    logger.info(f"=== OCR PDF处理结束 ===")
+    
+    if status == "success":
+        return text
+    else:
+        return None
 
 
 # ---------- CSS样式 ----------
@@ -1143,7 +1622,7 @@ st.markdown(f"""
     }}
 
     .stApp {{
-        background-color: rgba(255, 255, 255, 0.6) !important;
+        background-color: rgba(0, 0, 0, 0.7) !important;
         background-blend-mode: overlay !important;
     }}
 
@@ -1265,6 +1744,22 @@ st.markdown(f"""
         background-color: #f0f0f0 !important;
     }}
 
+    .search-container {{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }}
+    .search-scope-selector {{
+        width: 120px;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+    }}
+    .search-input {{
+        flex: 1;
+    }}
+
     h1 {{
         text-align: left;
         color: #000000;
@@ -1364,7 +1859,7 @@ st.markdown(f"""
     }}
 
     p, div, span {{
-        color: #000000 !important;
+        color: #FFFFFF !important;
         font-family: 'Manrope', sans-serif !important;
         font-weight: 400 !important;
         line-height: 1.6 !important;
@@ -1412,7 +1907,7 @@ st.markdown(f"""
     .stChatInput {{
         border-radius: 15px !important;
         border: 1px solid rgba(0,0,0,0.3) !important;
-        background-color: rgba(18,19,28,0.9) !important;
+        background-color: rgba(36,37,46,0.9) !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 16px !important;
         font-weight: 400 !important;
@@ -1539,46 +2034,151 @@ with language_col2:
         st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
 
-# ---------- 全局搜索框 ----------
+# ---------- 全局搜索框（带下拉选项）----------
 with st.container():
-    search_col1, search_col2 = st.columns([5, 1])
-    with search_col1:
-        search_input = st.text_input("Search", value=st.session_state.search_keyword, placeholder="Type to search...", key="search_box", label_visibility="collapsed")
-    with search_col2:
-        if st.button("Clear", key="clear_search"):
+    # 使用三列布局：搜索范围选择器 + 搜索输入框 + 清除按钮
+    search_col_scope, search_col_input, search_col_clear = st.columns([1, 4, 1])
+    
+    with search_col_scope:
+        search_scope = st.selectbox(
+            "Search in",
+            options=["🌐 Global", "📍 Local"],
+            index=0 if st.session_state.search_scope == "global" else 1,
+            key="search_scope_selector",
+            label_visibility="collapsed"
+        )
+        new_scope = "global" if search_scope == "🌐 Global" else "local"
+        if new_scope != st.session_state.search_scope:
+            st.session_state.search_scope = new_scope
+            st.session_state.search_results = []
+            st.rerun()
+    
+    with search_col_input:
+        search_input = st.text_input(
+            "Search", 
+            value=st.session_state.search_keyword, 
+            placeholder="Type to search...", 
+            key="search_box", 
+            label_visibility="collapsed"
+        )
+    
+    with search_col_clear:
+        if st.button("Clear", key="clear_search", use_container_width=True):
             st.session_state.search_keyword = ""
             st.session_state.search_results = []
             st.rerun()
     
+    # 处理搜索
     if search_input != st.session_state.search_keyword:
         st.session_state.search_keyword = search_input
         if search_input.strip():
-            st.session_state.search_results = global_search(search_input)
+            # 根据选择的搜索范围执行搜索
+            if st.session_state.search_scope == "global":
+                st.session_state.search_results = global_search(search_input)
+            else:
+                st.session_state.search_results = local_search(search_input)
+            
+            # 调试：打印搜索结果数量
+            print(f"Search '{search_input}' in {st.session_state.search_scope} mode: found {len(st.session_state.search_results)} results")
         else:
             st.session_state.search_results = []
         st.rerun()
     
+    # ========== 显示搜索结果（卡片形式）==========
     if st.session_state.search_keyword and st.session_state.search_results:
-        st.markdown(f"### Search Results for '{st.session_state.search_keyword}'")
-        for res in st.session_state.search_results:
-            path_str = " > ".join(res["path"])
-            content_preview = res["content"].replace("\n", " ")[:150]
-            with st.container(border=True):
-                cols = st.columns([1, 5])
-                with cols[0]:
-                    st.markdown(f"**{res['type']}**")
-                with cols[1]:
-                    st.markdown(f"{content_preview}")
-                if st.button(f"Go to {path_str}", key=f"search_{res['level']}_{'_'.join(res['path'])}_{res['type']}_{res.get('index', '')}"):
-                    st.session_state.current_mode = "textbook"
-                    st.session_state.level = res["level"]
-                    st.session_state.path = res["path"]
-                    st.session_state.search_keyword = ""
-                    st.session_state.search_results = []
-                    st.rerun()
+        scope_text = "Global" if st.session_state.search_scope == "global" else "Local"
+        st.markdown(f"### 🔍 {scope_text} Search Results for '{st.session_state.search_keyword}'")
+        st.markdown(f"**Found {len(st.session_state.search_results)} result(s)**")
         st.markdown("---")
+        
+        for idx, res in enumerate(st.session_state.search_results):
+            # 构建完整路径
+            if "path" in res and res["path"]:
+                # 处理不同类型的路径
+                path_list = []
+                for p in res["path"]:
+                    # 清理路径中的特殊标记
+                    p_clean = str(p).replace("[", "").replace("]", "").split("_")[0] if isinstance(p, str) else str(p)
+                    path_list.append(p_clean)
+                path_str = " > ".join(path_list)
+            else:
+                path_str = "Unknown location"
+            
+            # 添加来源标识
+            if res.get("source") == "textbook":
+                source_tag = "📚 Textbook"
+                if res.get("level"):
+                    source_tag += f" - Level {res['level']}"
+            elif res.get("source") == "nemt_cet":
+                source_tag = f"📖 {res.get('exam', 'Exam')}"
+            else:
+                source_tag = "📄 Content"
+            
+            # 根据类型设置图标
+            type_icons = {
+                "Section": "📁",
+                "Note": "📝",
+                "Example": "💬",
+                "Vocabulary": "📖",
+                "Words": "🔤",
+                "Category": "🏷️"
+            }
+            type_icon = type_icons.get(res.get("type", ""), "📄")
+            
+            # 内容预览
+            content_preview = res["content"].replace("\n", " ")[:200]
+            if len(res["content"]) > 200:
+                content_preview += "..."
+            
+            # 创建卡片
+            with st.container(border=True):
+                # 第一行：类型 + 来源 + 路径
+                col1, col2, col3 = st.columns([1, 2, 1])
+                with col1:
+                    st.markdown(f"**{type_icon} {res.get('type', 'Content')}**")
+                with col2:
+                    st.markdown(f"**Source:** {source_tag}")
+                with col3:
+                    if st.button("🔗 Go to", key=f"search_go_{idx}_{res.get('type', '')}_{res.get('index', idx)}", use_container_width=True):
+                        # 导航到搜索结果
+                        if res.get("source") == "textbook" and "level" in res and res["level"]:
+                            st.session_state.current_mode = "textbook"
+                            st.session_state.level = res["level"]
+                            # 构建路径
+                            if "path" in res and res["path"]:
+                                new_path = []
+                                for p in res["path"]:
+                                    p_str = str(p).split("[")[0] if isinstance(p, str) else str(p)
+                                    if p_str and p_str not in ["LEVEL_I", "LEVEL_II", "LEVEL_III"]:
+                                        new_path.append(p_str)
+                                if new_path:
+                                    st.session_state.path = new_path
+                            st.session_state.search_keyword = ""
+                            st.session_state.search_results = []
+                            st.rerun()
+                        elif res.get("source") == "nemt_cet" and "exam" in res:
+                            st.session_state.current_mode = "nemt_cet"
+                            st.session_state.selected_nemt_cet = res["exam"]
+                            if "path" in res and len(res["path"]) > 1:
+                                st.session_state.nemt_cet_path = res["path"][1:]
+                            else:
+                                st.session_state.nemt_cet_path = []
+                            st.session_state.search_keyword = ""
+                            st.session_state.search_results = []
+                            st.rerun()
+                
+                # 第二行：内容预览
+                st.markdown(f"**Preview:** {content_preview}")
+                
+                # 第三行：路径
+                st.markdown(f"**📍 Path:** `{path_str}`")
+        
+        st.markdown("---")
+    
     elif st.session_state.search_keyword:
-        st.info("No results found.")
+        scope_text = "global" if st.session_state.search_scope == "global" else "local"
+        st.info(f"🔍 No results found in {scope_text} search for '{st.session_state.search_keyword}'. Try a different keyword or check your spelling.")
+
 
 # ---------- 导航和卡片显示 ----------
 st.title("TEXTBOOK ASSISTANT")
@@ -1947,8 +2547,8 @@ if st.session_state.chat_open:
         st.audio(audio_bytes, format=fmt, autoplay=True)
         st.session_state.pending_tts = None
 
-    # 输入区域：四列布局（Clear按钮 + 语音按钮 + Quiz按钮 + 文本输入）
-    col_clear, col_voice, col_quiz, col_text = st.columns([1, 1, 1, 5])
+    # 输入区域：六列布局（Clear + 语音 + Quiz + 模型选择 + 图片上传 + 文本输入）
+    col_clear, col_voice, col_quiz, col_model, col_image, col_text = st.columns([1, 1, 1, 2, 1, 3])
 
     with col_clear:
         if st.button("Clear", key="clear_chat", use_container_width=True):
@@ -1983,7 +2583,6 @@ if st.session_state.chat_open:
 
     with col_quiz:
         if st.button("Quiz", key="quiz_button", use_container_width=True):
-            # 生成 quiz
             full_page = get_current_page_full_content()
             topic = "general"
             if full_page:
@@ -1994,7 +2593,6 @@ if st.session_state.chat_open:
             quiz_text = generate_quiz(topic, full_page)
             if quiz_text:
                 st.session_state.quiz_active = True
-                # 提取问题列表用于评估
                 questions = []
                 for line in quiz_text.split('\n'):
                     line = line.strip()
@@ -2022,8 +2620,125 @@ if st.session_state.chat_open:
                     logger.error(f"TTS error: {e}")
                 st.rerun()
 
+    with col_model:
+        selected_model_display = st.selectbox(
+            "Model",
+            options=list(AVAILABLE_MODELS.keys()),
+            index=list(AVAILABLE_MODELS.keys()).index(st.session_state.selected_model),
+            key="model_selector",
+            label_visibility="collapsed"
+        )
+        if selected_model_display != st.session_state.selected_model:
+            st.session_state.selected_model = selected_model_display
+            st.session_state.model_name = AVAILABLE_MODELS[selected_model_display]["id"]
+            st.session_state.model_max_tokens = AVAILABLE_MODELS[selected_model_display]["max_tokens"]
+            st.rerun()
+
+    with col_image:
+        # 图片上传区域
+        st.markdown("### OCR")
+        
+        # 图片上传
+        uploaded_images = st.file_uploader(
+            "Images",
+            type=["jpg", "jpeg", "png", "bmp", "webp", "tiff"],
+            accept_multiple_files=True,
+            key="ocr_images_uploader",
+            label_visibility="collapsed"
+        )
+        
+        # PDF上传
+        uploaded_pdf = st.file_uploader(
+            "PDF",
+            type=["pdf"],
+            key="ocr_pdf_uploader",
+            label_visibility="collapsed"
+        )
+        
+        # ZIP上传
+        uploaded_zip = st.file_uploader(
+            "ZIP",
+            type=["zip"],
+            key="ocr_zip_uploader",
+            label_visibility="collapsed"
+        )
+        
+        # 显示预览
+        if uploaded_images:
+            st.caption(f"{len(uploaded_images)} image(s) ready")
+        if uploaded_pdf:
+            st.caption(f"PDF: {uploaded_pdf.name}")
+        if uploaded_zip:
+            st.caption(f"ZIP: {uploaded_zip.name}")
+        
+        # OCR 按钮
+        ocr_clicked = st.button("Run OCR", key="ocr_run_button", use_container_width=True)
+        
+        if ocr_clicked:
+            ocr_results = []
+            
+            # 处理图片
+            if uploaded_images:
+                with st.spinner("OCR processing images..."):
+                    results = process_ocr_images(uploaded_images)
+                    if results:
+                        ocr_results.extend(results)
+                        st.success(f"Processed {len(results)} images")
+            
+            # 处理PDF
+            if uploaded_pdf:
+                with st.spinner("OCR processing PDF..."):
+                    text = process_ocr_pdf(uploaded_pdf)
+                    if text:
+                        ocr_results.append(("PDF", "success", text))
+                        st.success("PDF processed successfully")
+            
+            # 处理ZIP
+            if uploaded_zip:
+                with st.spinner("OCR processing ZIP..."):
+                    zip_bytes = uploaded_zip.read()
+                    with tempfile.TemporaryDirectory() as temp_dir:
+                        with zipfile.ZipFile(io.BytesIO(zip_bytes), 'r') as zf:
+                            zip_images = []
+                            for file_info in zf.infolist():
+                                if not file_info.is_dir():
+                                    ext = os.path.splitext(file_info.filename)[1].lower()
+                                    if ext in ['.jpg', '.jpeg', '.png', '.bmp', '.webp', '.tiff']:
+                                        img_bytes = zf.read(file_info.filename)
+                                        zip_images.append((img_bytes, os.path.basename(file_info.filename)))
+                            
+                            if zip_images:
+                                results = ocr_images_batch(zip_images, IMAGE_OCR_CONFIG)
+                                ocr_results.extend(results)
+                                st.success(f"Processed {len(zip_images)} images from ZIP")
+            
+            # 显示结果
+            if ocr_results:
+                result_text = format_results_as_text(ocr_results)
+                st.text_area("OCR Results", result_text, height=300)
+                
+                # 下载按钮
+                st.download_button(
+                    "Download Results",
+                    result_text,
+                    file_name=f"ocr_results_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
+                    mime="text/plain"
+                )
+                
+                # 发送到AI按钮
+                if st.button("Send to AI", key="ocr_send_to_ai"):
+                    ai_prompt = f"Please analyze the following OCR results:\n\n{result_text}"
+                    get_ai_reply(ai_prompt)
+                    st.rerun()
+
     with col_text:
         if prompt := st.chat_input("Type a message...", key="text_input"):
             with st.spinner("Thinking..."):
-                get_ai_reply(prompt)
+                # 如果有图片，调用带图片的回复函数
+                if hasattr(st.session_state, 'uploaded_image'):
+                    get_ai_reply_with_image(prompt, st.session_state.uploaded_image)
+                    # 发送后清除图片
+                    del st.session_state.uploaded_image
+                else:
+                    get_ai_reply(prompt)
             st.rerun()
