@@ -1572,11 +1572,7 @@ st.markdown(f"""
         z-index: 100 !important;
     }}
 
-    /* 展开状态 */
-    section[data-testid="stSidebar"][aria-expanded="true"] {{
-        width: 400px !important;
-        min-width: 400px !important;
-    }}
+  
 
     /* 隐藏折叠按钮，禁止折叠 */
     section[data-testid="stSidebar"] button[data-testid="stSidebarCollapseButton"] {{
