@@ -1620,7 +1620,7 @@ st.markdown(f"""
 
     /* 确保侧边栏中的文本可见 */
     section[data-testid="stSidebar"] * {{
-        color: #ffffff !important;
+        color: #b0b0b0 !important;
     }}
 
     /* 侧边栏输入框、选择框、按钮 - 黑色半透明 */
@@ -1632,7 +1632,7 @@ st.markdown(f"""
         background-color: rgba(0, 0, 0, 0.1) !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
         border-radius: 8px !important;
-        color: rgba(255, 255, 255, 0.3) !important;
+        color: #b0b0b0 !important;
     }}
 
     /* 侧边栏按钮 - 黑色半透明 */
@@ -1640,13 +1640,13 @@ st.markdown(f"""
         background-color: rgba(0, 0, 0, 0.15) !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
         border-radius: 8px !important;
-        color: rgba(255, 255, 255, 0.3) !important;
+        color: #b0b0b0 !important;
     }}
 
     /* 下拉框选项文字颜色 */
     section[data-testid="stSidebar"] select option {{
         background-color: #1a1a2e !important;
-        color: rgba(255, 255, 255, 0.3) !important;
+        color: #b0b0b0 !important;
     }}
 
     /* 其他原有样式保持不变 */
