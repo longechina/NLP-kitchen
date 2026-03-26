@@ -1879,250 +1879,300 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 
-# ========== 备用侧边栏切换按钮 ==========
-if "sidebar_visible" not in st.session_state:
-    st.session_state.sidebar_visible = True
-
-# 在右上角添加一个明显的切换按钮
-col_toggle, col_empty = st.columns([1, 10])
-with col_toggle:
-    if st.button("☰ 打开侧边栏", key="toggle_sidebar_btn", use_container_width=True):
-        st.session_state.sidebar_visible = not st.session_state.sidebar_visible
-        st.rerun()
-
-# 如果侧边栏可见，显示侧边栏内容
-if st.session_state.sidebar_visible:
-    with st.sidebar:
-        st.markdown("## ⚙️ 设置面板")
+# ========== 侧边栏：所有设置项 ==========
+with st.sidebar:
+    st.markdown("## ⚙️ Settings Panel")
+    
+    # 语言选择
+    st.markdown("### 🌐 Mode")
+    mode_options = ["Chinese", "English", "NEMT & CET"]
+    current_index = 0
+    if st.session_state.language == "English":
+        current_index = 1
+    elif st.session_state.language == "NEMT & CET":
+        current_index = 2
+    
+    new_language = st.selectbox(
+        "Select Mode",
+        mode_options,
+        index=current_index,
+        key="sidebar_language_selector"
+    )
+    if new_language != st.session_state.language:
+        st.session_state.language = new_language
         
-        # 语言选择
-        st.markdown("### 🌐 语言模式")
-        mode_options = ["Chinese", "English", "NEMT & CET"]
-        current_index = 0
-        if st.session_state.language == "English":
-            current_index = 1
-        elif st.session_state.language == "NEMT & CET":
-            current_index = 2
-        
-        new_language = st.selectbox(
-            "选择模式",
-            mode_options,
-            index=current_index,
-            key="sidebar_language_selector"
-        )
-        if new_language != st.session_state.language:
-            st.session_state.language = new_language
-            
-            if new_language == "NEMT & CET":
-                st.session_state.current_mode = "nemt_cet"
-                st.session_state.level = None
-                st.session_state.path = []
-                st.session_state.selected_nemt_cet = None
-                st.session_state.nemt_cet_path = []
-            else:
-                st.session_state.current_mode = "textbook"
-                levels_data = load_level_data(st.session_state.language)
-                st.session_state.level = None
-                st.session_state.path = []
-                st.session_state.selected_nemt_cet = None
-                st.session_state.nemt_cet_path = []
-            
-            st.session_state.messages = [{"role": "system", "content": system_prompt}]
-            st.session_state.quiz_active = False
-            st.session_state.current_quiz = None
-            st.session_state.quiz_answers = {}
-            st.session_state.quiz_asked = False
-            st.rerun()
-        
-        st.markdown("---")
-        
-        # 搜索框
-        st.markdown("### 🔍 搜索")
-        
-        search_scope = st.selectbox(
-            "搜索范围",
-            options=["全局", "本地"],
-            index=0 if st.session_state.search_scope == "global" else 1,
-            key="sidebar_search_scope"
-        )
-        if search_scope == "全局":
-            new_scope = "global"
+        if new_language == "NEMT & CET":
+            st.session_state.current_mode = "nemt_cet"
+            st.session_state.level = None
+            st.session_state.path = []
+            st.session_state.selected_nemt_cet = None
+            st.session_state.nemt_cet_path = []
         else:
-            new_scope = "local"
-        if new_scope != st.session_state.search_scope:
-            st.session_state.search_scope = new_scope
-            st.session_state.search_results = []
-            st.session_state.search_keyword = ""
-            st.rerun()
+            st.session_state.current_mode = "textbook"
+            levels_data = load_level_data(st.session_state.language)
+            st.session_state.level = None
+            st.session_state.path = []
+            st.session_state.selected_nemt_cet = None
+            st.session_state.nemt_cet_path = []
         
-        search_input = st.text_input(
-            "关键词", 
-            value=st.session_state.search_keyword, 
-            placeholder="输入搜索内容...", 
-            key="sidebar_search_box"
-        )
-        
-        if st.button("清除搜索", key="sidebar_clear_search", use_container_width=True):
-            st.session_state.search_keyword = ""
-            st.session_state.search_results = []
-            st.rerun()
-        
-        if search_input != st.session_state.search_keyword:
-            st.session_state.search_keyword = search_input
-            if search_input.strip():
-                if st.session_state.search_scope == "global":
-                    st.session_state.search_results = global_search(search_input)
-                else:
-                    st.session_state.search_results = local_search(search_input)
+        st.session_state.messages = [{"role": "system", "content": system_prompt}]
+        st.session_state.quiz_active = False
+        st.session_state.current_quiz = None
+        st.session_state.quiz_answers = {}
+        st.session_state.quiz_asked = False
+        st.rerun()
+    
+    st.markdown("---")
+    
+    # 搜索框
+    st.markdown("### 🔍 Search")
+    
+    search_scope = st.selectbox(
+        "Search in",
+        options=["Global", "Local"],
+        index=0 if st.session_state.search_scope == "global" else 1,
+        key="sidebar_search_scope"
+    )
+    if search_scope == "Global":
+        new_scope = "global"
+    else:
+        new_scope = "local"
+    if new_scope != st.session_state.search_scope:
+        st.session_state.search_scope = new_scope
+        st.session_state.search_results = []
+        st.session_state.search_keyword = ""
+        st.rerun()
+    
+    search_input = st.text_input(
+        "Search", 
+        value=st.session_state.search_keyword, 
+        placeholder="Type to search...", 
+        key="sidebar_search_box"
+    )
+    
+    if st.button("Clear Search", key="sidebar_clear_search", use_container_width=True):
+        st.session_state.search_keyword = ""
+        st.session_state.search_results = []
+        st.rerun()
+    
+    # 处理搜索输入变化
+    if search_input != st.session_state.search_keyword:
+        st.session_state.search_keyword = search_input
+        if search_input.strip():
+            if st.session_state.search_scope == "global":
+                st.session_state.search_results = global_search(search_input)
             else:
-                st.session_state.search_results = []
+                st.session_state.search_results = local_search(search_input)
+        else:
+            st.session_state.search_results = []
+    
+    st.markdown("---")
+    
+    # 模型选择
+    st.markdown("### 🤖 Model")
+    selected_model_display = st.selectbox(
+        "Select Model",
+        options=list(AVAILABLE_MODELS.keys()),
+        index=list(AVAILABLE_MODELS.keys()).index(st.session_state.selected_model),
+        key="sidebar_model_selector"
+    )
+    if selected_model_display != st.session_state.selected_model:
+        st.session_state.selected_model = selected_model_display
+        st.session_state.model_name = AVAILABLE_MODELS[selected_model_display]["id"]
+        st.session_state.model_max_tokens = AVAILABLE_MODELS[selected_model_display]["max_tokens"]
+        st.rerun()
+    
+    st.markdown("---")
+    
+    # Quiz 按钮
+    if st.button("📝 Generate Quiz", key="sidebar_quiz_button", use_container_width=True):
+        full_page = get_current_page_full_content()
+        topic = "general"
+        if full_page:
+            sec_match = re.search(r"Section: (.+)", full_page)
+            if sec_match:
+                topic = sec_match.group(1)
         
-        st.markdown("---")
-        
-        # 模型选择
-        st.markdown("### 🤖 模型")
-        selected_model_display = st.selectbox(
-            "选择模型",
-            options=list(AVAILABLE_MODELS.keys()),
-            index=list(AVAILABLE_MODELS.keys()).index(st.session_state.selected_model),
-            key="sidebar_model_selector"
-        )
-        if selected_model_display != st.session_state.selected_model:
-            st.session_state.selected_model = selected_model_display
-            st.session_state.model_name = AVAILABLE_MODELS[selected_model_display]["id"]
-            st.session_state.model_max_tokens = AVAILABLE_MODELS[selected_model_display]["max_tokens"]
+        quiz_text = generate_quiz(topic, full_page)
+        if quiz_text:
+            st.session_state.quiz_active = True
+            questions = []
+            for line in quiz_text.split('\n'):
+                line = line.strip()
+                if re.match(r'^\d+\.', line):
+                    questions.append(line)
+            
+            st.session_state.current_quiz = {
+                "questions": questions,
+                "quiz_text": quiz_text,
+                "topic": topic
+            }
+            st.session_state.quiz_answers = {}
+            st.session_state.quiz_asked = True
+            
+            reply = f"Here's a quiz on {topic}:\n\n{quiz_text}\n\nPlease answer the questions. Use one of these formats:\n- 1. A, 2. B, 3. C\n- 1: A, 2: B, 3: C\n- 1- A, 2- B, 3- C\n- 1 A, 2 B, 3 C\n(You can answer all at once or one by one.)"
+            
+            st.session_state.messages.append({"role": "assistant", "content": reply})
+            st.session_state.conv_history.append({"role": "assistant", "content": reply})
+            
+            try:
+                audio_bytes, fmt = text_to_speech(reply)
+                if audio_bytes:
+                    st.session_state.pending_tts = (audio_bytes, fmt)
+            except Exception as e:
+                logger.error(f"TTS error: {e}")
             st.rerun()
+    
+    st.markdown("---")
+    
+    # OCR 区域
+    st.markdown("### 📷 OCR")
+    
+    # 图片上传
+    uploaded_images = st.file_uploader(
+        "Images",
+        type=["jpg", "jpeg", "png", "bmp", "webp", "tiff"],
+        accept_multiple_files=True,
+        key="sidebar_ocr_images"
+    )
+    
+    # PDF上传
+    uploaded_pdf = st.file_uploader(
+        "PDF",
+        type=["pdf"],
+        key="sidebar_ocr_pdf"
+    )
+    
+    # ZIP上传
+    uploaded_zip = st.file_uploader(
+        "ZIP",
+        type=["zip"],
+        key="sidebar_ocr_zip"
+    )
+    
+    # 显示预览
+    if uploaded_images:
+        st.caption(f"{len(uploaded_images)} image(s) ready")
+    if uploaded_pdf:
+        st.caption(f"PDF: {uploaded_pdf.name}")
+    if uploaded_zip:
+        st.caption(f"ZIP: {uploaded_zip.name}")
+    
+    # OCR 按钮
+    if st.button("Run OCR", key="sidebar_ocr_run", use_container_width=True):
+        ocr_results = []
         
-        st.markdown("---")
-        
-        # Quiz 按钮
-        if st.button("📝 生成测验", key="sidebar_quiz_button", use_container_width=True):
-            full_page = get_current_page_full_content()
-            topic = "general"
-            if full_page:
-                sec_match = re.search(r"Section: (.+)", full_page)
-                if sec_match:
-                    topic = sec_match.group(1)
-            
-            quiz_text = generate_quiz(topic, full_page)
-            if quiz_text:
-                st.session_state.quiz_active = True
-                questions = []
-                for line in quiz_text.split('\n'):
-                    line = line.strip()
-                    if re.match(r'^\d+\.', line):
-                        questions.append(line)
-                
-                st.session_state.current_quiz = {
-                    "questions": questions,
-                    "quiz_text": quiz_text,
-                    "topic": topic
-                }
-                st.session_state.quiz_answers = {}
-                st.session_state.quiz_asked = True
-                
-                reply = f"Here's a quiz on {topic}:\n\n{quiz_text}\n\nPlease answer the questions. Use one of these formats:\n- 1. A, 2. B, 3. C\n- 1: A, 2: B, 3: C\n- 1- A, 2- B, 3- C\n- 1 A, 2 B, 3 C\n(You can answer all at once or one by one.)"
-                
-                st.session_state.messages.append({"role": "assistant", "content": reply})
-                st.session_state.conv_history.append({"role": "assistant", "content": reply})
-                
-                try:
-                    audio_bytes, fmt = text_to_speech(reply)
-                    if audio_bytes:
-                        st.session_state.pending_tts = (audio_bytes, fmt)
-                except Exception as e:
-                    logger.error(f"TTS error: {e}")
-                st.rerun()
-        
-        st.markdown("---")
-        
-        # OCR 区域
-        st.markdown("### 📷 OCR")
-        
-        uploaded_images = st.file_uploader(
-            "图片",
-            type=["jpg", "jpeg", "png", "bmp", "webp", "tiff"],
-            accept_multiple_files=True,
-            key="sidebar_ocr_images"
-        )
-        
-        uploaded_pdf = st.file_uploader(
-            "PDF",
-            type=["pdf"],
-            key="sidebar_ocr_pdf"
-        )
-        
-        uploaded_zip = st.file_uploader(
-            "ZIP",
-            type=["zip"],
-            key="sidebar_ocr_zip"
-        )
-        
+        # 处理图片
         if uploaded_images:
-            st.caption(f"{len(uploaded_images)} 张图片")
-        if uploaded_pdf:
-            st.caption(f"PDF: {uploaded_pdf.name}")
-        if uploaded_zip:
-            st.caption(f"ZIP: {uploaded_zip.name}")
+            with st.spinner("OCR processing images..."):
+                results = process_ocr_images(uploaded_images)
+                if results:
+                    ocr_results.extend(results)
+                    st.success(f"Processed {len(results)} images")
         
-        if st.button("运行 OCR", key="sidebar_ocr_run", use_container_width=True):
-            ocr_results = []
+        # 处理PDF
+        if uploaded_pdf:
+            with st.spinner("OCR processing PDF..."):
+                text = process_ocr_pdf(uploaded_pdf)
+                if text:
+                    ocr_results.append(("PDF", "success", text))
+                    st.success("PDF processed successfully")
+        
+        # 处理ZIP
+        if uploaded_zip:
+            with st.spinner("OCR processing ZIP..."):
+                zip_bytes = uploaded_zip.read()
+                with tempfile.TemporaryDirectory() as temp_dir:
+                    with zipfile.ZipFile(io.BytesIO(zip_bytes), 'r') as zf:
+                        zip_images = []
+                        for file_info in zf.infolist():
+                            if not file_info.is_dir():
+                                ext = os.path.splitext(file_info.filename)[1].lower()
+                                if ext in ['.jpg', '.jpeg', '.png', '.bmp', '.webp', '.tiff']:
+                                    img_bytes = zf.read(file_info.filename)
+                                    zip_images.append((img_bytes, os.path.basename(file_info.filename)))
+                        
+                        if zip_images:
+                            results = ocr_images_batch(zip_images, IMAGE_OCR_CONFIG)
+                            ocr_results.extend(results)
+                            st.success(f"Processed {len(zip_images)} images from ZIP")
+        
+        # 显示结果
+        if ocr_results:
+            result_text = format_results_as_text(ocr_results)
+            st.text_area("OCR Results", result_text, height=200)
             
-            if uploaded_images:
-                with st.spinner("OCR 处理图片中..."):
-                    results = process_ocr_images(uploaded_images)
-                    if results:
-                        ocr_results.extend(results)
-                        st.success(f"处理了 {len(results)} 张图片")
+            # 下载按钮
+            st.download_button(
+                "Download Results",
+                result_text,
+                file_name=f"ocr_results_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
+                mime="text/plain",
+                key="sidebar_ocr_download"
+            )
             
-            if uploaded_pdf:
-                with st.spinner("OCR 处理 PDF 中..."):
-                    text = process_ocr_pdf(uploaded_pdf)
-                    if text:
-                        ocr_results.append(("PDF", "success", text))
-                        st.success("PDF 处理成功")
-            
-            if uploaded_zip:
-                with st.spinner("OCR 处理 ZIP 中..."):
-                    zip_bytes = uploaded_zip.read()
-                    with tempfile.TemporaryDirectory() as temp_dir:
-                        with zipfile.ZipFile(io.BytesIO(zip_bytes), 'r') as zf:
-                            zip_images = []
-                            for file_info in zf.infolist():
-                                if not file_info.is_dir():
-                                    ext = os.path.splitext(file_info.filename)[1].lower()
-                                    if ext in ['.jpg', '.jpeg', '.png', '.bmp', '.webp', '.tiff']:
-                                        img_bytes = zf.read(file_info.filename)
-                                        zip_images.append((img_bytes, os.path.basename(file_info.filename)))
-                            
-                            if zip_images:
-                                results = ocr_images_batch(zip_images, IMAGE_OCR_CONFIG)
-                                ocr_results.extend(results)
-                                st.success(f"从 ZIP 处理了 {len(zip_images)} 张图片")
-            
-            if ocr_results:
-                result_text = format_results_as_text(ocr_results)
-                st.text_area("OCR 结果", result_text, height=200)
-                
-                st.download_button(
-                    "下载结果",
-                    result_text,
-                    file_name=f"ocr_results_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
-                    mime="text/plain",
-                    key="sidebar_ocr_download"
-                )
-                
-                if st.button("发送到 AI", key="sidebar_ocr_send"):
-                    ai_prompt = f"Please analyze the following OCR results:\n\n{result_text}"
-                    get_ai_reply(ai_prompt)
-                    st.rerun()
+            # 发送到AI按钮
+            if st.button("Send to AI", key="sidebar_ocr_send"):
+                ai_prompt = f"Please analyze the following OCR results:\n\n{result_text}"
+                get_ai_reply(ai_prompt)
+                st.rerun()
 
-else:
-    # 侧边栏隐藏时显示一个提示
-    st.markdown('<div style="position: fixed; top: 10px; left: 10px; background: #4a90e2; padding: 8px 15px; border-radius: 20px; color: white; z-index: 999;">☰ 点击右上角按钮打开侧边栏</div>', unsafe_allow_html=True)
 
-# ---------- 导航和卡片显示 ----------
-st.title("TEXTBOOK ASSISTANT")
+# ========== 主界面：内容显示和聊天 ==========
+# 显示搜索结果
+if st.session_state.search_keyword and st.session_state.search_results:
+    st.markdown(f"### Search Results for '{st.session_state.search_keyword}'")
+    st.markdown(f"Found {len(st.session_state.search_results)} result(s)")
+    
+    for idx, res in enumerate(st.session_state.search_results):
+        if "path" in res and res["path"]:
+            path_list = []
+            for p in res["path"]:
+                p_clean = str(p).split("[")[0] if isinstance(p, str) else str(p)
+                if p_clean and p_clean not in ["LEVEL_I", "LEVEL_II", "LEVEL_III"]:
+                    if not p_clean.isdigit():
+                        path_list.append(p_clean)
+            path_str = " > ".join(path_list) if path_list else "Root"
+        else:
+            path_str = "Unknown"
+        
+        if res.get("source") == "textbook":
+            source_info = f"Level {res.get('level', '?')}"
+        elif res.get("source") == "nemt_cet":
+            source_info = res.get('exam', 'Exam')
+        else:
+            source_info = "Content"
+        
+        content_preview = res["content"].replace("\n", " ")[:120]
+        if len(res["content"]) > 120:
+            content_preview += "..."
+        
+        button_label = f"{res.get('type', 'Content')} | {source_info}\n\n{content_preview}\n\nPath: {path_str}"
+        
+        if st.button(
+            button_label,
+            key=f"search_result_{idx}_{hash(str(res))}",
+            use_container_width=True
+        ):
+            if res.get("source") == "textbook" and res.get("level"):
+                st.session_state.current_mode = "textbook"
+                st.session_state.level = res["level"]
+                st.session_state.path = [f"LEVEL_{['I','II','III'][res['level']-1]}"]
+                st.session_state.search_keyword = ""
+                st.session_state.search_results = []
+                st.rerun()
+            elif res.get("source") == "nemt_cet" and res.get("exam"):
+                st.session_state.current_mode = "nemt_cet"
+                st.session_state.selected_nemt_cet = res["exam"]
+                st.session_state.nemt_cet_path = []
+                st.session_state.search_keyword = ""
+                st.session_state.search_results = []
+                st.rerun()
+    
+    st.markdown("---")
+
+elif st.session_state.search_keyword:
+    st.info(f"No results found for '{st.session_state.search_keyword}'.")
 
 # 导航和卡片显示
 st.title("TEXTBOOK ASSISTANT")
