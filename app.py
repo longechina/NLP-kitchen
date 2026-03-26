@@ -1623,28 +1623,6 @@ st.markdown(f"""
         color: #ffffff !important;
     }}
 
-    /* 侧边栏输入框、选择框、按钮 - 黑色半透明 */
-    section[data-testid="stSidebar"] input,
-    section[data-testid="stSidebar"] textarea,
-    section[data-testid="stSidebar"] select,
-    section[data-testid="stSidebar"] div[data-baseweb="select"] > div,
-    section[data-testid="stSidebar"] [data-baseweb="select"] {{
-        background-color: rgba(0, 0, 0, 0.3) !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        border-radius: 8px !important;
-    }}
-
-    /* 侧边栏按钮 - 黑色半透明 */
-    section[data-testid="stSidebar"] button {{
-        background-color: rgba(255, 255, 255, 0.3) !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        border-radius: 8px !important;
-    }}
-
-    section[data-testid="stSidebar"] button:hover {{
-        background-color: rgba(0, 0, 0, 0.5) !important;
-    }}
-
     /* 其他原有样式保持不变 */
     .breadcrumb {{
         background-color: rgba(255, 255, 255, 0.1);
