@@ -1564,14 +1564,14 @@ st.markdown(f"""
         display: none !important;
     }}
 
-    /* ========== 侧边栏样式 - 极简版，保证可见 ========== */
+    /* ========== 侧边栏样式 - 极简版，只保留视觉样式 ========== */
     section[data-testid="stSidebar"] {{
         background-color: rgba(20, 20, 30, 0.95) !important;
         border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
         backdrop-filter: blur(10px) !important;
     }}
 
-    /* 确保侧边栏内容可见 */
+    /* 确保侧边栏中的文本可见 */
     section[data-testid="stSidebar"] * {{
         color: #ffffff !important;
     }}
@@ -1579,30 +1579,55 @@ st.markdown(f"""
     /* 侧边栏标题样式 */
     section[data-testid="stSidebar"] h1,
     section[data-testid="stSidebar"] h2,
-    section[data-testid="stSidebar"] h3 {{
+    section[data-testid="stSidebar"] h3,
+    section[data-testid="stSidebar"] .stMarkdown h1,
+    section[data-testid="stSidebar"] .stMarkdown h2,
+    section[data-testid="stSidebar"] .stMarkdown h3 {{
         color: #ffffff !important;
     }}
 
     /* 侧边栏按钮样式 */
     section[data-testid="stSidebar"] button {{
-        background-color: rgba(255, 255, 255, 0.2) !important;
+        background-color: rgba(255, 255, 255, 0.15) !important;
         color: #ffffff !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
         border-radius: 8px !important;
-        transition: all 0.3s ease !important;
+        transition: all 0.2s ease !important;
     }}
 
     section[data-testid="stSidebar"] button:hover {{
-        background-color: rgba(255, 255, 255, 0.3) !important;
+        background-color: rgba(255, 255, 255, 0.25) !important;
+        border-color: rgba(255, 255, 255, 0.4) !important;
     }}
 
     /* 侧边栏输入框样式 */
     section[data-testid="stSidebar"] input,
-    section[data-testid="stSidebar"] select {{
+    section[data-testid="stSidebar"] select,
+    section[data-testid="stSidebar"] textarea {{
         background-color: rgba(255, 255, 255, 0.1) !important;
-        color: white !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
         border-radius: 8px !important;
+    }}
+
+    section[data-testid="stSidebar"] input:focus,
+    section[data-testid="stSidebar"] select:focus,
+    section[data-testid="stSidebar"] textarea:focus {{
+        border-color: rgba(102, 126, 234, 0.6) !important;
+        outline: none !important;
+    }}
+
+    /* 侧边栏分隔线样式 */
+    section[data-testid="stSidebar"] hr {{
+        margin: 15px 0 !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }}
+
+    /* 侧边栏选择框样式 */
+    section[data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] {{
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
     }}
 
     /* 聊天输入框样式 */
@@ -1624,6 +1649,23 @@ st.markdown(f"""
 
     div[data-testid="stAppViewBlockContainer"] {{
         background: transparent !important;
+    }}
+
+    /* 搜索容器样式 */
+    .search-container {{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }}
+    .search-scope-selector {{
+        width: 120px;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+    }}
+    .search-input {{
+        flex: 1;
     }}
 
     /* 标题样式 */
@@ -1860,6 +1902,19 @@ st.markdown(f"""
         background-color: rgba(255, 255, 255, 0.2) !important;
         border: 1px solid rgba(255, 255, 255, 0.3) !important;
         border-radius: 12px !important;
+    }}
+
+    /* 隐藏其他不必要的元素 */
+    div[data-baseweb="tooltip"]:not(.language-selector *) {{
+        display: none !important;
+    }}
+    
+    div[data-baseweb="modal"]:not(.language-selector *) {{
+        display: none !important;
+    }}
+    
+    .element-container:has(iframe) {{
+        display: none !important;
     }}
 
     /* 垂直块样式 */
