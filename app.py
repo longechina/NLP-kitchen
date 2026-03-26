@@ -1532,6 +1532,7 @@ st.markdown(f"""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
+    /* 主应用样式 */
     .stApp {{
         {bg_css}
         background-size: cover;
@@ -1549,13 +1550,13 @@ st.markdown(f"""
         background-blend-mode: overlay !important;
     }}
 
+    /* 隐藏不必要的Streamlit元素 */
     header[data-testid="stHeader"] {{
         display: none !important;
     }}
     .stDeployButton {{
         display: none !important;
     }}
-  
     #MainMenu {{
         display: none !important;
     }}
@@ -1563,17 +1564,96 @@ st.markdown(f"""
         display: none !important;
     }}
 
-    /* 侧边栏样式 - 带 emoji 标识 */
+    /* ========== 修复侧边栏样式 ========== */
     section[data-testid="stSidebar"] {{
         display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
         width: 320px !important;
+        min-width: 320px !important;
+        max-width: 320px !important;
         background-color: rgba(20, 20, 30, 0.95) !important;
-        border-right: 1px solid rgba(255,255,255,0.2) !important;
-        z-index: 999 !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+        z-index: 1000 !important;
         backdrop-filter: blur(10px) !important;
+        position: relative !important;
+        transform: translateX(0) !important;
+        overflow-y: auto !important;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3) !important;
     }}
 
+    /* 确保侧边栏内容可见 */
+    section[data-testid="stSidebar"] > div {{
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: block !important;
+    }}
 
+    /* 移除可能导致问题的伪元素 */
+    section[data-testid="stSidebar"]::before,
+    section[data-testid="stSidebar"]::after {{
+        display: none !important;
+        content: none !important;
+    }}
+
+    /* 确保侧边栏中的文本可见 */
+    section[data-testid="stSidebar"] * {{
+        color: #ffffff !important;
+        visibility: visible !important;
+    }}
+
+    /* 侧边栏标题样式 */
+    section[data-testid="stSidebar"] h2,
+    section[data-testid="stSidebar"] h3 {{
+        color: #ffffff !important;
+        font-weight: 600 !important;
+        margin-top: 0 !important;
+    }}
+
+    /* 侧边栏中的输入框样式 */
+    section[data-testid="stSidebar"] input,
+    section[data-testid="stSidebar"] textarea,
+    section[data-testid="stSidebar"] select {{
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 6px !important;
+    }}
+
+    section[data-testid="stSidebar"] input:focus,
+    section[data-testid="stSidebar"] textarea:focus,
+    section[data-testid="stSidebar"] select:focus {{
+        border-color: #667eea !important;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2) !important;
+    }}
+
+    /* 侧边栏中的按钮样式 */
+    section[data-testid="stSidebar"] button {{
+        background-color: rgba(102, 126, 234, 0.3) !important;
+        color: white !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 6px !important;
+        transition: all 0.3s ease !important;
+    }}
+
+    section[data-testid="stSidebar"] button:hover {{
+        background-color: rgba(102, 126, 234, 0.5) !important;
+        transform: translateY(-1px) !important;
+        border-color: rgba(255, 255, 255, 0.5) !important;
+    }}
+
+    /* 侧边栏分隔线样式 */
+    section[data-testid="stSidebar"] hr {{
+        margin: 20px 0 !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }}
+
+    /* 侧边栏的selectbox样式 */
+    section[data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] {{
+        background-color: rgba(255, 255, 255, 0.1) !important;
+    }}
+
+    /* 隐藏其他不必要的模态框 */
     div[role="dialog"] {{
         display: none !important;
     }}
@@ -1583,7 +1663,6 @@ st.markdown(f"""
     .stAlert {{
         display: none !important;
     }}
-
     div[data-baseweb="modal"] {{
         display: none !important;
     }}
@@ -1601,6 +1680,7 @@ st.markdown(f"""
         background: transparent !important;
     }}
 
+    /* 聊天输入框样式 */
     div[data-testid="stChatInput"] textarea,
     div[data-testid="stChatInput"] > div {{
         background-color: transparent !important;
@@ -1621,6 +1701,7 @@ st.markdown(f"""
         background: transparent !important;
     }}
 
+    /* 搜索容器样式 */
     .search-container {{
         display: flex;
         align-items: center;
@@ -1637,9 +1718,10 @@ st.markdown(f"""
         flex: 1;
     }}
 
+    /* 标题样式 */
     h1 {{
         text-align: left;
-        color: #000000;
+        color: #ffffff !important;
         font-family: 'Manrope', sans-serif;
         font-size: 300px;
         font-weight: 800;
@@ -1648,6 +1730,7 @@ st.markdown(f"""
         margin-bottom: 40px;
         letter-spacing: normal;
         line-height: 1.1;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }}
 
     @media (max-width: 768px) {{
@@ -1656,17 +1739,19 @@ st.markdown(f"""
         }}
     }}
 
+    /* 主按钮样式 */
     button[kind="primary"],
     .stButton button {{
-        background-color: rgba(255,255,255,0.4) !important;
-        color: #000000 !important;
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 100px !important;
         font-weight: 800 !important;
         padding: 30px !important;
         transition: all 0.3s ease !important;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
         letter-spacing: normal !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
     }}
 
     .stButton button > div {{
@@ -1675,68 +1760,76 @@ st.markdown(f"""
     }}
 
     .stButton button:hover {{
-        background-color: rgba(255,255,255,0.6) !important;
+        background-color: rgba(255, 255, 255, 0.3) !important;
         transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
     }}
 
+    /* 面包屑导航样式 */
     .breadcrumb {{
-        background-color: rgba(255,255,255,0);
+        background-color: rgba(255, 255, 255, 0.1);
         padding: 12px 20px;
         border-radius: 8px;
         margin-bottom: 20px;
         font-family: 'Manrope', sans-serif;
         font-size: 18px;
-        color: #000000;
+        color: #ffffff !important;
         font-weight: 700;
-        border: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
         letter-spacing: normal;
     }}
 
     .back-button {{
         margin-bottom: 20px;
     }}
+    
     button[key="back_button"] {{
-        background-color: rgba(255,255,255,0.4) !important;
-        color: #000000 !important;
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 18px !important;
         font-weight: 700 !important;
-        border: 1px solid rgba(100,100,100,0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
         border-radius: 8px !important;
         padding: 10px 24px !important;
     }}
 
+    /* 内容容器样式 */
     div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlock"] {{
-        background-color: rgba(255,255,255,0.5);
+        background-color: rgba(255, 255, 255, 0.1);
         border-radius: 12px;
         padding: 20px;
         margin-bottom: 15px;
-        border: none;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }}
 
+    /* 标题样式 */
     h2 {{
-        color: #000000;
+        color: #ffffff !important;
         font-family: 'Manrope', sans-serif;
         font-weight: 800;
         margin-bottom: 15px;
         font-size: 56px;
         letter-spacing: normal;
         line-height: 1.2;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }}
+    
     h3 {{
-        color: #000000;
+        color: #ffffff !important;
         font-family: 'Manrope', sans-serif;
         font-weight: 700;
         margin-top: 20px;
         margin-bottom: 10px;
         font-size: 36px;
         letter-spacing: normal;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }}
 
-    p, div, span {{
-        color: #FFFFFF !important;
+    /* 全局文本颜色 */
+    p, div, span, label {{
+        color: #ffffff !important;
         font-family: 'Manrope', sans-serif !important;
         font-weight: 400 !important;
         line-height: 1.6 !important;
@@ -1745,61 +1838,69 @@ st.markdown(f"""
     hr {{
         margin: 30px 0;
         border: none;
-        border-top: 2px solid rgba(100,100,100,0.2);
+        border-top: 2px solid rgba(255, 255, 255, 0.2);
     }}
 
     a {{
-        color: #0066cc !important;
+        color: #90cdf4 !important;
         text-decoration: none !important;
         font-family: 'Manrope', sans-serif !important;
         font-weight: 600 !important;
     }}
+    
     a:hover {{
-        color: #0052a3 !important;
+        color: #b3e0ff !important;
         text-decoration: underline !important;
     }}
 
+    /* 聊天区域样式 */
     .chat-messages-area {{
         flex: 1;
         overflow-y: auto;
         padding: 20px;
-        border-bottom: 1px solid rgba(200,200,200,0.3);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }}
+    
     .chat-message {{
         margin-bottom: 15px;
         padding: 12px;
-        background-color: rgba(240,240,240,0.4);
+        background-color: rgba(240, 240, 240, 0.2);
         border-radius: 8px;
         font-family: 'Manrope', sans-serif;
         font-size: 15px;
         font-weight: 400;
         line-height: 1.6;
-        color: #000000;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }}
+    
     .chat-message strong {{
-        color: #000000;
+        color: #90cdf4 !important;
         font-weight: 700;
     }}
 
+    /* 聊天输入框 */
     .stChatInput {{
         border-radius: 15px !important;
-        border: 1px solid rgba(0,0,0,0.3) !important;
-        background-color: rgba(36,37,46,0.9) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        background-color: rgba(36, 37, 46, 0.9) !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 16px !important;
         font-weight: 400 !important;
-        color: #000000 !important;
+        color: #ffffff !important;
     }}
+    
     .stChatInput > div {{
         background: transparent !important;
     }}
+    
     .stChatInput button {{
         background: transparent !important;
         border: none !important;
     }}
 
     .stChatInput textarea::placeholder {{
-        color: #bbb !important;
+        color: rgba(255, 255, 255, 0.6) !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 16px !important;
         font-weight: 400 !important;
@@ -1807,18 +1908,24 @@ st.markdown(f"""
         border: none !important;
     }}
 
+    /* 清除聊天按钮 */
     button[key="clear_chat"] {{
-        background-color: rgba(255,255,255,0.4) !important;
-        border: 1px solid rgba(100,100,100,0.3) !important;
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
         border-radius: 8px !important;
         padding: 6px 8px !important;
         font-family: 'Manrope', sans-serif !important;
         font-size: 14px !important;
         font-weight: 600 !important;
-        color: #000000 !important;
+        color: #ffffff !important;
         box-shadow: none !important;
     }}
 
+    button[key="clear_chat"]:hover {{
+        background-color: rgba(255, 255, 255, 0.3) !important;
+    }}
+
+    /* 音频相关样式 */
     .stAudio {{
         display: none !important;
     }}
@@ -1827,52 +1934,58 @@ st.markdown(f"""
         margin: 4px 0 !important;
         background: transparent !important;
     }}
+    
     div[data-testid="stAudioInput"] > div {{
         background: transparent !important;
         border: none !important;
     }}
+    
     div[data-testid="stAudioInput"] button {{
-        background-color: rgba(255,255,255,0.3) !important;
-        border: 1px solid rgba(100,100,100,0.3) !important;
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
         border-radius: 8px !important;
     }}
 
+    /* 工具提示和模态框 */
     div[data-baseweb="tooltip"]:not(.language-selector *) {{
         display: none !important;
     }}
+    
     div[data-baseweb="modal"]:not(.language-selector *) {{
         display: none !important;
     }}
+    
     .element-container:has(iframe) {{
         display: none !important;
     }}
 
+    /* 垂直块样式 */
     div[data-testid="stVerticalBlock"] > div:first-child {{
         margin-top: 0px;
     }}
     
+    /* 单词卡片样式 */
     .word-card {{
-        background-color: rgba(255,255,255,0.9);
+        background-color: rgba(255, 255, 255, 0.1);
         border-radius: 12px;
         padding: 20px;
         margin: 10px 0;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }}
+    
     .word-card:hover {{
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        background-color: rgba(255, 255, 255, 0.15);
     }}
 </style>
 """, unsafe_allow_html=True)
 
-
 # ========== 侧边栏：所有设置项 ==========
 with st.sidebar:
     st.markdown("## ⚙️ Settings Panel")
-    
-    # 强制添加一个明显的测试元素
-    st.error("🔴 SIDEBAR IS WORKING! 🔴")
     
     # 语言选择
     st.markdown("### 🌐 Mode")
@@ -1889,7 +2002,6 @@ with st.sidebar:
         index=current_index,
         key="sidebar_language_selector"
     )
-    
     if new_language != st.session_state.language:
         st.session_state.language = new_language
         
