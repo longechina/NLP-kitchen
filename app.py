@@ -1580,6 +1580,22 @@ st.markdown(f"""
         display: none !important;
     }}
 
+    /* 禁用侧边栏拖拽调整宽度 */
+    section[data-testid="stSidebar"] {{
+        resize: none !important;
+        overflow: visible !important;
+    }}
+    
+    /* 隐藏拖拽手柄 */
+    .stSidebar .resize-handle,
+    .stSidebar [data-testid="stSidebarResizeHandle"],
+    .st-emotion-cache-1wrcr25 {{
+        display: none !important;
+        width: 0 !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }}
+
     /* 确保侧边栏中的文本可见 */
     section[data-testid="stSidebar"] * {{
         color: #ffffff !important;
