@@ -2105,6 +2105,27 @@ with st.sidebar:
                 get_ai_reply(ai_prompt)
                 st.rerun()
 
+with st.sidebar:
+    st.markdown("## ⚙️ Settings Panel")
+    
+    # 强制添加一个明显的测试元素
+    st.error("🔴 SIDEBAR IS WORKING! 🔴")
+    
+    # 语言选择
+    st.markdown("### 🌐 Mode")
+    mode_options = ["Chinese", "English", "NEMT & CET"]
+    current_index = 0
+    if st.session_state.language == "English":
+        current_index = 1
+    elif st.session_state.language == "NEMT & CET":
+        current_index = 2
+    
+    new_language = st.selectbox(
+        "Select Mode",
+        mode_options,
+        index=current_index,
+        key="sidebar_language_selector"
+    )
 
 # ========== 主界面：内容显示和聊天 ==========
 # 显示搜索结果
