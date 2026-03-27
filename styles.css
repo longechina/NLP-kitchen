@@ -5,7 +5,7 @@
 
 /* 主应用样式 */
 .stApp {
-    background-image: url('');  /* 临时写一个空值 */
+    {{BG_CSS}}
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
