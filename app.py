@@ -1543,6 +1543,16 @@ st.markdown(f"""
         background-blend-mode: overlay !important;
     }}
 
+    /* 隐藏不必要的Streamlit元素 */
+    header[data-testid="stHeader"] {{
+        display: none !important;
+    }}
+    #MainMenu {{
+        display: none !important;
+    }}
+    footer {{
+        display: none !important;
+    }}
 
 
     /* 确保侧边栏中的文本可见 */
