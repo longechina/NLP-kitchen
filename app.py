@@ -363,14 +363,14 @@ st.set_page_config(
     menu_items=None
 )
 
-bg_base64 = get_base64_of_image("background.jpg")
-_bg_warning = None  # 延迟显示，避免在 set_page_config 之前调用 st.*
-if bg_base64 is None:
-    _bg_warning = "Background image not found. Using solid light background."
-    bg_css = "background-color: #f0f0f0;"
-else:
-    bg_css = f"background-image: url('data:image/jpeg;base64,{bg_base64}');"
-
+# bg_base64 = get_base64_of_image("background.jpg")
+# _bg_warning = None  # 延迟显示，避免在 set_page_config 之前调用 st.*
+# if bg_base64 is None:
+#     _bg_warning = "Background image not found. Using solid light background."
+#     bg_css = "background-color: #f0f0f0;"
+# else:
+#     bg_css = f"background-image: url('data:image/jpeg;base64,{bg_base64}');"
+bg_css = "background-color: #f0f0f0;"
 # ---------- 初始化语言状态 ----------
 if "language" not in st.session_state:
     st.session_state.language = "Chinese"
