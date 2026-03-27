@@ -371,16 +371,17 @@ if bg_base64 is None:
 else:
     bg_css = f"background-image: url('data:image/jpeg;base64,{bg_base64}');"
 
+
 # ---------- 加载 CSS 样式 ----------
 def load_css():
     try:
         with open("styles.css", "r", encoding="utf-8") as f:
             css_content = f.read()
-            # 替换背景图片变量（注意：styles.css 中不能有 {bg_css}，需要单独处理）
+            # 替换背景图片占位符
+            css_content = css_content.replace("{{BG_CSS}}", bg_css)
             st.markdown(f"<style>{css_content}</style>", unsafe_allow_html=True)
     except FileNotFoundError:
         st.warning("styles.css not found, using default styling")
-        # 可选：添加一个简单的默认样式
 
 # 在背景图片设置之后调用
 bg_base64 = get_base64_of_image("background.jpg")
@@ -391,13 +392,9 @@ if bg_base64 is None:
 else:
     bg_css = f"background-image: url('data:image/jpeg;base64,{bg_base64}');"
 
-# 注意：styles.css 中不能有 {bg_css} 变量
-# 如果你需要动态背景，需要在加载 CSS 时替换
-# 例如：
-with open("styles.css", "r", encoding="utf-8") as f:
-    css_content = f.read()
-    css_content = css_content.replace("{bg_css}", bg_css)  # 如果 CSS 中有 {bg_css} 占位符
-st.markdown(f"<style>{css_content}</style>", unsafe_allow_html=True)
+# 加载 CSS
+load_css()
+
 
 # ---------- 初始化语言状态 ----------
 if "language" not in st.session_state:

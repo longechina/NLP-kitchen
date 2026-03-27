@@ -5,6 +5,7 @@
 
 /* 主应用样式 */
 .stApp {
+    {{BG_CSS}}
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -15,10 +16,6 @@
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
 }
 
-.stApp {
-    background-color: rgba(0, 0, 0, 0.8) !important;
-    background-blend-mode: overlay !important;
-}
 
 /* 确保侧边栏中的文本可见 */
 section[data-testid="stSidebar"] * {
