@@ -1579,6 +1579,7 @@ st.markdown(f"""
         overflow: visible !important;
     }}
 
+
     /* 折叠时隐藏内容，但保留按钮区域 */
     section[data-testid="stSidebar"][aria-expanded="false"] > div:not([data-testid="stSidebarHeader"]) {{
         display: none !important;
@@ -1586,36 +1587,54 @@ st.markdown(f"""
 
     /* ================================================================
        FIX 3: 折叠按钮 position:fixed，无论折叠还是展开都始终可见可点击
-       原代码只是改样式，但折叠后按钮跟着内容一起被 display:none 了
+       修复：添加图标，让按钮可见
        ================================================================ */
-    button[data-testid="stSidebarCollapseButton"] {{
+    /* 确保按钮容器可见 */
+    div[data-testid="stSidebarCollapseButton"] {{
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
         position: fixed !important;
         top: 12px !important;
         left: 12px !important;
         z-index: 999999 !important;
-        background-color: rgba(102, 126, 234, 0.9) !important;
-        border-radius: 8px !important;
-        width: 36px !important;
-        height: 36px !important;
+    }}
+
+    /* 按钮样式 */
+    button[data-testid="stBaseButton-headerNoPadding"] {{
+        position: relative !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        width: 40px !important;
+        height: 40px !important;
+        background-color: #667eea !important;
+        border-radius: 8px !important;
+        border: 2px solid white !important;
         cursor: pointer !important;
-        transition: all 0.3s ease !important;
-        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+    }}
+
+    /* 添加菜单图标 */
+    button[data-testid="stBaseButton-headerNoPadding"]::before {{
+        content: "☰" !important;
+        font-size: 20px !important;
         color: white !important;
-        font-size: 16px !important;
-        pointer-events: auto !important;
+        display: block !important;
+        line-height: 1 !important;
     }}
 
-    button[data-testid="stSidebarCollapseButton"]:hover {{
-        background-color: rgba(102, 126, 234, 1) !important;
+    /* 展开时显示关闭图标 */
+    section[data-testid="stSidebar"][aria-expanded="true"] button[data-testid="stBaseButton-headerNoPadding"]::before {{
+        content: "✕" !important;
+    }}
+
+    /* 按钮悬停效果 */
+    button[data-testid="stBaseButton-headerNoPadding"]:hover {{
+        background-color: #5a67d8 !important;
         transform: scale(1.05) !important;
-    }}
-
-    /* 折叠状态下按钮图标旋转 */
-    section[data-testid="stSidebar"][aria-expanded="false"] button[data-testid="stSidebarCollapseButton"] svg {{
-        transform: rotate(180deg);
     }}
 
     /* 确保侧边栏中的文本可见 */
@@ -1774,102 +1793,7 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# 在 CSS 样式代码之后，侧边栏之前添加
-st.markdown("""
-<style>
-/* 自定义折叠按钮样式 */
-.custom-sidebar-toggle {
-    position: fixed !important;
-    top: 12px !important;
-    left: 12px !important;
-    z-index: 999999 !important;
-    background-color: #667eea !important;
-    border: 2px solid white !important;
-    border-radius: 8px !important;
-    width: 40px !important;
-    height: 40px !important;
-    color: white !important;
-    font-size: 20px !important;
-    cursor: pointer !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    transition: all 0.3s ease !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
-}
 
-.custom-sidebar-toggle:hover {
-    background-color: #5a67d8 !important;
-    transform: scale(1.05) !important;
-}
-</style>
-
-<script>
-(function() {
-    // 创建按钮的函数
-    function createToggleButton() {
-        // 如果按钮已存在，直接返回
-        if (document.getElementById('custom-sidebar-toggle')) return;
-        
-        const btn = document.createElement('button');
-        btn.innerHTML = '☰';
-        btn.className = 'custom-sidebar-toggle';
-        btn.id = 'custom-sidebar-toggle';
-        document.body.appendChild(btn);
-        
-        btn.onclick = function(e) {
-            e.stopPropagation();
-            const sidebar = document.querySelector('section[data-testid="stSidebar"]');
-            if (sidebar) {
-                const isExpanded = sidebar.getAttribute('aria-expanded') === 'true';
-                sidebar.setAttribute('aria-expanded', !isExpanded);
-                btn.innerHTML = isExpanded ? '☰' : '✕';
-            }
-        };
-        
-        // 初始化图标
-        const sidebar = document.querySelector('section[data-testid="stSidebar"]');
-        if (sidebar && sidebar.getAttribute('aria-expanded') === 'false') {
-            btn.innerHTML = '☰';
-        } else {
-            btn.innerHTML = '✕';
-        }
-        
-        return btn;
-    }
-    
-    // 立即创建按钮
-    createToggleButton();
-    
-    // 使用 MutationObserver 监控 DOM 变化，防止按钮被移除
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            // 检查按钮是否被移除
-            const btn = document.getElementById('custom-sidebar-toggle');
-            if (!btn) {
-                // 按钮被移除了，重新创建
-                setTimeout(createToggleButton, 100);
-            }
-        });
-    });
-    
-    // 监控整个 body 的变化
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-    
-    // 页面完全加载后再检查一次
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            if (!document.getElementById('custom-sidebar-toggle')) {
-                createToggleButton();
-            }
-        }, 500);
-    });
-})();
-</script>
-""", unsafe_allow_html=True)
 
 # FIX 1: 延迟显示背景图片警告（set_page_config 之后才能调用 st.warning）
 if _bg_warning:
