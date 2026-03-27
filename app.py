@@ -1788,6 +1788,84 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
+# 强制创建固定折叠按钮
+st.markdown("""
+<style>
+/* 强制固定按钮样式 */
+.fixed-sidebar-toggle {
+    position: fixed !important;
+    top: 12px !important;
+    left: 12px !important;
+    z-index: 999999 !important;
+    background-color: #667eea !important;
+    border: 2px solid white !important;
+    border-radius: 8px !important;
+    width: 40px !important;
+    height: 40px !important;
+    color: white !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+    transition: all 0.3s ease !important;
+}
+.fixed-sidebar-toggle:hover {
+    background-color: #5a67d8 !important;
+    transform: scale(1.05) !important;
+}
+</style>
+
+<script>
+(function() {
+    // 创建按钮的函数
+    function createButton() {
+        if (document.getElementById('fixed-sidebar-btn')) return;
+        
+        var btn = document.createElement('button');
+        btn.innerHTML = '☰';
+        btn.id = 'fixed-sidebar-btn';
+        btn.className = 'fixed-sidebar-toggle';
+        document.body.appendChild(btn);
+        
+        btn.onclick = function(e) {
+            e.stopPropagation();
+            var sidebar = document.querySelector('section[data-testid="stSidebar"]');
+            if (sidebar) {
+                var isExpanded = sidebar.getAttribute('aria-expanded') === 'true';
+                sidebar.setAttribute('aria-expanded', !isExpanded);
+                btn.innerHTML = isExpanded ? '☰' : '✕';
+            }
+        };
+        
+        // 初始化图标
+        var sidebar = document.querySelector('section[data-testid="stSidebar"]');
+        if (sidebar && sidebar.getAttribute('aria-expanded') === 'false') {
+            btn.innerHTML = '☰';
+        } else {
+            btn.innerHTML = '✕';
+        }
+    }
+    
+    // 立即创建
+    createButton();
+    
+    // 持续监控，确保按钮不被移除
+    var observer = new MutationObserver(function() {
+        if (!document.getElementById('fixed-sidebar-btn')) {
+            createButton();
+        }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    
+    // 页面加载完成后再次确认
+    window.addEventListener('load', function() {
+        setTimeout(createButton, 100);
+    });
+})();
+</script>
+""", unsafe_allow_html=True)
 
 
 # FIX 1: 延迟显示背景图片警告（set_page_config 之后才能调用 st.warning）
