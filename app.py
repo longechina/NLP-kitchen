@@ -1777,8 +1777,8 @@ st.markdown(f"""
 
 
 # FIX 1: 延迟显示背景图片警告（set_page_config 之后才能调用 st.warning）
-if _bg_warning:
-    st.warning(_bg_warning)
+# if _bg_warning:
+#     st.warning(_bg_warning)
 
 # ================================================================
 # FIX 2: 侧边栏只保留一个 with st.sidebar: 块
