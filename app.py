@@ -376,11 +376,28 @@ def load_css():
     try:
         with open("styles.css", "r", encoding="utf-8") as f:
             css_content = f.read()
+            # 替换背景图片变量（注意：styles.css 中不能有 {bg_css}，需要单独处理）
             st.markdown(f"<style>{css_content}</style>", unsafe_allow_html=True)
     except FileNotFoundError:
-        st.warning("styles.css not found")
+        st.warning("styles.css not found, using default styling")
+        # 可选：添加一个简单的默认样式
 
-load_css()
+# 在背景图片设置之后调用
+bg_base64 = get_base64_of_image("background.jpg")
+_bg_warning = None
+if bg_base64 is None:
+    _bg_warning = "Background image not found. Using solid light background."
+    bg_css = "background-color: #f0f0f0;"
+else:
+    bg_css = f"background-image: url('data:image/jpeg;base64,{bg_base64}');"
+
+# 注意：styles.css 中不能有 {bg_css} 变量
+# 如果你需要动态背景，需要在加载 CSS 时替换
+# 例如：
+with open("styles.css", "r", encoding="utf-8") as f:
+    css_content = f.read()
+    css_content = css_content.replace("{bg_css}", bg_css)  # 如果 CSS 中有 {bg_css} 占位符
+st.markdown(f"<style>{css_content}</style>", unsafe_allow_html=True)
 
 # ---------- 初始化语言状态 ----------
 if "language" not in st.session_state:
