@@ -1580,11 +1580,6 @@ st.markdown(f"""
     }}
 
 
-    /* 折叠时隐藏内容，但保留按钮区域 */
-    /* section[data-testid="stSidebar"][aria-expanded="false"] > div:not([data-testid="stSidebarHeader"]) {{
-        display: none !important;
-    }} */
-
     /* ================================================================
        FIX 3: 折叠按钮 position:fixed，无论折叠还是展开都始终可见可点击
        修复：添加图标，让按钮可见
