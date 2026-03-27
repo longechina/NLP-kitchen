@@ -1547,9 +1547,7 @@ st.markdown(f"""
     header[data-testid="stHeader"] {{
         display: none !important;
     }}
-    #MainMenu {{
-        display: none !important;
-    }}
+
     footer {{
         display: none !important;
     }}
