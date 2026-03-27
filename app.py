@@ -1774,6 +1774,92 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
+# 在 st.markdown(CSS) 之后，侧边栏之前添加
+# 手动创建折叠按钮
+st.markdown("""
+<style>
+/* 自定义折叠按钮样式 */
+.custom-sidebar-toggle {
+    position: fixed !important;
+    top: 12px !important;
+    left: 12px !important;
+    z-index: 999999 !important;
+    background-color: #667eea !important;
+    border: 2px solid white !important;
+    border-radius: 8px !important;
+    width: 40px !important;
+    height: 40px !important;
+    color: white !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+}
+
+.custom-sidebar-toggle:hover {
+    background-color: #5a67d8 !important;
+    transform: scale(1.05) !important;
+}
+
+/* 折叠状态下的侧边栏宽度 */
+section[data-testid="stSidebar"][aria-expanded="false"] {
+    width: 48px !important;
+    min-width: 48px !important;
+}
+
+/* 展开状态下的侧边栏宽度 */
+section[data-testid="stSidebar"][aria-expanded="true"] {
+    width: 400px !important;
+    min-width: 400px !important;
+}
+
+/* 确保侧边栏内容可以滚动 */
+section[data-testid="stSidebar"] {
+    transition: width 0.3s ease !important;
+    overflow-x: hidden !important;
+}
+</style>
+
+<script>
+    // 等待页面加载完成后添加折叠功能
+    document.addEventListener('DOMContentLoaded', function() {
+        // 创建按钮
+        const btn = document.createElement('button');
+        btn.innerHTML = '☰';
+        btn.className = 'custom-sidebar-toggle';
+        btn.id = 'custom-sidebar-toggle';
+        document.body.appendChild(btn);
+        
+        // 添加点击事件
+        btn.onclick = function() {
+            const sidebar = document.querySelector('section[data-testid="stSidebar"]');
+            if (sidebar) {
+                const isExpanded = sidebar.getAttribute('aria-expanded') === 'true';
+                sidebar.setAttribute('aria-expanded', !isExpanded);
+                
+                // 改变按钮图标
+                if (isExpanded) {
+                    btn.innerHTML = '☰';
+                } else {
+                    btn.innerHTML = '✕';
+                }
+            }
+        };
+        
+        // 初始化按钮图标
+        const sidebar = document.querySelector('section[data-testid="stSidebar"]');
+        if (sidebar && sidebar.getAttribute('aria-expanded') === 'false') {
+            btn.innerHTML = '☰';
+        } else {
+            btn.innerHTML = '✕';
+        }
+    });
+</script>
+""", unsafe_allow_html=True)
+
 # FIX 1: 延迟显示背景图片警告（set_page_config 之后才能调用 st.warning）
 if _bg_warning:
     st.warning(_bg_warning)
