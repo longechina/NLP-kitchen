@@ -1789,167 +1789,167 @@ with st.sidebar:
     #         st.session_state.search_results = []
     #         st.rerun()
     
-    # 第三行：Generate Quiz + Run OCR
-    col_c, col_d = st.columns(2)
-    with col_c:
-        if st.button("Generate Quiz", key="quiz_btn_small", use_container_width=True):
-            full_page = get_current_page_full_content()
-            topic = "general"
-            if full_page:
-                sec_match = re.search(r"Section: (.+)", full_page)
-                if sec_match:
-                    topic = sec_match.group(1)
-            quiz_text = generate_quiz(topic, full_page)
-            if quiz_text:
-                st.session_state.quiz_active = True
-                questions = []
-                for line in quiz_text.split('\n'):
-                    line = line.strip()
-                    if re.match(r'^\d+[\.\s]', line):
-                        questions.append(line)
-                st.session_state.current_quiz = {
-                    "questions": questions,
-                    "quiz_text": quiz_text,
-                    "topic": topic
-                }
-                st.session_state.quiz_answers = {}
-                st.session_state.quiz_asked = True
-                reply = f"Here's a quiz on {topic}:\n\n{quiz_text}\n\nPlease answer the questions. Use format: '1. A, 2. B, 3. C'"
-                st.session_state.messages.append({"role": "assistant", "content": reply})
-                st.session_state.conv_history.append({"role": "assistant", "content": reply})
-                try:
-                    audio_bytes, fmt = text_to_speech(reply)
-                    if audio_bytes:
-                        st.session_state.pending_tts = (audio_bytes, fmt)
-                except Exception as e:
-                    logger.error(f"TTS error: {e}")
-                st.rerun()
-    with col_d:
-        if st.button("Run OCR", key="ocr_run_small", use_container_width=True):
-            img_files = st.session_state.get("ocr_imgs", [])
-            pdf_file = st.session_state.get("ocr_pdf", None)
-            zip_file = st.session_state.get("ocr_zip", None)
-            ocr_results = []
-            if img_files:
-                with st.spinner(""):
-                    results = process_ocr_images(img_files)
-                    if results:
-                        ocr_results.extend(results)
-            if pdf_file:
-                with st.spinner(""):
-                    text = process_ocr_pdf(pdf_file)
-                    if text:
-                        ocr_results.append(("PDF", "success", text))
-            if zip_file:
-                with st.spinner(""):
-                    zip_bytes = zip_file.read()
-                    with tempfile.TemporaryDirectory() as tmp:
-                        with zipfile.ZipFile(io.BytesIO(zip_bytes), 'r') as zf:
-                            zip_imgs = []
-                            for info in zf.infolist():
-                                if not info.is_dir():
-                                    ext = os.path.splitext(info.filename)[1].lower()
-                                    if ext in ['.jpg','.jpeg','.png','.bmp','.webp','.tiff']:
-                                        img_bytes = zf.read(info.filename)
-                                        zip_imgs.append((img_bytes, os.path.basename(info.filename)))
-                            if zip_imgs:
-                                results = ocr_images_batch(zip_imgs, IMAGE_OCR_CONFIG)
-                                ocr_results.extend(results)
-            if ocr_results:
-                result_text = format_results_as_text(ocr_results)
-                st.session_state.ocr_result_text = result_text
-                st.rerun()
+#     # 第三行：Generate Quiz + Run OCR
+#     col_c, col_d = st.columns(2)
+#     with col_c:
+#         if st.button("Generate Quiz", key="quiz_btn_small", use_container_width=True):
+#             full_page = get_current_page_full_content()
+#             topic = "general"
+#             if full_page:
+#                 sec_match = re.search(r"Section: (.+)", full_page)
+#                 if sec_match:
+#                     topic = sec_match.group(1)
+#             quiz_text = generate_quiz(topic, full_page)
+#             if quiz_text:
+#                 st.session_state.quiz_active = True
+#                 questions = []
+#                 for line in quiz_text.split('\n'):
+#                     line = line.strip()
+#                     if re.match(r'^\d+[\.\s]', line):
+#                         questions.append(line)
+#                 st.session_state.current_quiz = {
+#                     "questions": questions,
+#                     "quiz_text": quiz_text,
+#                     "topic": topic
+#                 }
+#                 st.session_state.quiz_answers = {}
+#                 st.session_state.quiz_asked = True
+#                 reply = f"Here's a quiz on {topic}:\n\n{quiz_text}\n\nPlease answer the questions. Use format: '1. A, 2. B, 3. C'"
+#                 st.session_state.messages.append({"role": "assistant", "content": reply})
+#                 st.session_state.conv_history.append({"role": "assistant", "content": reply})
+#                 try:
+#                     audio_bytes, fmt = text_to_speech(reply)
+#                     if audio_bytes:
+#                         st.session_state.pending_tts = (audio_bytes, fmt)
+#                 except Exception as e:
+#                     logger.error(f"TTS error: {e}")
+#                 st.rerun()
+#     with col_d:
+#         if st.button("Run OCR", key="ocr_run_small", use_container_width=True):
+#             img_files = st.session_state.get("ocr_imgs", [])
+#             pdf_file = st.session_state.get("ocr_pdf", None)
+#             zip_file = st.session_state.get("ocr_zip", None)
+#             ocr_results = []
+#             if img_files:
+#                 with st.spinner(""):
+#                     results = process_ocr_images(img_files)
+#                     if results:
+#                         ocr_results.extend(results)
+#             if pdf_file:
+#                 with st.spinner(""):
+#                     text = process_ocr_pdf(pdf_file)
+#                     if text:
+#                         ocr_results.append(("PDF", "success", text))
+#             if zip_file:
+#                 with st.spinner(""):
+#                     zip_bytes = zip_file.read()
+#                     with tempfile.TemporaryDirectory() as tmp:
+#                         with zipfile.ZipFile(io.BytesIO(zip_bytes), 'r') as zf:
+#                             zip_imgs = []
+#                             for info in zf.infolist():
+#                                 if not info.is_dir():
+#                                     ext = os.path.splitext(info.filename)[1].lower()
+#                                     if ext in ['.jpg','.jpeg','.png','.bmp','.webp','.tiff']:
+#                                         img_bytes = zf.read(info.filename)
+#                                         zip_imgs.append((img_bytes, os.path.basename(info.filename)))
+#                             if zip_imgs:
+#                                 results = ocr_images_batch(zip_imgs, IMAGE_OCR_CONFIG)
+#                                 ocr_results.extend(results)
+#             if ocr_results:
+#                 result_text = format_results_as_text(ocr_results)
+#                 st.session_state.ocr_result_text = result_text
+#                 st.rerun()
     
-    # 如果有OCR结果，显示
-    if st.session_state.get("ocr_result_text"):
-        st.text_area("OCR Results", st.session_state.ocr_result_text, height=150)
-        col_dl, col_send = st.columns(2)
-        with col_dl:
-            st.download_button("Download", st.session_state.ocr_result_text, file_name=f"ocr_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt", key="ocr_dl_small")
-        with col_send:
-            if st.button("Send to AI", key="ocr_send_small"):
-                get_ai_reply(f"Please analyze these OCR results:\n\n{st.session_state.ocr_result_text}")
-                st.session_state.ocr_result_text = None
-                st.rerun()
+#     # 如果有OCR结果，显示
+#     if st.session_state.get("ocr_result_text"):
+#         st.text_area("OCR Results", st.session_state.ocr_result_text, height=150)
+#         col_dl, col_send = st.columns(2)
+#         with col_dl:
+#             st.download_button("Download", st.session_state.ocr_result_text, file_name=f"ocr_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt", key="ocr_dl_small")
+#         with col_send:
+#             if st.button("Send to AI", key="ocr_send_small"):
+#                 get_ai_reply(f"Please analyze these OCR results:\n\n{st.session_state.ocr_result_text}")
+#                 st.session_state.ocr_result_text = None
+#                 st.rerun()
     
-    # ========== 设置工具区域 ==========
-    # Mode
-    mode_opts = ["Chinese", "English", "NEMT & CET"]
-    cur_idx = 0
-    if st.session_state.language == "English":
-        cur_idx = 1
-    elif st.session_state.language == "NEMT & CET":
-        cur_idx = 2
+#     # ========== 设置工具区域 ==========
+#     # Mode
+#     mode_opts = ["Chinese", "English", "NEMT & CET"]
+#     cur_idx = 0
+#     if st.session_state.language == "English":
+#         cur_idx = 1
+#     elif st.session_state.language == "NEMT & CET":
+#         cur_idx = 2
     
-    new_lang = st.selectbox("Mode", mode_opts, index=cur_idx, key="mode_select")
-    if new_lang != st.session_state.language:
-        st.session_state.language = new_lang
-        if new_lang == "NEMT & CET":
-            st.session_state.current_mode = "nemt_cet"
-            st.session_state.level = None
-            st.session_state.path = []
-            st.session_state.selected_nemt_cet = None
-            st.session_state.nemt_cet_path = []
-        else:
-            st.session_state.current_mode = "textbook"
-            levels_data = load_level_data(st.session_state.language)
-            st.session_state.level = None
-            st.session_state.path = []
-            st.session_state.selected_nemt_cet = None
-            st.session_state.nemt_cet_path = []
-        st.session_state.messages = [{"role": "system", "content": system_prompt}]
-        st.session_state.quiz_active = False
-        st.session_state.current_quiz = None
-        st.session_state.quiz_answers = {}
-        st.session_state.quiz_asked = False
-        st.rerun()
+#     new_lang = st.selectbox("Mode", mode_opts, index=cur_idx, key="mode_select")
+#     if new_lang != st.session_state.language:
+#         st.session_state.language = new_lang
+#         if new_lang == "NEMT & CET":
+#             st.session_state.current_mode = "nemt_cet"
+#             st.session_state.level = None
+#             st.session_state.path = []
+#             st.session_state.selected_nemt_cet = None
+#             st.session_state.nemt_cet_path = []
+#         else:
+#             st.session_state.current_mode = "textbook"
+#             levels_data = load_level_data(st.session_state.language)
+#             st.session_state.level = None
+#             st.session_state.path = []
+#             st.session_state.selected_nemt_cet = None
+#             st.session_state.nemt_cet_path = []
+#         st.session_state.messages = [{"role": "system", "content": system_prompt}]
+#         st.session_state.quiz_active = False
+#         st.session_state.current_quiz = None
+#         st.session_state.quiz_answers = {}
+#         st.session_state.quiz_asked = False
+#         st.rerun()
     
-    # Search
-    scope_opts = ["Global", "Local"]
-    scope_idx = 0 if st.session_state.search_scope == "global" else 1
-    new_scope = st.selectbox("Search in", scope_opts, index=scope_idx, key="scope_select")
-    if new_scope == "Global":
-        new_scope_val = "global"
-    else:
-        new_scope_val = "local"
-    if new_scope_val != st.session_state.search_scope:
-        st.session_state.search_scope = new_scope_val
-        st.session_state.search_results = []
-        st.session_state.search_keyword = ""
-        st.rerun()
+#     # Search
+#     scope_opts = ["Global", "Local"]
+#     scope_idx = 0 if st.session_state.search_scope == "global" else 1
+#     new_scope = st.selectbox("Search in", scope_opts, index=scope_idx, key="scope_select")
+#     if new_scope == "Global":
+#         new_scope_val = "global"
+#     else:
+#         new_scope_val = "local"
+#     if new_scope_val != st.session_state.search_scope:
+#         st.session_state.search_scope = new_scope_val
+#         st.session_state.search_results = []
+#         st.session_state.search_keyword = ""
+#         st.rerun()
     
-    search_input = st.text_input("Search", value=st.session_state.search_keyword, key="search_input")
-    if st.button("Search", key="search_btn"):
-        st.session_state.search_keyword = search_input
-        if search_input.strip():
-            if st.session_state.search_scope == "global":
-                st.session_state.search_results = global_search(search_input)
-            else:
-                st.session_state.search_results = local_search(search_input)
-        else:
-            st.session_state.search_results = []
-        st.rerun()
+#     search_input = st.text_input("Search", value=st.session_state.search_keyword, key="search_input")
+#     if st.button("Search", key="search_btn"):
+#         st.session_state.search_keyword = search_input
+#         if search_input.strip():
+#             if st.session_state.search_scope == "global":
+#                 st.session_state.search_results = global_search(search_input)
+#             else:
+#                 st.session_state.search_results = local_search(search_input)
+#         else:
+#             st.session_state.search_results = []
+#         st.rerun()
     
-    # Model
-    model_names = list(AVAILABLE_MODELS.keys())
-    cur_model_idx = model_names.index(st.session_state.selected_model)
-    new_model = st.selectbox("Model", model_names, index=cur_model_idx, key="model_select")
-    if new_model != st.session_state.selected_model:
-        st.session_state.selected_model = new_model
-        st.session_state.model_name = AVAILABLE_MODELS[new_model]["id"]
-        st.session_state.model_max_tokens = AVAILABLE_MODELS[new_model]["max_tokens"]
-        st.rerun()
+#     # Model
+#     model_names = list(AVAILABLE_MODELS.keys())
+#     cur_model_idx = model_names.index(st.session_state.selected_model)
+#     new_model = st.selectbox("Model", model_names, index=cur_model_idx, key="model_select")
+#     if new_model != st.session_state.selected_model:
+#         st.session_state.selected_model = new_model
+#         st.session_state.model_name = AVAILABLE_MODELS[new_model]["id"]
+#         st.session_state.model_max_tokens = AVAILABLE_MODELS[new_model]["max_tokens"]
+#         st.rerun()
     
-    # OCR 文件上传
-    img_files = st.file_uploader("Images", type=["jpg","jpeg","png","bmp","webp","tiff"], accept_multiple_files=True, key="ocr_imgs")
-    pdf_file = st.file_uploader("PDF", type=["pdf"], key="ocr_pdf")
-    zip_file = st.file_uploader("ZIP", type=["zip"], key="ocr_zip")
+#     # OCR 文件上传
+#     img_files = st.file_uploader("Images", type=["jpg","jpeg","png","bmp","webp","tiff"], accept_multiple_files=True, key="ocr_imgs")
+#     pdf_file = st.file_uploader("PDF", type=["pdf"], key="ocr_pdf")
+#     zip_file = st.file_uploader("ZIP", type=["zip"], key="ocr_zip")
 
-# TTS 音频播放
-if st.session_state.pending_tts:
-    audio_bytes, fmt = st.session_state.pending_tts
-    st.audio(audio_bytes, format=fmt, autoplay=True)
-    st.session_state.pending_tts = None
+# # TTS 音频播放
+# if st.session_state.pending_tts:
+#     audio_bytes, fmt = st.session_state.pending_tts
+#     st.audio(audio_bytes, format=fmt, autoplay=True)
+#     st.session_state.pending_tts = None
 
 # ========== 主界面：内容显示 ==========
 # 显示搜索结果
