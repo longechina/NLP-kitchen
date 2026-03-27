@@ -1523,29 +1523,8 @@ def process_ocr_pdf(uploaded_pdf):
 st.markdown(f"""
 <style>
     /* 添加 Material Icons 字体 */
-    @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
     @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
-    /* 确保图标正确显示 */
-
-    .material-icons {{
-        font-family: 'Material Icons' !important;
-        font-weight: normal;
-        font-style: normal;
-        font-size: 24px;
-        display: inline-block;
-        line-height: 1;
-        text-transform: none;
-        letter-spacing: normal;
-        word-wrap: normal;
-        white-space: nowrap;
-        direction: ltr;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
-        -moz-osx-font-smoothing: grayscale;
-        font-feature-settings: 'liga';
-    }}
-       
     /* 主应用样式 */
     .stApp {{
         {bg_css}
@@ -1749,66 +1728,66 @@ if _bg_warning:
 # 原代码有两个完整的 with st.sidebar: 块，导致聊天记录双重渲染
 # ================================================================
 with st.sidebar:
-    # ========== 聊天消息展示区域 ==========
-    chat_messages = st.container()
-    with chat_messages:
-        for msg in st.session_state.messages:
-            if msg["role"] == "system":
-                continue
-            if msg["role"] == "user":
-                st.write(f"**You:** {msg['content']}")
-            else:
-                st.write(f"**AI:** {msg['content']}")
-        # 自动滚动到最新消息
-        st.markdown("""
-        <script>
-            setTimeout(function() {
-                var sidebar = document.querySelector('section[data-testid="stSidebar"]');
-                if (sidebar) {
-                    var scrollable = sidebar.querySelector('[data-testid="stVerticalBlock"]');
-                    if (scrollable) {
-                        scrollable.scrollTop = scrollable.scrollHeight;
-                    }
-                }
-            }, 50);
-        </script>
-        """, unsafe_allow_html=True)
+    # # ========== 聊天消息展示区域 ==========
+    # chat_messages = st.container()
+    # with chat_messages:
+    #     for msg in st.session_state.messages:
+    #         if msg["role"] == "system":
+    #             continue
+    #         if msg["role"] == "user":
+    #             st.write(f"**You:** {msg['content']}")
+    #         else:
+    #             st.write(f"**AI:** {msg['content']}")
+    #     # 自动滚动到最新消息
+    #     st.markdown("""
+    #     <script>
+    #         setTimeout(function() {
+    #             var sidebar = document.querySelector('section[data-testid="stSidebar"]');
+    #             if (sidebar) {
+    #                 var scrollable = sidebar.querySelector('[data-testid="stVerticalBlock"]');
+    #                 if (scrollable) {
+    #                     scrollable.scrollTop = scrollable.scrollHeight;
+    #                 }
+    #             }
+    #         }, 50);
+    #     </script>
+    #     """, unsafe_allow_html=True)
 
-    # 第一行：语音 + 文本输入框
-    col_voice, col_text = st.columns([1, 4])
-    with col_voice:
-        audio_in = st.audio_input("", key="audio_in", label_visibility="collapsed")
-        if audio_in is not None:
-            audio_id = f"{audio_in.name}_{audio_in.size}"
-            if audio_id != st.session_state.get("last_audio", ""):
-                st.session_state.last_audio = audio_id
-                audio_bytes = audio_in.read()
-                if audio_bytes:
-                    with st.spinner(""):
-                        transcript = transcribe_audio(audio_bytes)
-                    if transcript:
-                        get_ai_reply(transcript)
-                        st.rerun()
-    with col_text:
-        user_msg = st.chat_input("")
-        if user_msg:
-            get_ai_reply(user_msg)
-            st.rerun()
+    # # 第一行：语音 + 文本输入框
+    # col_voice, col_text = st.columns([1, 4])
+    # with col_voice:
+    #     audio_in = st.audio_input("", key="audio_in", label_visibility="collapsed")
+    #     if audio_in is not None:
+    #         audio_id = f"{audio_in.name}_{audio_in.size}"
+    #         if audio_id != st.session_state.get("last_audio", ""):
+    #             st.session_state.last_audio = audio_id
+    #             audio_bytes = audio_in.read()
+    #             if audio_bytes:
+    #                 with st.spinner(""):
+    #                     transcript = transcribe_audio(audio_bytes)
+    #                 if transcript:
+    #                     get_ai_reply(transcript)
+    #                     st.rerun()
+    # with col_text:
+    #     user_msg = st.chat_input("")
+    #     if user_msg:
+    #         get_ai_reply(user_msg)
+    #         st.rerun()
     
-    # 第二行：Clear + Clear Search
-    col_a, col_b = st.columns(2)
-    with col_a:
-        if st.button("Clear", key="clear_btn", use_container_width=True):
-            st.session_state.messages = [{"role": "system", "content": system_prompt}]
-            st.session_state.conversation_summary = ""
-            st.session_state.conv_history = []
-            st.session_state.user_msg_count = 0
-            st.rerun()
-    with col_b:
-        if st.button("Clear Search", key="clear_search_btn", use_container_width=True):
-            st.session_state.search_keyword = ""
-            st.session_state.search_results = []
-            st.rerun()
+    # # 第二行：Clear + Clear Search
+    # col_a, col_b = st.columns(2)
+    # with col_a:
+    #     if st.button("Clear", key="clear_btn", use_container_width=True):
+    #         st.session_state.messages = [{"role": "system", "content": system_prompt}]
+    #         st.session_state.conversation_summary = ""
+    #         st.session_state.conv_history = []
+    #         st.session_state.user_msg_count = 0
+    #         st.rerun()
+    # with col_b:
+    #     if st.button("Clear Search", key="clear_search_btn", use_container_width=True):
+    #         st.session_state.search_keyword = ""
+    #         st.session_state.search_results = []
+    #         st.rerun()
     
     # 第三行：Generate Quiz + Run OCR
     col_c, col_d = st.columns(2)
