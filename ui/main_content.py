@@ -56,8 +56,8 @@ def get_state_icon(state):
 def next_state(current):
     return STATE_NEXT.get(current, 1)
 
-def render_vocab_card(word, pinyin, word_key, flipped=False, other_word=None, other_pron=None):
-    """渲染带状态标记的单词卡片"""
+def render_vocab_card(word, pinyin, word_key, other_word=None, other_pron=None, img_key=None, video_key=None):
+    """渲染带状态标记的单词卡片，支持图片和视频"""
     # 获取当前状态
     current_state = st.session_state.learning_states.get(word_key, 0)
     
@@ -78,7 +78,10 @@ def render_vocab_card(word, pinyin, word_key, flipped=False, other_word=None, ot
         if flip_key not in st.session_state.word_flip_states:
             st.session_state.word_flip_states[flip_key] = False
         
-        if st.session_state.word_flip_states[flip_key]:
+        # 判断是否翻转
+        is_flipped = st.session_state.word_flip_states[flip_key]
+        
+        if is_flipped:
             display_content = other_word if other_word else word
             if other_pron:
                 display_content += f"\n{other_pron}"
@@ -88,8 +91,26 @@ def render_vocab_card(word, pinyin, word_key, flipped=False, other_word=None, ot
                 display_content += f"\n{pinyin}"
         
         if st.button(display_content, key=f"card_{word_key}", use_container_width=True):
-            st.session_state.word_flip_states[flip_key] = not st.session_state.word_flip_states[flip_key]
+            was_flipped = is_flipped
+            st.session_state.word_flip_states[flip_key] = not was_flipped
+            
+            # 第一次翻转时搜索图片和视频（仅在未翻转 -> 翻转时触发）
+            if not was_flipped:
+                with st.spinner(f"Searching for '{word}'..."):
+                    st.session_state[f"vocab_img_{word_key}"] = search_pexels_image(word)
+                    st.session_state[f"vocab_video_{word_key}"] = search_pexels_video(word)
+            
             st.rerun()
+        
+        # 显示图片和视频（仅在翻转状态下显示）
+        if is_flipped:
+            img_url = st.session_state.get(f"vocab_img_{word_key}")
+            if img_url:
+                st.image(img_url, use_container_width=True)
+            
+            video_url = st.session_state.get(f"vocab_video_{word_key}")
+            if video_url:
+                st.video(video_url)
 
 # ========== 结束 ==========
 
@@ -699,7 +720,7 @@ Write your notes here using Markdown:
                                 other_word = other_parts[0]
                                 other_pron = other_parts[1] if len(other_parts) > 1 else ""
                             
-                            # 渲染带状态标记的卡片
+                            # 渲染带状态标记的卡片（支持图片和视频）
                             render_vocab_card(word, pinyin, word_key, 
                                              other_word=other_word, other_pron=other_pron)
 
@@ -855,7 +876,7 @@ Write your notes here using Markdown:
                         else:
                             translation = None
                         
-                        # 渲染带状态标记的卡片
+                        # 渲染带状态标记的卡片（支持图片和视频）
                         render_vocab_card(word, "", word_key, 
                                          other_word=translation if translation else None)
             
