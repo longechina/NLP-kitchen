@@ -35,13 +35,6 @@ def init_session_state():
     if "nlp_current_notes" not in st.session_state:
         st.session_state.nlp_current_notes = ""
     
-    # ========== 学习状态（新增）==========
-    if "learning_states" not in st.session_state:
-        from utils.data_loader import load_learning_states
-        st.session_state.learning_states = load_learning_states()
-    if "word_flip" not in st.session_state:
-        st.session_state.word_flip = {}
-    
     # 聊天状态
     if "messages" not in st.session_state:
         st.session_state.messages = []

@@ -1,48 +1,8 @@
 # ui/main_content.py
 import streamlit as st
 import re
-import requests
-import time
 from utils.search import global_search, local_search
 from utils.helpers import translate_word
-from utils.data_loader import load_nlp_textbook_data, save_nlp_chapter_notes
-
-# ========== Pexels API 函数 ==========
-PEXELS_API_KEY = "d2CD01GRjacnW1194nyOXkkZsAMEO3xWY6I6YYLvMA3ycjSKmaBuFp4Z"
-
-def search_pexels_image(word):
-    try:
-        url = "https://api.pexels.com/v1/search"
-        headers = {"Authorization": PEXELS_API_KEY}
-        params = {"query": word, "per_page": 1}
-        response = requests.get(url, headers=headers, params=params, timeout=5)
-        data = response.json()
-        photos = data.get('photos', [])
-        if photos:
-            return photos[0]['src']['medium']
-    except:
-        pass
-    return None
-
-def search_pexels_video(word):
-    try:
-        url = "https://api.pexels.com/videos/search"
-        headers = {"Authorization": PEXELS_API_KEY}
-        params = {"query": word, "per_page": 1}
-        response = requests.get(url, headers=headers, params=params, timeout=5)
-        data = response.json()
-        videos = data.get('videos', [])
-        if videos:
-            video_files = videos[0].get('video_files', [])
-            for vf in video_files:
-                if vf.get('quality') == 'hd' or vf.get('width') >= 720:
-                    return vf.get('link')
-            if video_files:
-                return video_files[0].get('link')
-    except:
-        pass
-    return None
-# ========== 结束 ==========
 
 def render_main_content(levels_data, nemt_cet_data, client, get_current_page_full_content, get_page_recommendations, get_ai_reply):
     # 显示搜索结果
@@ -177,157 +137,6 @@ def render_main_content(levels_data, nemt_cet_data, client, get_current_page_ful
                 st.session_state.level = None
                 st.session_state.path = []
                 st.rerun()
-    elif st.session_state.language == "NLP Textbook":
-        # ========== NLP Textbook 模式 ==========
-        nlp_data = load_nlp_textbook_data()
-        
-        if not nlp_data:
-            st.error("NLP textbook data not found. Please check data/nlp/ directory.")
-            return
-        
-        # 如果没有选中章节，显示所有章节
-        if st.session_state.nlp_selected_chapter is None:
-            st.markdown("## 📚 Information Retrieval Textbook")
-            st.markdown("### Introduction to Information Retrieval")
-            st.markdown("A comprehensive textbook covering search engines, indexing, ranking, and more.")
-            
-            st.markdown("---")
-            st.markdown("## Chapters")
-            
-            # 按章节号排序
-            chapters = sorted(nlp_data.keys(), key=lambda x: int(x.replace("CHAPTER_", "")))
-            
-            # 每行显示 3 个章节按钮
-            cols = st.columns(3)
-            for idx, chapter_key in enumerate(chapters):
-                chapter = nlp_data[chapter_key]
-                chapter_num = chapter_key.replace("CHAPTER_", "")
-                chapter_name = chapter.get("name", f"Chapter {chapter_num}")
-                
-                with cols[idx % 3]:
-                    if st.button(f"📖 {chapter_name}\n\nChapter {chapter_num}", key=f"nlp_chapter_{chapter_key}", use_container_width=True):
-                        st.session_state.nlp_selected_chapter = chapter_key
-                        st.session_state.nlp_selected_section = None
-                        st.rerun()
-        
-        # 如果选中了章节，显示章节内容和小节
-        else:
-            chapter = nlp_data[st.session_state.nlp_selected_chapter]
-            chapter_num = st.session_state.nlp_selected_chapter.replace("CHAPTER_", "")
-            chapter_name = chapter.get("name", f"Chapter {chapter_num}")
-            
-            # 面包屑导航
-            st.markdown(f"<div class='breadcrumb'>📖 Chapter {chapter_num}: {chapter_name}</div>", unsafe_allow_html=True)
-            
-            # 返回按钮
-            col_back, _ = st.columns([1, 5])
-            with col_back:
-                if st.button("← Back to Chapters", key="nlp_back_to_chapters"):
-                    st.session_state.nlp_selected_chapter = None
-                    st.session_state.nlp_selected_section = None
-                    st.rerun()
-            
-            # 如果没有选中小节，显示所有小节
-            if st.session_state.nlp_selected_section is None:
-                st.markdown("## Sections")
-                
-                # 获取所有小节（键名像 "1.1", "1.2" 等）
-                sections = []
-                for key, value in chapter.items():
-                    if key != "name" and isinstance(value, dict) and "name" in value:
-                        sections.append((key, value))
-                
-                # 按小节号排序
-                sections.sort(key=lambda x: [int(p) for p in x[0].split('.')])
-                
-                if sections:
-                    # 每行显示 2 个小节
-                    cols = st.columns(2)
-                    for idx, (section_key, section) in enumerate(sections):
-                        section_name = section.get("name", section_key)
-                        with cols[idx % 2]:
-                            if st.button(f"📌 {section_name}\n\n{section_key}", key=f"nlp_section_{section_key}", use_container_width=True):
-                                st.session_state.nlp_selected_section = section_key
-                                st.rerun()
-                else:
-                    st.info("No sections found in this chapter.")
-            
-            # 如果选中了小节，显示内容
-            else:
-                section = chapter.get(st.session_state.nlp_selected_section, {})
-                section_name = section.get("name", st.session_state.nlp_selected_section)
-                
-                # 小节面包屑
-                st.markdown(f"<div class='breadcrumb' style='font-size: 16px;'>{chapter_name} › {section_name}</div>", unsafe_allow_html=True)
-                
-                # 返回小节列表按钮
-                col_back_section, _ = st.columns([1, 5])
-                with col_back_section:
-                    if st.button("← Back to Sections", key="nlp_back_to_sections"):
-                        st.session_state.nlp_selected_section = None
-                        st.rerun()
-                
-                # 显示内容
-                content = section.get("content", "")
-                current_notes = section.get("notes", "")
-                
-                if content:
-                    st.markdown("---")
-                    st.markdown("### 📄 Content")
-                    st.markdown(f"<div style='background-color: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; line-height: 1.6; font-size: 16px;'>{content}</div>", unsafe_allow_html=True)
-                
-                st.markdown("---")
-                
-                # Notes 区域
-                st.markdown("### 📝 Your Notes")
-                st.markdown("Write your thoughts, summaries, or questions below:")
-                
-                # 显示当前 notes（如果有）
-                if current_notes:
-                    st.info(f"💡 Previous notes:\n\n{current_notes}")
-                
-                # 文本输入区域
-                new_notes = st.text_area(
-                    "Add/Edit Notes",
-                    value=current_notes,
-                    height=200,
-                    key=f"nlp_notes_{st.session_state.nlp_selected_chapter}_{st.session_state.nlp_selected_section}",
-                    placeholder="Write your notes here...\n\n- Key concepts\n- Questions\n- Summary\n- Thoughts"
-                )
-                
-                # 保存按钮
-                col_save, col_cancel = st.columns([1, 4])
-                with col_save:
-                    if st.button("💾 Save Notes", key="nlp_save_notes", use_container_width=True):
-                        if new_notes != current_notes:
-                            success = save_nlp_chapter_notes(
-                                st.session_state.nlp_selected_chapter,
-                                st.session_state.nlp_selected_section,
-                                new_notes
-                            )
-                            if success:
-                                st.success("✅ Notes saved successfully!")
-                                # 更新 session state 中的 notes
-                                section["notes"] = new_notes
-                                time.sleep(1)
-                                st.rerun()
-                            else:
-                                st.error("❌ Failed to save notes.")
-                        else:
-                            st.info("No changes to save.")
-                
-                # 推荐学习资源（可选）
-                st.markdown("---")
-                st.markdown("### 🔗 Recommended Resources")
-                
-                # 简单生成一些资源链接
-                topic = chapter_name
-                st.markdown(f"""
-                - **YouTube**: [Search "{topic}" on YouTube](https://www.youtube.com/results?search_query={topic.replace(' ', '+')}+information+retrieval)
-                - **Google Scholar**: [Search "{topic}" on Google Scholar](https://scholar.google.com/scholar?q={topic.replace(' ', '+')})
-                - **Wikipedia**: [Read about {topic} on Wikipedia](https://en.wikipedia.org/wiki/{topic.replace(' ', '_')})
-                """)
-        
     else:
         col1, col2, col3 = st.columns(3)
         with col1:
@@ -413,11 +222,9 @@ def render_main_content(levels_data, nemt_cet_data, client, get_current_page_ful
                                 st.session_state.flip_states[key] = not flipped
                                 st.rerun()
 
-                # ========== Vocabulary 部分（带图片和视频）==========
                 if "vocabulary" in node and node["vocabulary"]:
                     st.markdown("### Vocabulary")
                     cols = st.columns(3)
-                    
                     for idx, item in enumerate(node["vocabulary"]):
                         with cols[idx % 3]:
                             parts = item.rsplit(" ", 1)
@@ -447,28 +254,10 @@ def render_main_content(levels_data, nemt_cet_data, client, get_current_page_ful
                                     display_content += f"\n{pinyin}"
 
                             if st.button(display_content, key=f"btn_{key}", use_container_width=True):
-                                was_flipped = flipped
-                                
                                 if "flip_states" not in st.session_state:
                                     st.session_state.flip_states = {}
                                 st.session_state.flip_states[key] = not flipped
-                                
-                                if not was_flipped:
-                                    with st.spinner(f"Searching '{word}'..."):
-                                        st.session_state[f"vocab_img_{key}"] = search_pexels_image(word)
-                                        st.session_state[f"vocab_video_{key}"] = search_pexels_video(word)
-                                
                                 st.rerun()
-                            
-                            # 显示图片和视频
-                            if flipped:
-                                img_url = st.session_state.get(f"vocab_img_{key}")
-                                if img_url:
-                                    st.image(img_url, use_container_width=True)
-                                
-                                video_url = st.session_state.get(f"vocab_video_{key}")
-                                if video_url:
-                                    st.video(video_url)
 
                 if not any(key in node for key in ["notes", "examples", "vocabulary"]):
                     sub_keys = [k for k in node.keys() if k not in ("name", "notes", "examples", "vocabulary")]
@@ -568,7 +357,6 @@ def render_main_content(levels_data, nemt_cet_data, client, get_current_page_ful
                 with st.container(border=True):
                     st.markdown(f"<div style='font-size: 20px; line-height: 1.6; padding: 15px;'>{content_node['notes']}</div>", unsafe_allow_html=True)
             
-            # ========== Words 部分（带图片和视频）==========
             if "words" in content_node and content_node["words"]:
                 st.markdown("<h3 style='font-size: 36px; font-weight: 600; margin-top: 30px; margin-bottom: 20px;'>Words</h3>", unsafe_allow_html=True)
                 
@@ -594,15 +382,16 @@ def render_main_content(levels_data, nemt_cet_data, client, get_current_page_ful
                     flipped = st.session_state.get("flip_states", {}).get(card_key, False)
                     
                     with cols[idx % 3]:
-                        # 获取翻译
-                        cache_key = f"{word}_{target_lang}"
-                        if cache_key in st.session_state.translation_cache_nemt:
-                            translation = st.session_state.translation_cache_nemt[cache_key]
-                        else:
-                            translation = None
-                        
+
                         if flipped:
-                            display_content = translation if translation else word
+                            cache_key = f"{word}_{target_lang}"
+                            if cache_key in st.session_state.translation_cache_nemt:
+                                translation = st.session_state.translation_cache_nemt[cache_key]
+                            else:
+                                with st.spinner(f"Translating {word}..."):
+                                    translation = translate_word(client,word, target_lang)
+                                    st.session_state.translation_cache_nemt[cache_key] = translation
+                            display_content = translation
                         else:
                             display_content = word
                         
@@ -610,39 +399,10 @@ def render_main_content(levels_data, nemt_cet_data, client, get_current_page_ful
                             display_content = word if not flipped else f"({word})"
                         
                         if st.button(display_content, key=f"btn_{card_key}", use_container_width=True):
-                            was_flipped = flipped
-                            
                             if "flip_states" not in st.session_state:
                                 st.session_state.flip_states = {}
                             st.session_state.flip_states[card_key] = not flipped
-                            
-                            if not was_flipped:
-                                # 获取翻译
-                                cache_key = f"{word}_{target_lang}"
-                                if cache_key in st.session_state.translation_cache_nemt:
-                                    trans = st.session_state.translation_cache_nemt[cache_key]
-                                else:
-                                    with st.spinner(f"Translating {word}..."):
-                                        trans = translate_word(client, word, target_lang)
-                                        st.session_state.translation_cache_nemt[cache_key] = trans
-                                
-                                # 搜索图片和视频
-                                with st.spinner(f"Searching '{word}'..."):
-                                    st.session_state[f"word_img_{card_key}"] = search_pexels_image(word)
-                                    st.session_state[f"word_video_{card_key}"] = search_pexels_video(word)
-                                    st.session_state[f"word_trans_{card_key}"] = trans
-                            
                             st.rerun()
-                        
-                        # 显示图片和视频
-                        if flipped:
-                            img_url = st.session_state.get(f"word_img_{card_key}")
-                            if img_url:
-                                st.image(img_url, use_container_width=True)
-                            
-                            video_url = st.session_state.get(f"word_video_{card_key}")
-                            if video_url:
-                                st.video(video_url)
             
             if "examples" in content_node and content_node["examples"]:
                 st.markdown("<h3 style='font-size: 36px; font-weight: 600; margin-top: 30px; margin-bottom: 15px;'>Example Sentences</h3>", unsafe_allow_html=True)
