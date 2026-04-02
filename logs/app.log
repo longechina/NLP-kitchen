@@ -3035,3 +3035,1147 @@ Imagine you meet someone for the first time. You want to say:
 2026-04-01 21:56:18,177 - utils.data_loader - INFO - Saved notes to data/nlp/nlp1.json
 2026-04-01 21:56:33,558 - utils.data_loader - INFO - Updated notes for CHAPTER_1/1.1
 2026-04-01 21:56:33,559 - utils.data_loader - INFO - Saved notes to data/nlp/nlp1.json
+2026-04-01 22:15:04,039 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-01 22:15:04,041 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-01 22:15:04,043 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-01 22:15:04,127 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-01 22:15:04,128 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-01 22:15:04,129 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-01 22:15:04,130 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-01 22:15:04,133 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-01 22:15:04,134 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-01 22:15:04,135 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-01 22:15:04,136 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-01 22:15:04,138 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-01 22:15:04,139 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-01 22:15:04,140 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-01 22:15:04,143 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-01 22:15:04,144 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-01 22:15:04,145 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-01 22:15:04,145 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-01 22:15:04,146 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-01 22:15:04,146 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-01 22:15:04,147 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-01 22:15:04,147 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-01 22:15:04,148 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-01 22:15:04,148 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json
+2026-04-01 22:20:51,653 - __main__ - INFO - User input: hi...
+2026-04-01 22:20:51,654 - __main__ - INFO - Current messages count: 1
+2026-04-01 22:20:51,856 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.468834 seconds
+2026-04-01 22:20:52,434 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.888977 seconds
+2026-04-01 22:20:53,434 - __main__ - ERROR - AI reply error: Connection error.
+2026-04-01 22:20:54,672 - groq._base_client - INFO - Retrying request to /openai/v1/audio/speech in 0.416822 seconds
+2026-04-01 22:20:55,197 - groq._base_client - INFO - Retrying request to /openai/v1/audio/speech in 0.943734 seconds
+2026-04-01 22:20:56,252 - utils.tts - ERROR - Orpheus TTS error: Connection error.
+2026-04-01 22:26:25,896 - __main__ - INFO - User input: hi...
+2026-04-01 22:26:25,897 - __main__ - INFO - Current messages count: 1
+2026-04-01 22:26:26,007 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.459110 seconds
+2026-04-01 22:26:26,574 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.856893 seconds
+2026-04-01 22:26:27,544 - __main__ - ERROR - AI reply error: Connection error.
+2026-04-01 22:26:27,685 - groq._base_client - INFO - Retrying request to /openai/v1/audio/speech in 0.481493 seconds
+2026-04-01 22:26:28,277 - groq._base_client - INFO - Retrying request to /openai/v1/audio/speech in 0.996026 seconds
+2026-04-01 22:26:29,381 - utils.tts - ERROR - Orpheus TTS error: Connection error.
+2026-04-01 22:43:58,411 - __main__ - INFO - User input: 什么是倒排序发...
+2026-04-01 22:43:58,412 - __main__ - INFO - Current messages count: 3
+2026-04-01 22:44:03,420 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.378606 seconds
+2026-04-01 22:44:06,510 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-01 22:44:06,551 - __main__ - INFO - AI reply: Guidance – think of an index in a book: instead of listing “page → keywords,” you list “keyword → pa...
+2026-04-01 22:44:07,317 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-01 22:44:07,319 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3474, Requested 542. Please try again in 2h46m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-01 22:46:27,626 - __main__ - INFO - User input: yognzhongwenhuidawo...
+2026-04-01 22:46:27,629 - __main__ - INFO - Current messages count: 5
+2026-04-01 22:46:27,750 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.419182 seconds
+2026-04-01 22:46:28,273 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.947001 seconds
+2026-04-01 22:46:29,330 - __main__ - ERROR - AI reply error: Connection error.
+2026-04-01 22:46:29,436 - groq._base_client - INFO - Retrying request to /openai/v1/audio/speech in 0.422298 seconds
+2026-04-01 22:46:29,961 - groq._base_client - INFO - Retrying request to /openai/v1/audio/speech in 0.818647 seconds
+2026-04-01 22:46:30,887 - utils.tts - ERROR - Orpheus TTS error: Connection error.
+2026-04-02 11:33:02,865 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-02 11:33:02,869 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-02 11:33:02,871 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-02 11:33:03,123 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-02 11:33:03,126 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-02 11:33:03,127 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-02 11:33:03,127 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-02 11:33:03,128 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-02 11:33:03,129 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-02 11:33:03,130 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-02 11:33:03,130 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-02 11:33:03,131 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-02 11:33:03,133 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-02 11:33:03,134 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-02 11:33:03,135 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-02 11:33:03,136 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-02 11:33:03,136 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-02 11:33:03,137 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-02 11:33:03,138 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-02 11:33:03,138 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-02 11:33:03,139 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-02 11:33:03,139 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-02 11:33:03,140 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-02 11:33:03,141 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json
+2026-04-02 11:33:20,934 - __main__ - INFO - User input: hi...
+2026-04-02 11:33:20,935 - __main__ - INFO - Current messages count: 1
+2026-04-02 11:33:22,976 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-04-02 11:33:22,977 - __main__ - ERROR - AI reply error: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-20b` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 65972, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 11:33:23,553 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 11:36:52,898 - __main__ - INFO - User input: hi...
+2026-04-02 11:36:52,898 - __main__ - INFO - Current messages count: 1
+2026-04-02 11:36:53,887 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-04-02 11:36:53,889 - __main__ - ERROR - AI reply error: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-20b` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 65972, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 11:36:54,712 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 11:45:21,168 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-02 11:45:21,169 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-02 11:45:21,170 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-02 11:45:21,334 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-02 11:45:21,335 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-02 11:45:21,336 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-02 11:45:21,337 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-02 11:45:21,337 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-02 11:45:21,338 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-02 11:45:21,338 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-02 11:45:21,339 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-02 11:45:21,339 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-02 11:45:21,340 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-02 11:45:21,341 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-02 11:45:21,341 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-02 11:45:21,341 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-02 11:45:21,342 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-02 11:45:21,342 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-02 11:45:21,343 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-02 11:45:21,343 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-02 11:45:21,344 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-02 11:45:21,344 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-02 11:45:21,344 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-02 11:45:21,345 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json
+2026-04-02 11:45:29,240 - __main__ - INFO - User input: hi...
+2026-04-02 11:45:29,241 - __main__ - INFO - Current messages count: 0
+2026-04-02 11:45:30,527 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:45:30,556 - __main__ - INFO - AI reply: 你好！很高兴见到你。你现在在学习中文吗？想聊聊学习进度，还是需要练习口语？如果你有任何问题，随时告诉我！...
+2026-04-02 11:45:31,037 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 11:45:41,863 - __main__ - INFO - User input: what's content...
+2026-04-02 11:45:41,863 - __main__ - INFO - Current messages count: 2
+2026-04-02 11:45:44,263 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:45:44,275 - __main__ - INFO - AI reply: It sounds like you’re looking for a rundown of what “content” you should focus on while learning Chi...
+2026-04-02 11:45:44,677 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 413 Payload Too Large"
+2026-04-02 11:45:44,678 - utils.tts - ERROR - Orpheus TTS error: Error code: 413 - {'error': {'message': 'Request too large for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Requested 3638, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 11:45:49,790 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:45:50,407 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:45:50,768 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 11:45:50,770 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'input is required', 'type': 'invalid_request_error'}}
+2026-04-02 11:45:50,771 - __main__ - INFO - [AUTO] Page greeting sent for textbook_2_LEVEL_II_PRAGMATIC_COMPETENCE
+2026-04-02 11:45:52,868 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:45:52,972 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:45:53,229 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 11:45:53,231 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'input is required', 'type': 'invalid_request_error'}}
+2026-04-02 11:45:53,232 - __main__ - INFO - [AUTO] Page greeting sent for textbook_2_LEVEL_II_PRAGMATIC_COMPETENCE_1_interact_socially_and_professionally
+2026-04-02 11:45:53,233 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:45:54,148 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:45:55,508 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:45:55,990 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 11:45:55,991 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'input is required', 'type': 'invalid_request_error'}}
+2026-04-02 11:45:55,991 - __main__ - INFO - [AUTO] Page greeting sent for textbook_2_LEVEL_II_PRAGMATIC_COMPETENCE_1_interact_socially_and_professionally_1.1
+2026-04-02 11:45:55,994 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:45:57,317 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:46:22,182 - __main__ - INFO - User input: waht's current content?...
+2026-04-02 11:46:22,182 - __main__ - INFO - Current messages count: 7
+2026-04-02 11:46:24,061 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:46:24,081 - __main__ - INFO - AI reply: **What you’re looking at right now**
+
+You’re in the *Level II – Pragmatic Competence* section, speci...
+2026-04-02 11:46:24,409 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 11:46:24,410 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 2405, Requested 2038. Please try again in 5h37m12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 11:46:58,831 - __main__ - INFO - User input: teach me all vocabs...
+2026-04-02 11:46:58,831 - __main__ - INFO - Current messages count: 9
+2026-04-02 11:47:01,099 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:47:01,147 - __main__ - INFO - AI reply: ## 📚 Vocabulary List – “Ask and give news and update of someone”
+
+Below you’ll find each word with:
+...
+2026-04-02 11:47:01,492 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 11:47:01,493 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 2404, Requested 2807. Please try again in 10h44m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 11:49:12,687 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:49:25,927 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:52:16,906 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:52:18,113 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:52:18,504 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 11:52:18,505 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'input is required', 'type': 'invalid_request_error'}}
+2026-04-02 11:52:18,505 - __main__ - INFO - [AUTO] Page greeting sent for textbook_1_LEVEL_I_PRAGMATIC_COMPETENCE
+2026-04-02 11:52:18,508 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:52:19,575 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:52:20,785 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:52:21,110 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 11:52:21,111 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'input is required', 'type': 'invalid_request_error'}}
+2026-04-02 11:52:21,111 - __main__ - INFO - [AUTO] Page greeting sent for textbook_1_LEVEL_I_PRAGMATIC_COMPETENCE_1_interact_socially_and_professionally
+2026-04-02 11:52:21,118 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:52:21,804 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:52:23,998 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:52:24,328 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 11:52:24,329 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'input is required', 'type': 'invalid_request_error'}}
+2026-04-02 11:52:24,330 - __main__ - INFO - [AUTO] Page greeting sent for textbook_1_LEVEL_I_PRAGMATIC_COMPETENCE_1_interact_socially_and_professionally_1.1
+2026-04-02 11:52:24,335 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:52:25,321 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:52:36,000 - __main__ - INFO - User input: teach me all vocabs?...
+2026-04-02 11:52:36,000 - __main__ - INFO - Current messages count: 3
+2026-04-02 11:52:36,002 - __main__ - INFO - [TEACHING] Direct-answer interceptor triggered for: teach me all vocabs?
+2026-04-02 11:52:37,172 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:52:37,181 - __main__ - INFO - AI reply: Sure! Let’s start with the word **介绍**. What do you already know about it?...
+2026-04-02 11:52:37,666 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 11:52:53,695 - __main__ - INFO - User input: teach me all voabs...
+2026-04-02 11:52:53,695 - __main__ - INFO - Current messages count: 5
+2026-04-02 11:52:53,696 - __main__ - INFO - [TEACHING] Direct-answer interceptor triggered for: teach me all voabs
+2026-04-02 11:52:54,919 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:52:54,944 - __main__ - INFO - AI reply: Let’s focus on the word **你好**. What do you already know about it?...
+2026-04-02 11:52:55,414 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 11:54:56,567 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:54:58,108 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:54:58,443 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 11:54:58,444 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'input is required', 'type': 'invalid_request_error'}}
+2026-04-02 11:54:58,444 - __main__ - INFO - [AUTO] Page greeting sent for textbook_1_LEVEL_I_PRAGMATIC_COMPETENCE
+2026-04-02 11:54:58,447 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:54:59,581 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:55:00,773 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:55:01,128 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 11:55:01,131 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'input is required', 'type': 'invalid_request_error'}}
+2026-04-02 11:55:01,132 - __main__ - INFO - [AUTO] Page greeting sent for textbook_1_LEVEL_I_PRAGMATIC_COMPETENCE_1_interact_socially_and_professionally
+2026-04-02 11:55:01,135 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:55:02,470 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:55:07,561 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:55:07,892 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 11:55:07,893 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'input is required', 'type': 'invalid_request_error'}}
+2026-04-02 11:55:07,893 - __main__ - INFO - [AUTO] Page greeting sent for textbook_1_LEVEL_I_PRAGMATIC_COMPETENCE_1_interact_socially_and_professionally_1.1
+2026-04-02 11:55:07,901 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:55:09,470 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:55:31,395 - __main__ - INFO - User input: teach me all vocabs...
+2026-04-02 11:55:31,395 - __main__ - INFO - Current messages count: 3
+2026-04-02 11:55:31,395 - __main__ - INFO - [TEACHING] Direct-answer interceptor triggered for: teach me all vocabs
+2026-04-02 11:55:32,751 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:55:32,763 - __main__ - INFO - AI reply: 你对“介绍”这个词有什么了解吗？...
+2026-04-02 11:55:33,290 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 11:57:47,149 - __main__ - INFO - User input: hi...
+2026-04-02 11:57:47,150 - __main__ - INFO - Current messages count: 0
+2026-04-02 11:57:48,522 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:57:48,534 - __main__ - INFO - AI reply: 你好！😊 你今天过得怎么样？在学习中文方面有什么想聊或需要帮助的地方吗？如果你想练习对话、学习新词汇，或者想了解中文文化，随时告诉我！...
+2026-04-02 11:57:49,037 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 11:58:03,839 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:58:04,602 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:58:04,604 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 11:58:04,604 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:58:05,829 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:58:11,341 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.392817 seconds
+2026-04-02 11:58:12,981 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:58:13,002 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 11:58:13,005 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:58:14,522 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:58:21,829 - __main__ - INFO - User input: teach me all vocabs...
+2026-04-02 11:58:21,829 - __main__ - INFO - Current messages count: 2
+2026-04-02 11:58:21,830 - __main__ - INFO - [TEACHING] Direct-answer interceptor triggered for: teach me all vocabs
+2026-04-02 11:58:23,275 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:58:23,297 - __main__ - INFO - AI reply: 在“协调行动”这一主题中，你已经听说过“协商”这个词了吗？你能分享一下你对它的理解吗？...
+2026-04-02 11:58:23,808 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 11:58:32,889 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:58:32,904 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 11:58:32,910 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:58:34,510 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:58:42,416 - __main__ - INFO - User input: teach me all vocabs...
+2026-04-02 11:58:42,417 - __main__ - INFO - Current messages count: 4
+2026-04-02 11:58:42,417 - __main__ - INFO - [TEACHING] Direct-answer interceptor triggered for: teach me all vocabs
+2026-04-02 11:58:43,545 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:58:43,555 - __main__ - INFO - AI reply: 你对“应该”这个词了解多少？它在句子里通常是怎么用的？...
+2026-04-02 11:58:44,045 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 11:59:04,151 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:59:04,233 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:59:04,235 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 11:59:04,237 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:59:05,298 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:59:07,024 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:59:07,028 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 11:59:07,029 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:59:08,418 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:59:09,439 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:59:09,441 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 11:59:09,443 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 11:59:11,036 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:59:15,794 - __main__ - INFO - User input: teach me all vocbas...
+2026-04-02 11:59:15,794 - __main__ - INFO - Current messages count: 0
+2026-04-02 11:59:15,794 - __main__ - INFO - [TEACHING] Direct-answer interceptor triggered for: teach me all vocbas
+2026-04-02 11:59:17,929 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:59:17,932 - __main__ - INFO - AI reply: 你对“应该”这个词已经知道些什么？...
+2026-04-02 11:59:18,444 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 11:59:32,215 - __main__ - INFO - User input: teach me all vocbas...
+2026-04-02 11:59:32,219 - __main__ - INFO - Current messages count: 2
+2026-04-02 11:59:32,223 - __main__ - INFO - [TEACHING] Direct-answer interceptor triggered for: teach me all vocbas
+2026-04-02 11:59:33,669 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 11:59:33,678 - __main__ - INFO - AI reply: 好的，那我们来聊聊“可以”。请问你对“可以”这个词的用法和意义有什么了解？...
+2026-04-02 11:59:34,154 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 12:02:07,927 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:02:08,074 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:02:08,075 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:02:08,076 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:02:09,351 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:02:10,790 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:02:10,793 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:02:10,796 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:02:12,210 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:02:13,272 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:02:13,275 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:02:13,281 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:02:14,717 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:02:18,911 - __main__ - INFO - User input: teach me all vocbas...
+2026-04-02 12:02:18,912 - __main__ - INFO - Current messages count: 0
+2026-04-02 12:02:21,465 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:02:21,468 - __main__ - INFO - AI reply: Below is a **complete, organized vocabulary list** for the “Greet and introduce oneself or other peo...
+2026-04-02 12:02:21,994 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 12:02:21,995 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 2718, Requested 2173. Please try again in 8h36m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 12:06:36,065 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:06:36,910 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:06:36,913 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:06:36,917 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:06:38,501 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:06:39,724 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:06:39,727 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:06:39,728 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:06:41,813 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:06:42,133 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:06:42,139 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:06:42,148 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:06:43,269 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:06:49,849 - __main__ - INFO - User input: what's your teaching priciple...
+2026-04-02 12:06:49,850 - __main__ - INFO - Current messages count: 0
+2026-04-02 12:06:51,448 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:06:51,451 - __main__ - INFO - AI reply: 请问你想了解哪方面的教学原则？  
+例如是针对学生学习方法、课堂管理，还是课程设计？  
+如果你能先说明自己的教学目标，我可以帮你梳理一些常见的原则，并给出一些可操作的建议。  
+你觉得在教学中最重要...
+2026-04-02 12:06:52,019 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 12:07:15,024 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-02 12:07:15,026 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-02 12:07:15,028 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-02 12:07:15,100 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-02 12:07:15,101 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-02 12:07:15,101 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-02 12:07:15,102 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-02 12:07:15,102 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-02 12:07:15,103 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-02 12:07:15,104 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-02 12:07:15,105 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-02 12:07:15,105 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-02 12:07:15,106 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-02 12:07:15,107 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-02 12:07:15,109 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-02 12:07:15,111 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-02 12:07:15,113 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-02 12:07:15,116 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-02 12:07:15,117 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-02 12:07:15,118 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-02 12:07:15,119 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-02 12:07:15,120 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-02 12:07:15,120 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-02 12:07:15,121 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json
+2026-04-02 12:07:15,127 - __main__ - INFO - User input: teach me all coabs...
+2026-04-02 12:07:15,128 - __main__ - INFO - Current messages count: 0
+2026-04-02 12:07:17,800 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:07:17,816 - __main__ - INFO - AI reply: 能否再说明一下您想学习的具体内容？比如说“coabs”指的是哪个词汇或概念？如果您能提供更多细节，我可以更好地为您提供学习建议。...
+2026-04-02 12:07:18,363 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 12:07:27,584 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:07:27,589 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:07:27,783 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:07:30,023 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:07:30,309 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:07:30,310 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:07:32,113 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:07:32,115 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:07:32,123 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:07:32,667 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:07:33,369 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:07:35,028 - __main__ - INFO - User input: teach me all coabs...
+2026-04-02 12:07:35,028 - __main__ - INFO - Current messages count: 2
+2026-04-02 12:07:36,763 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:07:36,766 - __main__ - INFO - AI reply: 请您再说说“coabs”到底指的是什么？  
+- 是某个词组、专业术语，还是拼音或缩写？  
+- 还是您想了解与 “co‑ab” 相关的表达（例如合作、协作等）？
+
+了解了具体目标后，我可以帮您制定学...
+2026-04-02 12:07:37,302 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 12:08:28,042 - __main__ - INFO - User input: what's the current page content?...
+2026-04-02 12:08:28,043 - __main__ - INFO - Current messages count: 4
+2026-04-02 12:08:29,629 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:08:29,641 - __main__ - INFO - AI reply: 当前页面主要介绍了“请教与建议”这一实用语法点，内容包括：
+
+1. **章节定位**  
+   - LEVEL_I > PRAGMATIC_COMPETENCE > 4_regulate_action...
+2026-04-02 12:08:29,978 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 12:08:29,979 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3261, Requested 345. Please try again in 2m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 12:08:53,798 - __main__ - INFO - User input: teach me all vocabs...
+2026-04-02 12:08:53,799 - __main__ - INFO - Current messages count: 6
+2026-04-02 12:08:56,167 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:08:56,180 - __main__ - INFO - AI reply: 想系统地掌握这些词汇，建议先按下面的步骤来安排学习计划：
+
+1. **先确定学习目标**  
+   - 先把“请教与建议”这一主题的核心词汇写成一张表格。  
+   - 例如：应该、可以、最好、别、不...
+2026-04-02 12:08:56,523 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 12:08:56,524 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3260, Requested 828. Please try again in 3h15m12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 12:16:33,039 - __main__ - INFO - User input: hi...
+2026-04-02 12:16:33,040 - __main__ - INFO - Current messages count: 0
+2026-04-02 12:16:35,106 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:16:35,118 - __main__ - INFO - AI reply: Hello! I’m excited to help you with your Chinese studies.  
+Let’s start by figuring out what you’d l...
+2026-04-02 12:16:35,513 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 12:16:35,514 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3241, Requested 930. Please try again in 3h48m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 12:16:40,478 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:16:46,241 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:16:46,246 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:16:46,251 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:16:47,589 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:16:49,174 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:16:49,184 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:16:49,193 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:16:50,186 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:16:51,862 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:16:51,877 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:16:51,887 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:16:53,082 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:16:59,657 - __main__ - INFO - User input: teach me all vocabs...
+2026-04-02 12:16:59,657 - __main__ - INFO - Current messages count: 2
+2026-04-02 12:17:01,785 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:17:01,799 - __main__ - INFO - AI reply: Here’s the full vocabulary list from the current section (no translations, just the words and their ...
+2026-04-02 12:17:02,152 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 12:17:02,153 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3240, Requested 2414. Please try again in 13h41m36s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 12:19:31,926 - __main__ - INFO - User input: hi...
+2026-04-02 12:19:31,927 - __main__ - INFO - Current messages count: 0
+2026-04-02 12:19:33,822 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:19:33,835 - __main__ - INFO - AI reply: Hello! 👋  
+Since you’re learning Chinese, let’s start with a simple greeting.
+
+**Chinese phrase:** 你...
+2026-04-02 12:19:34,159 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 12:19:34,161 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3234, Requested 604. Please try again in 1h35m12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 12:19:46,661 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:19:47,087 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:19:47,088 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:19:47,093 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:19:48,199 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:19:50,433 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:19:50,440 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:19:50,449 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:19:51,801 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:19:53,424 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:19:53,427 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:19:53,432 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:19:54,821 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:19:59,023 - __main__ - INFO - User input: teach me all vocabs...
+2026-04-02 12:19:59,023 - __main__ - INFO - Current messages count: 2
+2026-04-02 12:20:01,414 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:20:01,424 - __main__ - INFO - AI reply: Sure, let’s explore the vocabulary you’ll be using in this lesson.  
+Instead of dumping a list, let’...
+2026-04-02 12:20:01,872 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 12:20:01,873 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3232, Requested 2017. Please try again in 10h59m36s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 12:22:03,657 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:22:04,926 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:22:04,930 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:22:04,938 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:22:06,049 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:22:07,638 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:22:07,640 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:22:07,645 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:22:08,978 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:22:09,925 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:22:09,929 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:22:09,934 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:22:12,047 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:22:17,414 - __main__ - INFO - User input: teach me all vocbas...
+2026-04-02 12:22:17,414 - __main__ - INFO - Current messages count: 0
+2026-04-02 12:22:19,561 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:22:19,585 - __main__ - INFO - AI reply: Below is the full vocabulary list for the current section, followed by some guidance on how to remem...
+2026-04-02 12:22:19,950 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 12:22:19,952 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3227, Requested 2501. Please try again in 14h11m12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 12:23:31,003 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:23:31,949 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:23:31,952 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:23:31,957 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:23:33,488 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:23:37,713 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:23:37,723 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:23:37,730 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:23:38,232 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:23:39,289 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:23:40,089 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:23:40,091 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:23:40,096 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:23:41,543 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:23:45,881 - __main__ - INFO - User input: teach me all vocabs...
+2026-04-02 12:23:45,881 - __main__ - INFO - Current messages count: 0
+2026-04-02 12:23:49,462 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:23:49,473 - __main__ - INFO - AI reply: **Here is the full set of vocabulary you are working with (Chinese characters with pinyin):**  
+
+你好 ...
+2026-04-02 12:23:49,799 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 12:23:49,801 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3223, Requested 1403. Please try again in 6h50m23.999999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 12:27:32,915 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:32,918 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:32,929 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:27:32,978 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:27:34,272 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:35,500 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:35,505 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:27:35,512 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:27:36,595 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:37,612 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:37,617 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:27:37,620 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:27:38,989 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:44,622 - __main__ - INFO - User input: teach me all vovocbs...
+2026-04-02 12:27:44,622 - __main__ - INFO - Current messages count: 0
+2026-04-02 12:27:50,620 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:27:50,628 - __main__ - INFO - AI reply: **Vocabulary List (from the current page)**  
+
+- 应该  
+- 可以  
+- 最好  
+- 别  
+- 不要  
+- 试试  
+- 一下  
+- 吧  ...
+2026-04-02 12:27:51,014 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 12:27:51,015 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'Input must be less than 4000 characters', 'type': 'invalid_request_error'}}
+2026-04-02 12:29:22,330 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:29:22,347 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:29:22,355 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:29:23,570 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:29:26,604 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:29:26,606 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:29:26,607 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:29:27,782 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:29:28,782 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:30:10,483 - __main__ - INFO - User input: teach me the words unlearned...
+2026-04-02 12:30:10,483 - __main__ - INFO - Current messages count: 1
+2026-04-02 12:30:10,484 - __main__ - ERROR - AI reply error: st.session_state has no attribute "model_resp_tokens". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:30:11,847 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 12:32:01,005 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:01,536 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:01,541 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:32:01,544 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:32:02,967 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:03,634 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:03,637 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:32:03,643 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:32:04,633 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:32:06,344 - __main__ - INFO - User input: hi...
+2026-04-02 12:32:06,345 - __main__ - INFO - Current messages count: 1
+2026-04-02 12:32:06,347 - __main__ - ERROR - AI reply error: st.session_state has no attribute "model_resp_tokens". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:32:07,658 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 12:33:05,056 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-02 12:33:05,057 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-02 12:33:05,058 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-02 12:33:05,172 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-02 12:33:05,173 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-02 12:33:05,173 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-02 12:33:05,174 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-02 12:33:05,175 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-02 12:33:05,175 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-02 12:33:05,176 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-02 12:33:05,176 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-02 12:33:05,177 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-02 12:33:05,179 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-02 12:33:05,180 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-02 12:33:05,180 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-02 12:33:05,181 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-02 12:33:05,182 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-02 12:33:05,182 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-02 12:33:05,183 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-02 12:33:05,184 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-02 12:33:05,184 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-02 12:33:05,185 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-02 12:33:05,185 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-02 12:33:05,186 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json
+2026-04-02 12:33:07,653 - __main__ - INFO - User input: hi...
+2026-04-02 12:33:07,653 - __main__ - INFO - Current messages count: 0
+2026-04-02 12:33:10,161 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:33:10,281 - __main__ - INFO - AI reply: Hi there!  
+When we start learning Chinese, it can feel a bit like picking up a new recipe: each cha...
+2026-04-02 12:33:10,724 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 12:33:10,725 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3585, Requested 456. Please try again in 2h56m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 12:33:56,021 - __main__ - INFO - User input: hi...
+2026-04-02 12:33:56,022 - __main__ - INFO - Current messages count: 2
+2026-04-02 12:33:57,616 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:33:57,629 - __main__ - INFO - AI reply: Hello!  
+Learning Chinese can be like building a puzzle—each piece (word, phrase, or character) fits...
+2026-04-02 12:33:58,026 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 12:33:58,027 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3583, Requested 355. Please try again in 2h15m11.999999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 12:34:30,123 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:34:30,132 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 12:34:30,133 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 12:34:31,197 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:34:32,577 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:34:46,970 - __main__ - INFO - User input: teach me words that marked in red...
+2026-04-02 12:34:46,971 - __main__ - INFO - Current messages count: 1
+2026-04-02 12:34:51,749 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 12:34:51,759 - __main__ - INFO - AI reply: **Guidance for the red‑marked words**
+
+Below you’ll find a short, interactive guide for each vocabul...
+2026-04-02 12:34:52,111 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 12:34:52,112 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'Input must be less than 4000 characters', 'type': 'invalid_request_error'}}
+2026-04-02 13:29:29,154 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-02 13:29:29,161 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-02 13:29:29,162 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-02 13:29:29,313 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-02 13:29:29,316 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-02 13:29:29,316 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-02 13:29:29,317 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-02 13:29:29,318 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-02 13:29:29,318 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-02 13:29:29,319 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-02 13:29:29,320 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-02 13:29:29,320 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-02 13:29:29,321 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-02 13:29:29,322 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-02 13:29:29,323 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-02 13:29:29,324 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-02 13:29:29,324 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-02 13:29:29,325 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-02 13:29:29,325 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-02 13:29:29,326 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-02 13:29:29,327 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-02 13:29:29,327 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-02 13:29:29,328 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-02 13:29:29,328 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json
+2026-04-02 13:30:03,148 - __main__ - INFO - User input: i...
+2026-04-02 13:30:03,149 - __main__ - INFO - Current messages count: 0
+2026-04-02 13:30:03,156 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.470625 seconds
+2026-04-02 13:30:03,629 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.948396 seconds
+2026-04-02 13:30:04,583 - __main__ - ERROR - AI reply error: Connection error.
+2026-04-02 13:30:04,585 - groq._base_client - INFO - Retrying request to /openai/v1/audio/speech in 0.437999 seconds
+2026-04-02 13:30:05,027 - groq._base_client - INFO - Retrying request to /openai/v1/audio/speech in 0.836013 seconds
+2026-04-02 13:30:05,868 - utils.tts - ERROR - Orpheus TTS error: Connection error.
+2026-04-02 13:30:29,072 - __main__ - INFO - User input: hi...
+2026-04-02 13:30:29,073 - __main__ - INFO - Current messages count: 2
+2026-04-02 13:30:30,260 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 13:30:30,268 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 13:30:30,746 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 13:30:30,747 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3442, Requested 195. Please try again in 14m48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 13:39:44,731 - __main__ - INFO - User input: hi...
+2026-04-02 13:39:44,732 - __main__ - INFO - Current messages count: 0
+2026-04-02 13:39:44,739 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.442421 seconds
+2026-04-02 13:39:45,191 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.766709 seconds
+2026-04-02 13:39:45,965 - __main__ - ERROR - AI reply error: Connection error.
+2026-04-02 13:39:45,971 - groq._base_client - INFO - Retrying request to /openai/v1/audio/speech in 0.418789 seconds
+2026-04-02 13:39:46,394 - groq._base_client - INFO - Retrying request to /openai/v1/audio/speech in 0.771166 seconds
+2026-04-02 13:39:47,171 - utils.tts - ERROR - Orpheus TTS error: Connection error.
+2026-04-02 13:40:11,274 - __main__ - INFO - User input: hi...
+2026-04-02 13:40:11,275 - __main__ - INFO - Current messages count: 2
+2026-04-02 13:40:12,478 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 13:40:12,482 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 13:40:12,884 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 13:40:12,886 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3417, Requested 195. Please try again in 4m48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:00:03,699 - __main__ - INFO - User input: hi...
+2026-04-02 14:00:03,700 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:00:05,904 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:00:05,927 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:00:06,704 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 14:02:07,181 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-02 14:02:07,183 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-02 14:02:07,184 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-02 14:02:07,351 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-02 14:02:07,352 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-02 14:02:07,352 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-02 14:02:07,353 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-02 14:02:07,354 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-02 14:02:07,354 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-02 14:02:07,355 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-02 14:02:07,355 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-02 14:02:07,356 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-02 14:02:07,357 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-02 14:02:07,357 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-02 14:02:07,358 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-02 14:02:07,358 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-02 14:02:07,359 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-02 14:02:07,360 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-02 14:02:07,360 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-02 14:02:07,361 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-02 14:02:07,361 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-02 14:02:07,362 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-02 14:02:07,362 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-02 14:02:07,362 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json
+2026-04-02 14:02:18,096 - __main__ - INFO - User input: hi...
+2026-04-02 14:02:18,096 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:02:19,179 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:02:19,183 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:02:19,577 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:02:19,579 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3558, Requested 195. Please try again in 1h1m12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:03:51,289 - __main__ - INFO - User input: hi...
+2026-04-02 14:03:51,290 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:03:52,562 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:03:52,565 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:03:52,968 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:03:52,969 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3554, Requested 195. Please try again in 59m36s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:04:41,611 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-02 14:04:41,612 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-02 14:04:41,613 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-02 14:04:41,709 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-02 14:04:41,710 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-02 14:04:41,711 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-02 14:04:41,711 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-02 14:04:41,712 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-02 14:04:41,713 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-02 14:04:41,713 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-02 14:04:41,714 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-02 14:04:41,714 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-02 14:04:41,714 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-02 14:04:41,715 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-02 14:04:41,715 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-02 14:04:41,716 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-02 14:04:41,716 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-02 14:04:41,716 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-02 14:04:41,717 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-02 14:04:41,717 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-02 14:04:41,717 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-02 14:04:41,718 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-02 14:04:41,718 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-02 14:04:41,718 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json
+2026-04-02 14:04:44,116 - __main__ - INFO - User input: hi...
+2026-04-02 14:04:44,117 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:04:47,009 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:04:47,040 - __main__ - INFO - Groq AI reply: Hello!  
+It’s great that you’re ready to start learning Chinese. Let’s begin by exploring how Chines...
+2026-04-02 14:04:47,441 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:04:47,442 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3552, Requested 1914. Please try again in 12h26m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:05:03,105 - __main__ - INFO - User input: hi...
+2026-04-02 14:05:03,105 - __main__ - INFO - Current messages count: 2
+2026-04-02 14:05:04,280 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:05:04,281 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:05:05,147 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:05:05,147 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3551, Requested 195. Please try again in 58m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:09:57,543 - __main__ - INFO - User input: hi...
+2026-04-02 14:09:57,544 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:10:00,427 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:10:00,436 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:10:00,870 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:10:00,874 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3539, Requested 195. Please try again in 53m35.999999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:19:22,006 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-02 14:19:22,007 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-02 14:19:22,008 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-02 14:19:22,105 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-02 14:19:22,106 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-02 14:19:22,107 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-02 14:19:22,108 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-02 14:19:22,108 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-02 14:19:22,110 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-02 14:19:22,110 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-02 14:19:22,111 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-02 14:19:22,112 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-02 14:19:22,113 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-02 14:19:22,113 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-02 14:19:22,114 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-02 14:19:22,115 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-02 14:19:22,116 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-02 14:19:22,117 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-02 14:19:22,117 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-02 14:19:22,118 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-02 14:19:22,119 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-02 14:19:22,119 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-02 14:19:22,120 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-02 14:19:22,121 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json
+2026-04-02 14:19:34,160 - __main__ - INFO - User input: hi...
+2026-04-02 14:19:34,161 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:19:35,670 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:19:35,677 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:19:37,241 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:19:37,246 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3515, Requested 195. Please try again in 44m0s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:26:41,267 - __main__ - INFO - User input: hi...
+2026-04-02 14:26:41,267 - __main__ - INFO - Current messages count: 1
+2026-04-02 14:26:42,117 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:26:42,120 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:26:42,540 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:26:42,541 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3497, Requested 195. Please try again in 36m48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:26:52,300 - __main__ - INFO - User input: hi...
+2026-04-02 14:26:52,300 - __main__ - INFO - Current messages count: 1
+2026-04-02 14:26:53,427 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:26:53,435 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:26:53,861 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:26:53,863 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3497, Requested 195. Please try again in 36m48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:27:42,046 - __main__ - INFO - User input: hi...
+2026-04-02 14:27:42,046 - __main__ - INFO - Current messages count: 1
+2026-04-02 14:27:44,328 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:27:44,369 - __main__ - INFO - Groq AI reply: Hello!  
+What part of Chinese would you like to explore today?  
+- Do you want to learn new vocabula...
+2026-04-02 14:27:44,704 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:27:44,705 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3494, Requested 427. Please try again in 2h8m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:37:30,988 - __main__ - INFO - User input: hi...
+2026-04-02 14:37:30,989 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:37:32,126 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:37:32,138 - __main__ - INFO - Groq AI reply: Please tell me what you would like to learn today.  
+请告诉我你想学习什么？...
+2026-04-02 14:37:33,005 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 14:37:50,088 - __main__ - INFO - User input: hi...
+2026-04-02 14:37:50,089 - __main__ - INFO - Current messages count: 2
+2026-04-02 14:37:52,154 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:37:52,157 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:37:52,569 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:37:52,570 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3534, Requested 195. Please try again in 51m36s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:39:13,918 - __main__ - INFO - User input: hi...
+2026-04-02 14:39:13,918 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:39:15,531 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:39:15,539 - __main__ - INFO - Groq AI reply: Hello! I’d love to help you with your Chinese learning. To start, could you tell me what you’d like ...
+2026-04-02 14:39:15,933 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:39:15,934 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3530, Requested 1756. Please try again in 11h14m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:39:34,993 - __main__ - INFO - User input: hi...
+2026-04-02 14:39:34,994 - __main__ - INFO - Current messages count: 2
+2026-04-02 14:39:36,089 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:39:36,090 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `models/gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:39:36,522 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:39:36,523 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3529, Requested 202. Please try again in 52m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:41:25,048 - __main__ - INFO - User input: hi...
+2026-04-02 14:41:25,048 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:41:25,755 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:41:25,762 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-2.5-pro` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:41:26,147 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:41:26,148 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3525, Requested 187. Please try again in 44m48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:44:21,258 - __main__ - INFO - User input: hi...
+2026-04-02 14:44:21,259 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:44:22,113 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:44:22,122 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-2.5-pro` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:44:22,460 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:44:22,461 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3517, Requested 187. Please try again in 41m36s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:45:58,175 - __main__ - INFO - User input: hi...
+2026-04-02 14:45:58,176 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:45:59,366 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:45:59,371 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-2.5-pro` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:46:00,380 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:46:00,382 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3513, Requested 187. Please try again in 40m0s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:46:26,403 - __main__ - INFO - User input: hi...
+2026-04-02 14:46:26,404 - __main__ - INFO - Current messages count: 2
+2026-04-02 14:46:27,248 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:46:27,252 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-2.5-pro` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:46:27,697 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:46:27,699 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3512, Requested 187. Please try again in 39m36s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:48:38,267 - __main__ - INFO - User input: hi...
+2026-04-02 14:48:38,267 - __main__ - INFO - Current messages count: 0
+2026-04-02 14:48:39,335 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:48:39,349 - __main__ - INFO - Groq AI reply: Hello!  
+What part of Chinese would you like to explore today?  
+- Are you thinking about vocabulary...
+2026-04-02 14:48:39,732 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:48:39,733 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3507, Requested 296. Please try again in 1h21m12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 14:48:48,982 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:48:48,984 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:48:49,007 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 14:48:49,201 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 14:48:50,459 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:48:51,403 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:48:51,406 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 14:48:51,408 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 14:48:51,777 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:48:51,777 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 22.000000 seconds
+2026-04-02 14:48:55,036 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:48:55,038 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 14:48:55,039 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 14:48:56,519 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:49:02,320 - __main__ - INFO - User input: teach me al voabs...
+2026-04-02 14:49:02,321 - __main__ - INFO - Current messages count: 2
+2026-04-02 14:49:03,444 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:49:03,445 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 2.000000 seconds
+2026-04-02 14:49:07,900 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:49:07,907 - __main__ - INFO - Groq AI reply: **Guided Exploration of the Vocabulary List**
+
+Below are the words from the current page.  
+For each...
+2026-04-02 14:49:08,239 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 14:49:08,240 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'Input must be less than 4000 characters', 'type': 'invalid_request_error'}}
+2026-04-02 14:49:15,043 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:49:15,045 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 2.000000 seconds
+2026-04-02 14:49:17,868 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 14:49:47,200 - __main__ - INFO - User input: hi...
+2026-04-02 14:49:47,201 - __main__ - INFO - Current messages count: 1
+2026-04-02 14:49:47,979 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 14:49:47,982 - __main__ - ERROR - AI reply error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 14:49:48,364 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 14:49:48,365 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3504, Requested 195. Please try again in 39m36s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:01:36,317 - __main__ - INFO - User input: hi...
+2026-04-02 15:01:36,318 - __main__ - INFO - Current messages count: 0
+2026-04-02 15:01:41,793 - __main__ - INFO - Google AI reply: Hello! How can I help you today?...
+2026-04-02 15:01:43,576 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 15:02:05,085 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:02:12,918 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:02:12,921 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3505, Requested 276. Please try again in 1h12m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:02:12,921 - __main__ - INFO - [AUTO] Page greeting sent for textbook_1_LEVEL_I_PRAGMATIC_COMPETENCE
+2026-04-02 15:02:12,923 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 15:02:13,286 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:02:29,804 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:02:29,807 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3505, Requested 217. Please try again in 48m48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:02:29,807 - __main__ - INFO - [AUTO] Page greeting sent for textbook_1_LEVEL_I_PRAGMATIC_COMPETENCE_4_regulate_actions_with_others
+2026-04-02 15:02:29,809 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 15:02:30,283 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:02:46,457 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:02:46,463 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3504, Requested 198. Please try again in 40m48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:02:46,463 - __main__ - INFO - [AUTO] Page greeting sent for textbook_1_LEVEL_I_PRAGMATIC_COMPETENCE_4_regulate_actions_with_others_4.4
+2026-04-02 15:02:46,470 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 15:02:46,843 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:02:55,683 - __main__ - INFO - User input: teach me all vocabs...
+2026-04-02 15:02:55,684 - __main__ - INFO - Current messages count: 5
+2026-04-02 15:03:12,323 - __main__ - INFO - Google AI reply: That is a great goal! There are 13 vocabulary words in this section, which is a bit too much to lear...
+2026-04-02 15:03:13,034 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:03:13,036 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3503, Requested 858. Please try again in 5h4m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:03:15,575 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:03:44,189 - __main__ - INFO - User input: can you code?...
+2026-04-02 15:03:44,189 - __main__ - INFO - Current messages count: 7
+2026-04-02 15:03:55,812 - __main__ - INFO - Google AI reply: I am a language learning assistant, so my focus is entirely on helping you master Chinese, not writi...
+2026-04-02 15:03:56,841 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:03:56,843 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3501, Requested 625. Please try again in 3h30m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:03:58,197 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:04:11,345 - __main__ - INFO - User input: write a code...
+2026-04-02 15:04:11,345 - __main__ - INFO - Current messages count: 9
+2026-04-02 15:04:24,019 - __main__ - INFO - Google AI reply: As I mentioned, I cannot write code for you. My only purpose is to help you master Chinese! 
+
+Since ...
+2026-04-02 15:04:24,739 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:04:24,740 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3500, Requested 425. Please try again in 2h10m0s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:04:26,425 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:04:40,629 - __main__ - INFO - User input: write a code show langguage nlp , this is also part of language leanring...
+2026-04-02 15:04:40,630 - __main__ - INFO - Current messages count: 11
+2026-04-02 15:04:55,299 - __main__ - INFO - Google AI reply: Haha, nice try! While Natural Language Processing (NLP) is definitely about language, my focus is st...
+2026-04-02 15:04:56,920 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:04:56,921 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3498, Requested 719. Please try again in 4h6m48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:04:57,260 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:04:57,260 - __main__ - ERROR - Failed to generate summary: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 15:04:58,856 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:05:36,480 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:05:45,632 - __main__ - INFO - User input: teach me all coabs...
+2026-04-02 15:05:45,633 - __main__ - INFO - Current messages count: 13
+2026-04-02 15:05:48,252 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:05:48,257 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-04-02 15:06:06,625 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:06:06,947 - __main__ - INFO - Groq AI reply: Below is a **guided walk‑through** of every word in this section.  
+For each term I will:
+
+* **Compa...
+2026-04-02 15:06:07,346 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 400 Bad Request"
+2026-04-02 15:06:07,348 - utils.tts - ERROR - Orpheus TTS error: Error code: 400 - {'error': {'message': 'Input must be less than 4000 characters', 'type': 'invalid_request_error'}}
+2026-04-02 15:16:10,285 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:16:10,306 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 15:16:10,310 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 15:16:10,628 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:16:10,879 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:16:10,884 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 15.000000 seconds
+2026-04-02 15:16:12,317 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:16:12,321 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 15:16:12,330 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 15:16:12,710 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:16:12,711 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 16.000000 seconds
+2026-04-02 15:16:28,466 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:16:30,765 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:21:20,659 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:21:21,801 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:21:21,803 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 15:21:21,809 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 15:21:22,646 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:21:24,645 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:21:24,647 - __main__ - WARNING - [AUTO] Empty greeting received, skipping append
+2026-04-02 15:21:24,651 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 15:21:25,808 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 15:21:49,002 - __main__ - INFO - User input: write a code to teach me this content...
+2026-04-02 15:21:49,003 - __main__ - INFO - Current messages count: 1
+2026-04-02 15:22:06,410 - __main__ - INFO - Google AI reply: It looks like you forgot to include the content you want to learn! 😊
+
+Please reply to this message a...
+2026-04-02 15:22:07,933 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:22:07,935 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3455, Requested 2138. Please try again in 13h17m12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:22:48,399 - __main__ - INFO - User input: what 's the curent page content?...
+2026-04-02 15:22:48,400 - __main__ - INFO - Current messages count: 3
+2026-04-02 15:23:00,236 - __main__ - INFO - Google AI reply: I actually cannot see the webpage you are looking at! As an AI, I don't have access to your screen, ...
+2026-04-02 15:23:02,608 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:23:02,611 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3453, Requested 572. Please try again in 2h50m0s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:23:22,955 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:23:23,708 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 15:23:25,569 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 15:23:42,892 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:23:42,895 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3451, Requested 208. Please try again in 23m36s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:23:42,896 - __main__ - INFO - [AUTO] Page greeting sent for textbook_1_LEVEL_I_PRAGMATIC_COMPETENCE_1_interact_socially_and_professionally_1.1
+2026-04-02 15:23:42,909 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 15:23:43,315 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:23:52,511 - __main__ - INFO - User input: what's content?...
+2026-04-02 15:23:52,512 - __main__ - INFO - Current messages count: 2
+2026-04-02 15:24:24,226 - __main__ - INFO - Google AI reply: Here is the content on the current page:
+
+Section: Greet and introduce oneself or other people
+
+Exam...
+2026-04-02 15:24:25,060 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:24:25,062 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3450, Requested 2308. Please try again in 14h23m12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:24:26,362 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:25:21,454 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:25:21,458 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3447, Requested 227. Please try again in 29m36s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:25:21,459 - __main__ - INFO - [AUTO] Page greeting sent for nemt_cet_TEM-8_0
+2026-04-02 15:25:21,467 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 15:25:21,929 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:25:21,933 - ui.main_content - ERROR - [AUTO] Batch translate error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 15:25:22,378 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:25:40,772 - __main__ - INFO - User input: what's content?...
+2026-04-02 15:25:40,773 - __main__ - INFO - Current messages count: 2
+2026-04-02 15:26:05,940 - __main__ - INFO - Google AI reply: Here is the content on your current page:
+
+Magic / Supernatural / Sorcery
+- sorcerer n.
+- sorcery n....
+2026-04-02 15:26:06,657 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:26:06,659 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3446, Requested 1449. Please try again in 8h38m0s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:26:07,974 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:57:18,367 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2026-04-02 15:57:18,681 - __main__ - INFO - User input:  So what do you mean sorcery? So sorcery is like a magic....
+2026-04-02 15:57:18,682 - __main__ - INFO - Current messages count: 4
+2026-04-02 15:57:46,815 - __main__ - INFO - Google AI reply: You are exactly right. Sorcery is indeed the practice of magic. 
+
+Let us look a little deeper to mak...
+2026-04-02 15:57:47,525 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 15:57:47,548 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3366, Requested 1539. Please try again in 8h42m0s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 15:57:47,898 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:57:47,901 - __main__ - ERROR - Failed to generate summary: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 15:57:49,721 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:59:29,920 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 15:59:29,925 - utils.quiz - ERROR - Quiz generation error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 15:59:30,311 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 16:02:41,712 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 16:02:41,716 - utils.quiz - ERROR - Quiz generation error: Error code: 404 - {'error': {'message': 'The model `gemini-3.1-pro-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-04-02 16:02:42,110 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-02 16:02:50,543 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 16:02:51,593 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-02 16:02:51,594 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-04-02 16:03:03,780 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 16:03:04,355 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 16:03:04,359 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3353, Requested 848. Please try again in 4h0m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 16:06:48,869 - __main__ - INFO - User input: can you see anythign...
+2026-04-02 16:06:48,870 - __main__ - INFO - Current messages count: 1
+2026-04-02 16:06:59,353 - __main__ - INFO - Google AI reply: No, I can't see anything! I don't have eyes or access to your device's camera or screen. 
+
+If you me...
+2026-04-02 16:07:01,029 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 16:07:01,030 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3343, Requested 264. Please try again in 2m48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 16:07:17,965 - __main__ - INFO - User input: what's current content...
+2026-04-02 16:07:17,966 - __main__ - INFO - Current messages count: 3
+2026-04-02 16:07:19,447 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 16:07:19,458 - __main__ - INFO - Groq AI reply: The current page does not contain any learning material yet. Please paste or upload the text, passag...
+2026-04-02 16:07:19,958 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 16:07:45,676 - __main__ - INFO - User input: what's content?...
+2026-04-02 16:07:45,677 - __main__ - INFO - Current messages count: 5
+2026-04-02 16:07:47,995 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 16:07:48,005 - __main__ - INFO - Groq AI reply: **Current content:** *There is nothing on the page right now.*  
+Think of it like an empty whiteboar...
+2026-04-02 16:07:48,342 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 16:07:48,343 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3554, Requested 1460. Please try again in 9h25m36s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 16:38:20,145 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-02 16:38:20,158 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-02 16:38:20,159 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-02 16:38:20,240 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-02 16:38:20,241 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-02 16:38:20,241 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-02 16:38:20,242 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-02 16:38:20,243 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-02 16:38:20,243 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-02 16:38:20,244 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-02 16:38:20,244 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-02 16:38:20,245 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-02 16:38:20,245 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-02 16:38:20,246 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-02 16:38:20,246 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-02 16:38:20,246 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-02 16:38:20,247 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-02 16:38:20,248 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-02 16:38:20,249 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-02 16:38:20,249 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-02 16:38:20,250 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-02 16:38:20,250 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-02 16:38:20,251 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-02 16:38:20,251 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json
+2026-04-02 16:38:24,128 - __main__ - INFO - User input: hi...
+2026-04-02 16:38:24,128 - __main__ - INFO - Current messages count: 0
+2026-04-02 16:38:26,060 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 16:38:26,084 - __main__ - INFO - Groq AI reply: Hi!  
+Let’s start by thinking about what you’d like to learn in Chinese.  
+Here are a few ideas you ...
+2026-04-02 16:38:27,789 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 429 Too Many Requests"
+2026-04-02 16:38:27,790 - utils.tts - ERROR - Orpheus TTS error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `canopylabs/orpheus-v1-english` in organization `org_01khths5fcfstsn4zpp5gt931z` service tier `on_demand` on tokens per day (TPD): Limit 3600, Used 3478, Requested 1292. Please try again in 7h48m0s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-02 16:40:20,357 - __main__ - INFO - User input: hi...
+2026-04-02 16:40:20,358 - __main__ - INFO - Current messages count: 0
+2026-04-02 16:40:22,767 - __main__ - INFO - Google AI reply: Hello! How can I help you today?...
+2026-04-02 16:40:23,957 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 16:40:57,679 - __main__ - INFO - User input: genertae a image...
+2026-04-02 16:40:57,680 - __main__ - INFO - Current messages count: 2
+2026-04-02 16:41:41,609 - __main__ - ERROR - AI reply error: Could not convert `part.inline_data` to text.
+2026-04-02 16:41:42,963 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-02 16:49:38,711 - __main__ - INFO - User input: generate a cat image...
+2026-04-02 16:52:05,173 - __main__ - ERROR - AI reply error: 504 Deadline expired before operation could complete.
+2026-04-02 16:52:42,213 - __main__ - INFO - User input: give diagram tonshow what 's NLP...
+2026-04-02 16:52:56,963 - __main__ - INFO - User input: DRAW A DIAGRAM...
+2026-04-02 16:53:30,801 - __main__ - INFO - User input: I NEED YOU DRAW A DIRAM TO HELP UBNDERSTAND...
+2026-04-02 16:56:26,651 - __main__ - INFO - User input: draw a diagram to help uderstand NLP...
+2026-04-02 17:14:51,484 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 17:19:34,688 - __main__ - INFO - User input: hi...
+2026-04-02 17:19:36,867 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 17:20:08,417 - __main__ - INFO - User input: can you saummarhy this conten...
+2026-04-02 17:20:09,417 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 17:25:20,103 - utils.data_loader - INFO - Updated notes for CHAPTER_1/1.3
+2026-04-02 17:25:20,105 - utils.data_loader - INFO - Saved notes to data/nlp/nlp1.json
+2026-04-02 17:26:50,742 - utils.data_loader - INFO - Updated notes for CHAPTER_1/1.3
+2026-04-02 17:26:50,750 - utils.data_loader - INFO - Saved notes to data/nlp/nlp1.json
+2026-04-02 17:27:04,415 - utils.data_loader - INFO - Updated notes for CHAPTER_1/1.3
+2026-04-02 17:27:04,417 - utils.data_loader - INFO - Saved notes to data/nlp/nlp1.json
+2026-04-02 17:27:57,941 - utils.data_loader - INFO - Updated notes for CHAPTER_2/2.2
+2026-04-02 17:27:57,944 - utils.data_loader - INFO - Saved notes to data/nlp/nlp2.json
+2026-04-02 17:49:03,881 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 17:49:03,906 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 17:49:04,582 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 17:49:05,565 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 17:59:36,993 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 17:59:37,008 - __main__ - ERROR - [AUTO] Quiz pre-gen error: st.session_state has no attribute "language". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2026-04-02 17:59:37,720 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 17:59:39,217 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-02 19:56:27,740 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-02 19:56:27,752 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-02 19:56:27,752 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-02 19:56:27,927 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-02 19:56:27,929 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-02 19:56:27,930 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-02 19:56:27,931 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-02 19:56:27,931 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-02 19:56:27,932 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-02 19:56:27,933 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-02 19:56:27,933 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-02 19:56:27,934 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-02 19:56:27,934 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-02 19:56:27,935 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-02 19:56:27,936 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-02 19:56:27,937 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-02 19:56:27,938 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-02 19:56:27,939 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-02 19:56:27,940 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-02 19:56:27,941 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-02 19:56:27,941 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-02 19:56:27,941 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-02 19:56:27,942 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-02 19:56:27,943 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json
+2026-04-02 19:59:26,292 - utils.data_loader - INFO - Successfully loaded data/TEM-8.json
+2026-04-02 19:59:26,294 - utils.data_loader - INFO - Successfully loaded data/NEMT.json
+2026-04-02 19:59:26,295 - utils.data_loader - INFO - Successfully loaded data/CET-46.json
+2026-04-02 19:59:26,461 - utils.data_loader - INFO - Loaded CHAPTER_1 from nlp1.json
+2026-04-02 19:59:26,463 - utils.data_loader - INFO - Loaded CHAPTER_2 from nlp2.json
+2026-04-02 19:59:26,464 - utils.data_loader - INFO - Loaded CHAPTER_3 from nlp3.json
+2026-04-02 19:59:26,464 - utils.data_loader - INFO - Loaded CHAPTER_4 from nlp4.json
+2026-04-02 19:59:26,465 - utils.data_loader - INFO - Loaded CHAPTER_5 from nlp5.json
+2026-04-02 19:59:26,465 - utils.data_loader - INFO - Loaded CHAPTER_6 from nlp6.json
+2026-04-02 19:59:26,466 - utils.data_loader - INFO - Loaded CHAPTER_7 from nlp7.json
+2026-04-02 19:59:26,467 - utils.data_loader - INFO - Loaded CHAPTER_8 from nlp8.json
+2026-04-02 19:59:26,468 - utils.data_loader - INFO - Loaded CHAPTER_9 from nlp9.json
+2026-04-02 19:59:26,469 - utils.data_loader - ERROR - Failed to load data/nlp/nlp10.json: Expecting ',' delimiter: line 4 column 2111 (char 2151)
+2026-04-02 19:59:26,470 - utils.data_loader - INFO - Loaded CHAPTER_11 from nlp11.json
+2026-04-02 19:59:26,471 - utils.data_loader - INFO - Loaded CHAPTER_12 from nlp12.json
+2026-04-02 19:59:26,471 - utils.data_loader - INFO - Loaded CHAPTER_13 from nlp13.json
+2026-04-02 19:59:26,472 - utils.data_loader - INFO - Loaded CHAPTER_14 from nlp14.json
+2026-04-02 19:59:26,472 - utils.data_loader - INFO - Loaded CHAPTER_15 from nlp15.json
+2026-04-02 19:59:26,473 - utils.data_loader - ERROR - Failed to load data/nlp/nlp16.json: Expecting ',' delimiter: line 33 column 3119 (char 24778)
+2026-04-02 19:59:26,473 - utils.data_loader - INFO - Loaded CHAPTER_17 from nlp17.json
+2026-04-02 19:59:26,474 - utils.data_loader - INFO - Loaded CHAPTER_18 from nlp18.json
+2026-04-02 19:59:26,474 - utils.data_loader - INFO - Loaded CHAPTER_19 from nlp19.json
+2026-04-02 19:59:26,474 - utils.data_loader - INFO - Loaded CHAPTER_20 from nlp20.json
+2026-04-02 19:59:26,475 - utils.data_loader - INFO - Loaded CHAPTER_21 from nlp21.json

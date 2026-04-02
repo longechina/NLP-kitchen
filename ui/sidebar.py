@@ -294,8 +294,8 @@ def render_sidebar(levels_data, nemt_cet_data, client, system_prompt, get_curren
                     st.rerun()
         
         # ========== 设置工具区域 ==========
-        # Mode - 添加 NLP Textbook 选项
-        mode_opts = ["Chinese", "English", "NEMT & CET", "NLP Textbook"]
+        # Mode - 添加 Info. Search 选项
+        mode_opts = ["Chinese", "English", "NEMT & CET", "NLP Textbook", "Info. Search"]
         cur_idx = 0
         if st.session_state.language == "English":
             cur_idx = 1
@@ -303,6 +303,8 @@ def render_sidebar(levels_data, nemt_cet_data, client, system_prompt, get_curren
             cur_idx = 2
         elif st.session_state.language == "NLP Textbook":
             cur_idx = 3
+        elif st.session_state.language == "Info. Search":
+            cur_idx = 4
         
         new_lang = st.selectbox("Mode", mode_opts, index=cur_idx, key="mode_select")
         if new_lang != st.session_state.language:
@@ -317,6 +319,14 @@ def render_sidebar(levels_data, nemt_cet_data, client, system_prompt, get_curren
                 st.session_state.nlp_selected_section = None
             elif new_lang == "NLP Textbook":
                 st.session_state.current_mode = "nlp_textbook"
+                st.session_state.level = None
+                st.session_state.path = []
+                st.session_state.selected_nemt_cet = None
+                st.session_state.nemt_cet_path = []
+                st.session_state.nlp_selected_chapter = None
+                st.session_state.nlp_selected_section = None
+            elif new_lang == "Info. Search":
+                st.session_state.current_mode = "info_search"
                 st.session_state.level = None
                 st.session_state.path = []
                 st.session_state.selected_nemt_cet = None
@@ -377,6 +387,7 @@ def render_sidebar(levels_data, nemt_cet_data, client, system_prompt, get_curren
             st.session_state.selected_model = new_model
             st.session_state.model_name = AVAILABLE_MODELS[new_model]["id"]
             st.session_state.model_max_tokens = AVAILABLE_MODELS[new_model]["max_tokens"]
+            st.session_state.model_resp_tokens = AVAILABLE_MODELS[new_model]["resp_tokens"]
             st.rerun()
         
         # OCR 文件上传

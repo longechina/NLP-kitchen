@@ -6,7 +6,7 @@
   "nemt_cet_TEM-8_2_word_0": 1,
   "nemt_cet_TEM-8_2_word_3": 1,
   "nemt_cet_TEM-8_2_word_6": 1,
-  "nemt_cet_TEM-8_2_word_9": 2,
+  "nemt_cet_TEM-8_2_word_9": 0,
   "nemt_cet_TEM-8_2_word_7": 1,
   "nemt_cet_TEM-8_2_word_4": 1,
   "nemt_cet_TEM-8_2_word_1": 1,
@@ -117,5 +117,6 @@
   "nemt_cet_TEM-8_7_word_8": 1,
   "nemt_dir_state_TEM-8_7": 1,
   "nemt_dir_state_TEM-8_8": 2,
-  "dir_state_1_LEVEL_I_LINGUISTIC_COMPETENCE_MORPHOLOGY_SYNTAX": 1
+  "dir_state_1_LEVEL_I_LINGUISTIC_COMPETENCE_MORPHOLOGY_SYNTAX": 1,
+  "note_nemt_cet_TEM-8_0_word_0": "1. 巫师(也就是古代的魔法)"
 }

@@ -8,8 +8,8 @@ def get_groq_client():
     return groq.Client(api_key=os.environ.get("GROQ_API_KEY") or st.secrets["GROQ_API_KEY"])
 
 def build_system_prompt(levels, teaching_principles):
-    prompt = f"""You are a language learning assistant helping students learn Languages.
-You have access to learning materials across 3 levels covering grammar, vocabulary, and conversation.
+    prompt = f"""You are a learning assistant helping students learn knowledge.
+You have access to learning materials.
 
 TEACHING PRINCIPLES (MUST FOLLOW):
 {teaching_principles}

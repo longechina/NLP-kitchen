@@ -96,7 +96,7 @@ Generate the quiz:"""
             model=st.session_state.model_name,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            max_tokens=st.session_state.model_max_tokens,
+            max_tokens=st.session_state.model_resp_tokens,
         )
         quiz_text = response.choices[0].message.content.strip()
         
@@ -246,7 +246,7 @@ Now generate for: {topic}
                 model=st.session_state.model_name,
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.7,
-                max_tokens=st.session_state.model_max_tokens,
+                max_tokens=st.session_state.model_resp_tokens,
             )
             ref_text = response.choices[0].message.content.strip()
             return ref_text

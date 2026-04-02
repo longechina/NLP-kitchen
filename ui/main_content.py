@@ -277,7 +277,7 @@ def render_main_content(levels_data, nemt_cet_data, client, get_current_page_ful
         
         # 如果没有选中章节，显示所有章节
         if st.session_state.nlp_selected_chapter is None:
-            st.markdown("## 📚 Information Retrieval Textbook")
+            st.markdown("## Information Retrieval Textbook")
             st.markdown("### Introduction to Information Retrieval")
             st.markdown("A comprehensive textbook covering search engines, indexing, ranking, and more.")
             
@@ -295,7 +295,7 @@ def render_main_content(levels_data, nemt_cet_data, client, get_current_page_ful
                 chapter_name = chapter.get("name", f"Chapter {chapter_num}")
                 
                 with cols[idx % 3]:
-                    if st.button(f"📖 {chapter_name}\n\nChapter {chapter_num}", key=f"nlp_chapter_{chapter_key}", use_container_width=True):
+                    if st.button(f"{chapter_name}\n\nChapter {chapter_num}", key=f"nlp_chapter_{chapter_key}", use_container_width=True):
                         st.session_state.nlp_selected_chapter = chapter_key
                         st.session_state.nlp_selected_section = None
                         st.rerun()
@@ -307,7 +307,7 @@ def render_main_content(levels_data, nemt_cet_data, client, get_current_page_ful
             chapter_name = chapter.get("name", f"Chapter {chapter_num}")
             
             # 面包屑导航
-            st.markdown(f"<div class='breadcrumb'>📖 Chapter {chapter_num}: {chapter_name}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='breadcrumb'>Chapter {chapter_num}: {chapter_name}</div>", unsafe_allow_html=True)
             
             # 返回按钮
             col_back, _ = st.columns([1, 5])
@@ -336,7 +336,7 @@ def render_main_content(levels_data, nemt_cet_data, client, get_current_page_ful
                     for idx, (section_key, section) in enumerate(sections):
                         section_name = section.get("name", section_key)
                         with cols[idx % 2]:
-                            if st.button(f"📌 {section_name}\n\n{section_key}", key=f"nlp_section_{section_key}", use_container_width=True):
+                            if st.button(f"{section_name}\n\n{section_key}", key=f"nlp_section_{section_key}", use_container_width=True):
                                 st.session_state.nlp_selected_section = section_key
                                 st.rerun()
                 else:
@@ -363,102 +363,18 @@ def render_main_content(levels_data, nemt_cet_data, client, get_current_page_ful
                 
                 if content:
                     st.markdown("---")
-                    st.markdown("### 📄 Content")
+                    st.markdown("### Content")
                     st.markdown(f"<div style='background-color: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; line-height: 1.6; font-size: 16px;'>{content}</div>", unsafe_allow_html=True)
                     
-                    # ========== 摘录功能区 ==========
-                    st.markdown("---")
-                    st.markdown("### 📌 Excerpt & Annotate")
-                    st.markdown("Select text from above, or use the options below to add to your notes:")
-                    
-                    # 提取段落用于选择
-                    paragraphs = [p.strip() for p in content.split('\n\n') if p.strip()]
-                    
-                    col_excerpt1, col_excerpt2, col_excerpt3 = st.columns(3)
-                    
-                    # 快速摘录 - 从段落中选择
-                    with col_excerpt1:
-                        if paragraphs:
-                            excerpt_options = []
-                            excerpt_texts = []
-                            for p in paragraphs[:8]:
-                                preview = p[:80] + "..." if len(p) > 80 else p
-                                excerpt_options.append(preview)
-                                excerpt_texts.append(p)
-                            
-                            selected_idx = st.selectbox("Select a paragraph:", 
-                                                       options=list(range(len(excerpt_options))),
-                                                       format_func=lambda i: excerpt_options[i],
-                                                       key="quick_excerpt_select")
-                            if st.button("📋 Add to Notes", key="add_quick_excerpt"):
-                                full_text = excerpt_texts[selected_idx]
-                                timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-                                new_note = f"""---
-### 📌 Excerpt from {section_name} ({timestamp})
-> {full_text}
-
-**My notes:** 
-
----
-"""
-                                updated_notes = current_notes + "\n\n" + new_note if current_notes else new_note
-                                success = save_nlp_chapter_notes(
-                                    st.session_state.nlp_selected_chapter,
-                                    st.session_state.nlp_selected_section,
-                                    updated_notes
-                                )
-                                if success:
-                                    st.success("✅ Excerpt added to notes!")
-                                    time.sleep(1)
-                                    st.rerun()
-                    
-                    # 自定义摘录
-                    with col_excerpt2:
-                        custom_excerpt = st.text_area("Custom excerpt:", 
-                                                      placeholder="Paste or type the text you want to excerpt...", 
-                                                      height=100, 
-                                                      key="custom_excerpt")
-                        if custom_excerpt and st.button("📝 Add Custom Excerpt", key="add_custom_excerpt"):
-                            timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-                            new_note = f"""---
-### 📌 Custom Excerpt from {section_name} ({timestamp})
-> {custom_excerpt}
-
-**My notes:** 
-
----
-"""
-                            updated_notes = current_notes + "\n\n" + new_note if current_notes else new_note
-                            success = save_nlp_chapter_notes(
-                                st.session_state.nlp_selected_chapter,
-                                st.session_state.nlp_selected_section,
-                                updated_notes
-                            )
-                            if success:
-                                st.success("✅ Custom excerpt added to notes!")
-                                time.sleep(1)
-                                st.rerun()
-                    
-                    # 使用提示
-                    with col_excerpt3:
-                        st.markdown("**💡 Markdown Tips:**")
-                        st.markdown("""
-                        - `**bold**` for emphasis
-                        - `*italic*` for thoughts  
-                        - `> quote` for citations
-                        - `- bullet` for lists
-                        - `### Heading` for sections
-                        """)
-                
                 st.markdown("---")
                 
                 # Notes 区域（支持 Markdown）
-                st.markdown("### 📝 Your Notes & Annotations")
+                st.markdown("### Your Notes & Annotations")
                 st.markdown("Write your thoughts, summaries, or questions using **Markdown**:")
                 
                 # 显示当前 notes（如果有）- Markdown 渲染预览
                 if current_notes:
-                    with st.expander("📖 View Previous Notes", expanded=False):
+                    with st.expander("View Previous Notes", expanded=False):
                         st.markdown(current_notes)
                 
                 # 编辑区域
@@ -490,7 +406,7 @@ Write your notes here using Markdown:
                 )
                 
                 # Markdown 预览
-                with st.expander("🔍 Preview (Markdown rendered)", expanded=False):
+                with st.expander("Preview (Markdown rendered)", expanded=False):
                     st.markdown("**Preview of your notes:**")
                     st.markdown("---")
                     if new_notes:
@@ -501,7 +417,7 @@ Write your notes here using Markdown:
                 # 保存按钮
                 col_save, col_cancel = st.columns([1, 4])
                 with col_save:
-                    if st.button("💾 Save Notes", key="nlp_save_notes", use_container_width=True):
+                    if st.button("Save Notes", key="nlp_save_notes", use_container_width=True):
                         if new_notes != current_notes:
                             success = save_nlp_chapter_notes(
                                 st.session_state.nlp_selected_chapter,
@@ -509,7 +425,7 @@ Write your notes here using Markdown:
                                 new_notes
                             )
                             if success:
-                                st.success("✅ Notes saved successfully!")
+                                st.success("Notes saved successfully!")
                                 section["notes"] = new_notes
                                 time.sleep(1)
                                 st.rerun()
@@ -518,87 +434,10 @@ Write your notes here using Markdown:
                         else:
                             st.info("No changes to save.")
                 
-                # 快速模板按钮
-                st.markdown("---")
-                st.markdown("### 📋 Quick Templates")
-                col_temp1, col_temp2, col_temp3 = st.columns(3)
-                
-                with col_temp1:
-                    if st.button("📖 Summary Template", use_container_width=True):
-                        template = f"""## Summary of {section_name}
 
-**Main Ideas:**
-- 
-- 
-- 
-
-**Key Terms:**
-- 
-- 
-
-**My Understanding:**
-> 
-"""
-                        updated_notes = current_notes + "\n\n" + template if current_notes else template
-                        success = save_nlp_chapter_notes(
-                            st.session_state.nlp_selected_chapter,
-                            st.session_state.nlp_selected_section,
-                            updated_notes
-                        )
-                        if success:
-                            st.success("✅ Summary template added!")
-                            time.sleep(1)
-                            st.rerun()
-                
-                with col_temp2:
-                    if st.button("❓ Questions Template", use_container_width=True):
-                        template = f"""## Questions for {section_name}
-
-1. 
-2. 
-3. 
-
-**Need clarification on:**
-- 
-"""
-                        updated_notes = current_notes + "\n\n" + template if current_notes else template
-                        success = save_nlp_chapter_notes(
-                            st.session_state.nlp_selected_chapter,
-                            st.session_state.nlp_selected_section,
-                            updated_notes
-                        )
-                        if success:
-                            st.success("✅ Questions template added!")
-                            time.sleep(1)
-                            st.rerun()
-                
-                with col_temp3:
-                    if st.button("💭 Reflection Template", use_container_width=True):
-                        template = f"""## Personal Reflection on {section_name}
-
-**What I learned:**
-> 
-
-**How this connects to previous knowledge:**
-> 
-
-**Questions I still have:**
-- 
-"""
-                        updated_notes = current_notes + "\n\n" + template if current_notes else template
-                        success = save_nlp_chapter_notes(
-                            st.session_state.nlp_selected_chapter,
-                            st.session_state.nlp_selected_section,
-                            updated_notes
-                        )
-                        if success:
-                            st.success("✅ Reflection template added!")
-                            time.sleep(1)
-                            st.rerun()
-                
                 # 推荐学习资源
                 st.markdown("---")
-                st.markdown("### 🔗 Recommended Resources")
+                st.markdown("### Recommended Resources")
                 
                 topic = chapter_name
                 st.markdown(f"""

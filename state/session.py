@@ -10,6 +10,9 @@ def init_session_state():
         st.session_state.model_name = AVAILABLE_MODELS[DEFAULT_MODEL]["id"]
     if "model_max_tokens" not in st.session_state:
         st.session_state.model_max_tokens = AVAILABLE_MODELS[DEFAULT_MODEL]["max_tokens"]
+    # resp_tokens = 实际传给 API 的输出预算（不是上下文窗口大小）
+    if "model_resp_tokens" not in st.session_state:
+        st.session_state.model_resp_tokens = AVAILABLE_MODELS[DEFAULT_MODEL]["resp_tokens"]
     
     # 语言和模式
     if "language" not in st.session_state:
